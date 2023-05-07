@@ -133,3 +133,7 @@ network:
 - Deploy my various stacks as compose files, with properly mounted config volumes as nfs 
 - Configure nginx proxy manager and port forwarding
 - Decommission old Plex install in favor of this new one
+- Nextcloud
+- Windows VM
+- Terraform provisioning
+- VPN server
