@@ -28,6 +28,7 @@ tags: [proxmox, nas, truenas]
   at NzbDrone.Core.RootFolders.RootFolderService+<>c__DisplayClass13_0.<GetDetails>b__0 () [0x00075] in C:\BuildAgent\work\63739567f01dbcc2\src\NzbDrone.Core\RootFolders\RootFolderService.cs:191
   at System.Threading.Tasks.Task.InnerInvoke () [0x0000f] in <de882a77e7c14f8ba5d298093dde82b2>:0
   at System.Threading.Tasks.Task.Execute () [0x00000] in <de882a77e7c14f8ba5d298093dde82b2>:0
+  ```
 Fixed by giving read rights to other. Need to figure out how to make the container part of the group of the share.
 
 
