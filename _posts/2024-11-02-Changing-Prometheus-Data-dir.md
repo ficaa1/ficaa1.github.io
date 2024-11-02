@@ -16,14 +16,18 @@ sudo cp -vr /var/lib/prometheus /opt/intersec/prometheus_backup
 ```
 
 2. Create new data directory
+
 ```
 chown -R prometheus:prometheus /data
 sudo -u prometheus mkdir /data/prometheus
 ```
+
 3. Change prometheus service to use new directory
+
 ```
 vim /etc/systemd/system/prometheus.service
 ```
+
 ```
 [Unit]
 Description=Prometheus
@@ -77,7 +81,11 @@ TimeoutStopSec=600s
 WantedBy=multi-user.target
 
 ```
+
+
 4. Verify permissions and owner
+
+
 ```
 ls -al /data/
 ls -al /data/prometheus/
