@@ -26,9 +26,7 @@ sudo -u prometheus mkdir /data/prometheus
 
 ```
 vim /etc/systemd/system/prometheus.service
-```
 
-```
 [Unit]
 Description=Prometheus
 After=network-online.target
