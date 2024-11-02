@@ -9,21 +9,17 @@ tags: []     # TAG names should always be lowercase
 # Changing Prometheus data directory
 
 1. Stop prometheus and take backup
-
 ```
 systemctl stop prometheus
 sudo cp -vr /var/lib/prometheus /opt/intersec/prometheus_backup
 ```
-
 2. Create new data directory
 
 ```
 chown -R prometheus:prometheus /data
 sudo -u prometheus mkdir /data/prometheus
 ```
-
 3. Change prometheus service to use new directory
-
 ```
 vim /etc/systemd/system/prometheus.service
 
@@ -79,8 +75,6 @@ TimeoutStopSec=600s
 WantedBy=multi-user.target
 
 ```
-
-
 4. Verify permissions and owner
 
 
@@ -92,10 +86,8 @@ total 120
 drwxr-xr-x 25 prometheus prometheus  4096  4 oct.  09:54 .
 drwxr-xr-x  4 prometheus prometheus  4096  4 oct.  09:53 ..
 ```
-
 5. Move the TSDB to new location
 `mv /var/lib/prometheus/* /data/prometheus/`
-
 6. Reload service file and start prometheus, verify if all is ok with journalctl and df
 ```
 systemctl daemon-reload
