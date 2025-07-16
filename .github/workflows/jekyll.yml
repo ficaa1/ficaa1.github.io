@@ -64,7 +64,7 @@ jobs:
       - name: Upload artifact
         # This action automatically uploads the './_site' directory by default.
         # This is the crucial update to v2 for artifacts.
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v2
         with:
           path: '_site' # The path to the directory containing your static site files
 
