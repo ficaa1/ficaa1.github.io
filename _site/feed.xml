@@ -1,0 +1,252 @@
+
+
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>https://ficaa1.github.io/</id>
+  <title>Filip BILJIC</title>
+  <subtitle>A personal SysOps blog covering DevOps and Homelab topics.</subtitle>
+  <updated>2025-07-16T13:22:31+02:00</updated>
+  <author>
+    <name>Filip Biljic</name>
+    <uri>https://ficaa1.github.io/</uri>
+  </author>
+  <link rel="self" type="application/atom+xml" href="https://ficaa1.github.io/feed.xml"/>
+  <link rel="alternate" type="text/html" hreflang="en"
+    href="https://ficaa1.github.io/"/>
+  <generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator>
+  <rights> © 2025 Filip Biljic </rights>
+  <icon>/assets/img/favicons/favicon.ico</icon>
+  <logo>/assets/img/favicons/favicon-96x96.png</logo>
+
+
+  
+  <entry>
+    <title>Homelab Series Part 1: Building a Secure VPN Gateway with Docker</title>
+    <link href="https://ficaa1.github.io/posts/homelab-vpn-gateway/" rel="alternate" type="text/html" title="Homelab Series Part 1: Building a Secure VPN Gateway with Docker" />
+    <published>2025-07-15T13:28:21+02:00</published>
+  
+    <updated>2025-07-15T13:28:21+02:00</updated>
+  
+    <id>https://ficaa1.github.io/posts/homelab-vpn-gateway/</id>
+    <content src="https://ficaa1.github.io/posts/homelab-vpn-gateway/" />
+    <author>
+      <name>Filip Biljic</name>
+    </author>
+
+  
+    
+    <category term="homelab" />
+    
+    <category term="docker" />
+    
+    <category term="networking" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Welcome to the first post in my new series on building a fully automated media
+ecosystem in my homelab. Before we can get to the fun stuff like media servers
+and request systems, we need to build a solid, secure foundation. For any services
+that reach out to the internet, I want to ensure that traffic is routed through a
+VPN.
+
+The goal is to create a “VPN gateway” container. Any other container...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>Fish shell and tmux config files</title>
+    <link href="https://ficaa1.github.io/posts/Fish-shell-and-tmux-conf/" rel="alternate" type="text/html" title="Fish shell and tmux config files" />
+    <published>2024-11-04T00:00:00+01:00</published>
+  
+    <updated>2024-11-04T00:00:00+01:00</updated>
+  
+    <id>https://ficaa1.github.io/posts/Fish-shell-and-tmux-conf/</id>
+    <content src="https://ficaa1.github.io/posts/Fish-shell-and-tmux-conf/" />
+    <author>
+      <name>Filip Biljic</name>
+    </author>
+
+  
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Fish shell config
+
+if status is-interactive
+    # Commands to run in interactive sessions can go here
+    zoxide init --cmd cd fish | source
+    fzf_configure_bindings --directory=\ct
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+end
+
+# function fzf --wraps=fzf --description="Use fzf-tmux if in tmux session"
+#   if set --query TMUX
+#     fzf-tmux $argv
+#   else
+#     command fzf $a...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>Changing Prometheus TSDB directory</title>
+    <link href="https://ficaa1.github.io/posts/Changing-Prometheus-Data-dir/" rel="alternate" type="text/html" title="Changing Prometheus TSDB directory" />
+    <published>2024-10-04T00:00:00+02:00</published>
+  
+    <updated>2024-11-02T21:06:05+01:00</updated>
+  
+    <id>https://ficaa1.github.io/posts/Changing-Prometheus-Data-dir/</id>
+    <content src="https://ficaa1.github.io/posts/Changing-Prometheus-Data-dir/" />
+    <author>
+      <name>Filip Biljic</name>
+    </author>
+
+  
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Changing Prometheus data directory
+
+
+  Stop prometheus and take backup
+    systemctl stop prometheus
+sudo cp -vr /var/lib/prometheus /opt/intersec/prometheus_backup
+    
+  
+  Create new data directory
+
+
+chown -R prometheus:prometheus /data
+sudo -u prometheus mkdir /data/prometheus
+
+
+
+  Change prometheus service to use new directory
+
+
+vim /etc/systemd/system/prometheus.service
+
+[Unit]
+Descriptio...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>RIPGREP Search and replace</title>
+    <link href="https://ficaa1.github.io/posts/ripgrep-searchandreplace/" rel="alternate" type="text/html" title="RIPGREP Search and replace" />
+    <published>2024-06-14T00:00:00+02:00</published>
+  
+    <updated>2024-06-14T00:00:00+02:00</updated>
+  
+    <id>https://ficaa1.github.io/posts/ripgrep-searchandreplace/</id>
+    <content src="https://ficaa1.github.io/posts/ripgrep-searchandreplace/" />
+    <author>
+      <name>Filip Biljic</name>
+    </author>
+
+  
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      RIPGREP Search and replace
+
+rg --passthru '/dev/mapper/vg_geosafe-sc-core' -r '/dev/mapper/vg_geosafe-sc--core' ansible/group_vars/node11 &amp;gt; tmp.txt &amp;amp;&amp;amp; mv tmp.txt ansible/group_vars/node11
+
+changes /dev/mapper/vg_geosafe-sc-core to /dev/mapper/vg_geosafe-sc–core and replaces it in the file
+
+
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>Resizing disk in Proxmox and guest VM</title>
+    <link href="https://ficaa1.github.io/posts/resizedisk/" rel="alternate" type="text/html" title="Resizing disk in Proxmox and guest VM" />
+    <published>2023-05-16T12:53:00+02:00</published>
+  
+    <updated>2023-05-16T12:53:00+02:00</updated>
+  
+    <id>https://ficaa1.github.io/posts/resizedisk/</id>
+    <content src="https://ficaa1.github.io/posts/resizedisk/" />
+    <author>
+      <name>Filip Biljic</name>
+    </author>
+
+  
+    
+    <category term="homelab" />
+    
+    <category term="server" />
+    
+    <category term="proxmox" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Resizing disk Proxmox+Ubuntu VM
+
+After resizing disk in Proxmox GUI:
+
+Inside parted:
+root@plex:/mnt/media/docker-volumes/photoprism# parted
+GNU Parted 3.4
+Using /dev/sda
+Welcome to GNU Parted! Type 'help' to view a list of commands.
+(parted) print
+Warning: Not all of the space available to /dev/sda appears to be used, you can fix the GPT to use all of the space (an extra 41943040 blocks) or con...
+    </summary>
+  
+
+  </entry>
+
+</feed>
+
+
