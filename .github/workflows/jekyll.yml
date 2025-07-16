@@ -37,7 +37,7 @@ jobs:
           fetch-depth: 0 # Useful for Jekyll if you need full history, e.g., for posts dates
 
       - name: Setup Ruby
-        uses: ruby/setup-ruby@v1.163.0 # Use the latest recommended version
+        uses: ruby/setup-ruby@v1.246.0 # Use the latest recommended version
         with:
           ruby-version: '3.1' # Ensure this matches your Jekyll environment (or remove if using .ruby-version)
           bundler-cache: true # Installs and caches gems
