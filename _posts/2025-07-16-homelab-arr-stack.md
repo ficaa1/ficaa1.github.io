@@ -5,7 +5,7 @@ date: 2025-07-16 13:28:21 +0200
 categories: homelab docker automation
 ---
 
-In [Part 1](/posts/homelab-vpn-gateway.html), we built a secure VPN gateway
+In [Part 1](/posts/homelab-vpn-gateway), we built a secure VPN gateway
 to protect our internet-facing services. Now, let's build the engine that will
 power our media ecosystem. The goal is to automate the entire process: from
 requesting media to finding it, downloading it, and placing it in the right

@@ -5,9 +5,9 @@ date: 2025-07-18 13:28:21 +0200
 categories: homelab docker plex
 ---
 
-We've built a [secure network](/posts/homelab-vpn-gateway.html), an
-[automated acquisition engine](/posts/homelab-arr-stack.html), and a
-[smart tiered storage system](/posts/homelab-tiered-storage.html). Now it's
+We've built a [secure network](/posts/homelab-vpn-gateway), an
+[automated acquisition engine](/posts/homelab-arr-stack), and a
+[smart tiered storage system](/posts/homelab-tiered-storage). Now it's
 time for the grand finale: setting up the user-facing service that brings it all
 together. For this, I use Plex Media Server.
 

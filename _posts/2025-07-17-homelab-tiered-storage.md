@@ -5,7 +5,7 @@ date: 2025-07-17 13:28:21 +0200
 categories: homelab docker automation scripting
 ---
 
-In the [previous post](/posts/homelab-arr-stack.html), we set up a media
+In the [previous post](/posts/homelab-arr-stack), we set up a media
 acquisition engine that downloads files to a fast NVMe drive. The problem? Fast
 storage is expensive and limited. This is where the real fun begins: building a
 system to automatically move older content to a larger, slower storage pool
