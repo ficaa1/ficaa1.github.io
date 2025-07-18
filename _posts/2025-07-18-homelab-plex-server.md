@@ -84,7 +84,7 @@ services:
 
 And there you have it! A complete, end-to-end automated media server. From a
 secure VPN gateway to an intelligent, self-managing storage system, and finally,
-a powerful Plex server to deliver the content. This project has been a fantastic
+a powerful Plex server to deliver the content. This project has been a good
 learning experience, touching on networking, scripting, API integration, and
 hardware management—all within the Docker ecosystem.
 
