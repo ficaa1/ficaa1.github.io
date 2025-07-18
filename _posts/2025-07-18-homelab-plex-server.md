@@ -5,9 +5,9 @@ date: 2025-07-18 13:28:21 +0200
 categories: homelab docker plex
 ---
 
-We've built a [secure network](/2025/07/15/homelab-vpn-gateway.html), an
-[automated acquisition engine](/2025/07/16/homelab-arr-stack.html), and a
-[smart tiered storage system](/2025/07/17/homelab-tiered-storage.html). Now it's
+We've built a [secure network](/posts/homelab-vpn-gateway.html), an
+[automated acquisition engine](/posts/homelab-arr-stack.html), and a
+[smart tiered storage system](/posts/homelab-tiered-storage.html). Now it's
 time for the grand finale: setting up the user-facing service that brings it all
 together. For this, I use Plex Media Server.
 
@@ -17,8 +17,8 @@ where hardware-accelerated transcoding comes in.
 
 ### The Hardware and The "Why"
 
-My server is a [Explain your hardware here, e.g., a Dell Optiplex with an NVIDIA
-Quadro P400]. The key component is the NVIDIA GPU. By passing this GPU through
+My server is an old PC I had with a 4th gen intel cpu and a cheap GTX 1050Ti.
+The key component is the NVIDIA GPU. By passing this GPU through
 to the Plex Docker container, Plex can use the dedicated encoding/decoding chips
 on the GPU (NVENC/NVDEC) to transcode video streams. This is vastly more
 efficient than using the CPU and is essential for a smooth multi-user

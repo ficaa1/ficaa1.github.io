@@ -5,7 +5,7 @@ date: 2025-07-17 13:28:21 +0200
 categories: homelab docker automation scripting
 ---
 
-In the [previous post](/2025/07/16/homelab-arr-stack.html), we set up a media
+In the [previous post](/posts/homelab-arr-stack.html), we set up a media
 acquisition engine that downloads files to a fast NVMe drive. The problem? Fast
 storage is expensive and limited. This is where the real fun begins: building a
 system to automatically move older content to a larger, slower storage pool
@@ -59,9 +59,9 @@ MOVIES_HDD_PATH="/data/MOVIES"
 TV_HDD_PATH="/data/TV SHOWS"
 
 # --- API Configuration ---
-RADARR_URL="http://192.168.1.162:7878"
+RADARR_URL="http://192.168.1.1:7878"
 RADARR_KEY="YOUR_RADARR_API_KEY"
-SONARR_URL="http://192.168.1.162:8989"
+SONARR_URL="http://192.168.1.1:8989"
 SONARR_KEY="YOUR_SONARR_API_KEY"
 
 echo "--- Starting Storage Management on $(date) ---"
