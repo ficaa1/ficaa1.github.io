@@ -3,3 +3,170 @@
      main[data-dump="istanbul-2025"] ...                   anything inside the page
      body:has(main[data-dump="istanbul-2025"]) ...         the page's colours, the nav, the footer and the player
    The kit's own rules (contact sheet, prints, tabs, stub) live in the photos block of site.css. */
+
+/* Three days, each a run of stops. Every stop is named by a sign in the navy and white of the city's street plates,
+   which stays in view while its frames pass. Frames sit on white; the ferry ride on black.
+   Archivo (SIL Open Font Licence), latin and latin-ext subsets (for İ, ğ, ş), served from this folder. */
+@font-face {
+  font-family: "Archivo"; src: url("archivo-ext.woff2") format("woff2");
+  font-weight: 400 600; font-style: normal; font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF,
+    U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Archivo"; src: url("archivo.woff2") format("woff2");
+  font-weight: 400 600; font-style: normal; font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+body:has(main[data-dump="istanbul-2025"]) {
+  --bg: #fff; --surface: #f0f0f0; --ink: #121417; --soft: #5b616b; --panel: #f0f0f0;
+  --sign: #1c3b8c; --sign-ink: #fff;
+  --paper: #fff; --paper-ink: #121417; --film: #121417; --mark: #1c3b8c;
+  --link: #1c3b8c; --visited: #1c3b8c;
+  --night: #000; --night-ink: #ececec; --night-soft: #a3a3a3;
+  --face: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --s-small: 14px;
+  --s-body: clamp(17px, 16px + 0.25vw, 19px);
+  --s-lead: clamp(20px, 17px + 0.7vw, 26px);
+  --s-day: clamp(44px, 26px + 4.6vw, 104px);
+  --s-display: clamp(76px, 7.2vw, 128px);
+  --ease: cubic-bezier(.22, 1, .36, 1);
+  --gut: clamp(16px, 2.4vw, 40px);
+  background: var(--bg); color: var(--ink); font-family: var(--face);
+}
+body:has(main[data-dump="istanbul-2025"]) nav, body:has(main[data-dump="istanbul-2025"]) #player { background: var(--bg); }
+body:has(main[data-dump="istanbul-2025"]) ::selection { background: var(--sign); color: var(--sign-ink); }
+body:has(main[data-dump="istanbul-2025"]) :focus-visible { outline-color: var(--sign); }
+
+main[data-dump="istanbul-2025"] { background: var(--bg); }
+main[data-dump="istanbul-2025"] a { color: var(--sign); }
+
+/* The tabs. */
+main[data-dump="istanbul-2025"] > .tabs { padding: 28px 12px 0; }
+@media (min-width: 900px) { main[data-dump="istanbul-2025"] > .tabs ol { flex-wrap: wrap; overflow: visible; } }
+main[data-dump="istanbul-2025"] .tabs .bar { background: #c9cbd0; }
+main[data-dump="istanbul-2025"] .tabs .place { font-style: normal; font-weight: 600; }
+main[data-dump="istanbul-2025"] .tabs .here > a { background: var(--sign); color: var(--sign-ink); border-radius: 6px; }
+main[data-dump="istanbul-2025"] .tabs .here .n { color: #c3cdea; }
+main[data-dump="istanbul-2025"] .tabs .here .bar { background: #4d66a8; }
+main[data-dump="istanbul-2025"] .tabs .here .bar i { background: var(--sign-ink); }
+@media (hover: hover) and (pointer: fine) {
+  main[data-dump="istanbul-2025"] .tabs li:not(.here) > a:hover { background: var(--surface); }
+}
+
+main[data-dump="istanbul-2025"] h1, main[data-dump="istanbul-2025"] h2, main[data-dump="istanbul-2025"] h3,
+main[data-dump="istanbul-2025"] p { margin: 0; font-weight: 400; }
+main[data-dump="istanbul-2025"] ol { list-style: none; margin: 0; padding: 0; }
+main[data-dump="istanbul-2025"] img { display: block; }
+
+/* ---- Opening: the name and the dates beside the chestnut cart in the rain. */
+main[data-dump="istanbul-2025"] .open {
+  display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: var(--gut); align-items: end;
+  padding: 72px var(--gut) 0;
+}
+main[data-dump="istanbul-2025"] .open h1 {
+  font-size: var(--s-display); line-height: 0.88; letter-spacing: -0.045em; font-weight: 500; margin-left: -0.05em;
+}
+main[data-dump="istanbul-2025"] .open .when { margin-top: 32px; font-size: var(--s-lead); }
+main[data-dump="istanbul-2025"] .open .gear { margin-top: 10px; font-size: var(--s-body); color: var(--soft); }
+main[data-dump="istanbul-2025"] .cover img { width: 100%; height: auto; }
+
+/* ---- A day: its name, large, then its stops. */
+main[data-dump="istanbul-2025"] .day { padding: 0 var(--gut); }
+main[data-dump="istanbul-2025"] .day > h2 {
+  margin: clamp(120px, 14vw, 220px) 0 clamp(40px, 5vw, 72px); max-width: 12ch;
+  font-size: var(--s-day); line-height: 0.95; letter-spacing: -0.035em; font-weight: 500;
+}
+main[data-dump="istanbul-2025"] .day:last-of-type { padding-bottom: clamp(96px, 10vw, 160px); }
+
+/* A stop: the sign stays in view beside its frames. */
+main[data-dump="istanbul-2025"] .stop {
+  display: grid; grid-template-columns: minmax(220px, 3fr) minmax(0, 9fr); gap: var(--gut); align-items: start;
+}
+main[data-dump="istanbul-2025"] .stop + .stop { margin-top: clamp(72px, 8vw, 128px); }
+main[data-dump="istanbul-2025"] .sign {
+  position: sticky; top: 16px; z-index: 2;
+  padding: 18px 22px 20px; border-radius: 10px; background: var(--sign); color: var(--sign-ink);
+  outline: 2px solid var(--sign-ink); outline-offset: -8px;
+}
+main[data-dump="istanbul-2025"] .sign h3 { font-size: var(--s-lead); line-height: 1.1; font-weight: 600; letter-spacing: -0.01em; font-style: normal; }
+main[data-dump="istanbul-2025"] .sign p { margin-top: 6px; font-size: var(--s-small); color: #c3cdea; font-variant-numeric: tabular-nums; font-style: normal; }
+
+main[data-dump="istanbul-2025"] .shot + .shot { margin-top: clamp(48px, 5vw, 80px); }
+main[data-dump="istanbul-2025"] .shot img { width: 100%; height: auto; }
+main[data-dump="istanbul-2025"] .shot a, main[data-dump="istanbul-2025"] .pane a { display: block; cursor: zoom-in; }
+main[data-dump="istanbul-2025"] .meta { margin-top: 12px; font-size: var(--s-small); color: var(--soft); font-variant-numeric: tabular-nums; }
+main[data-dump="istanbul-2025"] .pair { display: flex; gap: 16px; align-items: flex-start; }
+main[data-dump="istanbul-2025"] .pair .shot { flex: var(--r) 1 0; min-width: 0; margin: 0; }
+
+/* ---- The ferry ride: one window on black, the frames of the crossing in turn. */
+main[data-dump="istanbul-2025"] .ferry {
+  margin-left: calc(-1 * var(--gut)); margin-right: calc(-1 * var(--gut));
+  padding: clamp(72px, 8vw, 128px) var(--gut); background: var(--night); color: var(--night-ink);
+}
+main[data-dump="istanbul-2025"] .ferry .meta, main[data-dump="istanbul-2025"] .ferry .cap { color: var(--night-soft); }
+main[data-dump="istanbul-2025"] .window { display: grid; gap: 56px; }
+main[data-dump="istanbul-2025"] .pane img { width: 100%; height: auto; }
+main[data-dump="istanbul-2025"] .cap { margin-top: 12px; font-size: var(--s-small); font-variant-numeric: tabular-nums; }
+main[data-dump="istanbul-2025"] .cap[hidden], main[data-dump="istanbul-2025"] .times[hidden] { display: none; }
+main[data-dump="istanbul-2025"][data-js] .window { display: block; position: relative; aspect-ratio: 3 / 2; }
+main[data-dump="istanbul-2025"][data-js] .pane {
+  position: absolute; inset: 0; opacity: 0; visibility: hidden; transition: opacity 1600ms ease, visibility 0s 1600ms;
+}
+main[data-dump="istanbul-2025"][data-js] .pane.on { opacity: 1; visibility: visible; transition: opacity 1600ms ease, visibility 0s; }
+main[data-dump="istanbul-2025"][data-js] .pane a, main[data-dump="istanbul-2025"][data-js] .pane picture { display: block; height: 100%; }
+main[data-dump="istanbul-2025"][data-js] .pane img { height: 100%; object-fit: contain; }
+main[data-dump="istanbul-2025"][data-js] .pane .meta { display: none; }
+main[data-dump="istanbul-2025"] .pane a:focus-visible { outline: 3px solid var(--night-ink); outline-offset: 4px; }
+main[data-dump="istanbul-2025"] .times { display: flex; flex-wrap: wrap; gap: 4px 8px; margin-top: 28px; }
+main[data-dump="istanbul-2025"] .times button {
+  min-height: 44px; padding: 0 12px; border: 0; border-radius: 6px; background: none; color: var(--night-soft); cursor: pointer;
+  font: inherit; font-size: var(--s-lead); font-variant-numeric: tabular-nums;
+  transition: color 200ms ease, background-color 200ms ease, transform 160ms var(--ease);
+}
+main[data-dump="istanbul-2025"] .times button[aria-pressed="true"] { background: var(--sign); color: var(--sign-ink); }
+main[data-dump="istanbul-2025"] .times button:active { transform: translateY(2px); }
+main[data-dump="istanbul-2025"] .times button:focus-visible { outline: 3px solid var(--night-ink); outline-offset: 2px; }
+@media (hover: hover) and (pointer: fine) {
+  main[data-dump="istanbul-2025"] .times button[aria-pressed="false"]:hover { color: var(--night-ink); }
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  main[data-dump="istanbul-2025"] .shot img { transition: opacity 300ms ease; }
+  main[data-dump="istanbul-2025"] .shot a:hover img { opacity: 0.92; }
+}
+
+/* ---- Motion: each part rises once as it arrives; the ferry window drifts very slowly. */
+@media (prefers-reduced-motion: no-preference) {
+  main[data-dump="istanbul-2025"] .rise { opacity: 0; transform: translateY(24px); }
+  main[data-dump="istanbul-2025"] .rise.in {
+    opacity: 1; transform: none;
+    transition: opacity 700ms ease var(--d, 0ms), transform 900ms var(--ease) var(--d, 0ms);
+  }
+  main[data-dump="istanbul-2025"] .sign.rise.in { transform: none; }
+  main[data-dump="istanbul-2025"][data-js] .pane.on img { animation: ist-drift 9s ease-out both; }
+  @keyframes ist-drift { from { transform: scale(1.04); } to { transform: none; } }
+}
+
+/* ---- Narrow screens: one column; the sign pins to the top of the screen while its frames pass under it. */
+@media (max-width: 899px) {
+  main[data-dump="istanbul-2025"] > .tabs { padding: 16px 0 0 16px; }
+  main[data-dump="istanbul-2025"] .open { display: block; padding-top: 48px; }
+  main[data-dump="istanbul-2025"] .open h1 { font-size: clamp(64px, 22vw, 140px); }
+  main[data-dump="istanbul-2025"] .open .when { margin-top: 20px; }
+  main[data-dump="istanbul-2025"] .cover { margin: 40px calc(-1 * var(--gut)) 0; }
+  main[data-dump="istanbul-2025"] .day > h2 { margin: 112px 0 32px; }
+  main[data-dump="istanbul-2025"] .stop { display: block; }
+  main[data-dump="istanbul-2025"] .stop + .stop { margin-top: 80px; }
+  main[data-dump="istanbul-2025"] .sign { top: 8px; margin-bottom: 20px; padding: 14px 18px 16px; }
+  main[data-dump="istanbul-2025"] .shots { margin: 0 calc(-1 * var(--gut)); }
+  main[data-dump="istanbul-2025"] .meta, main[data-dump="istanbul-2025"] .cap { padding: 0 var(--gut); }
+  main[data-dump="istanbul-2025"] .shot + .shot { margin-top: 40px; }
+  main[data-dump="istanbul-2025"] .pair { display: block; }
+  main[data-dump="istanbul-2025"] .pair .shot + .shot { margin-top: 40px; }
+  main[data-dump="istanbul-2025"] .ferry { padding: 72px var(--gut) 80px; }
+  main[data-dump="istanbul-2025"] .ferry + .stop { margin-top: 80px; }
+  main[data-dump="istanbul-2025"] .times { padding: 0 var(--gut); }
+  main[data-dump="istanbul-2025"] .times button { font-size: var(--s-body); }
+}

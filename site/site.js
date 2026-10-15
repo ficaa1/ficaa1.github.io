@@ -455,6 +455,8 @@
     document.title = doc.title;
     document.body.className = doc.body.className;
     parts.forEach(p => document.querySelector(p).replaceWith(document.adoptNode(doc.querySelector(p))));
+    // Scripts in the new <main> arrive parsed but not run; a page that brings its own (a dump's dump.js) gets it run here.
+    document.querySelectorAll('main script[src]').forEach(old => { const s = document.createElement('script'); s.src = old.src; old.replaceWith(s); });
     const hash = new URL(url).hash;
     const target = hash && document.getElementById(decodeURIComponent(hash.slice(1)));
     if (target) target.scrollIntoView(); else scrollTo(0, 0);

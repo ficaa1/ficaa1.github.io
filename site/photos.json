@@ -7,7 +7,8 @@
     "photos": [
       {
         "file": "istanbul-2025-22",
-        "caption": "Food cart in the rain.",
+        "original": "Istanbul-part1 (22 of 23).jxl",
+        "caption": "",
         "alt": "A street food cart with a red awning on wet paving, a mosque and two minarets in scaffolding behind.",
         "settings": {
           "aperture": "f/5.6",
@@ -18,7 +19,6 @@
           "lens": "FE 40mm F2.5 G",
           "taken": "2025-12-27 16:19"
         },
-        "original": "Istanbul-part1 (22 of 23).jxl",
         "web": {
           "400": [
             400,
@@ -37,9 +37,320 @@
         }
       },
       {
+        "file": "istanbul-2025-1",
+        "original": "Istanbul-part1 (1 of 23).jxl",
+        "caption": "",
+        "alt": "A man in pink sitting on the steps of the Institut Français, people passing.",
+        "settings": {
+          "aperture": "f/2.5",
+          "shutter": "1/125 s",
+          "iso": "ISO 200",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-12-25 15:55"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 134124,
+            "1000.jxl": 97464,
+            "2000.jpg": 482858,
+            "2000.jxl": 338207
+          }
+        }
+      },
+      {
+        "file": "istanbul-2025-2",
+        "original": "Istanbul-part1 (2 of 23).jxl",
+        "caption": "",
+        "alt": "A man fishing at a railing with five cats around him.",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/2000 s",
+          "iso": "ISO 800",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-12-26 14:24"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 116202,
+            "1000.jxl": 90193,
+            "2000.jpg": 466317,
+            "2000.jxl": 335987
+          }
+        }
+      },
+      {
+        "file": "istanbul-2025-4",
+        "original": "Istanbul-part1 (4 of 23).jxl",
+        "caption": "",
+        "alt": "Food scraps on a wooden plank above rocks by the water, a sparrow on the wall.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/125 s",
+          "iso": "ISO 100",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-12-26 14:29"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 111478,
+            "1000.jxl": 85533,
+            "2000.jpg": 438086,
+            "2000.jxl": 317870
+          }
+        }
+      },
+      {
+        "file": "istanbul-2025-5",
+        "original": "Istanbul-part1 (5 of 23).jxl",
+        "caption": "",
+        "alt": "The far shore across the water from a ferry rail, in black and white.",
+        "settings": {
+          "aperture": "f/2.5",
+          "shutter": "1/1250 s",
+          "iso": "ISO 100",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-12-26 14:50"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 79223,
+            "1000.jxl": 63973,
+            "2000.jpg": 364445,
+            "2000.jxl": 289200
+          }
+        }
+      },
+      {
+        "file": "istanbul-2025-7",
+        "original": "Istanbul-part1 (7 of 23).jxl",
+        "caption": "",
+        "alt": "A ferry side deck with a window, a white wall and the sea through an opening.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/125 s",
+          "iso": "ISO 500",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-12-26 14:52"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 87775,
+            "1000.jxl": 64029,
+            "2000.jpg": 397105,
+            "2000.jxl": 285916
+          }
+        }
+      },
+      {
+        "file": "istanbul-2025-9",
+        "original": "Istanbul-part1 (9 of 23).jxl",
+        "caption": "",
+        "alt": "Gulls over the water from a ferry deck, the city along the far shore.",
+        "settings": {
+          "aperture": "f/7.1",
+          "shutter": "1/320 s",
+          "iso": "ISO 100",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-12-26 14:56"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 79266,
+            "1000.jxl": 56923,
+            "2000.jpg": 361905,
+            "2000.jxl": 252311
+          }
+        }
+      },
+      {
+        "file": "istanbul-2025-11",
+        "original": "Istanbul-part1 (11 of 23).jxl",
+        "caption": "",
+        "alt": "Orange and blue cranes at the Port of Haydarpaşa.",
+        "settings": {
+          "aperture": "f/7.1",
+          "shutter": "1/320 s",
+          "iso": "ISO 100",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-12-26 14:58"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 137704,
+            "1000.jxl": 98944,
+            "2000.jpg": 542429,
+            "2000.jxl": 383942
+          }
+        }
+      },
+      {
+        "file": "istanbul-2025-10",
+        "original": "Istanbul-part1 (10 of 23).jxl",
+        "caption": "",
+        "alt": "A breakwater and a small light tower against sun breaking through cloud.",
+        "settings": {
+          "aperture": "f/9",
+          "shutter": "1/640 s",
+          "iso": "ISO 100",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-12-26 15:00"
+        },
+        "web": {
+          "400": [
+            400,
+            167
+          ],
+          "1000": [
+            1000,
+            418
+          ],
+          "bytes": {
+            "1000.jpg": 54379,
+            "1000.jxl": 37088,
+            "2000.jpg": 219477,
+            "2000.jxl": 154073
+          }
+        }
+      },
+      {
+        "file": "istanbul-2025-12",
+        "original": "Istanbul-part1 (12 of 23).jxl",
+        "caption": "",
+        "alt": "The view aft from under a ferry roof, cranes on the far shore, in black and white.",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/400 s",
+          "iso": "ISO 100",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-12-26 15:01"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 76012,
+            "1000.jxl": 60357,
+            "2000.jpg": 322472,
+            "2000.jxl": 251101
+          }
+        }
+      },
+      {
+        "file": "istanbul-2025-13",
+        "original": "Istanbul-part1 (13 of 23).jxl",
+        "caption": "",
+        "alt": "A lighthouse at the end of a breakwater under heavy cloud, in black and white.",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/1600 s",
+          "iso": "ISO 100",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-12-26 15:02"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 93258,
+            "1000.jxl": 75651,
+            "2000.jpg": 388047,
+            "2000.jxl": 306124
+          }
+        }
+      },
+      {
         "file": "istanbul-2025-14",
-        "caption": "Inside a ferry.",
-        "alt": "Wooden benches facing a double door on a ferry deck.",
+        "original": "Istanbul-part1 (14 of 23).jxl",
+        "caption": "",
+        "alt": "Wooden benches facing a double door inside a ferry cabin.",
         "settings": {
           "aperture": "f/5.6",
           "shutter": "1/125 s",
@@ -49,7 +360,6 @@
           "lens": "FE 40mm F2.5 G",
           "taken": "2025-12-26 15:03"
         },
-        "original": "Istanbul-part1 (14 of 23).jxl",
         "web": {
           "400": [
             400,
@@ -68,19 +378,19 @@
         }
       },
       {
-        "file": "istanbul-2025-2",
-        "caption": "Cats and a fisherman.",
-        "alt": "A man fishing at a railing with five cats around him.",
+        "file": "istanbul-2025-15",
+        "original": "Istanbul-part1 (15 of 23).jxl",
+        "caption": "",
+        "alt": "A worn pink corner building with lifebuoys on its roof terrace.",
         "settings": {
           "aperture": "f/5.6",
-          "shutter": "1/2000 s",
-          "iso": "ISO 800",
+          "shutter": "1/250 s",
+          "iso": "ISO 100",
           "focal": "40 mm",
           "camera": "Sony ILCE-7CM2",
           "lens": "FE 40mm F2.5 G",
-          "taken": "2025-12-26 14:24"
+          "taken": "2025-12-26 15:28"
         },
-        "original": "Istanbul-part1 (2 of 23).jxl",
         "web": {
           "400": [
             400,
@@ -91,10 +401,134 @@
             667
           ],
           "bytes": {
-            "1000.jpg": 116202,
-            "1000.jxl": 90193,
-            "2000.jpg": 466317,
-            "2000.jxl": 335987
+            "1000.jpg": 148272,
+            "1000.jxl": 103432,
+            "2000.jpg": 629184,
+            "2000.jxl": 399374
+          }
+        }
+      },
+      {
+        "file": "istanbul-2025-16",
+        "original": "Istanbul-part1 (16 of 23).jxl",
+        "caption": "",
+        "alt": "A corner building with a café over a busy street, a man and a boy walking past.",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/160 s",
+          "iso": "ISO 100",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-12-26 15:29"
+        },
+        "web": {
+          "400": [
+            400,
+            600
+          ],
+          "1000": [
+            1000,
+            1500
+          ],
+          "bytes": {
+            "1000.jpg": 252127,
+            "1000.jxl": 181387,
+            "2000.jpg": 959995,
+            "2000.jxl": 666715
+          }
+        }
+      },
+      {
+        "file": "istanbul-2025-18",
+        "original": "Istanbul-part1 (18 of 23).jxl",
+        "caption": "",
+        "alt": "Two people taking photos on a wet square, a man walking past.",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/125 s",
+          "iso": "ISO 400",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-12-27 15:12"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 86735,
+            "1000.jxl": 65507,
+            "2000.jpg": 300746,
+            "2000.jxl": 215746
+          }
+        }
+      },
+      {
+        "file": "istanbul-2025-19",
+        "original": "Istanbul-part1 (19 of 23).jxl",
+        "caption": "",
+        "alt": "A man with an umbrella walking past the domes and minarets of a mosque.",
+        "settings": {
+          "aperture": "f/4.5",
+          "shutter": "1/125 s",
+          "iso": "ISO 800",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-12-27 16:13"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 118578,
+            "1000.jxl": 85926,
+            "2000.jpg": 423994,
+            "2000.jxl": 282313
+          }
+        }
+      },
+      {
+        "file": "istanbul-2025-20",
+        "original": "Istanbul-part1 (20 of 23).jxl",
+        "caption": "",
+        "alt": "People with umbrellas on a wet square in low sun, palm trees and minarets behind.",
+        "settings": {
+          "aperture": "f/4",
+          "shutter": "1/125 s",
+          "iso": "ISO 400",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-12-27 16:16"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 132537,
+            "1000.jxl": 92153,
+            "2000.jpg": 459618,
+            "2000.jxl": 305264
           }
         }
       }
