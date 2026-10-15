@@ -3,12 +3,12 @@
     "id": "istanbul-2025",
     "title": "Istanbul",
     "folder": "Istanbul Edited 2025",
-    "note": "Two days in Istanbul at the end of December. Twenty-three frames made it out of Lightroom; these three are printed here, and the other twenty are still on the sheet.",
+    "note": "Two days in December.",
     "photos": [
       {
         "file": "istanbul-2025-22",
-        "caption": "A chestnut cart outside the Blue Mosque, in the rain, with two minarets in scaffolding.",
-        "alt": "A street food cart with a red awning on wet paving stones; behind it, the domes of a mosque at dusk and two minarets wrapped in scaffolding.",
+        "caption": "Food cart in the rain.",
+        "alt": "A street food cart with a red awning on wet paving, a mosque and two minarets in scaffolding behind.",
         "settings": {
           "aperture": "f/5.6",
           "shutter": "1/125 s",
@@ -38,8 +38,8 @@
       },
       {
         "file": "istanbul-2025-14",
-        "caption": "Inside a ferry across the Bosphorus.",
-        "alt": "The lower deck of a ferry: rows of wooden benches facing a dark double door, with a red fire cabinet on each side.",
+        "caption": "Inside a ferry.",
+        "alt": "Wooden benches facing a double door on a ferry deck.",
         "settings": {
           "aperture": "f/5.6",
           "shutter": "1/125 s",
@@ -69,8 +69,8 @@
       },
       {
         "file": "istanbul-2025-2",
-        "caption": "Five cats waiting by a fisherman on the Bosphorus shore.",
-        "alt": "A man fishing at the railing of a waterfront promenade while five cats sit and walk around him; the far shore is behind.",
+        "caption": "Cats and a fisherman.",
+        "alt": "A man fishing at a railing with five cats around him.",
         "settings": {
           "aperture": "f/5.6",
           "shutter": "1/2000 s",
@@ -188,13 +188,13 @@
     "id": "rome-2025",
     "title": "Rome",
     "folder": "Rim edited 2025",
-    "note": "Five days in Rome at the start of May 2025, and one evening in August filed in the same folder. Seventy-five frames on seven rolls; three are printed here for now.",
+    "note": "Late April to May, and an evening in August.",
     "photos": [
       {
         "file": "last-day-hdr-7",
         "original": "Rim Last Day HDR (7 of 10).jpg",
-        "caption": "Someone on the phone with a blue bag, in front of a yellow wall.",
-        "alt": "A woman holding a phone and a large blue bag stands in front of a closed grey shopfront in an ochre wall; two people walk past a poster for La notte delle idee on the left, and a red car waits at a crossing on the right.",
+        "caption": "Woman with a blue bag.",
+        "alt": "A woman with a phone and a blue bag in front of an ochre wall.",
         "provisional": true,
         "settings": {
           "aperture": "f/5.6",
@@ -225,8 +225,8 @@
       {
         "file": "last-day-hdr-1",
         "original": "Rim Last Day HDR (1 of 10).jpg",
-        "caption": "Through a marble entrance hall to a courtyard, under a hanging lantern.",
-        "alt": "A passage lined with grey marble and wooden letterboxes leads under an arch with a hanging lantern to a courtyard of potted plants and a yellow building.",
+        "caption": "A courtyard with a lantern.",
+        "alt": "A marble passage with letterboxes leading to a courtyard, a lantern hanging above.",
         "provisional": true,
         "settings": {
           "aperture": "f/5.6",
@@ -257,8 +257,8 @@
       {
         "file": "last-day-hdr-10",
         "original": "Rim Last Day HDR (10 of 10).jpg",
-        "caption": "Four horses and a winged figure against a window, in black and white.",
-        "alt": "Black and white: a sculpture of a winged figure standing behind four horses, set against two tall latticed windows in a high, dim room.",
+        "caption": "Horses and a winged figure.",
+        "alt": "Black and white sculpture of a winged figure behind four horses, in front of tall windows.",
         "provisional": true,
         "settings": {
           "aperture": "f/2.8",
@@ -1105,13 +1105,13 @@
     "id": "montenegro-2024",
     "title": "Montenegro",
     "folder": "Crna Gora 2024",
-    "note": "Six days at the end of August 2024. Sixty-one frames made it out of Lightroom; three are printed here for now, and the rest are still on the sheet.",
+    "note": "Six days in August.",
     "photos": [
       {
         "file": "dsc09415",
         "original": "DSC09415-Edit.jpg",
-        "caption": "A pebble beach in a small cove as the sun goes down.",
-        "alt": "People in silhouette on a pebble beach in a cove; the low sun behind pine trees on the right, a few boats on the water and a headland on the horizon.",
+        "caption": "A pebble beach.",
+        "alt": "People in silhouette on a pebble beach in a cove at sunset, boats on the water.",
         "provisional": true,
         "settings": {
           "aperture": "f/8",
@@ -1142,8 +1142,8 @@
       {
         "file": "dsc09014",
         "original": "DSC09014-Edit.jpg",
-        "caption": "Lunch under orange awnings in a narrow stone street, and one pigeon.",
-        "alt": "A narrow paved lane between limestone walls: four people eat at a high table on orange stools under canvas awnings, others walk towards the camera, and a pigeon stands on the paving.",
+        "caption": "Lunch in a stone street.",
+        "alt": "People eating at a high table under orange awnings in a narrow stone lane.",
         "provisional": true,
         "settings": {
           "aperture": "f/1.4",
@@ -1174,8 +1174,8 @@
       {
         "file": "dsc09345",
         "original": "DSC09345-Edit.jpg",
-        "caption": "Scooters parked in a row along a stone wall.",
-        "alt": "A row of black and grey scooters parked against a wall of pale stone blocks with two barred windows, in late afternoon light.",
+        "caption": "Scooters along a wall.",
+        "alt": "Black and grey scooters parked against a stone wall.",
         "provisional": true,
         "settings": {
           "aperture": "f/4.5",

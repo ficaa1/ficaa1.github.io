@@ -1,7 +1,7 @@
 // The Photos pages. Each photo dump is its own hand-designed page, site/photos/<dump-id>/index.html, with its own
 // dump.css and its pictures beside it. This tool never writes a dump page whole: it only fills the markers a page
 // chooses to include, and leaves everything outside them alone. The one standardised piece is the switcher:
-// photos.html (the archive box, every dump newest first) and the tabs and "next" stub on each dump page.
+// photos.html (the archive box) and the tabs and "next" stub on each dump page.
 //
 //   node tools/photos.mjs <id> --new[=kit|blank]   start a dump page (from the contact-sheet kit, or nearly empty)
 //   node tools/photos.mjs <id> [--fetch]           convert that dump's missing pictures, fill its markers,
@@ -14,7 +14,7 @@
 // Markers a page may include (each is <!-- name:start --><!-- name:end -->, filled on every build):
 //   meta              <title>, description and share image, in <head>
 //   tabs              the switcher between dumps                       (standard)
-//   next              the "next in the box" stub                        (standard)
+//   next              the "next" stub                                   (standard)
 //   stamp             the small picture on the back-of-print footer
 //   sheet             the paper contact sheet: title, facts, every roll  (kit)
 //   rolls             only the rolls of film, for a page with its own title (kit)
@@ -171,8 +171,6 @@ const camera = s => s && s.camera ? s.camera.replace(/(\S+)$/, m => MODELS[m] ||
 const lens = s => s && s.lens ? s.lens.replace(/(\d)mm/, '$1 mm').replace(/\s*\|\s*Art\s*\d+$/, ' Art') : '';
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 const day = t => { const [y, m, d] = t.slice(0, 10).split('-'); return { y, m: MONTHS[m - 1], d: +d }; };
-const NUMBERS = ['no', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve'];
-const words = n => NUMBERS[n] || String(n);
 const plural = (n, one, many = one + 's') => `${n} ${n === 1 ? one : many}`;
 function days(from, to) { // "26 and 27 December 2025", "17 to 22 August 2024"
   if (!from) return '';
@@ -203,10 +201,7 @@ const visible = dumps.filter(d => !d.hidden).sort((a, b) => (b.to || '').localeC
 const open = visible.filter(hasPage);
 const href = (dump, depth) => depth ? `${'../'.repeat(depth - 1)}${dump.id}/` : `photos/${dump.id}/`;
 const home = depth => `${'../'.repeat(depth)}photos.html`;
-const counted = dump => {
-  const n = printed(dump).length;
-  return `${plural(dump.frames, 'frame')}${dump.rolls.length > 1 ? ` in ${words(dump.rolls.length)} rolls` : ''}, ${n ? `${words(n)} printed` : 'none printed yet'}`;
-};
+const counted = dump => plural(dump.frames, 'frame');
 const photo = (dump, file) => dump.photos.find(p => p.file === file && printed(dump).includes(p));
 const bytes = (dump, p) => p.web.bytes;
 const sized = (p, w) => { const [width, height] = p.web[w]; return { width, height }; };
@@ -219,7 +214,7 @@ function strip(dump, roll, r, depth, link) {
     if (!p) return `<li><span class="slot"></span><span class="n">${esc(label)}</span></li>`;
     const to = link ? `${href(dump, depth)}#${p.file}` : `#${p.file}`;
     const { width, height } = sized(p, THUMB);
-    return `<li class="printed"><a href="${esc(to)}" aria-label="Frame ${esc(label)}${roll.name ? ` of ${esc(roll.name)}` : ''}: ${esc(p.caption)}"><img src="${media(depth, dump.id, `${p.file}-${THUMB}.jpg`)}" width="${width}" height="${height}" alt="" loading="lazy"></a><span class="n">${esc(label)}</span></li>`;
+    return `<li class="printed"><a href="${esc(to)}" aria-label="Frame ${esc(label)}${roll.name ? ` of ${esc(roll.name)}` : ''}"><img src="${media(depth, dump.id, `${p.file}-${THUMB}.jpg`)}" width="${width}" height="${height}" alt="" loading="lazy"></a><span class="n">${esc(label)}</span></li>`;
   }).join('');
 }
 const rollsOf = (dump, depth) => dump.rolls.map((roll, r) => `${dump.rolls.length > 1 || roll.name ? `<h2 class="roll-name">${esc(roll.name || dump.title)} <span>${plural(roll.files.length, 'frame')}${roll.taken && roll.taken[0] ? `, ${(({ d, m }) => `${d} ${m}`)(day(roll.taken.filter(Boolean).sort()[0]))}` : ''}</span></h2>\n` : ''}<ol class="roll">
@@ -227,7 +222,7 @@ ${strip(dump, roll, r, depth, false)}
 </ol>`).join('\n');
 function sheet(dump, depth) {
   const gear = [...new Set(printed(dump).map(p => [camera(p.settings), lens(p.settings)].filter(Boolean).join(', ')))].filter(Boolean).join('; ');
-  return `<article class="contact" aria-label="Contact sheet for ${esc(dump.title)}, ${esc(year(dump))}">
+  return `<article class="contact" aria-label="${esc(dump.title)}, ${esc(year(dump))}">
 <h1 class="title"><span>${esc(dump.title)},</span> <span>${esc(year(dump))}</span></h1>
 <p class="facts">${[gear, days(dump.from, dump.to), counted(dump)].filter(Boolean).map(t => `<span>${esc(t)}</span>`).join('<i aria-hidden="true"></i>')}</p>
 ${rollsOf(dump, depth)}
@@ -274,13 +269,12 @@ function dayTiles(dump, only) {
   });
   return [...byDay].sort(([a], [b]) => a.localeCompare(b)).filter(([k]) => !only || k === only).map(([k, frames]) => {
     frames.sort((a, b) => a.t.localeCompare(b.t));
-    const n = frames.filter(f => f.printed).length;
     const date = k === 'undated' ? '<span class="d">?</span> <span class="m">no date</span>' : (({ d, m }) => `<span class="d">${d}</span> <span class="m">${m}</span>`)(day(k));
-    return `<li class="day" id="day-${k}"><p class="date">${date}</p><p class="count">${plural(frames.length, 'frame')}${n ? `, ${words(n)} printed` : ''}</p><span class="marks" aria-hidden="true">${frames.map(f => f.printed ? `<i class="printed"></i>` : '<i></i>').join('')}</span></li>`;
+    return `<li class="day" id="day-${k}"><p class="date">${date}</p><p class="count">${plural(frames.length, 'frame')}</p><span class="marks" aria-hidden="true">${frames.map(f => f.printed ? `<i class="printed"></i>` : '<i></i>').join('')}</span></li>`;
   }).join('\n');
 }
 
-// ---- Standard: the switcher. The box's tabs, the pulled-out one in paper; dumps without a page yet are listed, not linked.
+// ---- Standard: the switcher. Dumps without a page yet are listed, not linked.
 function tabs(current, depth) {
   const items = visible.map(d => {
     const marks = printed(d).map(p => {
@@ -290,10 +284,10 @@ function tabs(current, depth) {
     }).join('');
     const inner = `<span class="place">${esc(d.title)}</span> <span class="yr">${esc(year(d))}</span> <span class="n">${d.frames}<span class="vh"> frames</span></span><span class="bar" style="--w:${Math.min(1, d.frames / 80).toFixed(3)}" aria-hidden="true">${marks}</span>`;
     if (d === current) return `<li class="here"><a href="${href(d, depth)}" aria-current="page">${inner}</a></li>`;
-    return hasPage(d) ? `<li><a href="${href(d, depth)}">${inner}</a></li>` : `<li class="sealed"><span title="Not printed yet">${inner}</span></li>`;
+    return hasPage(d) ? `<li><a href="${href(d, depth)}">${inner}</a></li>` : `<li class="sealed"><span title="Not up yet">${inner}</span></li>`;
   }).join('\n');
-  return `<div class="tabs" role="navigation" aria-label="Photo dumps">
-<p class="all"><a href="${home(depth)}">All ${words(visible.length)} dumps</a></p>
+  return `<div class="tabs" role="navigation" aria-label="Photos">
+<p class="all"><a href="${home(depth)}">All photos</a></p>
 <ol>
 ${items}
 </ol>
@@ -301,22 +295,22 @@ ${items}
 }
 function next(dump, depth) {
   const i = open.indexOf(dump), n = open[(i + 1) % open.length];
-  return `${n && n !== dump ? `<p class="next">Next in the box: <a href="${href(n, depth)}">${esc(n.title)}, ${esc(months(n.from, n.to))}</a>, ${esc(counted(n))}.</p>\n` : ''}<p><a href="${home(depth)}">All ${words(visible.length)} dumps</a>, newest first.</p>`;
+  return `${n && n !== dump ? `<p class="next">Next: <a href="${href(n, depth)}">${esc(n.title)}, ${esc(months(n.from, n.to))}</a></p>\n` : ''}<p><a href="${home(depth)}">All photos</a></p>`;
 }
 function meta(dump) {
   const title = `${dump.title}, ${year(dump)}`;
   const p = printed(dump)[0];
   const image = p ? (absolute ? '' : ORIGIN) + media(0, dump.id, `${p.file}-1000.jpg`) : '';
   return `<title>${esc(title)} - Photos - Filip Biljic</title>
-<meta name="description" content="${esc(`${title}: ${counted(dump)}. Photographs by Filip Biljic.`)}">
+<meta name="description" content="${esc(`${title}. Photos by Filip Biljic.`)}">
 <meta property="og:title" content="${esc(title)}">${image ? `\n<meta property="og:image" content="${esc(image)}">` : ''}`;
 }
 const stamp = (dump, depth) => { const p = dump && printed(dump)[0]; return p ? `<img class="stamp" src="${media(depth, dump.id, `${p.file}-${THUMB}.jpg`)}" width="400" height="${sized(p, THUMB).height}" alt="" loading="lazy">` : ''; };
 
-// ---- Standard: the archive box (photos.html). Every dump as a sleeve, grouped by year, newest first.
+// ---- Standard: the archive box (photos.html). Every dump as a sleeve, grouped by year.
 function sleeve(dump) {
   const place = `<span class="place">${esc(dump.title)}</span> <span class="when">${esc(months(dump.from, dump.to))}</span> <span class="count">${esc(counted(dump))}</span>`;
-  const strips = dump.rolls.map((roll, r) => `<div class="strip">${roll.name ? `<p class="edge">${esc(roll.name)}</p>` : ''}<ol aria-label="${esc(`${roll.name || dump.title}, ${plural(roll.files.length, 'frame')}`)}">${strip(dump, roll, r, 0, hasPage(dump))}</ol></div>`).join('');
+  const strips = dump.rolls.map((roll, r) => `<div class="strip">${roll.name ? `<p class="edge">${esc(roll.name)}</p>` : ''}<ol aria-label="${esc(roll.name || dump.title)}">${strip(dump, roll, r, 0, hasPage(dump))}</ol></div>`).join('');
   return `<li class="sleeve${hasPage(dump) ? '' : ' sealed'}">${hasPage(dump) ? `<a class="label" href="${href(dump, 0)}">${place}</a>` : `<p class="label">${place}</p>`}<div class="strips">${strips}</div></li>`;
 }
 function archive() {
@@ -324,7 +318,7 @@ function archive() {
   const leads = open.filter(d => printed(d).length).slice(0, 4);
   return `<section class="set archive" id="dumps">
 <div class="field">
-<article class="contact box" aria-label="Every photo dump">
+<article class="contact box" aria-label="Photos">
 <h1 class="title"><span>Photos,</span> <span>?? to today</span></h1>
 ${years.map(y => `<section class="shelf" aria-label="${y}">
 <h2 class="year">${y}</h2>
