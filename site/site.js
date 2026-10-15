@@ -257,7 +257,7 @@
         <input type="range" min="0" max="0" step="1" value="0" aria-label="Seek">
         <span class="times" aria-hidden="true"><span class="at">0:00</span><span class="len">0:00</span></span>
       </div>
-      <button class="play" type="button" aria-label="Play" disabled>
+      <button class="play" type="button" aria-label="Play" aria-keyshortcuts="p Space" title="Play or pause (P)" disabled>
         <svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path class="i-play" d="M5 3 L17 10 L5 17 Z"/><g class="i-pause"><rect x="4" y="3" width="4" height="14"/><rect x="12" y="3" width="4" height="14"/></g></svg>
       </button>
       <a class="name" href="${new URL('music.html', ROOT).href}">No songs yet</a>
@@ -449,6 +449,18 @@
       if (e.key !== 'Escape') return;
       if (vol.classList.contains('open')) vol.classList.remove('open');
       else if (open()) { expand(false); if (el.contains(document.activeElement)) cover.focus(); }
+    });
+    // P or Space plays and pauses from anywhere, unless the key is meant for a field or a focused control.
+    document.addEventListener('keydown', e => {
+      if (e.metaKey || e.ctrlKey || e.altKey || e.repeat) return;
+      const space = e.key === ' ';
+      if (!space && e.key.toLowerCase() !== 'p') return;
+      const t = e.target;
+      if (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)) return;
+      if (space && t.closest('a, button, summary, [tabindex], dialog')) return;
+      if ($('.play').disabled) return;
+      e.preventDefault();
+      $('.play').click();
     });
     // A click anywhere else closes it, except on the music page's tracklist, which drives the same player.
     document.addEventListener('click', e => {
