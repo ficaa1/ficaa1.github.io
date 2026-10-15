@@ -274,7 +274,7 @@ body.photos nav { position: relative; z-index: 2; }
 @media (min-aspect-ratio: 9/5), (max-aspect-ratio: 13/10) { .print img { object-fit: contain; } }
 .print figcaption {
   position: absolute; left: 0; right: 0; bottom: 0; padding: 72px max(28px, calc(100% - 860px)) 22px 28px; font-size: 18px; color: #fff; max-width: none;
-  background: linear-gradient(to top, rgb(0 0 0 / 0.72), rgb(0 0 0 / 0));
+  background: linear-gradient(to top, rgb(0 0 0 / 0.72), rgb(0 0 0 / 0)); /* neutral scrim over a photo: taste-skill-ignore */
 }
 .print .frame { color: #fff; font-weight: bold; }
 .print .exif { color: #d6d6d6; font-size: 16px; white-space: nowrap; }
@@ -331,6 +331,122 @@ body.photos footer > * { max-width: none; }
   .back .signoff { font-size: 32px; }
   .back .address { padding-top: 0; }
   .back .stamp { position: static; width: 96px; height: 72px; margin-bottom: 12px; }
+}
+
+/* ---- Dumps: the archive box. Every export folder is a sleeve whose strips are as long as the roll really is;
+   on a dump's page the box's tabs run down the sheet's left edge, and the one pulled out is the sheet itself. */
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.roll .slot, .roll img, .strip img, .strip .slot { object-fit: cover; }
+.print.tall img { object-fit: contain; }
+.print .frame a { color: #fff; }
+
+/* The box, on photos.html: one wide sheet listing every sleeve, grouped by year. */
+.contact.box { width: min(1120px, 100%); }
+.shelf { margin-top: 64px; }
+.shelf .year { font-size: 40px; line-height: 1; letter-spacing: -0.02em; margin: 0 0 20px; }
+.sleeves { list-style: none; padding: 0; margin: 0; }
+.sleeve { display: grid; grid-template-columns: 280px 1fr; gap: 12px 40px; margin: 0 0 36px; align-items: start; }
+.sleeve .label { display: block; margin: 0; line-height: 1.3; text-decoration: none; }
+.sleeve .label span { display: block; font-size: 16px; }
+.sleeve .label .place { font-size: 32px; line-height: 1.05; font-style: italic; font-weight: bold; letter-spacing: -0.02em; margin-bottom: 6px; }
+.sleeve a.label .place { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 0.12em; }
+.sleeve.sealed .label { color: #5f5e5a; }
+.sleeve.sealed .label .place { font-weight: normal; }
+.strips { display: grid; gap: 8px; }
+.strip { background: var(--film); padding: 6px 6px 4px; }
+.strip .edge { color: #b9b9b9; font-size: 13px; line-height: 1; margin: 2px 2px 6px; }
+.strip ol { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(40px, 1fr)); gap: 6px 4px; }
+.strip li { margin: 0; display: flex; flex-direction: column; }
+.strip .slot, .strip img { display: block; width: 100%; aspect-ratio: 3 / 2; height: auto; background: #202020; }
+.strip .n { color: #9a9a9a; font-size: 13px; line-height: 1; padding-top: 3px; text-align: center; font-variant-numeric: tabular-nums; }
+.strip .printed a { display: block; position: relative; }
+.strip .printed a::after { content: ""; position: absolute; inset: -4px; border: 3px solid var(--mark); border-radius: 3px; transform: rotate(-2deg); pointer-events: none; }
+.strip .printed .n { color: #fff; font-weight: bold; }
+.sealed .strip { background: #2b2b2b; }
+
+/* Rolls on a dump's contact sheet. */
+.roll-name { font-size: 18px; line-height: 1.3; margin: 32px 0 10px; }
+.contact .facts + .roll-name { margin-top: 0; }
+.roll-name span { font-weight: normal; color: #5f5e5a; }
+
+/* The tabs, on a dump's page. */
+.tabs { font-size: 16px; }
+.tabs .all { margin: 0 0 12px; }
+.tabs .all a { color: var(--ink); }
+.tabs ol { list-style: none; padding: 0; margin: 0; }
+.tabs li { margin: 0 0 4px; }
+.tabs li > a, .tabs li > span { position: relative; display: grid; grid-template-columns: 1fr auto; align-items: baseline; gap: 4px 12px; padding: 10px 16px 10px 14px; min-height: 44px; background: var(--surface); color: var(--ink); text-decoration: none; }
+.tabs .place { font-size: 18px; font-style: italic; font-weight: bold; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tabs .yr { display: none; }
+.tabs .n { color: var(--soft); font-variant-numeric: tabular-nums; }
+.tabs .bar { grid-column: 1 / -1; position: relative; display: block; height: 6px; width: calc(var(--w) * 100%); min-width: 12px; background: #3a3a3a; }
+.tabs .bar i { position: absolute; top: 0; bottom: 0; left: var(--at); width: 3px; margin-left: -1px; background: var(--mark); }
+.tabs .sealed > span { color: var(--soft); background: transparent; }
+.tabs .sealed .place { font-weight: normal; }
+.tabs .here > a { background: var(--paper); color: var(--paper-ink); }
+.tabs .here .n { color: #5f5e5a; }
+.tabs .here .bar { background: #c9c7c1; }
+.tabs li > a { transition: background-color var(--t-hover, 180ms) ease, transform 140ms cubic-bezier(.22,1,.36,1); }
+@media (hover: hover) and (pointer: fine) {
+  .tabs li:not(.here) > a:hover { background: #2c2c2c; }
+  .tabs li:not(.here) > a:hover .place, .sleeve a.label:hover .place { text-decoration-thickness: 4px; }
+  .tabs li:not(.here) > a:hover .place { text-decoration: underline; text-decoration-thickness: 2px; }
+}
+.tabs li > a:active { transform: translateX(-2px); }
+
+/* A row of tabs that scrolls sideways is the default; a dump page can put it anywhere. */
+.tabs ol { display: flex; gap: 4px; overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: none; }
+.tabs ol::-webkit-scrollbar { display: none; }
+.tabs li { flex: none; width: 168px; margin: 0; scroll-snap-align: start; }
+.tabs li > a, .tabs li > span { height: 100%; }
+.tabs .here > a { padding-bottom: 14px; }
+.set .field > .tabs { width: min(720px, 100%); margin-top: 64px; }
+.tabs + .contact { margin-top: 0; }
+@media (max-width: 1099px) { .set:not(.archive) .field { flex-direction: column; align-items: center; } }
+/* Inside the kit's field on a wide screen, the tabs hang down the left of the sheet like index cards. */
+@media (min-width: 1100px) {
+  .set:not(.archive) .field { display: grid; grid-template-columns: 1fr min(720px, 100%) 1fr; align-items: start; }
+  .set:not(.archive) .contact { grid-column: 2; }
+  .set .field > .tabs { grid-column: 1; grid-row: 1; justify-self: end; width: min(270px, 100%); margin-top: 176px; }
+  .field > .tabs .all { padding-right: 16px; text-align: right; }
+  .field > .tabs ol { display: block; overflow: visible; }
+  .field > .tabs li { width: auto; margin: 0 14px 4px 0; }
+  .field > .tabs li.here { margin-right: 0; }
+  .field > .tabs .here > a { padding-bottom: 10px; }
+}
+
+/* The stub after a dump's prints: tear it off for the next sleeve. */
+.stub { background: var(--paper); color: var(--paper-ink); width: min(720px, calc(100% - 40px)); margin: 120px auto 0; padding: 40px 48px 32px; border-top: 8px dotted var(--bg); }
+.stub a { color: var(--paper-ink); }
+.stub .next { font-size: 32px; line-height: 1.15; font-style: italic; font-weight: bold; letter-spacing: -0.02em; margin-bottom: 20px; }
+.stub p:last-child { font-size: 18px; margin: 0; }
+
+@media (max-width: 1240px) { .contact.box { padding-left: 40px; padding-right: 40px; } }
+@media (max-width: 900px) {
+  .sleeve { grid-template-columns: 1fr; }
+  .sleeve .label { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 12px; }
+  .sleeve .label .place { width: 100%; }
+}
+@media (max-width: 640px) {
+  .contact.box { padding: 36px 14px 20px; }
+  .shelf { margin-top: 40px; }
+  .shelf .year { font-size: 32px; margin-bottom: 14px; }
+  .sleeve { margin-bottom: 28px; gap: 8px; }
+  .sleeve .label .place { font-size: 28px; }
+  .strip ol { grid-template-columns: repeat(auto-fill, minmax(36px, 1fr)); }
+  .set .field > .tabs { margin-top: 24px; width: 100%; }
+  .tabs .all { margin-left: 0; }
+  .tabs li { width: 148px; }
+  .stub { width: auto; margin: 72px 20px 0; padding: 28px 20px 24px; }
+  .stub .next { font-size: 24px; }
+}
+
+/* The grease pencil lands on each printed frame as its strip arrives. */
+@media (prefers-reduced-motion: no-preference) {
+  .js .rise .printed a::after { opacity: 0; transform: rotate(-9deg) scale(1.25); }
+  .js .rise.in .printed a::after { opacity: 1; transform: rotate(-2deg); transition: opacity 260ms ease, transform 420ms cubic-bezier(.22,1,.36,1); transition-delay: calc(var(--d, 0ms) + 380ms); }
+  .js .tabs .rise { transform: translateX(-18px); }
+  .js .tabs .rise.in { transform: none; }
 }
 
 /* The viewer: a plain white page with one picture on it. */
