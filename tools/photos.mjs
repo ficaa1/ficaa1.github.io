@@ -172,7 +172,6 @@ const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 
 const day = t => { const [y, m, d] = t.slice(0, 10).split('-'); return { y, m: MONTHS[m - 1], d: +d }; };
 const NUMBERS = ['no', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve'];
 const words = n => NUMBERS[n] || String(n);
-const Words = n => words(n).replace(/^./, c => c.toUpperCase());
 const plural = (n, one, many = one + 's') => `${n} ${n === 1 ? one : many}`;
 function days(from, to) { // "26 and 27 December 2025", "17 to 22 August 2024"
   if (!from) return '';
@@ -321,14 +320,12 @@ function sleeve(dump) {
 }
 function archive() {
   const years = [...new Set(visible.map(d => (d.to || d.from || '').slice(0, 4)))];
-  const all = visible.reduce((n, d) => n + d.frames, 0), shown = visible.reduce((n, d) => n + printed(d).length, 0);
   const span = [visible.at(-1), visible[0]].map(d => (d.from || '').slice(0, 4));
   const leads = open.filter(d => printed(d).length).slice(0, 4);
   return `<section class="set archive" id="dumps">
 <div class="field">
 <article class="contact box" aria-label="Every photo dump, newest first">
 <h1 class="title"><span>Photo dumps,</span> <span>${span[0] === span[1] ? span[0] : `${span[0]} to ${span[1]}`}</span></h1>
-<p class="facts"><span>${plural(visible.length, 'dump')} on the home server</span><i aria-hidden="true"></i><span>${all} frames</span><i aria-hidden="true"></i><span>${words(shown)} printed</span></p>
 ${years.map(y => `<section class="shelf" aria-label="${y}">
 <h2 class="year">${y}</h2>
 <ol class="sleeves">
@@ -337,7 +334,6 @@ ${visible.filter(d => (d.to || d.from || '').startsWith(y)).map(sleeve).join('\n
 </section>`).join('\n')}
 </article>
 </div>
-<p class="interlock">${Words(visible.length)} folders of edited photos, newest first, each as long as the roll really is. ${Words(leads.length)} have prints so far; below is one from each, and the others stay on the sheet until I choose.</p>
 <div class="prints">
 ${leads.map((d, n) => print(d, printed(d)[0], 0, { lazy: n > 0, lead: true })).join('\n')}
 </div>

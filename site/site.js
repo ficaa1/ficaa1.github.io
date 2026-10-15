@@ -1,25 +1,10 @@
 // Everything here is optional: without it the site is six plain HTML pages.
 (() => {
   const ROOT = new URL('.', document.currentScript.src);
-  const PAGES = { welcome: 'Welcome', blog: 'Blog', cv: 'CV', contact: 'Contact', photos: 'Photos', music: 'Music' };
-  const ALL = Object.keys(PAGES).length;
-  const kb = n => (n / 1024).toFixed(1) + ' KB';
-  const ms = n => Math.max(0, Math.round(n)) + ' ms';
   const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
   const json = name => fetch(new URL(name, ROOT)).then(r => (r.ok ? r.json() : [])).catch(() => []);
 
   let clockTimer = 0;
-  let softNav = null; // set while a page arrives without a full reload
-
-  // ---- Which pages has this visitor read? Stays in their browser only.
-  function markSeen(page) {
-    let seen = [];
-    try { seen = JSON.parse(localStorage.getItem('fb-seen') || '[]'); } catch {}
-    const key = page === 'post' ? 'blog' : page;
-    if (PAGES[key] && !seen.includes(key)) seen.push(key);
-    try { localStorage.setItem('fb-seen', JSON.stringify(seen)); } catch {}
-    return Object.keys(PAGES).filter(k => seen.includes(k));
-  }
 
   // ---- Entrances: each block rises in once; pictures draw top to bottom like a slow modem.
   function entrances() {
@@ -40,50 +25,6 @@
     }, { rootMargin: '0px 0px -8% 0px' });
     document.querySelectorAll('main > :not(.sheet):not(.posts):not(.tracklist):not(.set), .set > .field, .set > .interlock, .print, .roll > li, .back > *, .sheet > :not(.ledger), .ledger > li, .posts > li, .tracklist > li')
       .forEach(el => { el.classList.add('rise'); io.observe(el); });
-  }
-
-  // ---- The trace: real timings of this page's own request.
-  // A full load reads the Navigation Timing entry; a page swapped in without reloading reads its fetch's Resource Timing entry.
-  function trace(read) {
-    const footer = document.getElementById('trace');
-    if (!footer) return;
-    const soft = softNav;
-    const t = soft ? soft.entry : performance.getEntriesByType('navigation')[0];
-    const size = soft ? soft.bytes : t && t.transferSize ? t.transferSize : document.documentElement.outerHTML.length;
-    const cached = t && t.transferSize === 0 && t.decodedBodySize > 0;
-    const built = soft ? soft.builtAt - (t ? t.responseEnd : soft.start) : t ? (t.domContentLoadedEventEnd || t.responseEnd) - t.responseEnd : 0;
-    const total = soft ? soft.builtAt - soft.start : t ? t.loadEventEnd || performance.now() : performance.now();
-
-    const steps = t ? [
-      ['Finding the server (DNS)', t.domainLookupEnd - t.domainLookupStart],
-      ['Opening a connection', t.secureConnectionStart > 0 ? t.secureConnectionStart - t.connectStart : t.connectEnd - t.connectStart],
-      ['Agreeing on encryption (TLS)', t.secureConnectionStart > 0 ? t.connectEnd - t.secureConnectionStart : 0],
-      ['Waiting for the first byte', t.responseStart - t.requestStart],
-      ['Downloading ' + kb(size), t.responseEnd - t.responseStart],
-      [soft ? 'Swapping it into this page' : 'Building the page', built],
-    ] : [];
-    const max = Math.max(1, ...steps.map(s => s[1]));
-    const ref = soft ? soft.from : document.referrer;
-    const where = ref
-      ? (new URL(ref).host === location.host ? 'another page on this site' : new URL(ref).host)
-      : 'a typed address or a bookmark';
-    const how = soft
-      ? `This page arrived as ${kb(size)} of HTML and was swapped in without reloading the site, which is why the music did not stop. It took ${ms(total)}.`
-      : `This page is ${kb(size)} of hand-written HTML${cached ? ', and your browser already had it' : ''}. It took ${ms(total)} to arrive and draw.`;
-    const rack = new URL('rack.html', ROOT).href;
-
-    footer.innerHTML = `
-      <p>Filip Biljic, Paris. ${how}</p>
-      <p>You have read ${read.length} of ${ALL} pages: ${read.map(k => PAGES[k]).join(', ')}.</p>
-      <details>
-        <summary>How this page reached you</summary>
-        <table class="trace">
-          ${steps.map(([label, v]) => `<tr><td>${label}</td><td class="bar"><span class="b" style="width:${Math.max(1, (v / max) * 100)}%"></span></td><td class="ms">${ms(v)}</td></tr>`).join('')}
-        </table>
-        <p style="margin-top:16px">You came from ${where}. Your window is ${innerWidth} by ${innerHeight} pixels. The server answered with protocol ${(t && t.nextHopProtocol) || 'unknown'}. Your browser measured these numbers on this visit; reload and they change.</p>
-      </details>
-      ${read.length === ALL ? `<p class="unlock">You have read every page, so here is an unlisted one: <a href="${rack}">the rack this site is about</a>.</p>` : ''}
-    `;
   }
 
   // ---- Blog: find, and keyboard like a pager. The key listener is installed once and looks for the field each time.
@@ -142,8 +83,8 @@
   }
 
   // ---- Photos: every page is plain HTML (filled in by tools/photos.mjs) and works without script.
-  // With script, any .print or [data-view] opens large in a viewer you can step through, the page says which format
-  // your browser chose, and the box of dumps (the sleeves on photos.html, the tabs on a dump's page) arrives in order.
+  // With script, any .print or [data-view] opens large in a viewer you can step through, and the box of dumps
+  // (the sleeves on photos.html, the tabs on a dump's page) arrives in order.
   let viewer;
   function photos() {
     dumps();
@@ -156,9 +97,6 @@
     }));
     const target = figs.find(f => location.hash === '#' + f.id);
     if (target) view(figs, figs.indexOf(target));
-    const imgs = figs.map(f => f.querySelector('img'));
-    Promise.all(imgs.map(i => i.complete ? 0 : new Promise(r => { i.addEventListener('load', r, { once: true }); i.addEventListener('error', r, { once: true }); })))
-      .then(() => formatNote(figs));
   }
 
   // The switcher: sleeves and tabs rise in a few at a time, and on a narrow screen the row of tabs starts at this dump.
@@ -176,26 +114,6 @@
       });
     }, { rootMargin: '0px 0px -6% 0px' });
     els.forEach(el => { el.classList.add('rise'); io.observe(el); });
-  }
-
-  function formatNote(figs) {
-    const note = document.getElementById('format');
-    if (!note) return;
-    let got = 0, other = 0, jxl = 0, n = 0;
-    figs.forEach(f => {
-      const src = f.querySelector('img').currentSrc;
-      const m = src && src.match(/-(\d+)\.(jpg|jxl)$/);
-      if (!m) return;
-      const sizes = JSON.parse(f.dataset.bytes || '{}');
-      got += sizes[`${m[1]}.${m[2]}`] || 0;
-      other += sizes[`${m[1]}.${m[2] === 'jxl' ? 'jpg' : 'jxl'}`] || 0;
-      if (m[2] === 'jxl') jxl++;
-      n++;
-    });
-    if (!n) return;
-    note.textContent = jxl
-      ? `Your browser can show JPEG XL, so the ${n} pictures it has loaded came to ${kb(got)}. As ordinary JPEG they would have been ${kb(other)}.`
-      : `Your browser cannot show JPEG XL, so these ${n} pictures came as ordinary JPEG, ${kb(got)}. In JPEG XL, which Safari can show, they would be ${kb(other)}.`;
   }
 
   function view(figs, n) {
@@ -514,18 +432,15 @@
 
   // ---- Page setup, run on the first load and after every swap.
   function init() {
-    const page = document.body.dataset.page;
     entrances();
     blog();
     contact();
     photos();
     player.tracklist();
-    trace(markSeen(page));
   }
 
   // ---- Links load the next page in place, so the player is not interrupted. Anything unusual falls back to a normal load.
   async function go(url, push) {
-    const start = performance.now();
     let res, text;
     try {
       res = await fetch(url, { headers: { Accept: 'text/html' } });
@@ -536,10 +451,8 @@
     const parts = ['nav', 'main', 'footer'];
     if (!parts.every(p => doc.querySelector(p))) { location.assign(url); return; }
 
-    const from = location.href;
     if (push) history.pushState({}, '', url);
     document.title = doc.title;
-    document.body.dataset.page = doc.body.dataset.page || '';
     document.body.className = doc.body.className;
     parts.forEach(p => document.querySelector(p).replaceWith(document.adoptNode(doc.querySelector(p))));
     const hash = new URL(url).hash;
@@ -548,10 +461,7 @@
     const h1 = document.querySelector('main h1');
     if (h1) { h1.tabIndex = -1; h1.focus({ preventScroll: true }); }
 
-    const entries = performance.getEntriesByName(res.url || url, 'resource');
-    softNav = { start, builtAt: performance.now(), entry: entries[entries.length - 1], bytes: text.length, from };
     init();
-    softNav = null;
   }
 
   document.addEventListener('click', e => {
