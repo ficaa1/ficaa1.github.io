@@ -45,13 +45,13 @@ export const group = p => p.includes('/') ? p.slice(0, p.lastIndexOf('/')) : '(t
 export function editedPaths() {
   if (!existsSync(INDEX)) throw new Error('No scan yet: run node tools/edited.mjs --scan');
   return readFileSync(INDEX, 'utf8').split('\n').filter(Boolean)
-    .map(r => r.split('\t')).filter(([sw]) => EDITORS.test(sw)).map(([, p]) => p.replace(/^\.\//, ''));
+    .map(r => r.split('\t')).filter(([sw, p]) => EDITORS.test(sw) && !/\.tiff?$/i.test(p)).map(([, p]) => p.replace(/^\.\//, ''));
 }
 
 function main() {
   const args = process.argv.slice(2);
   if (args[0] === '--scan') {
-    const find = `cd ${q(LIBRARY)} && find . -path ./.dtrash -prune -o -type f \\( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.jxl' -o -iname '*.tif' -o -iname '*.png' \\) -print`;
+    const find = `cd ${q(LIBRARY)} && find . -path ./.dtrash -prune -o -type f \\( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.jxl' -o -iname '*.png' \\) -print`;
     const out = ssh(`${find} | nice -n 19 ionice -c3 python3 -c ${q(READER)}`, { maxBuffer: 64 << 20 });
     mkdirSync(new URL('.', INDEX), { recursive: true });
     writeFileSync(INDEX, out);

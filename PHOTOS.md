@@ -40,7 +40,7 @@ nice -n 19 ionice -c3 node tools/thumbs.mjs --page      # rebuild the picker wit
 
 Open https://hermes.tail92948.ts.net:10443/picker/. The page and thumbnail links stay local and are gitignored; do not publish them. Click frames, then copy their full plex paths. Selection stays in this browser. Filter by path; the corner button opens the 800 px thumbnail.
 
-Thumbnails and `metadata.json` live in `photos-src-local/thumbs/`. Metadata reads at most 256 KB per frame. JPEGs run first, then TIFFs without a JPEG of the same name in the same folder. Other TIFFs use the JPEG thumbnail. JXL files keep filename tiles.
+Thumbnails and `metadata.json` live in `photos-src-local/thumbs/`. Metadata reads at most 256 KB per frame. TIFFs are left out: they are Dehancer intermediates, not finished photos. JXL files keep filename tiles.
 
 Only one run can hold the local lock. Plex reads are limited to 10 MiB/s with `pv` when available, or a sleep after each file to keep the average at or below that rate. Header reads count too. The run checks plex load before every file and waits 60 seconds while load is above 3. ffmpeg runs on plex with one thread and low priority; nothing is written there. The log counts source bytes from completed file reads, plus headers, over elapsed time including waits. A thumbnail is installed only after the stream finishes. No thumbnails or originals are decoded here.
 
