@@ -1,21 +1,40 @@
-// Reads the camera settings from the Exif box of a JPEG XL file. No dependencies.
+// Reads the camera settings from the Exif of a JPEG XL file (its Exif box) or a JPEG (its APP1 segment).
+// Takes a path or a Buffer; the first ~256 KB of a file is enough, so originals can be read with `head -c` over ssh.
+// No dependencies.
 import { readFileSync } from 'node:fs';
 
 const TAGS = { 0x010f: 'make', 0x0110: 'model', 0x829a: 'exposure', 0x829d: 'fnumber', 0x8827: 'iso', 0x9003: 'taken', 0x920a: 'focal', 0xa434: 'lens', 0x8769: 'exifIfd' };
 
-export function exif(file) {
-  const b = readFileSync(file);
-  let box = null;
+// The TIFF block inside a JPEG's APP1 "Exif" segment.
+function jpegTiff(b) {
+  for (let i = 2; i + 4 <= b.length && b[i] === 0xff;) {
+    const marker = b[i + 1], len = b.readUInt16BE(i + 2);
+    if (marker === 0xda || marker === 0xd9) break;
+    if (marker === 0xe1 && b.toString('latin1', i + 4, i + 10) === 'Exif\0\0') return b.subarray(i + 10, i + 2 + len);
+    i += 2 + len;
+  }
+  return null;
+}
+
+// The TIFF block inside a JPEG XL container's Exif box (after its 4-byte offset).
+function jxlTiff(b) {
   for (let i = 0; i + 8 <= b.length;) {
     let len = b.readUInt32BE(i), head = 8;
     const type = b.toString('latin1', i + 4, i + 8);
     if (len === 1) { len = Number(b.readBigUInt64BE(i + 8)); head = 16; }
     if (len === 0) len = b.length - i;
-    if (type === 'Exif') { box = b.subarray(i + head, i + len); break; }
+    if (type === 'Exif') { const box = b.subarray(i + head, i + len); return box.subarray(4 + box.readUInt32BE(0)); }
+    if (len < head) break;
     i += len;
   }
-  if (!box) return {};
-  const t = box.subarray(4 + box.readUInt32BE(0));
+  return null;
+}
+
+export function exif(input) {
+  const b = Buffer.isBuffer(input) ? input : readFileSync(input);
+  let t = null;
+  try { t = b[0] === 0xff && b[1] === 0xd8 ? jpegTiff(b) : jxlTiff(b); } catch { t = null; }
+  if (!t || t.length < 8) return {};
   const le = t.toString('latin1', 0, 2) === 'II';
   const u16 = o => le ? t.readUInt16LE(o) : t.readUInt16BE(o);
   const u32 = o => le ? t.readUInt32LE(o) : t.readUInt32BE(o);
@@ -32,8 +51,10 @@ export function exif(file) {
       else if (type === 5) out[name] = [u32(ptr), u32(ptr + 4)];
     }
   };
-  ifd(u32(4));
-  if (out.exifIfd) ifd(out.exifIfd);
+  try {
+    ifd(u32(4));
+    if (out.exifIfd) ifd(out.exifIfd);
+  } catch {} // a header cut short by head -c: keep what was read
   delete out.exifIfd;
   return out;
 }

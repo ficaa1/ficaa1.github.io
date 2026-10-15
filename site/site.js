@@ -141,13 +141,16 @@
     if (print) { print.hidden = false; print.addEventListener('click', () => window.print()); }
   }
 
-  // ---- Photos: the page is written by tools/photos.mjs and works without script.
-  // With script, a picture opens large in a viewer you can step through, and the page says which format your browser chose.
+  // ---- Photos: every page is plain HTML (filled in by tools/photos.mjs) and works without script.
+  // With script, any .print or [data-view] opens large in a viewer you can step through, the page says which format
+  // your browser chose, and the box of dumps (the sleeves on photos.html, the tabs on a dump's page) arrives in order.
   let viewer;
   function photos() {
-    const figs = [...document.querySelectorAll('.print')];
+    dumps();
+    const figs = [...document.querySelectorAll('main .print, main [data-view]')];
     if (!figs.length) return;
-    figs.forEach((fig, n) => fig.querySelector('.open').addEventListener('click', e => {
+    const trigger = f => f.querySelector('.open') || f;
+    figs.forEach((fig, n) => trigger(fig).addEventListener('click', e => {
       if (e.metaKey || e.ctrlKey || e.shiftKey || e.button) return;
       e.preventDefault(); view(figs, n);
     }));
@@ -156,6 +159,23 @@
     const imgs = figs.map(f => f.querySelector('img'));
     Promise.all(imgs.map(i => i.complete ? 0 : new Promise(r => { i.addEventListener('load', r, { once: true }); i.addEventListener('error', r, { once: true }); })))
       .then(() => formatNote(figs));
+  }
+
+  // The switcher: sleeves and tabs rise in a few at a time, and on a narrow screen the row of tabs starts at this dump.
+  function dumps() {
+    const here = document.querySelector('.tabs [aria-current]');
+    const row = here && here.closest('ol');
+    if (row && row.scrollWidth > row.clientWidth) row.scrollLeft = here.parentElement.offsetLeft - row.offsetLeft - 20;
+    const els = [...document.querySelectorAll('main .sleeve, main .tabs li, main .day')];
+    if (!els.length || !('IntersectionObserver' in window)) return;
+    const io = new IntersectionObserver(es => {
+      let k = 0;
+      es.filter(e => e.isIntersecting).forEach(e => {
+        e.target.style.setProperty('--d', (k++ % 8) * 60 + 'ms');
+        e.target.classList.add('in'); io.unobserve(e.target);
+      });
+    }, { rootMargin: '0px 0px -6% 0px' });
+    els.forEach(el => { el.classList.add('rise'); io.observe(el); });
   }
 
   function formatNote(figs) {
@@ -198,7 +218,7 @@
       viewer.addEventListener('close', () => {
         history.replaceState(history.state, '', location.pathname + location.search);
         const f = viewer.figs && viewer.figs[viewer.n];
-        if (f && f.isConnected) f.querySelector('.open').focus({ preventScroll: true });
+        if (f && f.isConnected) (f.querySelector('.open') || f).focus({ preventScroll: true });
       });
     }
     viewer.figs = figs;
@@ -209,8 +229,11 @@
       const big = viewer.querySelector('img');
       big.src = (src.currentSrc || src.src).replace(/-\d+\.(jpg|jxl)$/, '-2000.$1');
       big.alt = src.alt;
-      viewer.querySelector('.where').textContent = `${f.closest('.set').querySelector('.title').textContent}, ${i + 1} of ${figs.length}.`;
-      viewer.querySelector('.cap').textContent = f.querySelector('figcaption').textContent.replace(/^\d+\.\s*/, '');
+      const set = f.dataset.dump || (f.closest('.set') && f.closest('.set').querySelector('.title') || document.querySelector('main h1') || {}).textContent || '';
+      const fc = f.querySelector('figcaption'), label = f.querySelector('figcaption .frame');
+      const cap = f.dataset.caption || (fc ? fc.textContent.slice(label ? label.textContent.length : 0) : src.alt);
+      viewer.querySelector('.where').textContent = `${set}, ${i + 1} of ${figs.length}.`;
+      viewer.querySelector('.cap').textContent = cap.trim();
       history.replaceState(history.state, '', '#' + f.id);
     };
     show(n);

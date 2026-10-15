@@ -1,4 +1,8 @@
 .taste-skill/
-node_modules/
+node_modules
 *.log
-photos-src/
+photos-src
+photos-src-local/
+# Picture derivatives live on R2 (photos.filipbiljic.com); the copies here are for local preview only.
+site/photos/*/*.jpg
+site/photos/*/*.jxl

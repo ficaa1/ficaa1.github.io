@@ -1,0 +1,5 @@
+/* {{title}}, {{year}}: this dump's own design. Loaded by a <link> inside <main>, so it arrives and leaves with the page
+   when the site swaps pages in place. Scope every rule to this dump:
+     main[data-dump="{{id}}"] ...                   anything inside the page
+     body:has(main[data-dump="{{id}}"]) ...         the page's colours, the nav, the footer and the player
+   The kit's own rules (contact sheet, prints, tabs, stub) live in the photos block of site.css. */
