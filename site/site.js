@@ -218,23 +218,39 @@
   }
 
   // ---- The player. It lives outside the swapped part of the page, so it keeps playing between pages.
-  // Songs come from music.json: [{ "title", "artist", "src", "cover" }], paths relative to the site root.
+  // Songs come from music.json: [{ "title", "artist", "src", "cover", "coverFull" }], paths relative to the site root.
+  // "cover" is the square thumbnail and "coverFull" the uncropped picture shown when the player opens; both are optional.
+  // Without art, the cover is drawn from the song itself, its waveform set in lines like a page of text.
+  // Lines not heard yet are link blue, heard ones are visited purple, and the bar playing now is the red of a link being clicked.
   const player = (() => {
     const el = document.createElement('div');
     el.id = 'player';
     el.setAttribute('role', 'region');
     el.setAttribute('aria-label', 'Music player');
     el.innerHTML = `
-      <span class="cover" aria-hidden="true"></span>
+      <button class="cover" type="button" aria-expanded="false" aria-controls="player-seek" aria-label="Cover and seek bar"><canvas aria-hidden="true"></canvas><img alt="" aria-hidden="true"></button>
+      <div class="seek" id="player-seek" hidden>
+        <span class="bar" aria-hidden="true"><span class="fill"></span></span>
+        <input type="range" min="0" max="0" step="1" value="0" aria-label="Seek">
+        <span class="times" aria-hidden="true"><span class="at">0:00</span><span class="len">0:00</span></span>
+      </div>
       <button class="play" type="button" aria-label="Play" disabled>
         <svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path class="i-play" d="M5 3 L17 10 L5 17 Z"/><g class="i-pause"><rect x="4" y="3" width="4" height="14"/><rect x="12" y="3" width="4" height="14"/></g></svg>
       </button>
       <a class="name" href="${new URL('music.html', ROOT).href}">No songs yet</a>
+      <span class="vol">
+        <button class="mute" type="button" aria-label="Mute" aria-pressed="false" title="Volume">
+          <svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path class="spk" d="M2 7 H6 L11 3 V17 L6 13 H2 Z"/><path class="w1" d="M13.5 7.5 Q15 10 13.5 12.5"/><path class="w2" d="M15.5 4.5 Q19 10 15.5 15.5"/><path class="x" d="M13.5 7.5 L18.5 12.5 M18.5 7.5 L13.5 12.5"/></svg></button>
+        <input class="level" type="range" min="0" max="100" step="1" aria-label="Volume">
+      </span>
       <button class="skip" type="button" aria-label="Skip song" title="Skip song" disabled>
         <svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M3 3 L13 10 L3 17 Z"/><rect x="14" y="3" width="3" height="14"/></svg></button>`;
     const audio = new Audio();
     audio.preload = 'none';
     const $ = s => el.querySelector(s);
+    const cover = $('.cover'), canvas = $('canvas'), pic = $('.cover img'), seek = $('.seek input'), vol = $('.vol'), level = $('.level');
+    const still = matchMedia('(prefers-reduced-motion: reduce)'), touch = matchMedia('(hover: none)');
+    const mmss = t => (t > 0 && isFinite(t) ? `${Math.floor(t / 60)}:${String(Math.floor(t % 60)).padStart(2, '0')}` : '0:00');
     let list = [], i = 0;
 
     const save = () => { try { sessionStorage.setItem('fb-player', JSON.stringify({ i, t: audio.currentTime || 0 })); } catch {} };
@@ -242,10 +258,13 @@
       const s = list[i];
       el.classList.toggle('playing', !audio.paused);
       $('.play').setAttribute('aria-label', audio.paused ? 'Play' : 'Pause');
-      $('.play').disabled = $('.skip').disabled = !s;
+      $('.play').disabled = $('.skip').disabled = cover.disabled = !s;
       $('.name').textContent = s ? (s.artist ? `${s.title} · ${s.artist}` : s.title) : 'No songs yet';
-      $('.cover').style.backgroundImage = s && s.cover ? `url("${new URL(s.cover, ROOT).href}")` : '';
+      cover.style.backgroundImage = s && s.cover ? `url("${new URL(s.cover, ROOT).href}")` : '';
+      cover.classList.toggle('art', !!(s && s.cover));
+      if (open()) art(s);
       document.querySelectorAll('.tracklist li').forEach((li, n) => li.classList.toggle('now', n === i && !!s));
+      wave(s, !audio.paused || open()); tick(); draw();
     }
     function load(n, play) {
       if (!list.length) return;
@@ -262,8 +281,183 @@
     $('.skip').addEventListener('click', () => load(i + 1, !audio.paused || !audio.src));
     audio.addEventListener('ended', () => load(i + 1, true));
     ['play', 'pause'].forEach(ev => audio.addEventListener(ev, show));
-    audio.addEventListener('timeupdate', () => { if (Math.round(audio.currentTime) % 5 === 0) save(); });
+    ['durationchange', 'seeked'].forEach(ev => audio.addEventListener(ev, () => { tick(); draw(); }));
+    audio.addEventListener('timeupdate', () => { tick(); draw(); if (Math.round(audio.currentTime) % 5 === 0) save(); });
     audio.addEventListener('error', () => { $('.name').textContent = `Could not load ${list[i]?.title || 'this song'}`; });
+
+    // ---- The waveform: decoded once at a low sample rate, and the loudness of each bar kept in localStorage for next time.
+    // It is only fetched once the visitor plays the song or opens the player; until then the cover is the title set in type.
+    const ROWS = 10, COLS = 48, waves = {};
+    function wave(s, fetchIt) {
+      if (!s || s.cover || waves[s.src]) return;
+      try { const kept = JSON.parse(localStorage.getItem('fb-wave:' + s.src) || 'null'); if (kept && kept.p) { waves[s.src] = kept; return; } } catch {}
+      const Ctx = window.OfflineAudioContext || window.webkitOfflineAudioContext;
+      if (!fetchIt || !Ctx) return;
+      waves[s.src] = 'busy';
+      fetch(new URL(s.src, ROOT)).then(r => r.arrayBuffer())
+        .then(buf => new Promise((ok, no) => new Ctx(1, 1, 8000).decodeAudioData(buf, ok, no)))
+        .then(b => {
+          const d = b.getChannelData(0), n = ROWS * COLS, step = Math.floor(d.length / n), rms = [];
+          for (let k = 0; k < n; k++) {
+            let sum = 0;
+            for (let j = k * step; j < (k + 1) * step; j++) sum += d[j] * d[j];
+            rms.push(Math.sqrt(sum / step));
+          }
+          const top = Math.max(...rms) || 1;
+          waves[s.src] = { d: b.duration, p: rms.map(v => Math.round((v / top) * 100) / 100) };
+          try { localStorage.setItem('fb-wave:' + s.src, JSON.stringify(waves[s.src])); } catch {}
+          tick(); draw();
+        })
+        .catch(() => { waves[s.src] = 'none'; });
+    }
+    function draw() {
+      const s = list[i], size = canvas.clientWidth, dpr = devicePixelRatio || 1;
+      if (!size) return;
+      if (canvas.width !== Math.round(size * dpr)) canvas.width = canvas.height = Math.round(size * dpr);
+      const g = canvas.getContext('2d'), css = getComputedStyle(el), v = name => css.getPropertyValue(name).trim();
+      g.setTransform(dpr, 0, 0, dpr, 0, 0);
+      g.clearRect(0, 0, size, size);
+      if (!s || s.cover) return;
+      const w = waves[s.src], pad = size * 0.09, box = size - 2 * pad;
+      if (w && w.p) {
+        // Loud masters keep every bar near the top, so the bars are stretched between the quiet and the loud end of this song.
+        if (!w.lo) { const o = [...w.p].sort((a, b) => a - b); w.lo = o[Math.floor(o.length * 0.05)]; w.hi = o[Math.floor(o.length * 0.98)] || 1; }
+        const n = w.p.length, rowH = box / ROWS, colW = box / COLS, d = audio.duration || w.d;
+        const now = audio.currentTime > 0 && d ? Math.min(n - 1, Math.floor((audio.currentTime / d) * n)) : -1;
+        w.p.forEach((a, k) => {
+          const h = Math.max(1, rowH * 0.82 * (0.12 + 0.88 * Math.min(1, Math.max(0, (a - w.lo) / (w.hi - w.lo || 1))) ** 1.6)), x = pad + (k % COLS) * colW, y = pad + Math.floor(k / COLS) * rowH + (rowH - h) / 2;
+          g.fillStyle = k < now ? v('--visited') : k === now ? v('--now') : v('--link');
+          g.fillRect(x, y, Math.max(1, colW * 0.55), h);
+        });
+        return;
+      }
+      // The title in type: one word to a line, as large as the widest word allows. The thumbnail has room for the initial only.
+      const words = size < 80 ? [s.title[0]] : s.title.split(/\s+/);
+      g.fillStyle = v('--link');
+      g.font = `italic bold 100px ${v('--face')}`;
+      const widest = Math.max(...words.map(t => g.measureText(t).width));
+      const fs = Math.min((100 * box) / widest, box / words.length / 0.92), lh = fs * 0.92;
+      g.font = `italic bold ${fs}px ${v('--face')}`;
+      g.textBaseline = 'alphabetic';
+      g.textAlign = words.length === 1 ? 'center' : 'left';
+      const x = words.length === 1 ? size / 2 : pad, y0 = pad + (box - lh * words.length) / 2 + fs * 0.78;
+      words.forEach((t, k) => g.fillText(t, x, y0 + k * lh));
+    }
+    new ResizeObserver(draw).observe(canvas);
+
+    // ---- Seeking: a real range input, so click, drag and the keyboard all work. Arrows step five seconds.
+    function tick() {
+      const t = audio.currentTime || 0, d = audio.duration || (waves[list[i]?.src] || {}).d || 0;
+      seek.max = Math.floor(d);
+      if (!seek.matches(':active')) seek.value = Math.floor(t);
+      seek.setAttribute('aria-valuetext', `${mmss(t)} of ${mmss(d)}`);
+      $('.at').textContent = mmss(t);
+      $('.len').textContent = mmss(d);
+      $('.fill').style.transform = `scaleX(${d ? Math.min(1, t / d) : 0})`;
+    }
+    seek.addEventListener('input', () => {
+      if (!audio.src) prime();
+      audio.currentTime = +seek.value;
+      tick(); draw(); save();
+    });
+    seek.addEventListener('keydown', e => {
+      const step = { ArrowLeft: -5, ArrowDown: -5, ArrowRight: 5, ArrowUp: 5 }[e.key];
+      if (!step) return;
+      e.preventDefault();
+      seek.value = Math.min(+seek.max, Math.max(0, +seek.value + step));
+      seek.dispatchEvent(new Event('input'));
+    });
+    // Before the first play nothing has loaded, so opening the player asks for the song's length.
+    function prime() {
+      if (!audio.src && list[i]) audio.src = new URL(list[i].src, ROOT).href;
+      if (audio.preload === 'none') audio.preload = 'metadata';
+    }
+
+    // ---- Opening: the thumbnail grows into the full cover, and the panel opens out from where it was.
+    let shown = false, moving = null;
+    const open = () => shown;
+    function setOpen(on) {
+      el.classList.toggle('open', on);
+      $('.seek').hidden = !on;
+      cover.setAttribute('aria-expanded', on);
+    }
+    // The full picture is fetched when the pointer or focus reaches the cover, and the player waits for it before opening.
+    function art(s) {
+      if (!s || !s.cover) return Promise.resolve();
+      const src = new URL(s.coverFull || s.cover, ROOT).href;
+      if (pic.src !== src) pic.src = src;
+      return pic.decode().then(() => cover.style.setProperty('--ar', pic.naturalWidth / pic.naturalHeight)).catch(() => {});
+    }
+    function expand(on) {
+      if (on === shown || !list.length) return;
+      shown = on;
+      if (moving) moving.stop();
+      if (!on) return move(false);
+      prime(); wave(list[i], true);
+      Promise.race([art(list[i]), new Promise(r => setTimeout(r, 800))]).then(() => { if (shown) move(true); });
+    }
+    function move(on) {
+      if (on === el.classList.contains('open')) return;
+      // Measure the small layout, then put the big one back before anything paints: both moves run in the open layout.
+      const from = cover.getBoundingClientRect();
+      setOpen(false);
+      const to = cover.getBoundingClientRect();
+      setOpen(true);
+      if (on) draw();
+      const big = on ? cover.getBoundingClientRect() : from, small = on ? from : to, ref = el.getBoundingClientRect();
+      const done = () => { moving = null; if (!on) { setOpen(false); draw(); } };
+      if (still.matches) return done();
+      // A portrait or landscape picture starts as its middle square, the thumbnail's crop, and opens out to its full shape.
+      const side = Math.min(big.width, big.height), dx = (big.width - side) / 2, dy = (big.height - side) / 2, k = small.width / side;
+      const shut = `inset(${small.top - ref.top}px ${ref.right - small.right}px ${ref.bottom - small.bottom}px ${small.left - ref.left}px)`;
+      const shrunk = `translate(${small.left - big.left - dx * k}px, ${small.top - big.top - dy * k}px) scale(${k})`;
+      const timing = { duration: on ? 460 : 320, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' };
+      const frames = (x, y) => (on ? [x, y] : [y, x]);
+      const anims = [
+        cover.animate(frames({ transform: shrunk, transformOrigin: '0 0', clipPath: `inset(${dy}px ${dx}px)` }, { transform: 'none', transformOrigin: '0 0', clipPath: 'inset(0px 0px)' }), timing),
+        el.animate(frames({ clipPath: shut }, { clipPath: 'inset(0px 0px 0px 0px)' }), timing),
+      ];
+      const m = moving = { stop: () => { anims.forEach(x => x.cancel()); done(); } };
+      anims[0].onfinish = () => { if (moving === m) done(); };
+    }
+    ['pointerenter', 'focus'].forEach(ev => cover.addEventListener(ev, () => art(list[i])));
+    cover.addEventListener('click', () => expand(!open()));
+    document.addEventListener('keydown', e => {
+      if (e.key !== 'Escape') return;
+      if (vol.classList.contains('open')) vol.classList.remove('open');
+      else if (open()) { expand(false); if (el.contains(document.activeElement)) cover.focus(); }
+    });
+    // A click anywhere else closes it, except on the music page's tracklist, which drives the same player.
+    document.addEventListener('click', e => {
+      if (el.contains(e.target)) return;
+      vol.classList.remove('open');
+      if (open() && !e.target.closest('#tracklist')) expand(false);
+    });
+
+    // ---- Volume, remembered across visits. iOS keeps the volume on the hardware buttons, so there only mute is offered.
+    let level0 = { v: 0.8, m: false };
+    try { level0 = { ...level0, ...JSON.parse(localStorage.getItem('fb-volume') || '{}') }; } catch {}
+    const probe = new Audio();
+    probe.volume = 0.5;
+    el.classList.toggle('fixed-volume', probe.volume !== 0.5);
+    function loud(v, m) {
+      level0 = { v, m };
+      audio.volume = v;
+      audio.muted = m || v === 0;
+      level.value = Math.round(v * 100);
+      level.setAttribute('aria-valuetext', `${Math.round(v * 100)}%`);
+      vol.dataset.level = audio.muted ? 'off' : v < 0.5 ? 'low' : 'high';
+      $('.mute').setAttribute('aria-pressed', audio.muted);
+      try { localStorage.setItem('fb-volume', JSON.stringify(level0)); } catch {}
+    }
+    loud(level0.v, level0.m);
+    level.addEventListener('input', () => loud(level.value / 100, false));
+    $('.mute').addEventListener('click', () => {
+      // On a touch screen there is no hover, so the first tap opens the slider and the next one mutes.
+      if (touch.matches && !vol.classList.contains('open') && !el.classList.contains('fixed-volume')) { vol.classList.add('open'); return; }
+      if (audio.muted) loud(level0.v || 0.5, false);
+      else loud(level0.v, true);
+    });
 
     document.body.prepend(el);
     json('music.json').then(songs => {
@@ -275,7 +469,7 @@
     // The music page lists the same songs; clicking one plays it.
     function tracklist() {
       const ol = document.getElementById('tracklist');
-      if (!ol) return;
+      if (!ol) return show();
       ol.innerHTML = list.map((s, n) => `<li><button type="button" data-n="${n}">${esc(s.title)}</button>${s.artist ? ` <span class="soft">${esc(s.artist)}</span>` : ''}</li>`).join('');
       ol.onclick = e => { const b = e.target.closest('button[data-n]'); if (b) load(+b.dataset.n, true); };
       show(); entrances();

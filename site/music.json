@@ -1,5 +1,5 @@
 [
-  { "title": "Blowback", "artist": "Filip Biljic", "src": "music/blowback.mp3", "year": 2023 },
-  { "title": "I'm on Fire (cover)", "artist": "Filip Biljic, after Bruce Springsteen", "src": "music/im-on-fire.mp3", "year": 2022 },
+  { "title": "Blowback", "artist": "Filip Biljic", "src": "music/blowback.mp3", "cover": "music/covers/blowback.jpg", "coverFull": "music/covers/blowback-full.jpg", "year": 2023 },
+  { "title": "I'm on Fire (cover)", "artist": "Filip Biljic, after Bruce Springsteen", "src": "music/im-on-fire.mp3", "cover": "music/covers/im-on-fire.jpg", "coverFull": "music/covers/im-on-fire-full.jpg", "year": 2022 },
   { "title": "Babel", "artist": "Filip Biljic", "src": "music/babel.mp3", "year": 2019 }
 ]
