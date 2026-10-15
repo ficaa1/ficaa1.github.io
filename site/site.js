@@ -24,7 +24,7 @@
   // ---- Entrances: each block rises in once; pictures draw top to bottom like a slow modem.
   function entrances() {
     document.querySelectorAll('main figure img').forEach(img => {
-      if (img.parentElement.classList.contains('load')) return;
+      if (img.closest('.load')) return;
       const w = document.createElement('span'); w.className = 'load';
       img.replaceWith(w); w.append(img);
     });
@@ -38,7 +38,7 @@
       });
       batch = 0;
     }, { rootMargin: '0px 0px -8% 0px' });
-    document.querySelectorAll('main > :not(.sheet):not(.posts):not(.tracklist):not(.gallery), .sheet > :not(.ledger), .ledger > li, .posts > li, .tracklist > li, .gallery > figure')
+    document.querySelectorAll('main > :not(.sheet):not(.posts):not(.tracklist):not(.set), .set > :not(.gallery), .sheet > :not(.ledger), .ledger > li, .posts > li, .tracklist > li, .gallery > figure')
       .forEach(el => { el.classList.add('rise'); io.observe(el); });
   }
 
@@ -141,13 +141,80 @@
     if (print) { print.hidden = false; print.addEventListener('click', () => window.print()); }
   }
 
-  // ---- Photos: filled from photos.json, [{ "src", "caption", "width", "height" }].
-  async function photos() {
-    const box = document.getElementById('gallery');
-    if (!box) return;
-    const list = await json('photos.json');
-    box.innerHTML = list.map(p => `<figure><img src="${esc(new URL(p.src, ROOT).href)}" alt="${esc(p.alt || p.caption)}"${p.width ? ` width="${+p.width}" height="${+p.height}"` : ''} loading="lazy">${p.caption ? `<figcaption>${esc(p.caption)}</figcaption>` : ''}</figure>`).join('');
-    entrances();
+  // ---- Photos: the page is written by tools/photos.mjs and works without script.
+  // With script, a picture opens large in a viewer you can step through, and the page says which format your browser chose.
+  let viewer;
+  function photos() {
+    const figs = [...document.querySelectorAll('.gallery figure')];
+    if (!figs.length) return;
+    figs.forEach((fig, n) => fig.querySelector('.open').addEventListener('click', e => {
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.button) return;
+      e.preventDefault(); view(figs, n);
+    }));
+    const target = figs.find(f => location.hash === '#' + f.id);
+    if (target) view(figs, figs.indexOf(target));
+    const imgs = figs.map(f => f.querySelector('img'));
+    Promise.all(imgs.map(i => i.complete ? 0 : new Promise(r => { i.addEventListener('load', r, { once: true }); i.addEventListener('error', r, { once: true }); })))
+      .then(() => formatNote(figs));
+  }
+
+  function formatNote(figs) {
+    const note = document.getElementById('format');
+    if (!note) return;
+    let got = 0, other = 0, jxl = 0, n = 0;
+    figs.forEach(f => {
+      const src = f.querySelector('img').currentSrc;
+      const m = src && src.match(/-(\d+)\.(jpg|jxl)$/);
+      if (!m) return;
+      const sizes = JSON.parse(f.dataset.bytes || '{}');
+      got += sizes[`${m[1]}.${m[2]}`] || 0;
+      other += sizes[`${m[1]}.${m[2] === 'jxl' ? 'jpg' : 'jxl'}`] || 0;
+      if (m[2] === 'jxl') jxl++;
+      n++;
+    });
+    if (!n) return;
+    note.textContent = jxl
+      ? `Your browser can show JPEG XL, so the ${n} pictures it has loaded came to ${kb(got)}. As ordinary JPEG they would have been ${kb(other)}.`
+      : `Your browser cannot show JPEG XL, so these ${n} pictures came as ordinary JPEG, ${kb(got)}. In JPEG XL, which Safari can show, they would be ${kb(other)}.`;
+  }
+
+  function view(figs, n) {
+    if (!viewer) {
+      viewer = document.createElement('dialog');
+      viewer.className = 'viewer';
+      viewer.innerHTML = `<figure><img alt=""><figcaption><span class="where"></span> <span class="cap"></span></figcaption></figure>
+        <p class="keys"><button type="button" data-step="-1">&larr; Previous</button> <button type="button" data-step="1">Next &rarr;</button> <button type="button" data-close>Close</button> <span class="soft mouse">Arrow keys and Esc work too.</span><span class="soft touch">Or tap either side of the picture.</span></p>`;
+      document.body.append(viewer);
+      viewer.addEventListener('click', e => {
+        const b = e.target.closest('button');
+        if (b && b.dataset.step) viewer.step(+b.dataset.step);
+        else if (b || e.target === viewer) viewer.close();
+        else if (e.target.tagName === 'IMG') viewer.step(e.offsetX < e.target.clientWidth / 3 ? -1 : 1);
+      });
+      viewer.addEventListener('keydown', e => {
+        if (e.key === 'ArrowLeft') viewer.step(-1);
+        if (e.key === 'ArrowRight') viewer.step(1);
+      });
+      viewer.addEventListener('close', () => {
+        history.replaceState(history.state, '', location.pathname + location.search);
+        const f = viewer.figs && viewer.figs[viewer.n];
+        if (f && f.isConnected) f.querySelector('.open').focus({ preventScroll: true });
+      });
+    }
+    viewer.figs = figs;
+    viewer.step = d => show((viewer.n + d + figs.length) % figs.length);
+    const show = i => {
+      viewer.n = i;
+      const f = viewer.figs[i], src = f.querySelector('img');
+      const big = viewer.querySelector('img');
+      big.src = (src.currentSrc || src.src).replace(/-\d+\.(jpg|jxl)$/, '-2000.$1');
+      big.alt = src.alt;
+      viewer.querySelector('.where').textContent = `${f.closest('.set').querySelector('h2').textContent}, ${i + 1} of ${figs.length}.`;
+      viewer.querySelector('.cap').textContent = f.querySelector('figcaption').textContent.replace(/^\d+\.\s*/, '');
+      history.replaceState(history.state, '', '#' + f.id);
+    };
+    show(n);
+    if (!viewer.open) viewer.showModal();
   }
 
   // ---- The player. It lives outside the swapped part of the page, so it keeps playing between pages.

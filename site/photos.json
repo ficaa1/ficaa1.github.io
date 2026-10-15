@@ -1,1 +1,13 @@
-[]
+[
+  {
+    "id": "istanbul-2025",
+    "title": "Istanbul",
+    "when": "2025",
+    "note": "Three frames from a set of twenty-three.",
+    "photos": [
+      { "file": "istanbul-2025-22", "frame": 22, "caption": "A chestnut cart outside the Blue Mosque, in the rain, with two minarets in scaffolding.", "alt": "A street food cart with a red awning on wet paving stones; behind it, the domes of a mosque at dusk and two minarets wrapped in scaffolding." },
+      { "file": "istanbul-2025-14", "frame": 14, "caption": "Inside a ferry across the Bosphorus.", "alt": "The lower deck of a ferry: rows of wooden benches facing a dark double door, with a red fire cabinet on each side." },
+      { "file": "istanbul-2025-2", "frame": 2, "caption": "Five cats waiting by a fisherman on the Bosphorus shore.", "alt": "A man fishing at the railing of a waterfront promenade while five cats sit and walk around him; the far shore is behind." }
+    ]
+  }
+]
