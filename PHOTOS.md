@@ -100,7 +100,7 @@ Anything with `data-view`, or any `.print`, opens the viewer.
 
 ```sh
 node tools/photos.mjs montenegro-2024
-python3 -m http.server 8790 --bind 127.0.0.1 -d site
+python3 tools/serve.py 8790 site     # or just use the running preview on 8766
 ```
 
 Open `http://127.0.0.1:8790/photos/montenegro-2024/` and check the page:
