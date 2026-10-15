@@ -21,6 +21,16 @@ Run every command from the repo root. Run picture work niced, one dump at a time
 
 To get one, run `node <skill>/scripts/draw.mjs`, as described in the design-taste-frontend skill.
 
+**Finding the edited photos.** The library's folders don't separate edits from camera files, but each file records what wrote it: Lightroom exports say `Adobe Photoshop Lightroom…` and camera files say `ILCE-…`. `tools/edited.mjs` reads that field:
+
+```sh
+node tools/edited.mjs --scan          # read the whole library (read only, niced, about 10 minutes); repeat after exporting more
+node tools/edited.mjs                 # the edited photos, grouped by folder or shoot, with counts
+node tools/edited.mjs normandie       # the full plex paths of the edited files matching every word given
+```
+
+The scan is saved in `photos-src-local/edited.tsv`, which is gitignored. Edited exports can sit loose at the top of the library or among camera files under `Sony Raw/` and `2025/`, so search by name rather than trusting the folders.
+
 ## 1. Register the dump and read its contact sheet
 
 Add an entry to `site/photos.json`. Use only these fields; the build fills in the rest:
