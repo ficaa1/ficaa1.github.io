@@ -321,12 +321,11 @@ function sleeve(dump) {
 }
 function archive() {
   const years = [...new Set(visible.map(d => (d.to || d.from || '').slice(0, 4)))];
-  const span = [visible.at(-1), visible[0]].map(d => (d.from || '').slice(0, 4));
   const leads = open.filter(d => printed(d).length).slice(0, 4);
   return `<section class="set archive" id="dumps">
 <div class="field">
-<article class="contact box" aria-label="Every photo dump, newest first">
-<h1 class="title"><span>Photo dumps,</span> <span>${span[0] === span[1] ? span[0] : `${span[0]} to ${span[1]}`}</span></h1>
+<article class="contact box" aria-label="Every photo dump">
+<h1 class="title"><span>Photos,</span> <span>?? to today</span></h1>
 ${years.map(y => `<section class="shelf" aria-label="${y}">
 <h2 class="year">${y}</h2>
 <ol class="sleeves">
