@@ -147,11 +147,12 @@ if (UPLOAD) {
   for (const [ext, type] of [['jpg', 'image/jpeg'], ['jxl', 'image/jxl']])
     execFileSync('rclone', ['copy', dir(ONLY), `${BUCKET}/${ONLY}`, '--include', `*.${ext}`, '--s3-no-check-bucket',
       ...cache, '--header-upload', `Content-Type: ${type}`, '--stats-one-line', '-v'], { stdio: 'inherit' });
-  // Check one of each kind the way a browser will get it.
+  // Check one of each kind the way a browser will get it: a GET (Cloudflare reports HEAD as DYNAMIC), twice, so the second shows HIT.
   const p = dumps.find(d => d.id === ONLY).photos.find(p => p.web);
-  if (p) for (const f of [`${p.file}-${WIDTHS[0]}.jxl`, `${p.file}-${WIDTHS[0]}.jpg`]) {
-    const r = await fetch(`${PUBLIC}${ONLY}/${f}`, { method: 'HEAD' });
-    console.log(`${r.status} ${PUBLIC}${ONLY}/${f}  ${r.headers.get('content-type')}  ${r.headers.get('cache-control')}`);
+  if (p) for (const f of [`${p.file}-${WIDTHS[0]}.jxl`, `${p.file}-${WIDTHS[0]}.jpg`]) for (const n of [1, 2]) {
+    const r = await fetch(`${PUBLIC}${ONLY}/${f}`);
+    await r.arrayBuffer();
+    console.log(`${r.status} ${PUBLIC}${ONLY}/${f}  ${r.headers.get('content-type')}  ${r.headers.get('cache-control')}  ${r.headers.get('cf-cache-status')}`);
   }
 }
 

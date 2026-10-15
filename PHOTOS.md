@@ -132,7 +132,7 @@ This command:
 - copies only that dump's `.jpg` files, then its `.jxl` files, with the rclone remote `r2:`;
 - sends `Cache-Control: public, max-age=31536000, immutable` and the right `Content-Type`, including `image/jxl`;
 - never deletes anything;
-- fetches one `.jxl` and one `.jpg` back and prints their status, type and cache header. All three should be right: `200`, `image/jxl` or `image/jpeg`, and the cache header.
+- fetches one `.jxl` and one `.jpg` back twice and prints their status, type, cache header and Cloudflare cache status. Expect `200`, `image/jxl` or `image/jpeg`, the cache header, and `HIT` on the second fetch. Check by hand with a GET (`curl -s -o /dev/null -D - <url>`), not `curl -I`: Cloudflare reports HEAD requests as `DYNAMIC` even when the file is cached.
 
 Because uploads are cached as immutable, a changed picture needs a new file id; don't overwrite an existing one.
 
