@@ -223,16 +223,115 @@ body.cv #player .cover { background-color: #fff; }
 .tracklist button { font: inherit; background: none; border: 0; padding: 4px 0; color: var(--link); text-decoration: underline; cursor: pointer; text-align: left; }
 .tracklist li.now button { color: var(--ink); font-weight: bold; text-decoration: none; }
 .tracklist li.now::after { content: " (playing)"; color: var(--soft); font-size: 16px; }
-.sets { list-style: none; padding: 0; margin: 40px 0 0; }
-.sets .soft { margin-left: 8px; }
-main > .set { max-width: 1000px; }
-.set h2, .set > p { max-width: var(--col); }
-.gallery figure { margin: 0 0 72px; }
-.gallery .open { display: block; cursor: zoom-in; }
-.gallery .open:focus-visible { outline-offset: 4px; }
-.gallery figcaption { font-size: 18px; color: var(--ink); max-width: var(--col); }
-.frame { color: var(--soft); font-variant-numeric: tabular-nums; }
-#format { margin-top: 40px; }
+/* ---- Photos: a darkroom page. The set is its contact sheet, the chosen frames come out as full-screen prints,
+   and the footer is the back of a print. Colours come from the pictures: film black, paper white, the ferry's fire-box red. */
+body.photos {
+  --bg: #141414; --surface: #1f1f1f; --ink: #f2f2f2; --soft: #a3a3a3; --panel: #262626;
+  --paper: #f5f4f1; --paper-ink: #141414; --film: #0b0b0b; --mark: #e0261b;
+  --link: #f2f2f2; --visited: #d0c4ee;
+  background: var(--bg); color: var(--ink);
+}
+body.photos a:active { color: var(--mark); }
+body.photos ::selection { background: var(--mark); color: #fff; }
+body.photos :focus-visible { outline-color: var(--mark); }
+body.photos main { padding: 0; position: relative; z-index: 1; background: var(--bg); }
+body.photos main > * { max-width: none; }
+body.photos nav { position: relative; z-index: 2; }
+
+.set .field { padding: 0 20px; display: flex; justify-content: center; }
+.contact {
+  background: var(--paper); color: var(--paper-ink);
+  width: min(720px, 100%); margin-top: 120px; padding: 56px 56px 64px;
+}
+.contact a { color: var(--paper-ink); }
+.contact .title { font-style: italic; font-weight: bold; font-size: clamp(56px, 5.6vw, 88px); line-height: 0.95; letter-spacing: -0.03em; margin: 0 0 28px; text-align: center; }
+.contact .title span { display: block; }
+.contact .title span:first-child { transform: translateX(-12%); }
+.contact .title span:last-child { transform: translateX(16%); }
+.facts { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px 14px; font-size: 16px; margin: 0 0 44px; text-align: center; }
+.facts i { width: 8px; height: 8px; background: var(--mark); transform: rotate(45deg); flex: none; }
+
+/* The roll: strips of six frames on film, with the paper showing between strips. */
+.roll { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(6, 1fr); row-gap: 14px; }
+.roll li { margin: 0; background: var(--film); padding: 9px 4px 4px; display: flex; flex-direction: column; align-items: stretch; }
+.roll .slot, .roll img { display: block; width: 100%; aspect-ratio: 3 / 2; height: auto; background: #202020; }
+.roll .n { color: #b9b9b9; font-size: 13px; line-height: 1; padding: 5px 0 2px; text-align: center; font-variant-numeric: tabular-nums; }
+.roll .printed { position: relative; }
+.roll .printed a { display: block; position: relative; }
+/* The grease-pencil mark a photographer puts round the frames to print. */
+.roll .printed a::after { content: ""; position: absolute; inset: -5px; border: 3px solid var(--mark); border-radius: 3px; transform: rotate(-1.5deg); pointer-events: none; }
+.roll .printed .n { color: #fff; font-weight: bold; }
+.roll .printed a:hover img { opacity: 0.85; }
+
+/* The interlock: a tipped-in note pulled down over the first print's top edge. */
+.interlock { position: relative; z-index: 2; width: 240px; margin: -120px 0 -16px calc(50% + 380px); padding: 16px 18px; background: var(--bg); font-size: 16px; line-height: 1.5; }
+
+/* The prints: one screen each; the next slides up over the last. */
+.prints { position: relative; }
+.print { position: sticky; top: 0; height: 100svh; margin: 0; background: var(--film); overflow: hidden; }
+.print .open, .print .load, .print picture { display: block; height: 100%; }
+.print img { width: 100%; height: 100%; object-fit: cover; }
+@media (min-aspect-ratio: 9/5), (max-aspect-ratio: 13/10) { .print img { object-fit: contain; } }
+.print figcaption {
+  position: absolute; left: 0; right: 0; bottom: 0; padding: 72px max(28px, calc(100% - 860px)) 22px 28px; font-size: 18px; color: #fff; max-width: none;
+  background: linear-gradient(to top, rgb(0 0 0 / 0.72), rgb(0 0 0 / 0));
+}
+.print .frame { color: #fff; font-weight: bold; }
+.print .exif { color: #d6d6d6; font-size: 16px; white-space: nowrap; }
+.print .load::after { background: var(--film); }
+@media (prefers-reduced-motion: no-preference) {
+  .js .print.in img { animation: drift 24s ease-out both; }
+  @keyframes drift { from { transform: scale(1.06); } to { transform: scale(1); } }
+}
+
+/* The back of the print. */
+body.photos footer { margin: 0; padding: 120px 20px 20px; background: var(--bg); }
+body.photos footer > * { max-width: none; }
+.back {
+  background: var(--paper); color: var(--paper-ink); max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 300px; gap: 32px 56px; padding: 72px 56px 28px; position: relative;
+  /* Deckle edge along the top, the way old prints were cut: a row of bites, drawn once and repeated. */
+  --deckle: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='4000'%3E%3Cpath d='M0 0H0A24 24 0 0 0 48 0V4000H0Z'/%3E%3C/svg%3E");
+  -webkit-mask: var(--deckle) 0 0 / 48px 4000px repeat-x;
+          mask: var(--deckle) 0 0 / 48px 4000px repeat-x;
+}
+.back a { color: #0000ee; }
+.back a:visited { color: #551a8b; }
+.back .signoff { font-size: 40px; line-height: 1.05; font-style: italic; font-weight: bold; letter-spacing: -0.02em; margin: 0 0 20px; }
+.back .note p:not(.signoff) { font-size: 18px; }
+.back .address { position: relative; padding-top: 112px; font-size: 18px; line-height: 1.75; }
+.back .stamp { position: absolute; top: 0; right: 0; width: 120px; height: 90px; object-fit: cover; object-position: 50% 92%; border: 6px solid var(--paper); outline: 4px dotted #b7b4ad; outline-offset: -2px; }
+.back .imprint { grid-column: 1 / -1; font-size: 16px; color: var(--paper-ink); padding-top: 24px; }
+.back .imprint > p { max-width: 640px; }
+.back .imprint p { margin-bottom: 6px; }
+.back .imprint summary { color: #0000ee; }
+.back .trace .b { background: var(--paper-ink); }
+
+@media (max-width: 1240px) {
+  .interlock { margin: -48px 20px -40px auto; }
+}
+@media (max-width: 900px) {
+  .contact .title span { transform: none !important; }
+}
+@media (max-width: 640px) {
+  .contact { margin-top: 40px; padding: 36px 16px 20px; }
+  .contact .title { font-size: 12vw; }
+  .contact .title span { transform: none !important; }
+  .roll { grid-template-columns: repeat(4, 1fr); row-gap: 10px; }
+  .roll .n { font-size: 13px; }
+  .interlock { width: auto; margin: 32px 20px 24px; padding: 0; }
+}
+@media (max-width: 640px) {
+  .print { height: auto; }
+  .print img { height: auto; object-fit: contain; }
+  .print figcaption { position: static; background: var(--film); padding: 12px 20px 28px; font-size: 16px; }
+  .print .exif { white-space: normal; }
+  body.photos footer { padding: 72px 0 0; }
+  .back { grid-template-columns: 1fr; padding: 56px 20px 20px; gap: 8px; }
+  .back .signoff { font-size: 32px; }
+  .back .address { padding-top: 0; }
+  .back .stamp { position: static; width: 96px; height: 72px; margin-bottom: 12px; }
+}
 
 /* The viewer: a plain white page with one picture on it. */
 .viewer { border: 0; padding: 0; margin: 0; width: 100vw; height: 100dvh; max-width: none; max-height: none; background: var(--bg); color: var(--ink); }

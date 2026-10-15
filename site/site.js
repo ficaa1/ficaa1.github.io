@@ -38,7 +38,7 @@
       });
       batch = 0;
     }, { rootMargin: '0px 0px -8% 0px' });
-    document.querySelectorAll('main > :not(.sheet):not(.posts):not(.tracklist):not(.set), .set > :not(.gallery), .sheet > :not(.ledger), .ledger > li, .posts > li, .tracklist > li, .gallery > figure')
+    document.querySelectorAll('main > :not(.sheet):not(.posts):not(.tracklist):not(.set), .set > .field, .set > .interlock, .print, .roll > li, .back > *, .sheet > :not(.ledger), .ledger > li, .posts > li, .tracklist > li')
       .forEach(el => { el.classList.add('rise'); io.observe(el); });
   }
 
@@ -145,7 +145,7 @@
   // With script, a picture opens large in a viewer you can step through, and the page says which format your browser chose.
   let viewer;
   function photos() {
-    const figs = [...document.querySelectorAll('.gallery figure')];
+    const figs = [...document.querySelectorAll('.print')];
     if (!figs.length) return;
     figs.forEach((fig, n) => fig.querySelector('.open').addEventListener('click', e => {
       if (e.metaKey || e.ctrlKey || e.shiftKey || e.button) return;
@@ -209,7 +209,7 @@
       const big = viewer.querySelector('img');
       big.src = (src.currentSrc || src.src).replace(/-\d+\.(jpg|jxl)$/, '-2000.$1');
       big.alt = src.alt;
-      viewer.querySelector('.where').textContent = `${f.closest('.set').querySelector('h2').textContent}, ${i + 1} of ${figs.length}.`;
+      viewer.querySelector('.where').textContent = `${f.closest('.set').querySelector('.title').textContent}, ${i + 1} of ${figs.length}.`;
       viewer.querySelector('.cap').textContent = f.querySelector('figcaption').textContent.replace(/^\d+\.\s*/, '');
       history.replaceState(history.state, '', '#' + f.id);
     };
