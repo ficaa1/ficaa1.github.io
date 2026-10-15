@@ -62,15 +62,15 @@ main[data-dump="istanbul-2025"] ol { list-style: none; margin: 0; padding: 0; }
 main[data-dump="istanbul-2025"] img { display: block; }
 
 /* ---- Opening: the name and the dates beside the chestnut cart in the rain. */
-main[data-dump="istanbul-2025"] .open {
+main[data-dump="istanbul-2025"] .opening {
   display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: var(--gut); align-items: end;
   padding: 72px var(--gut) 0;
 }
-main[data-dump="istanbul-2025"] .open h1 {
+main[data-dump="istanbul-2025"] .opening h1 {
   font-size: var(--s-display); line-height: 0.88; letter-spacing: -0.045em; font-weight: 500; margin-left: -0.05em;
 }
-main[data-dump="istanbul-2025"] .open .when { margin-top: 32px; font-size: var(--s-lead); }
-main[data-dump="istanbul-2025"] .open .gear { margin-top: 10px; font-size: var(--s-body); color: var(--soft); }
+main[data-dump="istanbul-2025"] .opening .when { margin-top: 32px; font-size: var(--s-lead); }
+main[data-dump="istanbul-2025"] .opening .gear { margin-top: 10px; font-size: var(--s-body); color: var(--soft); }
 main[data-dump="istanbul-2025"] .cover img { width: 100%; height: auto; }
 
 /* ---- A day: its name, large, then its stops. */
@@ -79,7 +79,16 @@ main[data-dump="istanbul-2025"] .day > h2 {
   margin: clamp(120px, 14vw, 220px) 0 clamp(40px, 5vw, 72px); max-width: 12ch;
   font-size: var(--s-day); line-height: 0.95; letter-spacing: -0.035em; font-weight: 500;
 }
-main[data-dump="istanbul-2025"] .day:last-of-type { padding-bottom: clamp(96px, 10vw, 160px); }
+main[data-dump="istanbul-2025"] .day:last-of-type { padding-bottom: 0; }
+
+/* The way on: one more plate, the next dump on it. */
+main[data-dump="istanbul-2025"] > .stub {
+  margin-top: clamp(96px, 10vw, 160px); border: 0; border-radius: 10px; background: var(--sign); color: var(--sign-ink);
+  outline: 2px solid #fff; outline-offset: -8px; padding: clamp(32px, 4vw, 56px) clamp(28px, 4vw, 56px);
+}
+main[data-dump="istanbul-2025"] > .stub a { color: var(--sign-ink); }
+main[data-dump="istanbul-2025"] > .stub a:focus-visible { outline-color: var(--sign-ink); }
+main[data-dump="istanbul-2025"] > .stub .next { font-style: normal; font-weight: 600; }
 
 /* A stop: the sign stays in view beside its frames. */
 main[data-dump="istanbul-2025"] .stop {
@@ -111,7 +120,7 @@ main[data-dump="istanbul-2025"] .window { display: grid; gap: 56px; }
 main[data-dump="istanbul-2025"] .pane img { width: 100%; height: auto; }
 main[data-dump="istanbul-2025"] .cap { margin-top: 12px; font-size: var(--s-small); font-variant-numeric: tabular-nums; }
 main[data-dump="istanbul-2025"] .cap[hidden], main[data-dump="istanbul-2025"] .times[hidden] { display: none; }
-main[data-dump="istanbul-2025"][data-js] .window { display: block; position: relative; aspect-ratio: 3 / 2; }
+main[data-dump="istanbul-2025"][data-js] .window { display: block; position: relative; aspect-ratio: 3 / 2; overflow: hidden; }
 main[data-dump="istanbul-2025"][data-js] .pane {
   position: absolute; inset: 0; opacity: 0; visibility: hidden; transition: opacity 1600ms ease, visibility 0s 1600ms;
 }
@@ -152,9 +161,9 @@ main[data-dump="istanbul-2025"] .times button:focus-visible { outline: 3px solid
 /* ---- Narrow screens: one column; the sign pins to the top of the screen while its frames pass under it. */
 @media (max-width: 899px) {
   main[data-dump="istanbul-2025"] > .tabs { padding: 16px 0 0 16px; }
-  main[data-dump="istanbul-2025"] .open { display: block; padding-top: 48px; }
-  main[data-dump="istanbul-2025"] .open h1 { font-size: clamp(64px, 22vw, 140px); }
-  main[data-dump="istanbul-2025"] .open .when { margin-top: 20px; }
+  main[data-dump="istanbul-2025"] .opening { display: block; padding-top: 48px; }
+  main[data-dump="istanbul-2025"] .opening h1 { font-size: clamp(64px, 22vw, 140px); }
+  main[data-dump="istanbul-2025"] .opening .when { margin-top: 20px; }
   main[data-dump="istanbul-2025"] .cover { margin: 40px calc(-1 * var(--gut)) 0; }
   main[data-dump="istanbul-2025"] .day > h2 { margin: 112px 0 32px; }
   main[data-dump="istanbul-2025"] .stop { display: block; }

@@ -1544,9 +1544,8 @@
       {
         "file": "dsc09415",
         "original": "DSC09415-Edit.jpg",
-        "caption": "A pebble beach.",
+        "caption": "",
         "alt": "People in silhouette on a pebble beach in a cove at sunset, boats on the water.",
-        "provisional": true,
         "settings": {
           "aperture": "f/8",
           "shutter": "1/800 s",
@@ -1574,11 +1573,568 @@
         }
       },
       {
+        "file": "dsc08192",
+        "original": "DSC08192-Edit.jpg",
+        "caption": "",
+        "alt": "A balcony with a white balustrade and a small table, the sea and hills beyond, seen through a doorway.",
+        "settings": {
+          "aperture": "f/1.4",
+          "shutter": "1/6400 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-17 16:52"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 72927,
+            "1000.jxl": 49912,
+            "2000.jpg": 253592,
+            "2000.jxl": 168815
+          }
+        }
+      },
+      {
+        "file": "dsc08416",
+        "original": "DSC08416-Edit.jpg",
+        "caption": "",
+        "alt": "A gravel square with a tall cypress, pines and green mountains behind.",
+        "settings": {
+          "aperture": "f/3.2",
+          "shutter": "1/2500 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-18 10:41"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 103541,
+            "1000.jxl": 75661,
+            "2000.jpg": 411196,
+            "2000.jxl": 305810
+          }
+        }
+      },
+      {
+        "file": "dsc08603",
+        "original": "DSC08603-Edit.jpg",
+        "caption": "",
+        "alt": "Black and white: a heavy cloudy sky over the sea, a bench on a low wall.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/500 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-19 14:08"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 57823,
+            "1000.jxl": 44505,
+            "2000.jpg": 297654,
+            "2000.jxl": 257029
+          }
+        }
+      },
+      {
+        "file": "dsc08759",
+        "original": "DSC08759-Edit.jpg",
+        "caption": "",
+        "alt": "Black and white: dry plants and a fence in front of the sea and an island.",
+        "settings": {
+          "aperture": "f/1.4",
+          "shutter": "1/8000 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-19 14:39"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 62586,
+            "1000.jxl": 52901,
+            "2000.jpg": 284029,
+            "2000.jxl": 246697
+          }
+        }
+      },
+      {
+        "file": "dsc08769",
+        "original": "DSC08769-Edit.jpg",
+        "caption": "",
+        "alt": "A dry path with a blue railing on a cliff above the sea.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/160 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-19 14:43"
+        },
+        "web": {
+          "400": [
+            400,
+            600
+          ],
+          "1000": [
+            1000,
+            1500
+          ],
+          "bytes": {
+            "1000.jpg": 261604,
+            "1000.jxl": 187980,
+            "2000.jpg": 1105696,
+            "2000.jxl": 777267
+          }
+        }
+      },
+      {
+        "file": "dsc08771-2",
+        "original": "DSC08771-Edit-2.jpg",
+        "caption": "",
+        "alt": "Black and white: old stone walls on a hill, an island and mountains across the water.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/200 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-19 14:44"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 81444,
+            "1000.jxl": 69713,
+            "2000.jpg": 357802,
+            "2000.jxl": 317416
+          }
+        }
+      },
+      {
+        "file": "dsc08793",
+        "original": "DSC08793-Edit.jpg",
+        "caption": "",
+        "alt": "Black and white: a stone wall with a number painted on each stone.",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/125 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-19 15:40"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 189285,
+            "1000.jxl": 176265,
+            "2000.jpg": 682865,
+            "2000.jxl": 602640
+          }
+        }
+      },
+      {
+        "file": "dsc08808",
+        "original": "DSC08808-Edit.jpg",
+        "caption": "",
+        "alt": "A bicycle against a stone wall in a narrow lane with plants.",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/60 s",
+          "iso": "ISO 500",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-19 16:11"
+        },
+        "web": {
+          "400": [
+            400,
+            600
+          ],
+          "1000": [
+            1000,
+            1500
+          ],
+          "bytes": {
+            "1000.jpg": 416873,
+            "1000.jxl": 312013,
+            "2000.jpg": 1386466,
+            "2000.jxl": 988407
+          }
+        }
+      },
+      {
+        "file": "dsc08952",
+        "original": "DSC08952.jpg",
+        "caption": "",
+        "alt": "A woman walking on a harbour quay, boats and a town on the hill behind.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/640 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-20 11:07"
+        },
+        "web": {
+          "400": [
+            400,
+            500
+          ],
+          "1000": [
+            1000,
+            1250
+          ],
+          "bytes": {
+            "1000.jpg": 139880,
+            "1000.jxl": 103844,
+            "2000.jpg": 572026,
+            "2000.jxl": 426753
+          }
+        }
+      },
+      {
+        "file": "dsc08959",
+        "original": "DSC08959.jpg",
+        "caption": "",
+        "alt": "A white coach parked behind a fence, a town and a bell tower on the hill behind.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/400 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-20 11:15"
+        },
+        "web": {
+          "400": [
+            400,
+            500
+          ],
+          "1000": [
+            1000,
+            1250
+          ],
+          "bytes": {
+            "1000.jpg": 268237,
+            "1000.jxl": 208973,
+            "2000.jpg": 891746,
+            "2000.jxl": 655072
+          }
+        }
+      },
+      {
+        "file": "dsc08966",
+        "original": "DSC08966.jpg",
+        "caption": "",
+        "alt": "A yellow folding chair in a doorway, something out of focus in front.",
+        "settings": {
+          "aperture": "f/1.4",
+          "shutter": "1/250 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-20 11:58"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 59722,
+            "1000.jxl": 34049,
+            "2000.jpg": 168693,
+            "2000.jxl": 84229
+          }
+        }
+      },
+      {
+        "file": "dsc08967",
+        "original": "DSC08967.jpg",
+        "caption": "",
+        "alt": "A round stone fortress with a flag under a blue sky.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/500 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-20 12:57"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 84583,
+            "1000.jxl": 65672,
+            "2000.jpg": 301579,
+            "2000.jxl": 229362
+          }
+        }
+      },
+      {
+        "file": "dsc08969",
+        "original": "DSC08969.jpg",
+        "caption": "",
+        "alt": "Stone city walls and a fortress above trees.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/250 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-20 12:58"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 105212,
+            "1000.jxl": 82898,
+            "2000.jpg": 387789,
+            "2000.jxl": 299780
+          }
+        }
+      },
+      {
+        "file": "dsc08995",
+        "original": "DSC08995.jpg",
+        "caption": "",
+        "alt": "Looking up at a stone street and a bell tower against a blue sky.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/640 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-20 13:04"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 107288,
+            "1000.jxl": 81322,
+            "2000.jpg": 391439,
+            "2000.jxl": 291925
+          }
+        }
+      },
+      {
+        "file": "dsc08998",
+        "original": "DSC08998.jpg",
+        "caption": "",
+        "alt": "Looking up along a street of stone houses with green shutters.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/500 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-20 13:04"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 126493,
+            "1000.jxl": 94829,
+            "2000.jpg": 442857,
+            "2000.jxl": 326423
+          }
+        }
+      },
+      {
+        "file": "dsc09003",
+        "original": "DSC09003.jpg",
+        "caption": "",
+        "alt": "Stone houses with green shutters in bright sun.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/500 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-20 13:13"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 107790,
+            "1000.jxl": 82877,
+            "2000.jpg": 382427,
+            "2000.jxl": 296455
+          }
+        }
+      },
+      {
+        "file": "dsc09005",
+        "original": "DSC09005.jpg",
+        "caption": "",
+        "alt": "Looking up between two stone houses, a street lamp.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/400 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-20 13:13"
+        },
+        "web": {
+          "400": [
+            400,
+            600
+          ],
+          "1000": [
+            1000,
+            1500
+          ],
+          "bytes": {
+            "1000.jpg": 199962,
+            "1000.jxl": 145621,
+            "2000.jpg": 707900,
+            "2000.jxl": 510960
+          }
+        }
+      },
+      {
+        "file": "dsc09007",
+        "original": "DSC09007.jpg",
+        "caption": "",
+        "alt": "A woman walking up a very narrow stone lane with café awnings.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/200 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-20 13:13"
+        },
+        "web": {
+          "400": [
+            400,
+            600
+          ],
+          "1000": [
+            1000,
+            1500
+          ],
+          "bytes": {
+            "1000.jpg": 306929,
+            "1000.jxl": 217052,
+            "2000.jpg": 991442,
+            "2000.jxl": 669980
+          }
+        }
+      },
+      {
         "file": "dsc09014",
         "original": "DSC09014-Edit.jpg",
-        "caption": "Lunch in a stone street.",
+        "caption": "",
         "alt": "People eating at a high table under orange awnings in a narrow stone lane.",
-        "provisional": true,
         "settings": {
           "aperture": "f/1.4",
           "shutter": "1/3200 s",
@@ -1606,11 +2162,568 @@
         }
       },
       {
+        "file": "dsc09017",
+        "original": "DSC09017.jpg",
+        "caption": "",
+        "alt": "A lantern and awnings in a narrow stone lane, looking up.",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/500 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-20 13:16"
+        },
+        "web": {
+          "400": [
+            400,
+            600
+          ],
+          "1000": [
+            1000,
+            1500
+          ],
+          "bytes": {
+            "1000.jpg": 283082,
+            "1000.jxl": 206491,
+            "2000.jpg": 971837,
+            "2000.jxl": 684184
+          }
+        }
+      },
+      {
+        "file": "dsc09020",
+        "original": "DSC09020.jpg",
+        "caption": "",
+        "alt": "A bell tower at the end of a row of stone houses, seen from below.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/640 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-20 13:16"
+        },
+        "web": {
+          "400": [
+            400,
+            600
+          ],
+          "1000": [
+            1000,
+            1500
+          ],
+          "bytes": {
+            "1000.jpg": 182596,
+            "1000.jxl": 132991,
+            "2000.jpg": 660743,
+            "2000.jxl": 454422
+          }
+        }
+      },
+      {
+        "file": "dsc09021",
+        "original": "DSC09021.jpg",
+        "caption": "",
+        "alt": "A bell tower and stone houses with green shutters, seen from below.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/640 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-20 13:16"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 122220,
+            "1000.jxl": 90859,
+            "2000.jpg": 417704,
+            "2000.jxl": 297810
+          }
+        }
+      },
+      {
+        "file": "dsc09029-2",
+        "original": "DSC09029-Edit-2.jpg",
+        "caption": "",
+        "alt": "White sheets hung across a narrow lane between stone walls, a lantern.",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/400 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-20 13:18"
+        },
+        "web": {
+          "400": [
+            400,
+            500
+          ],
+          "1000": [
+            1000,
+            1250
+          ],
+          "bytes": {
+            "1000.jpg": 233700,
+            "1000.jxl": 169799,
+            "2000.jpg": 929386,
+            "2000.jxl": 662492
+          }
+        }
+      },
+      {
+        "file": "dsc09048",
+        "original": "DSC09048.jpg",
+        "caption": "",
+        "alt": "Legs of people walking over shiny stone paving.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/400 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-20 13:33"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 133978,
+            "1000.jxl": 103456,
+            "2000.jpg": 424058,
+            "2000.jxl": 307413
+          }
+        }
+      },
+      {
+        "file": "dsc09060-2",
+        "original": "DSC09060-Edit-2.jpg",
+        "caption": "",
+        "alt": "A stone wall with a small shop window, hanging baskets and an awning.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/200 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-20 13:51"
+        },
+        "web": {
+          "400": [
+            400,
+            403
+          ],
+          "1000": [
+            1000,
+            1007
+          ],
+          "bytes": {
+            "1000.jpg": 246312,
+            "1000.jxl": 192703,
+            "2000.jpg": 982784,
+            "2000.jxl": 723935
+          }
+        }
+      },
+      {
+        "file": "dsc09068",
+        "original": "DSC09068.jpg",
+        "caption": "",
+        "alt": "Black and white: a stone house on a hill above roofs.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/400 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-20 13:54"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 99587,
+            "1000.jxl": 88727,
+            "2000.jpg": 371138,
+            "2000.jxl": 322318
+          }
+        }
+      },
+      {
+        "file": "dsc09092",
+        "original": "DSC09092.jpg",
+        "caption": "",
+        "alt": "A baroque church front with a cross, seen from below.",
+        "settings": {
+          "aperture": "f/3.5",
+          "shutter": "1/1250 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-20 14:09"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 86989,
+            "1000.jxl": 62720,
+            "2000.jpg": 299611,
+            "2000.jxl": 216451
+          }
+        }
+      },
+      {
+        "file": "dsc09097",
+        "original": "DSC09097.jpg",
+        "caption": "",
+        "alt": "A baroque church front with a cross against a pale sky.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/320 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-20 14:10"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 76481,
+            "1000.jxl": 54715,
+            "2000.jpg": 263756,
+            "2000.jxl": 187536
+          }
+        }
+      },
+      {
+        "file": "dsc09122",
+        "original": "DSC09122.jpg",
+        "caption": "",
+        "alt": "Black and white: a woman's silhouette in front of a stone doorway.",
+        "settings": {
+          "aperture": "f/5",
+          "shutter": "1/1600 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-20 14:17"
+        },
+        "web": {
+          "400": [
+            400,
+            500
+          ],
+          "1000": [
+            1000,
+            1250
+          ],
+          "bytes": {
+            "1000.jpg": 215243,
+            "1000.jxl": 197719,
+            "2000.jpg": 774567,
+            "2000.jxl": 650837
+          }
+        }
+      },
+      {
+        "file": "dsc09164",
+        "original": "DSC09164-Edit.jpg",
+        "caption": "",
+        "alt": "Stone steps with plants, seen through a gate.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/200 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-20 14:25"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 143363,
+            "1000.jxl": 96210,
+            "2000.jpg": 482580,
+            "2000.jxl": 317390
+          }
+        }
+      },
+      {
+        "file": "dsc09179",
+        "original": "DSC09179-Edit.jpg",
+        "caption": "",
+        "alt": "A narrow lane with laundry and a lamp, roofs and a hill at the end.",
+        "settings": {
+          "aperture": "f/1.4",
+          "shutter": "1/3200 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-20 14:32"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 100159,
+            "1000.jxl": 68563,
+            "2000.jpg": 340712,
+            "2000.jxl": 241464
+          }
+        }
+      },
+      {
+        "file": "dsc09182",
+        "original": "DSC09182-Edit.jpg",
+        "caption": "",
+        "alt": "Vines and laundry over a small terrace.",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/160 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-20 14:33"
+        },
+        "web": {
+          "400": [
+            400,
+            225
+          ],
+          "1000": [
+            1000,
+            563
+          ],
+          "bytes": {
+            "1000.jpg": 172244,
+            "1000.jxl": 127274,
+            "2000.jpg": 545826,
+            "2000.jxl": 388657
+          }
+        }
+      },
+      {
+        "file": "dsc09226",
+        "original": "DSC09226-Edit.jpg",
+        "caption": "",
+        "alt": "A terracotta roof and a stone balcony under branches.",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/800 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-20 15:11"
+        },
+        "web": {
+          "400": [
+            400,
+            601
+          ],
+          "1000": [
+            919,
+            1380
+          ],
+          "bytes": {
+            "1000.jpg": 186143,
+            "1000.jxl": 121445,
+            "2000.jpg": 186143,
+            "2000.jxl": 121445
+          }
+        }
+      },
+      {
+        "file": "dsc09232",
+        "original": "DSC09232.jpg",
+        "caption": "",
+        "alt": "Black and white: a round stone fortress on rocks by the sea.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/400 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-20 15:12"
+        },
+        "web": {
+          "400": [
+            400,
+            600
+          ],
+          "1000": [
+            1000,
+            1500
+          ],
+          "bytes": {
+            "1000.jpg": 135270,
+            "1000.jxl": 108515,
+            "2000.jpg": 495815,
+            "2000.jxl": 385165
+          }
+        }
+      },
+      {
+        "file": "dsc09239",
+        "original": "DSC09239-Edit.jpg",
+        "caption": "",
+        "alt": "A fortress on a rock above the sea under a pink sky.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/1000 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-20 15:13"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 46055,
+            "1000.jxl": 29384,
+            "2000.jpg": 228259,
+            "2000.jxl": 149504
+          }
+        }
+      },
+      {
+        "file": "dsc09245",
+        "original": "DSC09245.jpg",
+        "caption": "",
+        "alt": "Black and white: city walls over a small cove with kayaks.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/400 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-20 15:14"
+        },
+        "web": {
+          "400": [
+            400,
+            600
+          ],
+          "1000": [
+            1000,
+            1500
+          ],
+          "bytes": {
+            "1000.jpg": 172583,
+            "1000.jxl": 142915,
+            "2000.jpg": 637209,
+            "2000.jxl": 517556
+          }
+        }
+      },
+      {
+        "file": "dsc09246-2",
+        "original": "DSC09246-Edit-2.jpg",
+        "caption": "",
+        "alt": "Black and white: kayaks on dark water seen from above a wall.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/320 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-20 15:15"
+        },
+        "web": {
+          "400": [
+            400,
+            400
+          ],
+          "1000": [
+            1000,
+            1000
+          ],
+          "bytes": {
+            "1000.jpg": 144636,
+            "1000.jxl": 115314,
+            "2000.jpg": 697217,
+            "2000.jxl": 564710
+          }
+        }
+      },
+      {
         "file": "dsc09345",
         "original": "DSC09345-Edit.jpg",
-        "caption": "Scooters along a wall.",
+        "caption": "",
         "alt": "Black and grey scooters parked against a stone wall.",
-        "provisional": true,
         "settings": {
           "aperture": "f/4.5",
           "shutter": "1/1000 s",
@@ -1634,6 +2747,688 @@
             "1000.jxl": 111283,
             "2000.jpg": 541440,
             "2000.jxl": 422935
+          }
+        }
+      },
+      {
+        "file": "dsc09351",
+        "original": "DSC09351-Edit.jpg",
+        "caption": "",
+        "alt": "A bright waiting hall with big windows onto a harbour.",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/200 s",
+          "iso": "ISO 50",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-20 15:48"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 115228,
+            "1000.jxl": 85252,
+            "2000.jpg": 402783,
+            "2000.jxl": 294855
+          }
+        }
+      },
+      {
+        "file": "dsc09361",
+        "original": "DSC09361.jpg",
+        "caption": "",
+        "alt": "A hand holding a rope on a boat, boats and green hills on the water.",
+        "settings": {
+          "aperture": "f/3.5",
+          "shutter": "1/2000 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-21 13:57"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 99354,
+            "1000.jxl": 65435,
+            "2000.jpg": 337705,
+            "2000.jxl": 217976
+          }
+        }
+      },
+      {
+        "file": "dsc09406",
+        "original": "DSC09406-Edit.jpg",
+        "caption": "",
+        "alt": "A wooded headland over a cove at sunset, people at the water.",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/500 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-22 17:17"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 71360,
+            "1000.jxl": 47447,
+            "2000.jpg": 292655,
+            "2000.jxl": 188935
+          }
+        }
+      },
+      {
+        "file": "dsc09425-2",
+        "original": "DSC09425-2.jpg",
+        "caption": "",
+        "alt": "A row of old cypress trunks along a low white wall.",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/80 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-22 17:21"
+        },
+        "web": {
+          "400": [
+            400,
+            600
+          ],
+          "1000": [
+            1000,
+            1500
+          ],
+          "bytes": {
+            "1000.jpg": 397401,
+            "1000.jxl": 268151,
+            "2000.jpg": 1407936,
+            "2000.jxl": 883928
+          }
+        }
+      },
+      {
+        "file": "dsc09425",
+        "original": "DSC09425.jpg",
+        "caption": "",
+        "alt": "Old cypress trunks along a wall, close.",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/80 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-22 17:21"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 189245,
+            "1000.jxl": 126804,
+            "2000.jpg": 640279,
+            "2000.jxl": 393496
+          }
+        }
+      },
+      {
+        "file": "dsc09433",
+        "original": "DSC09433-Edit.jpg",
+        "caption": "",
+        "alt": "A pale stone house front with a tall window, covered in ivy.",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/1000 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-22 17:23"
+        },
+        "web": {
+          "400": [
+            400,
+            600
+          ],
+          "1000": [
+            1000,
+            1500
+          ],
+          "bytes": {
+            "1000.jpg": 310099,
+            "1000.jxl": 211791,
+            "2000.jpg": 1116793,
+            "2000.jxl": 774753
+          }
+        }
+      },
+      {
+        "file": "dsc09435-2",
+        "original": "DSC09435-Edit-2.jpg",
+        "caption": "",
+        "alt": "A man sitting on a wall above a crowded beach in a wooded cove.",
+        "settings": {
+          "aperture": "f/1.4",
+          "shutter": "1/2000 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-22 17:23"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 118123,
+            "1000.jxl": 79994,
+            "2000.jpg": 450550,
+            "2000.jxl": 305124
+          }
+        }
+      },
+      {
+        "file": "dsc09437-2",
+        "original": "DSC09437-Edit-2.jpg",
+        "caption": "",
+        "alt": "The sun low over the sea between pines and a hill.",
+        "settings": {
+          "aperture": "f/4",
+          "shutter": "1/3200 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-22 17:23"
+        },
+        "web": {
+          "400": [
+            400,
+            500
+          ],
+          "1000": [
+            1000,
+            1250
+          ],
+          "bytes": {
+            "1000.jpg": 96130,
+            "1000.jxl": 64808,
+            "2000.jpg": 447170,
+            "2000.jxl": 301870
+          }
+        }
+      },
+      {
+        "file": "dsc09515",
+        "original": "DSC09515-Edit.jpg",
+        "caption": "",
+        "alt": "A pergola covered in vines along a stone house.",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/125 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-22 17:36"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 131119,
+            "1000.jxl": 88288,
+            "2000.jpg": 458758,
+            "2000.jxl": 301293
+          }
+        }
+      },
+      {
+        "file": "dsc09526-2",
+        "original": "DSC09526-Edit-2.jpg",
+        "caption": "",
+        "alt": "The low sun through a vine-covered pergola with stone columns.",
+        "settings": {
+          "aperture": "f/1.4",
+          "shutter": "1/1600 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-22 17:38"
+        },
+        "web": {
+          "400": [
+            400,
+            500
+          ],
+          "1000": [
+            1000,
+            1250
+          ],
+          "bytes": {
+            "1000.jpg": 141800,
+            "1000.jxl": 89889,
+            "2000.jpg": 508889,
+            "2000.jxl": 338907
+          }
+        }
+      },
+      {
+        "file": "dsc09526",
+        "original": "DSC09526-Edit.jpg",
+        "caption": "",
+        "alt": "Orange vine leaves in front of a stone column and a lawn.",
+        "settings": {
+          "aperture": "f/1.4",
+          "shutter": "1/1600 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-22 17:38"
+        },
+        "web": {
+          "400": [
+            400,
+            320
+          ],
+          "1000": [
+            1000,
+            801
+          ],
+          "bytes": {
+            "1000.jpg": 135138,
+            "1000.jxl": 90024,
+            "2000.jpg": 356445,
+            "2000.jxl": 242383
+          }
+        }
+      },
+      {
+        "file": "dsc09529",
+        "original": "DSC09529-Edit.jpg",
+        "caption": "",
+        "alt": "An old olive tree in evening light.",
+        "settings": {
+          "aperture": "f/2.2",
+          "shutter": "1/1000 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-22 17:39"
+        },
+        "web": {
+          "400": [
+            400,
+            412
+          ],
+          "1000": [
+            1000,
+            1031
+          ],
+          "bytes": {
+            "1000.jpg": 255727,
+            "1000.jxl": 166071,
+            "2000.jpg": 1001218,
+            "2000.jxl": 629122
+          }
+        }
+      },
+      {
+        "file": "dsc09532-2",
+        "original": "DSC09532-Edit-2.jpg",
+        "caption": "",
+        "alt": "A gravel path to the sea, a person sitting on a wall.",
+        "settings": {
+          "aperture": "f/2.2",
+          "shutter": "1/3200 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-22 17:40"
+        },
+        "web": {
+          "400": [
+            400,
+            400
+          ],
+          "1000": [
+            1000,
+            1000
+          ],
+          "bytes": {
+            "1000.jpg": 91271,
+            "1000.jxl": 60996,
+            "2000.jpg": 423146,
+            "2000.jxl": 281238
+          }
+        }
+      },
+      {
+        "file": "dsc09541-2",
+        "original": "DSC09541-Edit-2.jpg",
+        "caption": "",
+        "alt": "A beach with umbrellas and the sunset sea, seen through a square hole in a stone wall.",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/200 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-22 17:43"
+        },
+        "web": {
+          "400": [
+            400,
+            500
+          ],
+          "1000": [
+            1000,
+            1250
+          ],
+          "bytes": {
+            "1000.jpg": 196693,
+            "1000.jxl": 127544,
+            "2000.jpg": 904174,
+            "2000.jxl": 530696
+          }
+        }
+      },
+      {
+        "file": "dsc09541",
+        "original": "DSC09541.jpg",
+        "caption": "",
+        "alt": "A beach and the sunset sea seen through a square hole in a stone wall, darker.",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/200 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-22 17:43"
+        },
+        "web": {
+          "400": [
+            400,
+            400
+          ],
+          "1000": [
+            1000,
+            1000
+          ],
+          "bytes": {
+            "1000.jpg": 77049,
+            "1000.jxl": 52481,
+            "2000.jpg": 328014,
+            "2000.jxl": 201626
+          }
+        }
+      },
+      {
+        "file": "dsc09613-2-2",
+        "original": "DSC09613-Edit-2-2.jpg",
+        "caption": "",
+        "alt": "Olive branches lit orange by the low sun, a cypress behind.",
+        "settings": {
+          "aperture": "f/2.8",
+          "shutter": "1/250 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-22 17:52"
+        },
+        "web": {
+          "400": [
+            400,
+            500
+          ],
+          "1000": [
+            1000,
+            1250
+          ],
+          "bytes": {
+            "1000.jpg": 333023,
+            "1000.jxl": 217625,
+            "2000.jpg": 1051920,
+            "2000.jxl": 633644
+          }
+        }
+      },
+      {
+        "file": "dsc09613-2",
+        "original": "DSC09613-Edit-2.jpg",
+        "caption": "",
+        "alt": "A curved olive branch lit by the low sun.",
+        "settings": {
+          "aperture": "f/2.8",
+          "shutter": "1/250 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-22 17:52"
+        },
+        "web": {
+          "400": [
+            400,
+            225
+          ],
+          "1000": [
+            1000,
+            562
+          ],
+          "bytes": {
+            "1000.jpg": 124590,
+            "1000.jxl": 77663,
+            "2000.jpg": 389045,
+            "2000.jxl": 217818
+          }
+        }
+      },
+      {
+        "file": "dsc09616",
+        "original": "DSC09616-Edit.jpg",
+        "caption": "",
+        "alt": "A dark cliff with trees, the sun low over the sea and hills.",
+        "settings": {
+          "aperture": "f/2.8",
+          "shutter": "1/1250 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-22 17:53"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 121457,
+            "1000.jxl": 78378,
+            "2000.jpg": 458937,
+            "2000.jxl": 291406
+          }
+        }
+      },
+      {
+        "file": "dsc09714",
+        "original": "DSC09714-Edit.jpg",
+        "caption": "",
+        "alt": "A rocky islet seen between pine branches and rocks.",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/60 s",
+          "iso": "ISO 125",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-22 18:04"
+        },
+        "web": {
+          "400": [
+            400,
+            600
+          ],
+          "1000": [
+            1000,
+            1500
+          ],
+          "bytes": {
+            "1000.jpg": 316036,
+            "1000.jxl": 221862,
+            "2000.jpg": 1183067,
+            "2000.jxl": 806288
+          }
+        }
+      },
+      {
+        "file": "dsc09721",
+        "original": "DSC09721-Edit.jpg",
+        "caption": "",
+        "alt": "Black and white: the sea glittering over dark rocks.",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/125 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-22 18:07"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 133961,
+            "1000.jxl": 109283,
+            "2000.jpg": 529914,
+            "2000.jxl": 436725
+          }
+        }
+      },
+      {
+        "file": "dsc09724",
+        "original": "DSC09724-Edit.jpg",
+        "caption": "",
+        "alt": "The sun setting over the sea behind an island.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/320 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-22 18:10"
+        },
+        "web": {
+          "400": [
+            400,
+            225
+          ],
+          "1000": [
+            1000,
+            562
+          ],
+          "bytes": {
+            "1000.jpg": 49047,
+            "1000.jxl": 30190,
+            "2000.jpg": 228065,
+            "2000.jxl": 155389
+          }
+        }
+      },
+      {
+        "file": "dsc09806",
+        "original": "DSC09806-Edit.jpg",
+        "caption": "",
+        "alt": "The setting sun through pine branches, hills across the water.",
+        "settings": {
+          "aperture": "f/2.8",
+          "shutter": "1/500 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2024-08-22 18:18"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 186442,
+            "1000.jxl": 135510,
+            "2000.jpg": 600142,
+            "2000.jxl": 390461
           }
         }
       }

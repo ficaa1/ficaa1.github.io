@@ -4,125 +4,213 @@
      body:has(main[data-dump="montenegro-2024"]) ...         the page's colours, the nav, the footer and the player
    The kit's own rules (contact sheet, prints, tabs, stub) live in the photos block of site.css. */
 
-/* Direction: type-only statement (seed 646286761). The name is the picture: the cove's waterline runs through it.
-   Colours from the frames: limestone, the sea at dusk, the orange of the lunch awnings. */
+/* Six days, each under its own date set as large as the name. The days in the sun sit on white; the last evening, an
+   hour of the sun going down, sits on black, with a clock that follows the frames.
+   Schibsted Grotesk (SIL Open Font Licence), latin and latin-ext subsets, served from this folder. */
+@font-face {
+  font-family: "Schibsted Grotesk"; src: url("schibsted-ext.woff2") format("woff2");
+  font-weight: 400 800; font-style: normal; font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF,
+    U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Schibsted Grotesk"; src: url("schibsted.woff2") format("woff2");
+  font-weight: 400 800; font-style: normal; font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 body:has(main[data-dump="montenegro-2024"]) {
-  --bg: #e6dfd0; --surface: #d8cdb7; --ink: #14262e; --soft: #4e5a5c; --panel: #d8cdb7;
-  --paper: #efeeea; --paper-ink: #14262e; --film: #14262e; --mark: #b8410f;
-  --link: #14262e; --visited: #14262e; --sea: #1f4250; --foam: #e6dfd0;
-  background: var(--sea);
+  --bg: #fff; --surface: #f0f0f0; --ink: #141414; --soft: #5e5e5e; --panel: #f0f0f0;
+  --paper: #fff; --paper-ink: #141414; --film: #141414; --mark: #c4561a;
+  --link: #141414; --visited: #141414;
+  --night: #000; --night-ink: #ededed; --night-soft: #a6a6a6; --sun: #f2a03d;
+  --face: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --s-small: 14px;
+  --s-body: clamp(17px, 16px + 0.25vw, 19px);
+  --s-lead: clamp(20px, 17px + 0.7vw, 26px);
+  --s-head: clamp(32px, 21px + 2.6vw, 60px);
+  --s-num: clamp(132px, 21vw, 340px);
+  --ease: cubic-bezier(.22, 1, .36, 1);
+  --gut: clamp(16px, 2.2vw, 32px);
+  --row-gap: clamp(12px, 1.4vw, 24px);
+  background: var(--bg); color: var(--ink); font-family: var(--face);
 }
 body:has(main[data-dump="montenegro-2024"]) nav, body:has(main[data-dump="montenegro-2024"]) #player { background: var(--bg); }
-body:has(main[data-dump="montenegro-2024"]) footer { background: var(--sea); }
-body:has(main[data-dump="montenegro-2024"]) ::selection { background: var(--mark); color: #fff; }
+body:has(main[data-dump="montenegro-2024"]) ::selection { background: var(--ink); color: var(--bg); }
+body:has(main[data-dump="montenegro-2024"]) :focus-visible { outline-color: var(--mark); }
 
-main[data-dump="montenegro-2024"] { background: var(--sea); }
+main[data-dump="montenegro-2024"] { background: var(--bg); }
 
-/* The tabs sit in a row on the limestone. */
-main[data-dump="montenegro-2024"] > .tabs { background: var(--bg); padding: 28px 20px 0; }
+/* The tabs. */
+main[data-dump="montenegro-2024"] > .tabs { padding: 28px 12px 0; }
 @media (min-width: 900px) { main[data-dump="montenegro-2024"] > .tabs ol { flex-wrap: wrap; overflow: visible; } }
-main[data-dump="montenegro-2024"] .tabs .bar { background: #b3a88f; }
-main[data-dump="montenegro-2024"] .tabs .here .bar { background: #c9c1b0; }
+main[data-dump="montenegro-2024"] .tabs .bar { background: #cfcfcf; }
+main[data-dump="montenegro-2024"] .tabs .place { font-style: normal; font-weight: 600; }
+main[data-dump="montenegro-2024"] .tabs .here > a { background: var(--ink); color: var(--bg); }
+main[data-dump="montenegro-2024"] .tabs .here .n { color: #bdbdbd; }
+main[data-dump="montenegro-2024"] .tabs .here .bar { background: #555; }
+main[data-dump="montenegro-2024"] .tabs .here .bar i { background: var(--bg); }
 @media (hover: hover) and (pointer: fine) {
-  main[data-dump="montenegro-2024"] .tabs li:not(.here) > a:hover { background: #c9bca1; }
+  main[data-dump="montenegro-2024"] .tabs li:not(.here) > a:hover { background: var(--surface); }
 }
 
-/* ---- The waterline: two copies of the name, one above the seam in sea ink, one below it in limestone. */
-main[data-dump="montenegro-2024"] .waterline {
-  --seam: 50%; position: relative; min-height: max(520px, min(calc(100svh - 250px), 900px)); overflow: hidden; background: var(--bg);
+main[data-dump="montenegro-2024"] h1, main[data-dump="montenegro-2024"] h2, main[data-dump="montenegro-2024"] h3,
+main[data-dump="montenegro-2024"] p { margin: 0; font-weight: 400; font-style: normal; }
+main[data-dump="montenegro-2024"] ol { list-style: none; margin: 0; padding: 0; }
+main[data-dump="montenegro-2024"] img { display: block; width: 100%; height: auto; }
+
+/* ---- Opening: the name across the whole width, the dates, and the six days to jump to. */
+main[data-dump="montenegro-2024"] .opening { padding: clamp(40px, 5vw, 72px) var(--gut) 0; }
+main[data-dump="montenegro-2024"] .opening h1 {
+  font-size: clamp(64px, 17.2vw, 300px); font-weight: 800; line-height: 0.8; letter-spacing: -0.055em;
+  white-space: nowrap; margin-left: -0.05em;
 }
-/* The sea: a flat field from the seam down. */
-main[data-dump="montenegro-2024"] .waterline::before { content: ""; position: absolute; left: 0; right: 0; top: var(--seam); bottom: 0; background: var(--sea); }
-main[data-dump="montenegro-2024"] .name {
-  position: absolute; inset: 0; margin: 0; display: flex; flex-direction: column; justify-content: center; align-items: center;
-  padding-bottom: 0.82em; /* lifts the name so the seam runs through GORA, not between the lines */
-  font-size: clamp(80px, 17vw, 300px); line-height: 0.86; font-weight: bold; letter-spacing: -0.035em; text-transform: uppercase;
-  color: var(--ink); clip-path: inset(0 0 calc(100% - var(--seam)) 0); pointer-events: none; z-index: 1;
+main[data-dump="montenegro-2024"] .facts {
+  text-align: left;
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 32px; margin-top: clamp(24px, 3vw, 40px);
 }
-main[data-dump="montenegro-2024"] .name.under { color: var(--foam); clip-path: inset(var(--seam) 0 0 0); z-index: 0; }
-main[data-dump="montenegro-2024"] .name .line { display: block; overflow: hidden; padding: 0 0.04em; }
-main[data-dump="montenegro-2024"] .name .line > span { display: block; }
-main[data-dump="montenegro-2024"] .waterline .say {
-  position: absolute; z-index: 2; left: 20px; bottom: 28px; width: min(26ch, calc(100% - 40px)); margin: 0;
-  color: var(--foam); font-size: 20px; line-height: 1.4;
+main[data-dump="montenegro-2024"] .when { font-size: var(--s-lead); font-weight: 600; }
+main[data-dump="montenegro-2024"] .gear { font-size: var(--s-lead); color: var(--soft); }
+main[data-dump="montenegro-2024"] .index ol {
+  display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: var(--row-gap); margin-top: clamp(48px, 6vw, 96px);
 }
-main[data-dump="montenegro-2024"] .waterline .go {
-  position: absolute; z-index: 2; right: 20px; bottom: 28px; display: inline-flex; align-items: center; min-height: 48px; padding: 0 22px;
-  background: var(--mark); color: #fff; font-size: 18px; font-weight: bold; text-decoration: none;
-  transition: transform 140ms cubic-bezier(.22,1,.36,1), background-color 180ms ease;
+main[data-dump="montenegro-2024"] .index a {
+  display: flex; align-items: baseline; gap: 10px; padding: 8px 0; color: var(--ink); text-decoration: none;
 }
-main[data-dump="montenegro-2024"] .waterline .go::after { content: "\2193"; margin-left: 10px; }
-@media (hover: hover) and (pointer: fine) { main[data-dump="montenegro-2024"] .waterline .go:hover { background: #9c370c; } }
-main[data-dump="montenegro-2024"] .waterline .go:active { transform: translateY(2px); }
-main[data-dump="montenegro-2024"] .waterline .go:focus-visible { outline: 3px solid var(--foam); outline-offset: 3px; }
+main[data-dump="montenegro-2024"] .index .n {
+  font-size: var(--s-head); font-weight: 800; letter-spacing: -0.04em; line-height: 1; font-variant-numeric: tabular-nums;
+  transition: color 200ms var(--ease);
+}
+main[data-dump="montenegro-2024"] .index .w { font-size: var(--s-body); color: var(--soft); }
+main[data-dump="montenegro-2024"] .index a:active .n { color: var(--mark); }
+@media (hover: hover) and (pointer: fine) {
+  main[data-dump="montenegro-2024"] .index a:hover .n { color: var(--mark); }
+}
+
+/* ---- A day: its date, large, then its frames in rows. */
+main[data-dump="montenegro-2024"] .day { padding: 0 var(--gut); margin-top: clamp(160px, 15vw, 240px); scroll-margin-top: 24px; }
+main[data-dump="montenegro-2024"] .day.first { margin-top: clamp(80px, 9vw, 140px); }
+main[data-dump="montenegro-2024"] .date {
+  display: flex; align-items: flex-end; gap: clamp(16px, 2vw, 32px); margin-bottom: clamp(32px, 4vw, 64px);
+}
+main[data-dump="montenegro-2024"] .num {
+  font-size: var(--s-num); font-weight: 800; line-height: 0.76; letter-spacing: -0.065em; font-variant-numeric: tabular-nums;
+  margin-left: -0.04em;
+}
+main[data-dump="montenegro-2024"] .date h2, main[data-dump="montenegro-2024"] .drop h2 {
+  font-size: var(--s-head); font-weight: 700; line-height: 1; letter-spacing: -0.025em; max-width: 9ch;
+}
+main[data-dump="montenegro-2024"] .date .where { margin-top: 10px; font-size: var(--s-lead); }
+
+/* Rows: the frames of a row share one height and are never cropped; a row is never taller than most of a screen,
+   so a single frame sits to one side or in the middle with white around it. */
+main[data-dump="montenegro-2024"] .rows { display: grid; gap: clamp(48px, 6vw, 112px); }
+main[data-dump="montenegro-2024"] .row {
+  display: flex; gap: var(--row-gap); align-items: flex-start; width: min(100%, calc(78svh * var(--sum)));
+}
+main[data-dump="montenegro-2024"] .row.r { margin-left: auto; }
+main[data-dump="montenegro-2024"] .row.c { margin-inline: auto; }
+main[data-dump="montenegro-2024"] .shot { flex: var(--r) 1 0; min-width: 0; }
+main[data-dump="montenegro-2024"] .meta {
+  margin-top: 10px; font-size: var(--s-small); color: var(--soft);
+}
+main[data-dump="montenegro-2024"] .shot a { display: block; }
+main[data-dump="montenegro-2024"] .shot img { transition: opacity 300ms var(--ease); }
+@media (hover: hover) and (pointer: fine) {
+  main[data-dump="montenegro-2024"] .shot a:hover img { opacity: 0.88; }
+}
+
+/* A stop within a day: the walled town. */
+main[data-dump="montenegro-2024"] .stop { margin-top: clamp(96px, 10vw, 160px); }
+main[data-dump="montenegro-2024"] .stop h3 {
+  font-size: var(--s-head); font-weight: 800; line-height: 1; letter-spacing: -0.035em; margin-bottom: clamp(32px, 4vw, 56px);
+}
+main[data-dump="montenegro-2024"] .stop h3 .span {
+  margin-left: 0.4em; font-size: var(--s-lead); font-weight: 400; letter-spacing: 0; color: var(--soft);
+}
+main[data-dump="montenegro-2024"] .rows.after { margin-top: clamp(96px, 10vw, 160px); }
+
+/* ---- A day with one frame: the print lies on its date. */
+main[data-dump="montenegro-2024"] .drop h2 { margin-bottom: clamp(36px, 4vw, 56px); }
+main[data-dump="montenegro-2024"] .stage { display: flex; align-items: center; }
+main[data-dump="montenegro-2024"] .stage .num { flex: none; }
+main[data-dump="montenegro-2024"] .stage .shot {
+  position: relative; z-index: 1; flex: none; width: min(56vw, 820px, calc(64svh * var(--r))); margin-left: -2vw;
+  rotate: var(--tilt); transition: rotate 400ms var(--ease);
+}
+main[data-dump="montenegro-2024"] .drop.flip .stage { flex-direction: row-reverse; justify-content: flex-end; }
+main[data-dump="montenegro-2024"] .drop.flip .stage .shot { margin: 0 -2vw 0 0; }
+main[data-dump="montenegro-2024"] .stage .shot:focus-within { rotate: 0deg; }
+@media (hover: hover) and (pointer: fine) {
+  main[data-dump="montenegro-2024"] .stage .shot:hover { rotate: 0deg; }
+}
+
+/* ---- The last evening, on black. The clock on the left follows the frame in view. */
+main[data-dump="montenegro-2024"] .dusk {
+  margin-top: clamp(140px, 15vw, 260px); padding: clamp(96px, 10vw, 160px) var(--gut) clamp(120px, 12vw, 200px);
+  background: var(--night); color: var(--night-ink);
+  display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: var(--gut); align-items: start;
+}
+main[data-dump="montenegro-2024"] .dusk .side { position: sticky; top: 24px; }
+main[data-dump="montenegro-2024"] .dusk .date { display: block; margin: 0; }
+main[data-dump="montenegro-2024"] .dusk .date h2 { margin-top: 20px; }
+main[data-dump="montenegro-2024"] .dusk .meta { color: var(--night-soft); }
+main[data-dump="montenegro-2024"] .clock {
+  margin-top: clamp(32px, 4vw, 64px); font-size: var(--s-lead); color: var(--sun); font-weight: 700;
+  font-variant-numeric: tabular-nums; letter-spacing: -0.02em; line-height: 1;
+}
+main[data-dump="montenegro-2024"][data-js] .clock { font-size: clamp(64px, 8vw, 132px); font-weight: 800; letter-spacing: -0.045em; }
+main[data-dump="montenegro-2024"] .clock .t { display: inline-block; }
+main[data-dump="montenegro-2024"] .dusk .row { width: min(100%, calc(80svh * var(--sum))); }
+/* The way on, still in the evening. */
+main[data-dump="montenegro-2024"] > .stub {
+  width: auto; margin: -1px 0 0; border: 0; padding: 0 var(--gut) clamp(96px, 10vw, 160px); background: var(--night); color: var(--night-ink);
+}
+main[data-dump="montenegro-2024"] > .stub a { color: var(--night-ink); }
+main[data-dump="montenegro-2024"] > .stub a:focus-visible { outline-color: var(--sun); }
+main[data-dump="montenegro-2024"] > .stub .next { font-style: normal; font-weight: 800; font-size: var(--s-head); letter-spacing: -0.03em; }
+main[data-dump="montenegro-2024"] .dusk { padding-bottom: clamp(120px, 12vw, 200px); }
+
+/* ---- Motion: each part rises once as it arrives; the clock fades between times. */
 @media (prefers-reduced-motion: no-preference) {
-  main[data-dump="montenegro-2024"] .name .line > span { animation: cg-rise 900ms cubic-bezier(.22,1,.36,1) both; }
-  main[data-dump="montenegro-2024"] .name .line + .line > span { animation-delay: 110ms; }
-  @keyframes cg-rise { from { transform: translateY(102%); } to { transform: none; } }
+  main[data-dump="montenegro-2024"] .rise { opacity: 0; translate: 0 24px; }
+  main[data-dump="montenegro-2024"] .rise.in {
+    opacity: 1; translate: none;
+    transition: opacity 700ms var(--ease) var(--d, 0ms), translate 900ms var(--ease) var(--d, 0ms), rotate 400ms var(--ease);
+  }
+  main[data-dump="montenegro-2024"] .clock .t.tick { animation: cg-tick 700ms var(--ease); }
+  @keyframes cg-tick { from { opacity: 0.15; } to { opacity: 1; } }
 }
 
-/* ---- The wall: one tile per day, sized by nothing but the grid; two prints take four tiles each. */
-main[data-dump="montenegro-2024"] .wall { background: var(--bg); padding: 8px 8px 0; container-type: inline-size; }
-main[data-dump="montenegro-2024"] .tiles {
-  --cell: calc((100cqw - 24px) / 4);
-  list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: var(--cell); gap: 8px;
-}
-main[data-dump="montenegro-2024"] .tiles > li { margin: 0; position: relative; overflow: hidden; }
-main[data-dump="montenegro-2024"] .tile.photo { grid-column: span 2; grid-row: span 2; background: var(--film); }
-main[data-dump="montenegro-2024"] .tile .print { position: static; height: 100%; }
-main[data-dump="montenegro-2024"] .tile .print img { height: 100%; object-fit: cover; }
-/* A flat band of sea over the foot of the picture holds the caption, at every width. */
-main[data-dump="montenegro-2024"] .tile .print figcaption {
-  position: absolute; left: 0; right: 0; bottom: 0; background: rgb(20 38 46 / 0.86); font-size: 16px; padding: 12px 20px 14px;
-}
-main[data-dump="montenegro-2024"] .tile .print .exif { display: block; font-size: 14px; }
-
-main[data-dump="montenegro-2024"] .day, main[data-dump="montenegro-2024"] .tile.figure {
-  display: flex; flex-direction: column; padding: clamp(12px, 2cqw, 28px); background: var(--surface); color: var(--ink);
-}
-main[data-dump="montenegro-2024"] .day:nth-of-type(3n+2) { background: var(--sea); color: var(--foam); }
-main[data-dump="montenegro-2024"] .day:nth-of-type(3n) { background: var(--paper); }
-main[data-dump="montenegro-2024"] .day p { margin: 0; }
-main[data-dump="montenegro-2024"] .day .date { display: flex; align-items: baseline; gap: 10px; line-height: 0.8; }
-main[data-dump="montenegro-2024"] .day .d { font-size: calc(var(--cell) * 0.42); font-weight: bold; letter-spacing: -0.04em; }
-main[data-dump="montenegro-2024"] .day .m { font-size: 18px; font-style: italic; }
-main[data-dump="montenegro-2024"] .day .count { margin-top: 12px; font-size: 18px; }
-/* One mark per frame; the printed ones in awning orange. */
-main[data-dump="montenegro-2024"] .day .marks { margin-top: auto; display: flex; flex-wrap: wrap; gap: 4px; }
-main[data-dump="montenegro-2024"] .day .marks i { width: 6px; height: 18px; background: currentColor; opacity: 0.55; }
-main[data-dump="montenegro-2024"] .day .marks i.printed { background: var(--mark); opacity: 1; width: 10px; }
-main[data-dump="montenegro-2024"] .tile.figure { background: var(--mark); color: #fff; justify-content: flex-end; }
-main[data-dump="montenegro-2024"] .tile.figure:last-child { background: var(--ink); color: var(--foam); }
-main[data-dump="montenegro-2024"] .tile .big { margin: 0; font-size: calc(var(--cell) * 0.5); line-height: 0.8; font-weight: bold; letter-spacing: -0.05em; }
-main[data-dump="montenegro-2024"] .tile .cap { margin: 10px 0 0; font-size: 18px; }
-
-/* ---- The statement, then the cove whole, on the sea. */
-main[data-dump="montenegro-2024"] .statement {
-  margin: 0; background: var(--bg); padding: 120px 20px 140px calc(50% + 8px);
-  font-size: 32px; line-height: 1.25; letter-spacing: -0.01em;
-}
-main[data-dump="montenegro-2024"] .statement::first-line { font-weight: bold; }
-main[data-dump="montenegro-2024"] .sea { padding: 0 0 8px; }
-main[data-dump="montenegro-2024"] .sea .print { position: static; height: auto; background: var(--sea); }
-main[data-dump="montenegro-2024"] .sea .print img { height: auto; object-fit: initial; }
-main[data-dump="montenegro-2024"] .sea .print figcaption {
-  position: static; background: none; color: var(--foam); padding: 16px 20px 0 calc(50% + 8px); font-size: 18px;
-}
-main[data-dump="montenegro-2024"] .sea .print .frame { color: var(--foam); }
-main[data-dump="montenegro-2024"] .sea .print .exif { color: #b8c4c4; white-space: normal; }
-main[data-dump="montenegro-2024"] .stub { border-top-color: var(--sea); }
-
-@media (max-width: 900px) {
-  main[data-dump="montenegro-2024"] .statement { padding: 88px 20px 96px; max-width: 28ch; box-sizing: content-box; font-size: 28px; }
-  main[data-dump="montenegro-2024"] .sea .print figcaption { padding-left: 20px; }
-}
-@media (max-width: 640px) {
+/* ---- Narrow screens: one column, frames edge to edge; two tall frames keep their pair. On the last evening the clock
+   stays at the top of the screen. */
+@media (max-width: 899px) {
   main[data-dump="montenegro-2024"] > .tabs { padding: 16px 0 0 16px; }
-  main[data-dump="montenegro-2024"] .waterline { --seam: 46%; min-height: 78svh; }
-  main[data-dump="montenegro-2024"] .name { font-size: 30vw; }
-  main[data-dump="montenegro-2024"] .waterline .say { bottom: 92px; font-size: 18px; }
-  main[data-dump="montenegro-2024"] .waterline .go { left: 20px; right: auto; }
-  main[data-dump="montenegro-2024"] .tiles { --cell: calc((100cqw - 8px) / 2); grid-template-columns: repeat(2, 1fr); }
-  main[data-dump="montenegro-2024"] .day .m, main[data-dump="montenegro-2024"] .day .count, main[data-dump="montenegro-2024"] .tile .cap { font-size: 16px; }
-  main[data-dump="montenegro-2024"] .statement { font-size: 24px; padding: 64px 20px 72px; width: auto; max-width: none; }
+  main[data-dump="montenegro-2024"] .index ol { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px 16px; }
+  main[data-dump="montenegro-2024"] .date { flex-wrap: wrap; }
+  main[data-dump="montenegro-2024"] .facts { display: block; }
+  main[data-dump="montenegro-2024"] .gear { margin-top: 6px; }
+  main[data-dump="montenegro-2024"] .rows { margin: 0 calc(-1 * var(--gut)); gap: 56px; }
+  main[data-dump="montenegro-2024"] .rows > .row { width: auto; margin-inline: 0; }
+  main[data-dump="montenegro-2024"] .row:not(.keep) { display: block; }
+  main[data-dump="montenegro-2024"] .row:not(.keep) .shot + .shot { margin-top: 40px; }
+  main[data-dump="montenegro-2024"] .row.keep { gap: 6px; }
+  main[data-dump="montenegro-2024"] .row.keep .meta { font-size: 13px; }
+  main[data-dump="montenegro-2024"] .meta { padding: 0 var(--gut); }
+  main[data-dump="montenegro-2024"] .row.keep .shot:first-child .meta { padding-right: 0; }
+  main[data-dump="montenegro-2024"] .row.keep .shot:last-child .meta { padding-left: 0; }
+  main[data-dump="montenegro-2024"] .stage, main[data-dump="montenegro-2024"] .drop.flip .stage { flex-direction: column; align-items: flex-start; }
+  main[data-dump="montenegro-2024"] .stage .shot, main[data-dump="montenegro-2024"] .drop.flip .stage .shot {
+    width: min(88vw, calc(64svh * var(--r))); margin: -0.05em 0 0 auto; font-size: var(--s-num);
+  }
+  main[data-dump="montenegro-2024"] .stage .shot .meta { font-size: var(--s-small); }
+  main[data-dump="montenegro-2024"] .stage .meta { padding: 0; }
+  main[data-dump="montenegro-2024"] .dusk { display: block; padding-top: 80px; }
+  main[data-dump="montenegro-2024"] .dusk .side { display: contents; }
+  main[data-dump="montenegro-2024"] .clock {
+    position: sticky; top: 0; z-index: 2; margin: 24px calc(-1 * var(--gut)) 24px; padding: 12px var(--gut);
+    background: var(--night);
+  }
+  main[data-dump="montenegro-2024"][data-js] .clock { font-size: 56px; }
 }
