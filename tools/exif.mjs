@@ -1,4 +1,4 @@
-// Reads the camera settings from the Exif of a JPEG XL file (its Exif box) or a JPEG (its APP1 segment).
+// Reads camera settings from TIFF, JPEG XL (its Exif box), or JPEG (its APP1 segment).
 // Takes a path or a Buffer; the first ~256 KB of a file is enough, so originals can be read with `head -c` over ssh.
 // No dependencies.
 import { readFileSync } from 'node:fs';
@@ -33,7 +33,10 @@ function jxlTiff(b) {
 export function exif(input) {
   const b = Buffer.isBuffer(input) ? input : readFileSync(input);
   let t = null;
-  try { t = b[0] === 0xff && b[1] === 0xd8 ? jpegTiff(b) : jxlTiff(b); } catch { t = null; }
+  try {
+    t = ['49492a00', '4d4d002a'].includes(b.subarray(0, 4).toString('hex')) ? b
+      : b[0] === 0xff && b[1] === 0xd8 ? jpegTiff(b) : jxlTiff(b);
+  } catch { t = null; }
   if (!t || t.length < 8) return {};
   const le = t.toString('latin1', 0, 2) === 'II';
   const u16 = o => le ? t.readUInt16LE(o) : t.readUInt16BE(o);

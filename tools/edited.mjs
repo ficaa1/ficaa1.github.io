@@ -9,10 +9,11 @@
 // The scan is kept in photos-src-local/edited.tsv ("<software>\t<path>"), so searching is instant; scan again after
 // exporting more. Nothing is written on plex: the reader goes over ssh as a python -c argument.
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { pathToFileURL } from 'node:url';
 import { LIBRARY, q, ssh } from './plex.mjs';
 
 const INDEX = new URL('../photos-src-local/edited.tsv', import.meta.url);
-const EDITORS = /lightroom|photoshop|capture one|darktable|rawtherapee|dxo|affinity|luminar/i;
+export const EDITORS = /lightroom|photoshop|capture one|darktable|rawtherapee|dxo|affinity|luminar/i;
 
 const READER = String.raw`
 import sys, struct, re
@@ -39,29 +40,36 @@ for line in sys.stdin:
     print(software(p) + '\t' + p, flush=True)
 `;
 
-const args = process.argv.slice(2);
-if (args[0] === '--scan') {
-  const find = `cd ${q(LIBRARY)} && find . -path ./.dtrash -prune -o -type f \\( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.jxl' -o -iname '*.tif' -o -iname '*.png' \\) -print`;
-  const out = ssh(`${find} | nice -n 19 ionice -c3 python3 -c ${q(READER)}`, { maxBuffer: 64 << 20 });
-  mkdirSync(new URL('.', INDEX), { recursive: true });
-  writeFileSync(INDEX, out);
-  const rows = out.toString('utf8').split('\n').filter(Boolean);
-  console.log(`${rows.length} pictures read, ${rows.filter(r => EDITORS.test(r.split('\t')[0])).length} edited. Saved to photos-src-local/edited.tsv`);
-  process.exit(0);
+// Shared with the private picker, so shoot names and editor matching stay identical.
+export const group = p => p.includes('/') ? p.slice(0, p.lastIndexOf('/')) : '(top) ' + p.replace(/ \(\d+ of \d+\).*$/, '').replace(/^(\d{4})\d{4}-DSC_.*$/, '$1 DSC_').replace(/\.\w+$/, '');
+export function editedPaths() {
+  if (!existsSync(INDEX)) throw new Error('No scan yet: run node tools/edited.mjs --scan');
+  return readFileSync(INDEX, 'utf8').split('\n').filter(Boolean)
+    .map(r => r.split('\t')).filter(([sw]) => EDITORS.test(sw)).map(([, p]) => p.replace(/^\.\//, ''));
 }
 
-if (!existsSync(INDEX)) { console.error('No scan yet: run node tools/edited.mjs --scan'); process.exit(1); }
-const edited = readFileSync(INDEX, 'utf8').split('\n').filter(Boolean)
-  .map(r => r.split('\t')).filter(([sw]) => EDITORS.test(sw)).map(([, p]) => p.replace(/^\.\//, ''));
+function main() {
+  const args = process.argv.slice(2);
+  if (args[0] === '--scan') {
+    const find = `cd ${q(LIBRARY)} && find . -path ./.dtrash -prune -o -type f \\( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.jxl' -o -iname '*.tif' -o -iname '*.png' \\) -print`;
+    const out = ssh(`${find} | nice -n 19 ionice -c3 python3 -c ${q(READER)}`, { maxBuffer: 64 << 20 });
+    mkdirSync(new URL('.', INDEX), { recursive: true });
+    writeFileSync(INDEX, out);
+    const rows = out.toString('utf8').split('\n').filter(Boolean);
+    console.log(`${rows.length} pictures read, ${rows.filter(r => EDITORS.test(r.split('\t')[0])).length} edited. Saved to photos-src-local/edited.tsv`);
+    process.exit(0);
+  }
 
-if (args.length) {
-  const words = args.map(w => w.toLowerCase());
-  for (const p of edited.filter(p => words.every(w => p.toLowerCase().includes(w))).sort()) console.log(`${LIBRARY}/${p}`);
-} else {
-  // A group is the folder, or for loose files at the top, the export name before "(3 of 77)" or a camera number.
-  const group = p => p.includes('/') ? p.slice(0, p.lastIndexOf('/')) : '(top) ' + p.replace(/ \(\d+ of \d+\).*$/, '').replace(/^(\d{4})\d{4}-DSC_.*$/, '$1 DSC_').replace(/\.\w+$/, '');
-  const groups = new Map();
-  for (const p of edited) groups.set(group(p), (groups.get(group(p)) || 0) + 1);
-  for (const [g, n] of [...groups].sort((a, b) => b[1] - a[1])) console.log(`${String(n).padStart(5)}  ${g}`);
-  console.log(`${String(edited.length).padStart(5)}  edited in all`);
+  const edited = editedPaths();
+
+  if (args.length) {
+    const words = args.map(w => w.toLowerCase());
+    for (const p of edited.filter(p => words.every(w => p.toLowerCase().includes(w))).sort()) console.log(`${LIBRARY}/${p}`);
+  } else {
+    const groups = new Map();
+    for (const p of edited) groups.set(group(p), (groups.get(group(p)) || 0) + 1);
+    for (const [g, n] of [...groups].sort((a, b) => b[1] - a[1])) console.log(`${String(n).padStart(5)}  ${g}`);
+    console.log(`${String(edited.length).padStart(5)}  edited in all`);
+  }
 }
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) main();

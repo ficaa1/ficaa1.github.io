@@ -10,7 +10,7 @@ const OPTS = ['-p', PORT, '-o', 'BatchMode=yes', '-o', 'ConnectTimeout=15',
   '-o', 'ControlMaster=auto', '-o', `ControlPath=/tmp/fb-plex-%r@%h-%p`, '-o', 'ControlPersist=120'];
 
 // Single-quotes a string for the remote shell.
-export const q = s => `'${String(s).replace(/'/g, `'\\''`)}'`;
+export const q = s => "'" + String(s).replaceAll("'", "'\"'\"'") + "'";
 
 // Runs a command on plex and returns its stdout as a Buffer (binary-safe).
 export function ssh(command, { maxBuffer = 256 << 20 } = {}) {
@@ -23,7 +23,7 @@ export const folderPath = folder => `${LIBRARY}/${folder}`;
 export const list = folder => ssh(`ls -1 -- ${q(folderPath(folder))}`).toString('utf8').split('\n').filter(Boolean);
 
 // The first bytes of a file; Exif sits in the first ~256 KB of both JPEG and JPEG XL exports.
-export const head = (folder, file, bytes = 262144) => ssh(`head -c ${bytes} -- ${q(`${folderPath(folder)}/${file}`)}`);
+export const head = (folder, file, bytes = 262144) => ssh(`nice -n 19 ionice -c3 head -c ${bytes} -- ${q(`${folderPath(folder)}/${file}`)}`);
 
 // A JPEG scaled to `width` on plex with ffmpeg (niced, in a temp dir), streamed back.
 export function resizedJpeg(folder, file, width = 2000) {

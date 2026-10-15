@@ -31,6 +31,33 @@ node tools/edited.mjs normandie       # the full plex paths of the edited files 
 
 The scan is saved in `photos-src-local/edited.tsv`, which is gitignored. Edited exports can sit loose at the top of the library or among camera files under `Sony Raw/` and `2025/`, so search by name rather than trusting the folders.
 
+## Private picker
+
+```sh
+nice -n 19 ionice -c3 node tools/thumbs.mjs             # make missing thumbnails; resume with the same command
+nice -n 19 ionice -c3 node tools/thumbs.mjs --page      # rebuild the picker without reading plex
+```
+
+Open https://hermes.tail92948.ts.net:10443/picker/. The page and thumbnail links stay local and are gitignored; do not publish them. Click frames, then copy their full plex paths. Selection stays in this browser. Filter by path; the corner button opens the 800 px thumbnail.
+
+Thumbnails and `metadata.json` live in `photos-src-local/thumbs/`. Metadata reads at most 256 KB per frame. JPEGs run first, then TIFFs without a JPEG of the same name in the same folder. Other TIFFs use the JPEG thumbnail. JXL files keep filename tiles.
+
+Only one run can hold the local lock. Plex reads are limited to 10 MiB/s with `pv` when available, or a sleep after each file to keep the average at or below that rate. Header reads count too. The run checks plex load before every file and waits 60 seconds while load is above 3. ffmpeg runs on plex with one thread and low priority; nothing is written there. The log counts source bytes from completed file reads, plus headers, over elapsed time including waits. A thumbnail is installed only after the stream finishes. No thumbnails or originals are decoded here.
+
+For a background run, from the repo root:
+
+```sh
+setsid nohup nice -n 19 ionice -c3 node tools/thumbs.mjs --page-every=25 >photos-src-local/thumbs.log 2>&1 </dev/null &
+```
+
+Stop the whole run, including its active SSH command:
+
+```sh
+kill -TERM -- -$(ps -o pgid= -p "$(cat photos-src-local/thumbs/run.pid)" | tr -d ' ')
+```
+
+Resume with the background command above. The page rebuilds every 25 processed files and at the end; reload it to see new thumbnails. `--limit=10` processes at most ten uncached files for a short check.
+
 ## 1. Register the dump and read its contact sheet
 
 Add an entry to `site/photos.json`. Use only these fields; the build fills in the rest:

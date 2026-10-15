@@ -6,3 +6,6 @@ photos-src-local/
 # Picture derivatives live on R2 (photos.filipbiljic.com); the copies here are for local preview only.
 site/photos/*/*.jpg
 site/photos/*/*.jxl
+
+# Private photo picker and its thumbnail links.
+site/picker/
