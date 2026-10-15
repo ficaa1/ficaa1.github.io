@@ -1,0 +1,62 @@
+[
+ {
+  "slug": "homelab-plex-server",
+  "date": "2025-07-18",
+  "title": "Homelab Series Part 4: The Plex Experience with Hardware Transcoding",
+  "words": 487
+ },
+ {
+  "slug": "homelab-tiered-storage",
+  "date": "2025-07-17",
+  "title": "Homelab Series Part 3: The Brains - Automated Tiered Storage with Bash and APIs",
+  "words": 623
+ },
+ {
+  "slug": "homelab-arr-stack",
+  "date": "2025-07-16",
+  "title": "Homelab Series Part 2: The 'Arr' Automation Engine",
+  "words": 427
+ },
+ {
+  "slug": "homelab-vpn-gateway",
+  "date": "2025-07-15",
+  "title": "Homelab Series Part 1: Building a Secure VPN Gateway with Docker",
+  "words": 535
+ },
+ {
+  "slug": "Fish-shell-and-tmux-conf",
+  "date": "2024-11-04",
+  "title": "Fish shell and tmux config files",
+  "words": 522
+ },
+ {
+  "slug": "Changing-Prometheus-Data-dir",
+  "date": "2024-11-02",
+  "title": "Changing Prometheus TSDB directory",
+  "words": 186
+ },
+ {
+  "slug": "ripgrep-searchandreplace",
+  "date": "2024-06-14",
+  "title": "RIPGREP Search and replace",
+  "words": 27
+ },
+ {
+  "slug": "resizedisk",
+  "date": "2023-05-16",
+  "title": "Resizing disk in Proxmox and guest VM",
+  "words": 268
+ },
+ {
+  "slug": "Migration-day",
+  "date": "2023-05-08",
+  "title": "Migration day",
+  "words": 468
+ },
+ {
+  "slug": "ServerInstall",
+  "date": "2023-05-06",
+  "title": "Building and installing my server",
+  "words": 714
+ }
+]

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Building and installing my server - Filip Biljic</title>
+<link rel="stylesheet" href="../site.css">
+</head>
+<body data-page="post">
+<nav><a href="../index.html">Welcome</a> | <a href="../blog.html">Blog</a> | <a href="../cv.html">CV</a> | <a href="../contact.html">Contact</a> | <a href="../photos.html">Photos</a> | <a href="../music.html">Music</a></nav>
+<main>
+<h1 class="post-title">Building and installing my server</h1>
+<p class="soft">Written 2023-05-06. 714 words, about 3 minutes.</p>
+<ul><li>Couldn't post after setting it up, turns out issue was RAM placement. Switched the places and it finally booted.</li><li>BIOS Config --&gt; Enable virtualization</li><li>Badly flashed the USB I guess, retried in Balena Etcher. Worked after disabling Secure boot :)</li></ul>
+<h3>Proxmox installation</h3>
+<p>Installed on 128gig SSD, IP Address : 192.168.1.160 because DHCP ends at .150</p>
+<p>Seems to work splendidly, next step: disable SSH password authentication and setup public key authentication instead</p>
+<p>Installed TrueNAS and passed through the two disks.</p>
+<pre><code>root@pve:~# lsblk -o +MODEL,SERIAL
+NAME                         MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT MODEL                  SERIAL
+sda                            8:0    0 111.8G  0 disk            WDC_WDS120G2G0A-00JH30 20451N458612
+├─sda1                         8:1    0  1007K  0 part
+├─sda2                         8:2    0     1G  0 part /boot/efi
+└─sda3                         8:3    0 110.8G  0 part
+  ├─pve-swap                 253:0    0     8G  0 lvm  [SWAP]
+  ├─pve-root                 253:1    0  37.7G  0 lvm  /
+  ├─pve-data_tmeta           253:2    0     1G  0 lvm
+  │ └─pve-data-tpool         253:4    0  49.3G  0 lvm
+  │   ├─pve-data             253:5    0  49.3G  1 lvm
+  │   └─pve-vm--100--disk--0 253:6    0    16G  0 lvm
+  └─pve-data_tdata           253:3    0  49.3G  0 lvm
+    └─pve-data-tpool         253:4    0  49.3G  0 lvm
+      ├─pve-data             253:5    0  49.3G  1 lvm
+      └─pve-vm--100--disk--0 253:6    0    16G  0 lvm
+sdb                            8:16   0   5.5T  0 disk            WDC_WD60EFPX-68C5ZN0   WD-WX62AC2DDET6
+sdc                            8:32   0   5.5T  0 disk            WDC_WD60EFPX-68C5ZN0   WD-WX72AC23P6ST
+
+root@pve:~# ls /dev/disk/by-id/ | grep WD-WX62AC2DDET6
+ata-WDC_WD60EFPX-68C5ZN0_WD-WX62AC2DDET6
+root@pve:~# ls /dev/disk/by-id/ | grep WD-WX72AC23P6ST
+ata-WDC_WD60EFPX-68C5ZN0_WD-WX72AC23P6ST
+
+root@pve:~# qm set 100 -scsi1 /dev/disk/by-id/ata-WDC_WD60EFPX-68C5ZN0_WD-WX62AC2DDET6
+update VM 100: -scsi1 /dev/disk/by-id/ata-WDC_WD60EFPX-68C5ZN0_WD-WX62AC2DDET6
+root@pve:~# qm set 100 -scsi2 /dev/disk/by-id/ata-WDC_WD60EFPX-68C5ZN0_WD-WX72AC23P6ST
+update VM 100: -scsi2 /dev/disk/by-id/ata-WDC_WD60EFPX-68C5ZN0_WD-WX72AC23P6ST
+</code></pre>
+<p>Later on turned off all the extra fans because I want to be able to sleep at night :) In order to monitor this in the Proxmox summary tab, I had to edit some proxmox related files. Thanks to this reddit post for the great guide https://www.reddit.com/r/homelab/comments/rhq56e/displaying_cpu_temperature_in_proxmox_summery_in/</p>
+<pre><code>vim /usr/share/perl5/PVE/API2/Nodes.pm
+vim /usr/share/pve-manager/js/pvemanagerlib.js</code></pre>
+<p>Inside the first file, I added this line at line 407</p>
+<pre><code>$res-&gt;{thermalstate} = `sensors`;</code></pre>
+<p>Inside the second one, I had to change the padding in order to fit in the new information and then to print it out (my cpu has 6 cores so I had to add display info for the other 2)</p>
+<pre><code>Ext.define('PVE.node.StatusView', {
+    extend: 'Proxmox.panel.StatusView',
+    alias: 'widget.pveNodeStatus',
+
+    height: 360,
+    bodyPadding: '15 20 15 20',</code></pre>
+<pre><code>        {
+            itemId: 'thermal',
+            colspan: 2,
+            printBar: false,
+            title: gettext('CPU Thermal State'),
+            textField: 'thermalstate',
+            renderer:function(value){
+                const c0 = value.match(/Core 0.*?\+([\d\.]+)Â/)[1];
+                const c1 = value.match(/Core 1.*?\+([\d\.]+)Â/)[1];
+                const c2 = value.match(/Core 2.*?\+([\d\.]+)Â/)[1];
+                const c3 = value.match(/Core 3.*?\+([\d\.]+)Â/)[1];
+                const c4 = value.match(/Core 4.*?\+([\d\.]+)Â/)[1];
+                const c5 = value.match(/Core 5.*?\+([\d\.]+)Â/)[1];
+                return `Core 0: ${c0} c | Core 1: ${c1} c | Core 2: ${c2} c | Core 3: ${c3} c | Core 4: ${c4} c | Core 5: ${c5} c`
+            }
+        }</code></pre>
+<h3>Storage pool creation</h3>
+<p>Since I haven't yet received my third drive which I will use in conjuction with another drive to do mirroring (this will be my backup pool and important documents), I will create a pool with only one disk which I'll use to store media for Plex playback.</p>
+<p>Obviously I'm getting a bunch of warnings because there is 0 replication of any data with this kind of setup. For now, I do not mind as media isn't something that's completely unrecoverable by other means ;)</p>
+<p>I end up this config by adding a dataset which will server as a Samba share.</p>
+<h3>Tried setting it up in LXC, but because of IOMMU, iGpu wasn't showing up. </h3>
+<ul><li>Set up ubuntu server with IOMMU and iGPU passthrough. Configured Network through</li></ul>
+<p>18  vim /etc/netplan/00-installer-config.yaml 19  netplan apply</p>
+<pre><code>network:
+  ethernets:
+    ens18:
+      addresses:
+        - 192.168.1.162/24
+      routes:
+        - to: default
+          via: 192.168.1.1
+      dhcp4: false
+      nameservers:
+        addresses:
+        - 192.168.1.1
+        - 8.8.8.8
+        - 1.1.1.1
+        search:
+        - google.com
+  version: 2</code></pre>
+<ul><li>Installed Docker, and Plex natively (for hardware encoding)</li><li>Set up ssh through public key authentication only (for both proxmox host and ubuntu vm)</li><li>Mounted aforementioned pool as a NFS share (and mapped root user to root)</li></ul>
+<h3>To do</h3>
+<ul><li>Migrate volumes of all my docker containers running on WSL to my Share drive</li><li>Deploy my various stacks as compose files, with properly mounted config volumes as nfs </li><li>Configure nginx proxy manager and port forwarding</li><li>Decommission old Plex install in favor of this new one</li><li>Nextcloud</li><li>Windows VM</li><li>Terraform provisioning</li><li>VPN server</li></ul>
+<p><a href="../blog.html">Back to the list of posts</a></p>
+</main>
+<footer><div id="trace"><p>Filip Biljic, Paris.</p></div></footer>
+<script src="../site.js"></script>
+</body>
+</html>

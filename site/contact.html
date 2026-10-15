@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact - Filip Biljic</title>
+<link rel="stylesheet" href="site.css">
+</head>
+<body data-page="contact">
+<nav><a href="index.html">Welcome</a> | <a href="blog.html">Blog</a> | <a href="cv.html">CV</a> | <b>Contact</b> | <a href="photos.html">Photos</a> | <a href="music.html">Music</a></nav>
+<main>
+<h1>Write to me</h1>
+<p class="lead">About a post, a homelab problem or a job. I usually answer within two days.</p>
+<p><a href="mailto:filip@biljicserver.space">filip@biljicserver.space</a><br>
+<a href="https://www.linkedin.com/in/filip-biljic/">LinkedIn</a> · <a href="https://github.com/ficaa1">GitHub</a></p>
+<p class="clock" id="clock">I live in Paris, on Central European Time.</p>
+
+<form class="letter" id="letter" action="mailto:filip@biljicserver.space" method="get" enctype="text/plain">
+<label for="subject">What is it about?</label>
+<select id="subject" name="subject">
+<option>A question about a blog post</option>
+<option>A homelab problem</option>
+<option>A job or a project</option>
+<option>Something else</option>
+</select>
+<label for="body">Your message</label>
+<textarea id="body" name="body" placeholder="Hello Filip,"></textarea>
+<button type="submit">Open it in my email program</button>
+<p class="soft" style="margin:12px 0 0">Nothing is sent from this page. Your own email program opens with the letter written, and you press send.</p>
+</form>
+
+
+</main>
+<footer>
+<div id="trace"><p>Filip Biljic, Paris.</p></div>
+</footer>
+<script src="site.js"></script>
+</body>
+</html>

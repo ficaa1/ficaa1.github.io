@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blog - Filip Biljic</title>
+<link rel="stylesheet" href="site.css">
+</head>
+<body data-page="blog">
+<nav><a href="index.html">Welcome</a> | <b>Blog</b> | <a href="cv.html">CV</a> | <a href="contact.html">Contact</a> | <a href="photos.html">Photos</a> | <a href="music.html">Music</a></nav>
+<main>
+<h1>Blog</h1>
+<p class="lead">Notes from my homelab and my day job, written so I can find them again.</p>
+<form class="find" role="search" onsubmit="return false">
+<label for="find">Find a post:</label>
+<input id="find" type="search" autocomplete="off" placeholder="proxmox, plex, lvm">
+<span id="count" class="soft" aria-live="polite">10 posts</span>
+</form>
+<ul class="posts">
+<li class="year" data-year="2025">2025</li>
+<li class="post" data-year="2025"><a href="posts/homelab-plex-server.html">Homelab Series Part 4: The Plex Experience with Hardware Transcoding</a><time datetime="2025-07-18">18 Jul</time></li>
+<li class="post" data-year="2025"><a href="posts/homelab-tiered-storage.html">Homelab Series Part 3: The Brains - Automated Tiered Storage with Bash and APIs</a><time datetime="2025-07-17">17 Jul</time></li>
+<li class="post" data-year="2025"><a href="posts/homelab-arr-stack.html">Homelab Series Part 2: The 'Arr' Automation Engine</a><time datetime="2025-07-16">16 Jul</time></li>
+<li class="post" data-year="2025"><a href="posts/homelab-vpn-gateway.html">Homelab Series Part 1: Building a Secure VPN Gateway with Docker</a><time datetime="2025-07-15">15 Jul</time></li>
+<li class="year" data-year="2024">2024</li>
+<li class="post" data-year="2024"><a href="posts/Fish-shell-and-tmux-conf.html">Fish shell and tmux config files</a><time datetime="2024-11-04">4 Nov</time></li>
+<li class="post" data-year="2024"><a href="posts/Changing-Prometheus-Data-dir.html">Changing Prometheus TSDB directory</a><time datetime="2024-11-02">2 Nov</time></li>
+<li class="post" data-year="2024"><a href="posts/ripgrep-searchandreplace.html">RIPGREP Search and replace</a><time datetime="2024-06-14">14 Jun</time></li>
+<li class="year" data-year="2023">2023</li>
+<li class="post" data-year="2023"><a href="posts/resizedisk.html">Resizing disk in Proxmox and guest VM</a><time datetime="2023-05-16">16 May</time></li>
+<li class="post" data-year="2023"><a href="posts/Migration-day.html">Migration day</a><time datetime="2023-05-08">8 May</time></li>
+<li class="post" data-year="2023"><a href="posts/ServerInstall.html">Building and installing my server</a><time datetime="2023-05-06">6 May</time></li>
+</ul>
+<p class="soft keys">Keyboard: <kbd>/</kbd> to search, <kbd>j</kbd> and <kbd>k</kbd> to move down and up, <kbd>Enter</kbd> to open.</p>
+</main>
+<footer>
+<div id="trace"><p>Filip Biljic, Paris.</p></div>
+</footer>
+<script src="site.js"></script>
+</body>
+</html>

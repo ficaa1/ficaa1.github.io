@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Changing Prometheus TSDB directory - Filip Biljic</title>
+<link rel="stylesheet" href="../site.css">
+</head>
+<body data-page="post">
+<nav><a href="../index.html">Welcome</a> | <a href="../blog.html">Blog</a> | <a href="../cv.html">CV</a> | <a href="../contact.html">Contact</a> | <a href="../photos.html">Photos</a> | <a href="../music.html">Music</a></nav>
+<main>
+<h1 class="post-title">Changing Prometheus TSDB directory</h1>
+<p class="soft">Written 2024-11-02. 186 words, about 1 minutes.</p>
+<ol><li>Stop prometheus and take backup</li></ol>
+<pre><code>systemctl stop prometheus
+sudo cp -vr /var/lib/prometheus /opt/intersec/prometheus_backup</code></pre>
+<ol><li>Create new data directory</li></ol>
+<pre><code>chown -R prometheus:prometheus /data
+sudo -u prometheus mkdir /data/prometheus</code></pre>
+<ol><li>Change prometheus service to use new directory</li></ol>
+<pre><code>vim /etc/systemd/system/prometheus.service
+
+[Unit]
+Description=Prometheus
+After=network-online.target
+Requires=local-fs.target
+After=local-fs.target
+
+[Service]
+Type=simple
+Environment="GOMAXPROCS=8"
+User=prometheus
+Group=prometheus
+ExecReload=/bin/kill -HUP $MAINPID
+ExecStart=/usr/local/bin/prometheus \
+  --storage.tsdb.path=/data/prometheus \  &lt;---------- CHANGE DIRECTORY HERE
+  --storage.tsdb.retention.time=30d \
+  --storage.tsdb.retention.size=0 \
+  --web.config.file=/etc/prometheus/web.yml \
+  --web.console.libraries=/etc/prometheus/console_libraries \
+  --web.console.templates=/etc/prometheus/consoles \
+  --web.listen-address=0.0.0.0:9090 \
+  --web.external-url= \
+  --config.file=/etc/prometheus/prometheus.yml
+
+CapabilityBoundingSet=CAP_SET_UID
+LimitNOFILE=65000
+LockPersonality=true
+NoNewPrivileges=true
+MemoryDenyWriteExecute=true
+PrivateDevices=true
+PrivateTmp=true
+ProtectHome=true
+RemoveIPC=true
+RestrictSUIDSGID=true
+#SystemCallFilter=@signal @timer
+
+ReadWritePaths=/data/prometheus   &lt;--------------- CHANGE DIRECTORY HERE
+
+PrivateUsers=true
+ProtectControlGroups=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+ProtectSystem=strict
+
+
+SyslogIdentifier=prometheus
+Restart=always
+TimeoutStopSec=600s
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+<ol><li>Verify permissions and owner</li></ol>
+<pre><code>ls -al /data/
+ls -al /data/prometheus/
+root@dc2-monitoring-server-1:~# ls -al /data/prometheus/
+total 120
+drwxr-xr-x 25 prometheus prometheus  4096  4 oct.  09:54 .
+drwxr-xr-x  4 prometheus prometheus  4096  4 oct.  09:53 ..</code></pre>
+<ol><li>Move the TSDB to new location</li></ol>
+<p><code>mv /var/lib/prometheus/* /data/prometheus/</code></p>
+<ol><li>Reload service file and start prometheus, verify if all is ok with journalctl and df</li></ol>
+<pre><code>systemctl daemon-reload
+systemctl start prometheus
+journalctl -xe
+df -h</code></pre>
+<p><a href="../blog.html">Back to the list of posts</a></p>
+</main>
+<footer><div id="trace"><p>Filip Biljic, Paris.</p></div></footer>
+<script src="../site.js"></script>
+</body>
+</html>

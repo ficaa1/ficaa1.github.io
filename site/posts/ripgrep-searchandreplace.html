@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RIPGREP Search and replace - Filip Biljic</title>
+<link rel="stylesheet" href="../site.css">
+</head>
+<body data-page="post">
+<nav><a href="../index.html">Welcome</a> | <a href="../blog.html">Blog</a> | <a href="../cv.html">CV</a> | <a href="../contact.html">Contact</a> | <a href="../photos.html">Photos</a> | <a href="../music.html">Music</a></nav>
+<main>
+<h1 class="post-title">RIPGREP Search and replace</h1>
+<p class="soft">Written 2024-06-14. 27 words, about 1 minutes.</p>
+<p><code>rg --passthru '/dev/mapper/vg_geosafe-sc-core' -r '/dev/mapper/vg_geosafe-sc--core' ansible/group_vars/node11 &gt; tmp.txt &amp;&amp; mv tmp.txt ansible/group_vars/node11</code></p>
+<p>changes /dev/mapper/vg_geosafe-sc-core to /dev/mapper/vg_geosafe-sc--core and replaces it in the file</p>
+<p><a href="../blog.html">Back to the list of posts</a></p>
+</main>
+<footer><div id="trace"><p>Filip Biljic, Paris.</p></div></footer>
+<script src="../site.js"></script>
+</body>
+</html>
