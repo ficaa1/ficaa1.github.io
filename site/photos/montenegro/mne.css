@@ -63,7 +63,7 @@ main[data-country="montenegro"] img { display: block; width: 100%; height: auto;
 
 /* ---- Opening: the name with the cove's waterline running through it (limestone above, the sea below), the dates on
    the water, and the six days to jump to. Only the name sits on colour; the frames stay on white and black. */
-main[data-country="montenegro"] { --stone: #e6dfd0; --sea: #1f4250; --deep: #14262e; }
+main[data-country="montenegro"] { --stone: #e6dfd0; --sea: #c40308; --deep: #4a0a0b; }
 main[data-country="montenegro"] .opening { padding: 0; }
 main[data-country="montenegro"] .waterline {
   --seam: 50%; position: relative; min-height: max(520px, min(calc(100svh - 250px), 900px)); overflow: hidden; background: var(--stone);
@@ -113,7 +113,7 @@ main[data-country="montenegro"] .intro {
 main[data-country="montenegro"] .intro .cover { grid-area: 1 / 2; justify-self: end; width: min(100%, calc(88svh * var(--r))); }
 main[data-country="montenegro"] .intro .index { grid-area: 1 / 1; }
 main[data-country="montenegro"] .when { font-size: var(--s-lead); font-weight: 600; }
-main[data-country="montenegro"] .gear { font-size: var(--s-lead); color: #b9c3c4; }
+main[data-country="montenegro"] .gear { font-size: var(--s-lead); color: #f2c9c4; }
 main[data-country="montenegro"] .index .m { font-size: var(--s-lead); font-weight: 700; margin-bottom: clamp(16px, 2vw, 28px); }
 /* The month: every day of August in a line that wraps, the days shot here large, each with its year under it. */
 main[data-country="montenegro"] .month { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px 14px; }
@@ -240,7 +240,7 @@ main[data-country="montenegro"] .coast-map .spot path { fill: none; stroke: var(
 main[data-country="montenegro"] .coast-map .spot text { font-size: 15px; }
 main[data-country="montenegro"] .coast-map .away path { fill: none; stroke: var(--deep); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; transition: stroke 200ms var(--ease); }
 main[data-country="montenegro"] .coast-map .away:focus-visible path, main[data-country="montenegro"] .coast-map .away:active path { stroke: var(--mark); }
-main[data-country="montenegro"] .coast .credit { position: absolute; left: var(--gut); bottom: 12px; font-size: var(--s-small); color: #b9c3c4; }
+main[data-country="montenegro"] .coast .credit { position: absolute; left: var(--gut); bottom: 12px; font-size: var(--s-small); color: #f2c9c4; }
 main[data-country="montenegro"] .coast .credit a { color: inherit; }
 main[data-country="montenegro"] .coast .places { padding-top: clamp(32px, 4vw, 56px); }
 main[data-country="montenegro"] .coast .places a, main[data-country="montenegro"] .coast .places .sealed > span { font-size: var(--s-head); letter-spacing: -0.03em; line-height: 1.1; }
