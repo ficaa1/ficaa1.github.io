@@ -4,5 +4,10 @@
   { "id": "montenegro/herceg-novi", "title": "Herceg Novi", "in": "montenegro" },
   { "id": "montenegro/budva", "title": "Budva", "in": "montenegro" },
   { "id": "montenegro/kolasin", "title": "Kolasin", "in": "montenegro" },
+  { "id": "italy", "title": "Italy", "dumps": ["sicily-2023", "italy-2024", "rome-2025"] },
+  { "id": "italy/rome", "title": "Rome", "in": "italy" },
+  { "id": "italy/puglia", "title": "Puglia", "in": "italy" },
+  { "id": "italy/sicily", "title": "Sicily", "in": "italy" },
+  { "id": "italy/statues", "title": "Statues", "in": "italy" },
   { "id": "ljubljana", "title": "Ljubljana", "dumps": ["ljubljana-2025-05", "ljubljana-2025-08"] }
 ]

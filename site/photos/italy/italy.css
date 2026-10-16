@@ -1,0 +1,328 @@
+/* Italy: the country's page and the Puglia, Sicily and Statues pages share this design (Rome has its own). Loaded by a
+   <link> inside <main>, so it arrives and leaves with the page when the site swaps pages in place. Scope every rule:
+     main[data-country="italy"] ...                   anything inside the page
+     body:has(main[data-country="italy"]) ...         the page's colours, the nav, the footer and the player
+
+   Places are marked the way an Italian road marks a town: a white sign with a black border, the name in capitals.
+   Leaving a town crosses its sign out in red. The country stands on the tricolore; Puglia on the Adriatic and the stone
+   of Lecce, Sicily on the red and yellow of its flag, each day opening on one of the two in turn. The pictures stay on
+   white. The statues stand on black, each over the name carved on its plinth.
+   Barlow and Barlow Semi Condensed (SIL Open Font Licence), latin subset, served from this folder; Cinzel from Rome's. */
+@font-face {
+  font-family: "Barlow"; src: url("barlow.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Barlow Semi Condensed"; src: url("barlow-sc.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Cinzel"; src: url("rome/cinzel.woff2") format("woff2"); font-weight: 400 700; font-style: normal; font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+body:has(main[data-country="italy"]) {
+  --bg: #fff; --surface: #f0f0f0; --ink: #111; --soft: #5c5c5c; --panel: #f0f0f0;
+  --paper: #fff; --paper-ink: #111; --film: #111; --mark: #c8102e;
+  --link: #111; --visited: #111;
+  --verde: #009246; --rosso: #ce2b37; --roma: #d2914a; --sea: #1b6ca8; --stone: #e3b866; --sic-red: #d42a1e; --sic-yellow: #f9cf1a;
+  --face: "Barlow", "Helvetica Neue", Arial, sans-serif;
+  --sign-face: "Barlow Semi Condensed", "Arial Narrow", Arial, sans-serif;
+  --cut: "Cinzel", Georgia, serif;
+  --s-small: 14px;
+  --s-body: clamp(17px, 16px + 0.25vw, 19px);
+  --s-lead: clamp(20px, 17px + 0.7vw, 26px);
+  --s-sign: clamp(26px, 16px + 2.4vw, 52px);
+  --s-head: clamp(30px, 20px + 2.4vw, 56px);
+  --s-name: clamp(64px, 12vw, 200px);
+  --ease: cubic-bezier(.22, 1, .36, 1);
+  --gut: clamp(16px, 2.2vw, 32px);
+  --row-gap: clamp(12px, 1.4vw, 24px);
+  background: var(--bg); color: var(--ink); font-family: var(--face);
+}
+body:has(main[data-country="italy"][data-room="statues"]) {
+  --bg: #000; --surface: #1a1a1a; --ink: #ececec; --soft: #a3a3a3; --panel: #1a1a1a;
+  --paper: #000; --paper-ink: #ececec; --film: #ececec; --link: #ececec; --visited: #ececec; --mark: #e8483f;
+}
+body:has(main[data-country="italy"]) nav, body:has(main[data-country="italy"]) #player { background: var(--bg); }
+body:has(main[data-country="italy"]) ::selection { background: var(--ink); color: var(--bg); }
+body:has(main[data-country="italy"]) :focus-visible { outline-color: var(--mark); }
+
+main[data-country="italy"] { background: var(--bg); color: var(--ink); }
+main[data-country="italy"] img { display: block; width: 100%; height: auto; }
+main[data-country="italy"] h1, main[data-country="italy"] h2, main[data-country="italy"] h3,
+main[data-country="italy"] p, main[data-country="italy"] figure { margin: 0; font-weight: 400; font-style: normal; }
+
+/* The tabs. */
+main[data-country="italy"] > .tabs { padding: 28px 12px 0; }
+@media (min-width: 900px) { main[data-country="italy"] > .tabs ol { flex-wrap: wrap; overflow: visible; } }
+main[data-country="italy"] .tabs .bar { background: #cfcfcf; }
+main[data-country="italy"] .tabs .place { font-style: normal; font-weight: 600; }
+main[data-country="italy"] .tabs .here > a { background: var(--ink); color: var(--bg); }
+main[data-country="italy"] .tabs .here .n { color: #bdbdbd; }
+main[data-country="italy"] .tabs .here .bar { background: #555; }
+main[data-country="italy"] .tabs .here .bar i { background: var(--bg); }
+main[data-country="italy"][data-room="statues"] .tabs .bar { background: #3a3a3a; }
+main[data-country="italy"][data-room="statues"] .tabs .here .n { color: #555; }
+main[data-country="italy"][data-room="statues"] .tabs .here .bar { background: #bbb; }
+@media (hover: hover) and (pointer: fine) {
+  main[data-country="italy"] .tabs li:not(.here) > a:hover { background: var(--surface); }
+}
+
+/* ---- The sign: white, a black border with round corners, the name in capitals. Crossed out in red on the way out. */
+main[data-country="italy"] .sign {
+  display: inline-block; font-family: var(--sign-face); font-weight: 600; line-height: 1; letter-spacing: 0.02em;
+  text-transform: uppercase; padding: 0.32em 0.55em 0.26em; border: max(2px, 0.08em) solid currentColor; border-radius: 0.18em;
+  background: var(--bg); white-space: nowrap; font-style: normal; font-size: 1em; margin: 0;
+}
+main[data-country="italy"] .sign.out { position: relative; color: var(--ink); }
+main[data-country="italy"] .sign.out::after {
+  content: ""; position: absolute; left: -6%; right: -6%; top: 50%; height: 0.16em; margin-top: -0.08em;
+  background: var(--mark); rotate: -12deg;
+}
+
+/* ---- The opening: the arms beside the name on its sign, the dates and the camera; the places; then the first picture
+   with the days down the side, each with the town it was in. */
+main[data-country="italy"] .opening { padding: clamp(48px, 7vw, 120px) var(--gut) 0; }
+main[data-country="italy"] .title {
+  display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: clamp(20px, 3vw, 48px);
+}
+main[data-country="italy"] .arms {
+  height: clamp(96px, 12vw, 200px); aspect-ratio: var(--ar); background: currentColor; forced-color-adjust: none;
+  -webkit-mask-position: center; mask-position: center; -webkit-mask-size: contain; mask-size: contain;
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+}
+main[data-country="italy"] h1 { font-size: var(--s-name); min-width: 0; }
+main[data-country="italy"] h1 .sign.name { border-width: max(4px, 0.06em); padding: 0.14em 0.32em 0.08em; letter-spacing: 0; }
+main[data-country="italy"] .facts {
+  grid-column: 2; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 32px; font-size: var(--s-lead);
+}
+main[data-country="italy"] .gear { color: var(--soft); font-size: var(--s-body); text-align: right; }
+
+main[data-country="italy"] .places { display: flex; flex-wrap: wrap; gap: 8px clamp(24px, 3vw, 48px); margin: clamp(40px, 5vw, 72px) 0 0; padding: 0; list-style: none; }
+main[data-country="italy"] .places a, main[data-country="italy"] .places .sealed > span { display: inline-block; padding: 6px 0; color: var(--ink); text-decoration: none; font-size: var(--s-lead); }
+main[data-country="italy"] .places .place { font-family: var(--sign-face); font-weight: 600; text-transform: uppercase; letter-spacing: 0.03em; transition: color 200ms var(--ease); }
+main[data-country="italy"] .places .yr { color: var(--soft); }
+main[data-country="italy"] .places .here a { text-decoration: underline 3px var(--mark); text-underline-offset: 8px; }
+main[data-country="italy"] .places a:active .place { color: var(--mark); }
+@media (hover: hover) and (pointer: fine) { main[data-country="italy"] .places a:hover .place { color: var(--mark); } }
+
+main[data-country="italy"] .intro {
+  display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(32px, 4vw, 72px); align-items: start;
+  margin-top: clamp(40px, 5vw, 80px);
+}
+main[data-country="italy"] .intro .cover { width: min(100%, calc(84svh * var(--r))); }
+main[data-country="italy"] .index .m { font-family: var(--sign-face); font-weight: 600; font-size: var(--s-lead); text-transform: uppercase; letter-spacing: 0.04em; color: var(--soft); margin-bottom: 12px; }
+main[data-country="italy"] .road { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+main[data-country="italy"] .road a {
+  display: grid; grid-template-columns: max-content minmax(0, 1fr); align-items: center; gap: 2px 16px; padding: 8px 0; color: var(--ink); text-decoration: none;
+}
+main[data-country="italy"] .road .dd { grid-row: span 2; min-width: 1.15em; font-family: var(--sign-face); font-weight: 600; font-size: clamp(48px, 5vw, 80px); line-height: 0.9; font-variant-numeric: tabular-nums; text-align: right; transition: color 200ms var(--ease); }
+main[data-country="italy"] .road .wd { font-size: var(--s-body); color: var(--soft); }
+main[data-country="italy"] .road .sign.s { justify-self: start; font-size: clamp(16px, 1.3vw, 20px); }
+main[data-country="italy"] .road .sign.s + .sign.s { grid-column: 2; }
+main[data-country="italy"] .road a:active .dd { color: var(--mark); }
+@media (hover: hover) and (pointer: fine) { main[data-country="italy"] .road a:hover .dd { color: var(--mark); } }
+
+/* ---- A day: the town's sign over the date, then the frames in rows. */
+main[data-country="italy"] .day { padding: 0 var(--gut); margin-top: clamp(140px, 14vw, 220px); scroll-margin-top: 24px; }
+main[data-country="italy"] .date { display: flex; flex-wrap: wrap; align-items: center; gap: 16px clamp(20px, 2.4vw, 40px); margin-bottom: clamp(32px, 4vw, 64px); }
+main[data-country="italy"] .date .where { font-size: var(--s-sign); }
+main[data-country="italy"] .date h2 { font-family: var(--sign-face); font-weight: 600; font-size: var(--s-head); line-height: 1.05; }
+main[data-country="italy"] h2 > a[data-sheet-open] { color: inherit; text-decoration: none; transition: color 200ms var(--ease); }
+main[data-country="italy"] h2 > a[data-sheet-open]:active { color: var(--mark); }
+@media (hover: hover) and (pointer: fine) { main[data-country="italy"] h2 > a[data-sheet-open]:hover { color: var(--mark); } }
+
+main[data-country="italy"] .rows { display: grid; gap: clamp(48px, 6vw, 112px); }
+main[data-country="italy"] .row { display: flex; gap: var(--row-gap); align-items: flex-start; width: min(100%, calc(80svh * var(--sum))); }
+main[data-country="italy"] .row.r { margin-left: auto; }
+main[data-country="italy"] .row.c { margin-inline: auto; }
+main[data-country="italy"] .shot { flex: var(--r) 1 0; min-width: 0; }
+main[data-country="italy"] .meta { display: block; margin-top: 10px; font-size: var(--s-small); color: var(--soft); font-variant-numeric: tabular-nums; }
+main[data-country="italy"] .shot a, main[data-country="italy"] .plinth a { display: block; }
+main[data-country="italy"] .shot img, main[data-country="italy"] .plinth img { transition: opacity 300ms var(--ease); }
+@media (hover: hover) and (pointer: fine) {
+  main[data-country="italy"] .shot a:hover img, main[data-country="italy"] .plinth a:hover img { opacity: 0.88; }
+}
+/* Leaving one town for the next within a day. */
+main[data-country="italy"] .leave {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 16px clamp(24px, 4vw, 64px); font-size: var(--s-sign);
+  margin: clamp(96px, 10vw, 160px) 0 clamp(48px, 6vw, 96px);
+}
+/* ---- Colour. A region's opening is a field of its colour; each day opens on one of its two colours in turn, the town's
+   white sign on it like a sign against the sky. */
+main[data-region="puglia"] { --f: var(--sea); --f-ink: #fff; --a: var(--sea); --a-ink: #fff; --b: var(--stone); --b-ink: #111; }
+main[data-region="sicily"] { --f: var(--sic-red); --f-ink: #fff; --a: var(--sic-yellow); --a-ink: #111; --b: var(--sic-red); --b-ink: #fff; }
+main[data-country="italy"] .opening:has(> .ground), main[data-country="italy"] .opening:has(> .flag) { padding-top: 0; }
+main[data-country="italy"] .ground {
+  background: var(--f); color: var(--f-ink); margin: 28px calc(-1 * var(--gut)) 0;
+  padding: clamp(48px, 7vw, 120px) var(--gut) clamp(40px, 5vw, 72px);
+}
+main[data-country="italy"] .ground .gear { color: inherit; }
+main[data-country="italy"] .ground .places a { color: inherit; }
+main[data-country="italy"] .ground .places .yr { color: inherit; opacity: 0.8; }
+main[data-country="italy"] .ground .places .here a { text-decoration-color: currentColor; }
+main[data-country="italy"] .ground .places a:active .place { color: inherit; opacity: 0.7; }
+@media (hover: hover) and (pointer: fine) { main[data-country="italy"] .ground .places a:hover .place { color: inherit; opacity: 0.7; } }
+main[data-country="italy"] .ground .sign, main[data-region] .date .sign { background: #fff; color: #111; }
+main[data-region] .road .dd { color: var(--f); }
+@media (hover: hover) and (pointer: fine) { main[data-region] .road a:hover .dd { color: var(--ink); } }
+main[data-region] .day .date { margin: 0 calc(-1 * var(--gut)) clamp(32px, 4vw, 64px); padding: clamp(28px, 3.4vw, 56px) var(--gut); }
+main[data-region] .day.a .date { background: var(--a); color: var(--a-ink); }
+main[data-region] .day.b .date { background: var(--b); color: var(--b-ink); }
+main[data-region] .date h2 > a[data-sheet-open]:active { color: inherit; text-decoration: underline 3px; text-underline-offset: 8px; }
+@media (hover: hover) and (pointer: fine) {
+  main[data-region] .date h2 > a[data-sheet-open]:hover { color: inherit; text-decoration: underline 3px; text-underline-offset: 8px; }
+}
+
+main[data-country="italy"] .credit { padding: 0 var(--gut); margin-top: clamp(96px, 10vw, 160px); font-size: var(--s-small); color: var(--soft); }
+main[data-country="italy"] .credit a { color: inherit; }
+
+/* ---- The country: the map with the places on it, and a door to each place with its days. */
+main[data-country="italy"] .atlas {
+  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 4vw, 72px); align-items: start;
+  padding: clamp(64px, 7vw, 120px) var(--gut) 0;
+}
+main[data-country="italy"] .atlas .map { position: sticky; top: 24px; }
+main[data-country="italy"] .boot { display: block; width: 100%; height: auto; max-height: 88svh; }
+main[data-country="italy"] .boot .coast { fill: none; stroke: var(--ink); stroke-width: 1.6; stroke-linejoin: round; }
+main[data-country="italy"] .boot .border { fill: none; stroke: var(--soft); stroke-width: 1.2; stroke-dasharray: 4 6; }
+main[data-country="italy"] .boot .dot circle { fill: var(--ink); transition: r 200ms var(--ease), fill 200ms var(--ease); }
+main[data-country="italy"] .boot .pn {
+  font-family: var(--sign-face); font-weight: 600; font-size: 46px; letter-spacing: 0.02em; text-transform: uppercase; fill: var(--ink);
+  paint-order: stroke; stroke: var(--bg); stroke-width: 10px; stroke-linejoin: round; transition: fill 200ms var(--ease);
+}
+main[data-country="italy"] .boot .place:focus-visible { outline: none; }
+main[data-country="italy"] .boot .place:focus-visible .pn, main[data-country="italy"] .boot .place:active .pn,
+main[data-country="italy"] .boot .place:focus-visible circle, main[data-country="italy"] .boot .place:active circle { fill: var(--mark); }
+@media (hover: hover) and (pointer: fine) {
+  main[data-country="italy"] .boot .place:hover .pn, main[data-country="italy"] .boot .place:hover circle { fill: var(--mark); }
+  main[data-country="italy"] .boot .place:hover circle { r: 9; }
+}
+main[data-country="italy"] .map .credit { padding: 0; margin-top: 8px; }
+main[data-country="italy"] .doors { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(48px, 5vw, 88px) var(--row-gap); align-items: start; }
+main[data-country="italy"] .door .in { display: block; color: var(--ink); text-decoration: none; }
+main[data-country="italy"] .door .cover { display: block; }
+main[data-country="italy"] .door .cover img { transition: opacity 300ms var(--ease); }
+main[data-country="italy"] .door .door-sign { margin-top: 16px; font-size: clamp(22px, 2.2vw, 36px); transition: color 200ms var(--ease); }
+main[data-country="italy"] .door .in:active .door-sign { color: var(--mark); }
+@media (hover: hover) and (pointer: fine) {
+  main[data-country="italy"] .door .in:hover .door-sign { color: var(--mark); }
+  main[data-country="italy"] .door .in:hover img { opacity: 0.88; }
+}
+main[data-country="italy"] .door .days { margin-top: 12px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 12px; font-size: var(--s-body); }
+main[data-country="italy"] .door .days .mo { color: var(--soft); flex-basis: 100%; }
+main[data-country="italy"] .door .days a { font-family: var(--sign-face); font-weight: 600; font-size: clamp(22px, 2vw, 32px); color: var(--ink); text-decoration: none; font-variant-numeric: tabular-nums; padding: 4px 0; transition: color 200ms var(--ease); }
+main[data-country="italy"] .door .days a:active { color: var(--mark); }
+@media (hover: hover) and (pointer: fine) { main[data-country="italy"] .door .days a:hover { color: var(--mark); } }
+main[data-country="italy"] .atlas .places { grid-column: 1 / -1; }
+
+/* The country: the emblem and the name on the tricolore; each place in its own colour on the map and on its door. */
+main[data-country="italy"] .flag { display: grid; margin: 28px calc(-1 * var(--gut)) 0; }
+main[data-country="italy"] .flag > * { grid-area: 1 / 1; }
+main[data-country="italy"] .stripes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+main[data-country="italy"] .stripes span:nth-child(1) { background: var(--verde); }
+main[data-country="italy"] .stripes span:nth-child(2) { background: #fff; }
+main[data-country="italy"] .stripes span:nth-child(3) { background: var(--rosso); }
+main[data-country="italy"] .crest {
+  position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: clamp(24px, 3vw, 48px); padding: clamp(64px, 9vw, 160px) var(--gut); color: #111;
+}
+main[data-country="italy"] .crest .sign { background: #fff; color: #111; }
+main[data-country="italy"] .flag + .title { display: block; margin-top: clamp(32px, 4vw, 56px); }
+main[data-country="italy"] .flag + .title .facts { justify-content: space-between; }
+main[data-country="italy"] [data-place="rome"] { --c: var(--roma); --c-ink: #111; }
+main[data-country="italy"] [data-place="puglia"] { --c: var(--sea); --c-ink: #fff; }
+main[data-country="italy"] [data-place="sicily"] { --c: var(--sic-red); --c-ink: #fff; }
+main[data-country="italy"] [data-place="statues"] { --c: #111; --c-ink: #fff; }
+main[data-country="italy"] .boot .place[data-place] .dot circle { fill: var(--c); r: 8; }
+main[data-country="italy"] .door[data-place] .door-sign,
+main[data-country="italy"] .door[data-place] .in:active .door-sign { background: var(--c); color: var(--c-ink); }
+@media (hover: hover) and (pointer: fine) {
+  main[data-country="italy"] .door[data-place] .in:hover .door-sign { background: var(--c); color: var(--c-ink); }
+  main[data-country="italy"] .boot .place[data-place]:hover .dot circle { fill: var(--c); r: 11; }
+}
+
+/* ---- The statues, on black. First the avenue: every statue at one height, each raised or lowered so that the heads
+   stand on one line, as the busts do along the paths of Lecce's public garden and the Gianicolo. */
+main[data-country="italy"][data-room="statues"] h1 {
+  font-family: var(--cut); font-weight: 600; font-size: var(--s-name); letter-spacing: 0.06em; text-transform: uppercase; line-height: 0.95;
+}
+main[data-country="italy"][data-room="statues"] .title { display: block; }
+main[data-country="italy"][data-room="statues"] .title .when { margin-top: 20px; font-size: var(--s-lead); color: var(--soft); }
+main[data-country="italy"] .avenue {
+  --h: clamp(220px, 24vw, 360px);
+  list-style: none; margin: clamp(56px, 6vw, 96px) calc(-1 * var(--gut)) 0; padding: 0 var(--gut) 24px; display: flex; align-items: flex-start;
+  gap: 0 clamp(16px, 2vw, 36px); overflow-x: auto; scroll-snap-type: x proximity; scroll-padding-inline: var(--gut);
+  scrollbar-color: #444 transparent; scrollbar-width: thin;
+}
+main[data-country="italy"] .avenue li { flex: none; width: calc(var(--h) * var(--r)); margin-top: calc((var(--lift) + 0.24) * var(--h)); scroll-snap-align: start; }
+main[data-country="italy"] .avenue a { display: block; color: var(--ink); text-decoration: none; }
+main[data-country="italy"] .avenue img { display: block; width: 100%; height: auto; transition: opacity 300ms var(--ease), translate 400ms var(--ease); }
+main[data-country="italy"] .avenue .tag {
+  display: block; margin-top: 10px; font-family: var(--cut); font-weight: 600; font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--soft); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transition: color 200ms var(--ease);
+}
+main[data-country="italy"] .avenue a:focus-visible .tag, main[data-country="italy"] .avenue a:active .tag { color: var(--ink); }
+@media (hover: hover) and (pointer: fine) {
+  main[data-country="italy"] .avenue a:hover .tag { color: var(--ink); }
+  main[data-country="italy"] .avenue a:hover img { translate: 0 -6px; }
+}
+
+/* Then each statue alone, large, over the name carved on its plinth. */
+main[data-country="italy"] .plinths { display: grid; gap: clamp(72px, 9vw, 160px); }
+main[data-country="italy"] .plinth { width: min(100%, calc(80svh * var(--r)), 1100px); }
+main[data-country="italy"] .plinth.r { margin-left: auto; }
+main[data-country="italy"] .plinth figcaption { margin-top: 18px; }
+main[data-country="italy"] .carved {
+  display: block; font-family: var(--cut); font-weight: 600; font-size: clamp(24px, 1.2vw + 18px, 40px); letter-spacing: 0.14em;
+  text-transform: uppercase; line-height: 1.2;
+}
+main[data-country="italy"][data-room="statues"] .date .where { font-family: var(--cut); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+
+/* ---- Motion: each part rises once as it arrives. */
+@media (prefers-reduced-motion: no-preference) {
+  main[data-country="italy"] .rise { opacity: 0; translate: 0 24px; }
+  main[data-country="italy"] .rise.in {
+    opacity: 1; translate: none;
+    transition: opacity 700ms var(--ease) var(--d, 0ms), translate 900ms var(--ease) var(--d, 0ms);
+  }
+  main[data-country="italy"] .sign.out.in::after { animation: it-cross 700ms var(--ease) 300ms both; }
+  @keyframes it-cross { from { scale: 0 1; } to { scale: 1 1; } }
+}
+
+/* ---- Narrow screens: one column, frames edge to edge; two or three upright frames keep their row. */
+@media (max-width: 899px) {
+  main[data-country="italy"] > .tabs { padding: 16px 0 0 16px; }
+  main[data-country="italy"] .opening { padding-top: 32px; }
+  main[data-country="italy"] .title { grid-template-columns: minmax(0, 1fr) auto; gap: 20px 16px; }
+  main[data-country="italy"] .title .arms { grid-column: 2; grid-row: 1; height: 88px; }
+  main[data-country="italy"] .title h1 { grid-column: 1; grid-row: 1; font-size: 15vw; }
+  main[data-country="italy"] .facts { grid-column: 1 / -1; display: block; text-align: left; }
+  main[data-country="italy"] .gear { text-align: left; margin-top: 6px; }
+  main[data-country="italy"] .intro { display: block; }
+  main[data-country="italy"] .intro .cover { width: auto; margin: 0 calc(-1 * var(--gut)); }
+  main[data-country="italy"] .index { margin-top: 40px; }
+  main[data-country="italy"] .rows { margin: 0 calc(-1 * var(--gut)); gap: 56px; }
+  main[data-country="italy"] .rows > .row { width: auto; margin-inline: 0; }
+  main[data-country="italy"] .row:not(.keep) { display: block; }
+  main[data-country="italy"] .row:not(.keep) .shot + .shot { margin-top: 40px; }
+  main[data-country="italy"] .row.keep { gap: 6px; }
+  main[data-country="italy"] .row.keep .meta { font-size: 13px; }
+  main[data-country="italy"] .meta { padding: 0 var(--gut); }
+  main[data-country="italy"] .row.keep .shot:first-child .meta { padding-right: 0; }
+  main[data-country="italy"] .row.keep .shot:last-child .meta { padding-left: 0; }
+  main[data-country="italy"] .atlas { display: block; }
+  main[data-country="italy"] .atlas .map { position: static; }
+  main[data-country="italy"] .boot .pn { font-size: 64px; stroke-width: 14px; }
+  main[data-country="italy"] .doors { grid-template-columns: minmax(0, 1fr); margin-top: 56px; }
+  main[data-country="italy"] .avenue { --h: 200px; gap: 0 14px; }
+  main[data-country="italy"] .ground, main[data-country="italy"] .flag { margin-top: 16px; }
+  main[data-country="italy"] .crest .arms { height: 120px; }
+  main[data-country="italy"] .plinths { margin: 0 calc(-1 * var(--gut)); gap: 64px; }
+  main[data-country="italy"] .plinth { width: auto; }
+  main[data-country="italy"] .plinth figcaption { padding: 0 var(--gut); }
+}

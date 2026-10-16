@@ -98,6 +98,16 @@ main[data-dump="rome-2025"] .facts {
   font-family: var(--cut); font-size: var(--s-lead); font-weight: 600;
 }
 main[data-dump="rome-2025"] .gear { font-weight: 400; }
+/* The other places in Italy, cut into the foot of the wall. */
+main[data-dump="rome-2025"] .places {
+  justify-self: stretch; list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px clamp(24px, 3vw, 48px);
+  font-family: var(--cut); font-size: var(--s-lead); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em;
+}
+main[data-dump="rome-2025"] .places a { color: var(--carve); text-decoration: none; transition: color 200ms var(--ease); }
+main[data-dump="rome-2025"] .places .yr { font-weight: 400; }
+main[data-dump="rome-2025"] .places .here a { text-decoration: underline 2px; text-underline-offset: 8px; }
+main[data-dump="rome-2025"] .places a:active { color: var(--marble); }
+@media (hover: hover) and (pointer: fine) { main[data-dump="rome-2025"] .places a:hover { color: var(--marble); } }
 
 /* The first picture: the plaque of a lane, on its wall. */
 main[data-dump="rome-2025"] .cover { width: min(66vw, calc(84svh * 1.5)); margin: clamp(56px, 7vw, 112px) var(--gut) 0 auto; }
@@ -187,6 +197,7 @@ main[data-dump="rome-2025"] > .stub .next { font-family: var(--cut); font-weight
   main[data-dump="rome-2025"] .index .wd { white-space: nowrap; }
   main[data-dump="rome-2025"] .facts { font-size: 18px; }
   main[data-dump="rome-2025"] .facts { display: block; }
+  main[data-dump="rome-2025"] .places { justify-content: center; }
   main[data-dump="rome-2025"] .gear { margin-top: 6px; }
   main[data-dump="rome-2025"] .cover { width: auto; margin: 40px 0 0; }
   main[data-dump="rome-2025"] .walk { margin: 0 calc(-1 * var(--gut)); gap: 64px; }
