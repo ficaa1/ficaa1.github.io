@@ -75,6 +75,13 @@ main[data-dump="rome-2025"] .wall {
   gap: clamp(32px, 4vw, 56px); padding: clamp(48px, 6vw, 96px) var(--gut) clamp(20px, 2.4vw, 32px);
 }
 main[data-dump="rome-2025"] .title { padding: clamp(24px, 3vw, 44px) clamp(40px, 7vw, 120px) clamp(28px, 3.4vw, 52px); }
+/* The wolf over the name, cut in the same colour as the letters: a public-domain drawing from Wikimedia Commons made into
+   a mask. */
+main[data-dump="rome-2025"] .title .arms {
+  height: clamp(64px, 7.5vw, 128px); aspect-ratio: 800 / 533; margin: 0 auto clamp(18px, 2.2vw, 32px);
+  background: currentColor; -webkit-mask: url(emblem.svg) center / contain no-repeat; mask: url(emblem.svg) center / contain no-repeat;
+  forced-color-adjust: none;
+}
 main[data-dump="rome-2025"] .title h1 { display: flex; flex-direction: column; align-items: center; font-weight: 600; }
 main[data-dump="rome-2025"] .title .nm { font-size: clamp(88px, 16vw, 260px); line-height: 0.9; letter-spacing: 0.04em; margin-right: -0.04em; }
 main[data-dump="rome-2025"] .title .yr { margin-top: 0.7em; font-size: clamp(18px, 12px + 1vw, 28px); letter-spacing: 0.32em; margin-right: -0.32em; }
@@ -162,7 +169,7 @@ main[data-dump="rome-2025"] > .stub .next { font-family: var(--cut); font-weight
     opacity: 1; translate: none;
     transition: opacity 700ms var(--ease) var(--d, 0ms), translate 900ms var(--ease) var(--d, 0ms);
   }
-  main[data-dump="rome-2025"] .title .nm, main[data-dump="rome-2025"] .title .yr { animation: rm-cut 1100ms var(--ease) both; }
+  main[data-dump="rome-2025"] .title .arms, main[data-dump="rome-2025"] .title .nm, main[data-dump="rome-2025"] .title .yr { animation: rm-cut 1100ms var(--ease) both; }
   main[data-dump="rome-2025"] .title .yr { animation-delay: 160ms; }
   @keyframes rm-cut { from { opacity: 0; translate: 0 0.12em; } to { opacity: 1; translate: none; } }
 }

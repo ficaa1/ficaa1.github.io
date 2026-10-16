@@ -66,6 +66,12 @@ main[data-dump="istanbul-2025"] .opening {
   display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: var(--gut); align-items: end;
   padding: 72px var(--gut) 0;
 }
+/* The city's emblem over the name in the name's ink: a public-domain drawing from Wikimedia Commons made into a mask. */
+main[data-dump="istanbul-2025"] .arms {
+  height: clamp(72px, 7vw, 116px); aspect-ratio: 360.08 / 496.06; margin-bottom: clamp(24px, 2.8vw, 40px);
+  background: currentColor; -webkit-mask: url(emblem.svg) left / contain no-repeat; mask: url(emblem.svg) left / contain no-repeat;
+  forced-color-adjust: none;
+}
 main[data-dump="istanbul-2025"] .opening h1 {
   font-size: var(--s-display); line-height: 0.88; letter-spacing: -0.045em; font-weight: 500; margin-left: -0.05em;
 }

@@ -87,7 +87,15 @@ main[data-country="montenegro"] .name .line > span { display: block; }
 }
 main[data-country="montenegro"] .facts {
   position: absolute; z-index: 2; left: var(--gut); right: var(--gut); bottom: clamp(20px, 2.4vw, 32px); text-align: left;
-  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 32px; color: var(--stone);
+  display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: end; gap: 8px 32px; color: var(--stone);
+}
+main[data-country="montenegro"] .facts .when { grid-column: 1; }
+main[data-country="montenegro"] .facts .gear { grid-column: 3; justify-self: end; }
+/* The place's arms in one ink on the water, between the dates and the gear. The picture is a mask (emblem.svg, set on
+   the element so each page finds its own), so the arms take the colour of the text round them. */
+main[data-country="montenegro"] .arms {
+  grid-column: 2; height: min(clamp(72px, 8vw, 128px), 15svh); aspect-ratio: var(--ar);
+  background: currentColor; -webkit-mask: center / contain no-repeat; mask: center / contain no-repeat; forced-color-adjust: none;
 }
 /* Under the name: the country's places, this one marked; then the first picture standing on the right, and the month on
    the left with this place's days set large and the rest of August small. */
@@ -267,7 +275,9 @@ main[data-country="montenegro"] .picks .meta a { color: var(--ink); }
   main[data-country="montenegro"] .waterline { --seam: 46%; min-height: 78svh; }
   main[data-country="montenegro"] .name { font-size: var(--fit-s, 30vw); }
   main[data-country="montenegro"] .waterline:has(.name.one) { --seam: 50%; }
-  main[data-country="montenegro"] .facts { display: block; }
+  main[data-country="montenegro"] .facts { grid-template-columns: minmax(0, 1fr) auto; gap: 0 20px; }
+  main[data-country="montenegro"] .facts .when, main[data-country="montenegro"] .facts .gear { grid-column: 1; justify-self: start; }
+  main[data-country="montenegro"] .arms { grid-column: 2; grid-row: 1 / span 2; height: 64px; }
   main[data-country="montenegro"] .gear { margin-top: 6px; }
   main[data-country="montenegro"] .rows { margin: 0 calc(-1 * var(--gut)); gap: 56px; }
   main[data-country="montenegro"] .rows > .row { width: auto; margin-inline: 0; }

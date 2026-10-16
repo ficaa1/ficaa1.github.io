@@ -31,7 +31,7 @@
 
   // ---- Entrances: each part rises once as it arrives, a few at a time.
   if (still || !('IntersectionObserver' in window)) return;
-  const parts = $$('.opening h1, .opening .when, .opening .gear, .days li, .cover, .day > h2, .sign, .shot, .window, .times');
+  const parts = $$('.opening .arms, .opening h1, .opening .when, .opening .gear, .days li, .cover, .day > h2, .sign, .shot, .window, .times');
   const rise = new IntersectionObserver(es => {
     let k = 0;
     es.filter(e => e.isIntersecting).forEach(e => {
