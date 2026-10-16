@@ -9,6 +9,7 @@
 //   node tools/photos.mjs [--fetch]                the same for every dump
 //   node tools/photos.mjs <id> --upload            copy that dump's pictures to R2 (rclone remote r2:), then check them
 //   PHOTOS_BASE=https://photos.filipbiljic.com node tools/photos.mjs   pages that load pictures from R2 (commit these)
+//   PHOTOS_DONE=1 ...                              leave out the dumps that have no page yet (the published build, on main)
 // Run image work niced: nice -n 19 ionice -c3 node tools/photos.mjs <id> --fetch.  PHOTOS.md has the whole procedure.
 //
 // Markers a page may include (each is <!-- name:start --><!-- name:end -->, filled on every build):
@@ -251,8 +252,11 @@ for (const c of places) {
     years: list([...new Set(c.in ? (shows.get(c.id) || []).map(x => taken(x.p).slice(0, 4)).filter(Boolean) : shelved.map(year))].sort()) });
 }
 // The switcher lists dumps and countries; a country takes the place of the dumps it shelves. The archive box still has every dump.
-const visible = [...dumps.filter(d => !d.hidden && !countryOf(d)), ...countries].sort(newest);
-const sleeves = dumps.filter(d => !d.hidden).sort(newest);
+// PHOTOS_DONE=1, for the published site: a dump with no page, neither its own nor its country's, is left out as if hidden.
+const DONE = !!process.env.PHOTOS_DONE;
+const up = d => !d.hidden && (!DONE || hasPage(d) || !!(countryOf(d) && hasPage(countryOf(d))));
+const visible = [...dumps.filter(d => up(d) && !countryOf(d)), ...countries.filter(c => !DONE || hasPage(c))].sort(newest);
+const sleeves = dumps.filter(up).sort(newest);
 const open = visible.filter(hasPage);
 const href = (e, depth) => depth ? `${'../'.repeat(depth - 1)}${e.id}/` : `photos/${e.id}/`;
 // Where a frame is shown: the deepest page whose markers name it, else its dump's own page.

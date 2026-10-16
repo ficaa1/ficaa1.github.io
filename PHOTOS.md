@@ -220,7 +220,9 @@ git add site/photos.json site/photos.html site/photos/*/index.html site/photos/*
 git commit -m "Photos: add the Montenegro 2024 dump"
 ```
 
-Run this build without an id, so every page and `photos.html` point to R2. To preview with your local copies again, rebuild without `PHOTOS_BASE`, but don't commit that build.
+Run this build without an id, so every page and `photos.html` point to R2.
+
+The live site is `main`. On every push to `main`, `.github/workflows/pages.yml` runs the same build with `PHOTOS_DONE=1`, which leaves the dumps without a page out of the switcher and the archive box, and publishes `site/`. To see that build before merging, export the commit and build it there: `git archive redesign | tar -x -C <empty dir>`, then in that dir `PHOTOS_BASE=https://photos.filipbiljic.com PHOTOS_DONE=1 node tools/photos.mjs` and serve its `site/`. To preview with your local copies again, rebuild without `PHOTOS_BASE`, but don't commit that build.
 
 Add specific paths only; never `git add -A`. Don't commit:
 - `photos-src`;

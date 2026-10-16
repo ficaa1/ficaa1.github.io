@@ -1,0 +1,40 @@
+# Publishes site/ to GitHub Pages (www.filipbiljic.com) on every push to main. The switcher and the archive box are
+# rebuilt first without the photo dumps that have no page yet, so only finished pages are linked.
+name: Publish
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Leave out the dumps without a page
+        run: PHOTOS_BASE=https://photos.filipbiljic.com PHOTOS_DONE=1 node tools/photos.mjs > /dev/null
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
