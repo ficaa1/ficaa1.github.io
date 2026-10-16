@@ -61,9 +61,9 @@ main[data-country="montenegro"] p { margin: 0; font-weight: 400; font-style: nor
 main[data-country="montenegro"] ol { list-style: none; margin: 0; padding: 0; }
 main[data-country="montenegro"] img { display: block; width: 100%; height: auto; }
 
-/* ---- Opening: the name with the cove's waterline running through it (limestone above, the flag's red below), the dates on
+/* ---- Opening: the name with the cove's waterline running through it (limestone above, the sea below), the dates on
    the water, and the six days to jump to. Only the name sits on colour; the frames stay on white and black. */
-main[data-country="montenegro"] { --stone: #e6dfd0; --sea: #921c22; --deep: #3f0c0f; --water: #1f4250; --water-deep: #14262e; }
+main[data-country="montenegro"] { --stone: #e6dfd0; --sea: #0d5f68; --deep: #073a40; --water: #1f4250; --water-deep: #14262e; }
 main[data-country="montenegro"] .opening { padding: 0; }
 main[data-country="montenegro"] .waterline {
   --seam: 50%; position: relative; min-height: max(520px, min(calc(100svh - 250px), 900px)); overflow: hidden; background: var(--stone);
@@ -113,7 +113,7 @@ main[data-country="montenegro"] .intro {
 main[data-country="montenegro"] .intro .cover { grid-area: 1 / 2; justify-self: end; width: min(100%, calc(88svh * var(--r))); }
 main[data-country="montenegro"] .intro .index { grid-area: 1 / 1; }
 main[data-country="montenegro"] .when { font-size: var(--s-lead); font-weight: 600; }
-main[data-country="montenegro"] .gear { font-size: var(--s-lead); color: #f2c9c4; }
+main[data-country="montenegro"] .gear { font-size: var(--s-lead); color: #b4d3d6; }
 main[data-country="montenegro"] .index .m { font-size: var(--s-lead); font-weight: 700; margin-bottom: clamp(16px, 2vw, 28px); }
 /* The month: every day of August in a line that wraps, the days shot here large, each with its year under it. */
 main[data-country="montenegro"] .month { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px 14px; }
@@ -219,8 +219,8 @@ main[data-country="montenegro"] > .dusk + .stub a:focus-visible { outline-color:
 main[data-country="montenegro"] > .stub .next { font-style: normal; font-weight: 800; font-size: var(--s-head); letter-spacing: -0.03em; }
 main[data-country="montenegro"] .dusk { padding-bottom: clamp(120px, 12vw, 200px); }
 
-/* ---- The country: the coast and its sea under the red of the name; the places on it; the whole month; three frames. */
-main[data-country="montenegro"] .coast .sea { position: relative; margin-top: -1px; padding: 0 var(--gut) 16px; background: var(--water); }
+/* ---- The country: the coast, its sea running on from the name's and deepening to open water; the places on it; the whole month; three frames. */
+main[data-country="montenegro"] .coast .sea { position: relative; margin-top: -1px; padding: 0 var(--gut) 16px; background: linear-gradient(var(--sea), var(--water) 75%); }
 main[data-country="montenegro"] .coast-map { display: block; width: 100%; max-height: 84svh; height: auto; margin: 0 auto; }
 main[data-country="montenegro"] .coast-map .land { fill: var(--stone); }
 main[data-country="montenegro"] .coast-map .border { fill: none; stroke: var(--water); stroke-width: 1.6; stroke-dasharray: 5 6; opacity: 0.55; }
