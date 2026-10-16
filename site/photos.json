@@ -622,7 +622,10 @@
     "id": "rome-2025",
     "title": "Rome",
     "folder": "Rim edited 2025",
-    "note": "Late April to May, and an evening in August.",
+    "except": [
+      "CG Konoba"
+    ],
+    "note": "Late April to May.",
     "photos": [
       {
         "file": "dsc02594",
@@ -3034,39 +3037,11 @@
           "2025-05-05 13:14",
           "2025-05-05 13:56"
         ]
-      },
-      {
-        "key": "CG Konoba",
-        "name": "CG Konoba",
-        "files": [
-          "CG Konoba (1 of 3).jxl",
-          "CG Konoba (1 of 3)-2.jxl",
-          "CG Konoba (2 of 3).jxl",
-          "CG Konoba (2 of 3)-2.jxl",
-          "CG Konoba (3 of 3).jxl",
-          "CG Konoba (3 of 3)-2.jxl"
-        ],
-        "labels": [
-          "1",
-          "1A",
-          "2",
-          "2A",
-          "3",
-          "3A"
-        ],
-        "taken": [
-          "2025-08-05 17:06",
-          "2025-08-05 17:06",
-          "2025-08-05 17:06",
-          "2025-08-05 17:06",
-          "2025-08-05 17:06",
-          "2025-08-05 17:06"
-        ]
       }
     ],
-    "frames": 75,
+    "frames": 69,
     "from": "2025-04-29",
-    "to": "2025-08-05"
+    "to": "2025-05-05"
   },
   {
     "id": "versailles-2025",

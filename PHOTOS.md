@@ -66,6 +66,8 @@ Add an entry to `site/photos.json`. Use only these fields; the build fills in th
 { "id": "montenegro-2024", "title": "Montenegro", "folder": "Crna Gora 2024", "note": "One or two plain sentences.", "photos": [] }
 ```
 
+If the folder also holds a roll from another trip, name its export in `"except"` and it is left off this dump's sheet. For example, `"except": ["CG Konoba"]` on rome-2025.
+
 Then read the folder on plex. This is read only. It reads the rolls, the frame labels and each frame's time, and writes `rolls`, `frames`, `from` and `to`:
 
 ```sh
