@@ -23,7 +23,7 @@
 
   // ---- Entrances: each part rises once as it arrives, a few at a time.
   if (still) return;
-  const parts = $$('.opening h1, .facts p, .index li, .date .num, .date .label, .drop h2, .stage .num, .shot, .stop h3, .clock');
+  const parts = $$('.facts p, .index li, .date .num, .date .label, .drop h2, .stage .num, .shot, .stop h3, .clock');
   const rise = new IntersectionObserver(es => {
     let k = 0;
     es.filter(e => e.isIntersecting).forEach(e => {

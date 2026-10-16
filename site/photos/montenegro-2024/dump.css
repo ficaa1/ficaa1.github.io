@@ -60,18 +60,35 @@ main[data-dump="montenegro-2024"] p { margin: 0; font-weight: 400; font-style: n
 main[data-dump="montenegro-2024"] ol { list-style: none; margin: 0; padding: 0; }
 main[data-dump="montenegro-2024"] img { display: block; width: 100%; height: auto; }
 
-/* ---- Opening: the name across the whole width, the dates, and the six days to jump to. */
-main[data-dump="montenegro-2024"] .opening { padding: clamp(40px, 5vw, 72px) var(--gut) 0; }
-main[data-dump="montenegro-2024"] .opening h1 {
-  font-size: clamp(64px, 17.2vw, 300px); font-weight: 800; line-height: 0.8; letter-spacing: -0.055em;
-  white-space: nowrap; margin-left: -0.05em;
+/* ---- Opening: the name with the cove's waterline running through it (limestone above, the sea below), the dates on
+   the water, and the six days to jump to. Only the name sits on colour; the frames stay on white and black. */
+main[data-dump="montenegro-2024"] .opening { --stone: #e6dfd0; --sea: #1f4250; --deep: #14262e; padding: 0; }
+main[data-dump="montenegro-2024"] .waterline {
+  --seam: 50%; position: relative; min-height: max(520px, min(calc(100svh - 250px), 900px)); overflow: hidden; background: var(--stone);
+}
+main[data-dump="montenegro-2024"] .waterline::before { content: ""; position: absolute; left: 0; right: 0; top: var(--seam); bottom: 0; background: var(--sea); }
+main[data-dump="montenegro-2024"] .name {
+  position: absolute; inset: 0; margin: 0; display: flex; flex-direction: column; justify-content: center; align-items: center;
+  padding-bottom: 0.82em; /* lifts the name so the seam runs through GORA, not between the lines */
+  font: bold clamp(80px, 17vw, 300px)/0.86 "Times New Roman", Times, "Liberation Serif", "Nimbus Roman", serif;
+  letter-spacing: -0.035em; text-transform: uppercase;
+  color: var(--deep); clip-path: inset(0 0 calc(100% - var(--seam)) 0); pointer-events: none; z-index: 1;
+}
+main[data-dump="montenegro-2024"] .name.under { color: var(--stone); clip-path: inset(var(--seam) 0 0 0); z-index: 0; }
+main[data-dump="montenegro-2024"] .name .line { display: block; overflow: hidden; padding: 0 0.04em; }
+main[data-dump="montenegro-2024"] .name .line > span { display: block; }
+@media (prefers-reduced-motion: no-preference) {
+  main[data-dump="montenegro-2024"] .name .line > span { animation: cg-rise 900ms var(--ease) both; }
+  main[data-dump="montenegro-2024"] .name .line + .line > span { animation-delay: 110ms; }
+  @keyframes cg-rise { from { transform: translateY(102%); } to { transform: none; } }
 }
 main[data-dump="montenegro-2024"] .facts {
-  text-align: left;
-  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 32px; margin-top: clamp(24px, 3vw, 40px);
+  position: absolute; z-index: 2; left: var(--gut); right: var(--gut); bottom: clamp(20px, 2.4vw, 32px); text-align: left;
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 32px; color: var(--stone);
 }
+main[data-dump="montenegro-2024"] .opening .index { margin-inline: var(--gut); }
 main[data-dump="montenegro-2024"] .when { font-size: var(--s-lead); font-weight: 600; }
-main[data-dump="montenegro-2024"] .gear { font-size: var(--s-lead); color: var(--soft); }
+main[data-dump="montenegro-2024"] .gear { font-size: var(--s-lead); color: #b9c3c4; }
 main[data-dump="montenegro-2024"] .index ol {
   display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: var(--row-gap); margin-top: clamp(48px, 6vw, 96px);
 }
@@ -189,6 +206,8 @@ main[data-dump="montenegro-2024"] .dusk { padding-bottom: clamp(120px, 12vw, 200
   main[data-dump="montenegro-2024"] > .tabs { padding: 16px 0 0 16px; }
   main[data-dump="montenegro-2024"] .index ol { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px 16px; }
   main[data-dump="montenegro-2024"] .date { flex-wrap: wrap; }
+  main[data-dump="montenegro-2024"] .waterline { --seam: 46%; min-height: 78svh; }
+  main[data-dump="montenegro-2024"] .name { font-size: 30vw; }
   main[data-dump="montenegro-2024"] .facts { display: block; }
   main[data-dump="montenegro-2024"] .gear { margin-top: 6px; }
   main[data-dump="montenegro-2024"] .rows { margin: 0 calc(-1 * var(--gut)); gap: 56px; }
