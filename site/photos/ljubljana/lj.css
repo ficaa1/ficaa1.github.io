@@ -1,0 +1,213 @@
+/* Ljubljana, 2025: the pages of the night of 20 May and of two August afternoons. Loaded by a <link> inside <main>, so it
+   arrives and leaves with the page when the site swaps pages in place. Scope every rule to this page:
+     main[data-country="ljubljana"] ...                 anything inside the page
+     body:has(main[data-country="ljubljana"]) ...       the page's colours, the nav, the footer and the player */
+
+/* The castle is in both visits: lit blue over the river at night, green on its hill in the afternoon. The opening is
+   cut in two, night on black and day on white, the city's arms (a dragon on that castle) and the name across the cut; the night's days are a dark room, one
+   frame at a time, and the afternoons are full rows on white. Each day has its hour as a rule, a mark per frame.
+   Federant (SIL Open Font Licence), after the Vienna Secession lettering the town was rebuilt in after 1895, and
+   Hanken Grotesk (SIL Open Font Licence); latin subsets, served from this folder. */
+@font-face {
+  font-family: "Federant"; src: url("federant.woff2") format("woff2");
+  font-weight: 400; font-style: normal; font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Hanken Grotesk"; src: url("hanken.woff2") format("woff2");
+  font-weight: 100 900; font-style: normal; font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+body:has(main[data-country="ljubljana"]) {
+  --bg: #fff; --surface: #f0f0f0; --ink: #111; --soft: #5c5c5c; --panel: #f0f0f0;
+  --paper: #fff; --paper-ink: #111; --film: #111; --mark: #c7321f;
+  --link: #111; --visited: #111;
+  --night: #000; --night-ink: #f0f0f0; --night-soft: #9c9c9c; --castle: #5aaeff;
+  --show: "Federant", "Didot", Georgia, serif;
+  --face: "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --s-small: 14px;
+  --s-body: clamp(17px, 16px + 0.25vw, 19px);
+  --s-lead: clamp(20px, 17px + 0.7vw, 26px);
+  --s-head: clamp(30px, 20px + 2.4vw, 56px);
+  --s-name: clamp(76px, 19.5vw, 330px);
+  --s-num: clamp(110px, 17vw, 280px);
+  --ease: cubic-bezier(.22, 1, .36, 1);
+  --gut: clamp(16px, 2.6vw, 40px);
+  --row-gap: clamp(8px, 1vw, 16px);
+  background: var(--bg); color: var(--ink); font-family: var(--face);
+}
+body:has(main[data-country="ljubljana"]) nav, body:has(main[data-country="ljubljana"]) #player { background: var(--bg); }
+body:has(main[data-country="ljubljana"]) ::selection { background: var(--ink); color: var(--bg); }
+body:has(main[data-country="ljubljana"]) :focus-visible { outline-color: var(--mark); }
+
+main[data-country="ljubljana"] { background: var(--bg); }
+
+/* The tabs. */
+main[data-country="ljubljana"] > .tabs { padding: 28px 12px 0; }
+@media (min-width: 900px) { main[data-country="ljubljana"] > .tabs ol { flex-wrap: wrap; overflow: visible; } }
+main[data-country="ljubljana"] .tabs .bar { background: #cfcfcf; }
+main[data-country="ljubljana"] .tabs .place { font-style: normal; font-weight: 600; }
+main[data-country="ljubljana"] .tabs .here > a { background: var(--night); color: var(--night-ink); }
+main[data-country="ljubljana"] .tabs .here .n { color: var(--night-soft); }
+main[data-country="ljubljana"] .tabs .here .bar { background: #444; }
+main[data-country="ljubljana"] .tabs .here .bar i { background: var(--castle); }
+@media (hover: hover) and (pointer: fine) {
+  main[data-country="ljubljana"] .tabs li:not(.here) > a:hover { background: var(--surface); }
+}
+
+main[data-country="ljubljana"] h1, main[data-country="ljubljana"] h2,
+main[data-country="ljubljana"] p { margin: 0; font-weight: 400; font-style: normal; }
+main[data-country="ljubljana"] ol { list-style: none; margin: 0; padding: 0; }
+main[data-country="ljubljana"] img { display: block; width: 100%; height: auto; }
+main[data-country="ljubljana"] a { color: inherit; }
+
+/* ---- The opening: night on the left, day on the right, the name across the cut. The name is drawn in the difference
+   of the two grounds, so it is white on the night and black on the day. */
+main[data-country="ljubljana"] .opening {
+  position: relative; isolation: isolate; margin-top: 28px; background: var(--bg);
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: auto auto auto;
+}
+main[data-country="ljubljana"] .opening::before { content: ""; grid-column: 1; grid-row: 1 / 3; background: var(--night); }
+main[data-country="ljubljana"] .arms {
+  grid-column: 1 / -1; grid-row: 1; justify-self: center; position: relative; z-index: 1;
+  width: clamp(84px, 9.5vw, 150px); padding-top: clamp(40px, 5vw, 80px);
+}
+main[data-country="ljubljana"] .opening .name {
+  grid-column: 1 / -1; grid-row: 2; position: relative; z-index: 1;
+  font-family: var(--show); font-size: var(--s-name); line-height: 1; letter-spacing: -0.01em;
+  text-align: center; white-space: nowrap; color: #fff; mix-blend-mode: difference;
+  padding: clamp(16px, 2.4vw, 40px) 0 clamp(28px, 3.4vw, 56px);
+}
+main[data-country="ljubljana"] .half {
+  grid-row: 3; display: grid; grid-template-columns: minmax(0, 1fr); align-content: start; gap: clamp(20px, 2.2vw, 36px);
+  padding: 0 var(--gut) clamp(120px, 12vw, 200px);
+}
+main[data-country="ljubljana"] .half.night { grid-column: 1; background: var(--night); color: var(--night-ink); }
+main[data-country="ljubljana"] .half.light { grid-column: 2; color: var(--ink); }
+main[data-country="ljubljana"] .half .cover { width: min(100%, calc(56svh * var(--r))); }
+main[data-country="ljubljana"] .half.night .cover { justify-self: end; }
+main[data-country="ljubljana"] .half .when { font-size: var(--s-lead); font-weight: 600; letter-spacing: -0.01em; }
+main[data-country="ljubljana"] .half.night .when, main[data-country="ljubljana"] .half.night .openers,
+main[data-country="ljubljana"] .half.night .gear { justify-self: end; text-align: right; }
+main[data-country="ljubljana"] .half.night .openers a { justify-items: end; }
+main[data-country="ljubljana"] .half .gear { margin-top: -12px; }
+main[data-country="ljubljana"] .openers { display: flex; flex-wrap: wrap; gap: 8px clamp(24px, 3.4vw, 60px); }
+main[data-country="ljubljana"] .openers a {
+  display: inline-grid; justify-items: start; gap: 10px; text-decoration: none;
+  transition: color 200ms var(--ease);
+}
+main[data-country="ljubljana"] .openers .n { font-family: var(--show); font-size: var(--s-num); line-height: 0.82; }
+main[data-country="ljubljana"] .openers .m { font-size: var(--s-body); font-weight: 600; }
+main[data-country="ljubljana"] .half.night .openers a:hover, main[data-country="ljubljana"] .half.night .openers a:focus-visible { color: var(--castle); }
+main[data-country="ljubljana"] .half.light .openers a:hover, main[data-country="ljubljana"] .half.light .openers a:focus-visible { color: var(--mark); }
+main[data-country="ljubljana"] .openers a:active { transform: translateY(2px); }
+main[data-country="ljubljana"] .gear { font-size: var(--s-small); line-height: 1.5; }
+main[data-country="ljubljana"] .half.night .gear { color: var(--night-soft); }
+main[data-country="ljubljana"] .half.light .gear { color: var(--soft); }
+
+/* ---- A day: its date large, its name, and its hour as a rule with a mark per frame. */
+main[data-country="ljubljana"] .day { padding: clamp(72px, 9vw, 160px) var(--gut) clamp(96px, 11vw, 200px); }
+main[data-country="ljubljana"] .day.night { background: var(--night); color: var(--night-ink); --tick: var(--castle); --dim: var(--night-soft); }
+main[data-country="ljubljana"] .day.light { background: var(--bg); color: var(--ink); --tick: var(--mark); --dim: var(--soft); }
+main[data-country="ljubljana"] .day.light + .day.light { padding-top: clamp(48px, 6vw, 112px); }
+main[data-country="ljubljana"] .date {
+  display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: end; gap: clamp(16px, 2.4vw, 40px);
+  margin-bottom: clamp(48px, 6vw, 104px);
+}
+main[data-country="ljubljana"] .date .num { font-family: var(--show); font-size: var(--s-num); line-height: 0.78; }
+main[data-country="ljubljana"] .date .num a { text-decoration: none; }
+main[data-country="ljubljana"] .date h2 { font-size: var(--s-head); font-weight: 600; line-height: 1.05; letter-spacing: -0.02em; }
+main[data-country="ljubljana"] .date h2 a { text-decoration: none; transition: color 200ms var(--ease); }
+main[data-country="ljubljana"] .date h2 a:hover, main[data-country="ljubljana"] .date h2 a:focus-visible { color: var(--tick); }
+main[data-country="ljubljana"] .hour {
+  display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 14px;
+  margin-top: 18px; max-width: 720px; font-size: var(--s-small); font-variant-numeric: tabular-nums; color: var(--dim);
+}
+main[data-country="ljubljana"] .rule { position: relative; height: 28px; }
+main[data-country="ljubljana"] .rule::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: currentColor; opacity: 0.5; /* taste-skill-ignore: the axis of the day's hour, a real chart */
+}
+main[data-country="ljubljana"] .rule li { position: absolute; top: 0; bottom: 0; left: var(--at); width: 2px; margin-left: -1px; }
+main[data-country="ljubljana"] .rule a {
+  position: absolute; inset: 0 -5px; display: block;
+}
+main[data-country="ljubljana"] .rule a::after {
+  content: ""; position: absolute; left: 4px; width: 2px; top: 4px; bottom: 4px; background: currentColor;
+  transition: background-color 200ms var(--ease), transform 200ms var(--ease);
+}
+main[data-country="ljubljana"] .rule a:hover::after, main[data-country="ljubljana"] .rule a:focus-visible::after,
+main[data-country="ljubljana"] .rule .on a::after { background: var(--tick); transform: scaleY(1.5); }
+
+/* ---- Rows: uncropped frames of mixed sizes. Each keeps its own shape; a row's frames share one height. */
+main[data-country="ljubljana"] .rows { display: grid; }
+main[data-country="ljubljana"] .row { display: flex; gap: var(--row-gap); align-items: flex-start; }
+main[data-country="ljubljana"] .shot { flex: var(--r) 1 0; min-width: 0; }
+main[data-country="ljubljana"] .shot a { display: block; }
+main[data-country="ljubljana"] .shot img { transition: opacity 300ms var(--ease); }
+@media (hover: hover) and (pointer: fine) {
+  main[data-country="ljubljana"] .shot a:hover img { opacity: 0.86; }
+}
+main[data-country="ljubljana"] .shot a:active img { opacity: 0.7; }
+main[data-country="ljubljana"] .meta { margin-top: 10px; font-size: var(--s-small); font-variant-numeric: tabular-nums; color: var(--dim); }
+
+/* The night: one lit frame at a time, a screen of black around it. */
+main[data-country="ljubljana"] .night .rows { gap: clamp(96px, 14vh, 200px); }
+main[data-country="ljubljana"] .night .row.big { width: min(86%, calc(76svh * var(--sum))); margin-inline: auto; }
+main[data-country="ljubljana"] .night .row.pair { width: min(100%, calc(64svh * var(--sum))); margin-inline: auto; gap: clamp(24px, 4vw, 72px); }
+main[data-country="ljubljana"] .night .row.small { width: min(46%, calc(60svh * var(--sum))); }
+main[data-country="ljubljana"] .night .row.small.r { margin-left: auto; margin-right: 6%; }
+main[data-country="ljubljana"] .night .row.small.l { margin-left: 6%; }
+
+/* The afternoons: full rows, edge to edge, the frames close together. */
+main[data-country="ljubljana"] .light .rows { gap: clamp(28px, 3vw, 48px); }
+main[data-country="ljubljana"] .light .row { width: min(100%, calc(84svh * var(--sum))); margin-inline: auto; }
+main[data-country="ljubljana"] .light .row.one { width: min(72%, calc(80svh * var(--sum))); }
+
+/* ---- The way on. */
+main[data-country="ljubljana"] > .stub { margin-top: 0; margin-bottom: 96px; }
+main[data-country="ljubljana"] > .stub .next { font-family: var(--show); font-weight: 400; font-style: normal; font-size: clamp(36px, 24px + 2.4vw, 64px); line-height: 1.05; }
+
+/* ---- Entrances: each part rises once as it arrives. The page reads the same without them. */
+@media (prefers-reduced-motion: no-preference) {
+  main[data-country="ljubljana"][data-js] .rise { opacity: 0; transform: translateY(24px); }
+  main[data-country="ljubljana"][data-js] .rise.in {
+    opacity: 1; transform: none;
+    transition: opacity 700ms var(--ease) var(--d, 0ms), transform 900ms var(--ease) var(--d, 0ms);
+  }
+  main[data-country="ljubljana"][data-js] .half .cover.in img { animation: lj-dusk 2400ms var(--ease) both; }
+}
+@keyframes lj-dusk { from { transform: scale(1.04); } to { transform: none; } }
+main[data-country="ljubljana"] .half .cover { overflow: hidden; }
+
+/* ---- Phones: the two halves stay side by side under the name; the frames run full width. */
+@media (max-width: 720px) {
+  main[data-country="ljubljana"] .arms { width: 72px; padding-top: 32px; }
+  main[data-country="ljubljana"] .opening .name { padding: 12px 0 24px; font-size: 21.5vw; }
+  main[data-country="ljubljana"] .half { gap: 16px; padding: 0 12px 48px; }
+  main[data-country="ljubljana"] .half .cover { width: 100%; }
+  main[data-country="ljubljana"] .half .when { font-size: 17px; }
+  main[data-country="ljubljana"] .openers { gap: 8px 18px; }
+  main[data-country="ljubljana"] .openers a { gap: 4px; }
+  main[data-country="ljubljana"] .openers .n { font-size: 60px; }
+  main[data-country="ljubljana"] .half .gear { margin-top: -6px; }
+  main[data-country="ljubljana"] .openers .m { font-size: 15px; }
+  main[data-country="ljubljana"] .gear { font-size: 13px; }
+  main[data-country="ljubljana"] .day { padding: 64px 12px 88px; }
+  main[data-country="ljubljana"] .date { grid-template-columns: 1fr; gap: 12px; margin-bottom: 40px; }
+  main[data-country="ljubljana"] .date .num { font-size: 120px; }
+  main[data-country="ljubljana"] .rows > .row { width: auto; margin-inline: 0; }
+  main[data-country="ljubljana"] .row:not(.keep) { display: block; }
+  main[data-country="ljubljana"] .row:not(.keep) .shot + .shot { margin-top: 28px; }
+  main[data-country="ljubljana"] .night .rows { gap: 72px; }
+  main[data-country="ljubljana"] .night .row.small { width: 78%; }
+  main[data-country="ljubljana"] .night .row.small.r { margin-left: auto; margin-right: 0; }
+  main[data-country="ljubljana"] .night .row.small.l { margin-left: 0; }
+  main[data-country="ljubljana"] .light .rows { gap: 28px; }
+  main[data-country="ljubljana"] .light .row.one { width: auto; }
+  main[data-country="ljubljana"] .row.keep { gap: 6px; }
+  main[data-country="ljubljana"] .row.keep .meta { font-size: 13px; }
+  main[data-country="ljubljana"] > .stub { margin-bottom: 64px; }
+}

@@ -8487,5 +8487,1541 @@
     "frames": 14,
     "from": "2025-06-10",
     "to": "2025-06-10"
+  },
+  {
+    "id": "ljubljana-2025-05",
+    "title": "Ljubljana",
+    "folder": "Ljubljana Maj 2025",
+    "except": [
+      "Ljubljana.png",
+      "Ljubljana (1).png",
+      "Ljubljana (2).png",
+      "row-1-column-1.png",
+      "row-1-column-2.png",
+      "row-1-column-3.png",
+      "row-1-column-4.png",
+      "row-1-column-5.png",
+      "row-1-column-6.png"
+    ],
+    "photos": [
+      {
+        "file": "dsc03944",
+        "original": "DSC03944-Edit.jpg",
+        "caption": "",
+        "alt": "A castle lit blue on a dark hill, lit café terraces along a river below",
+        "settings": {
+          "aperture": "f/1.4",
+          "shutter": "1/60 s",
+          "iso": "ISO 320",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-05-20 20:53"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 50047,
+            "1000.jxl": 32257,
+            "2000.jpg": 178125,
+            "2000.jxl": 103876
+          }
+        }
+      },
+      {
+        "file": "dsc03945",
+        "original": "DSC03945-Edit.jpg",
+        "caption": "",
+        "alt": "A pink church front lit at night behind a bridge, lights reflected in the river",
+        "settings": {
+          "aperture": "f/1.4",
+          "shutter": "1/60 s",
+          "iso": "ISO 2000",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-05-20 20:53"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 89999,
+            "1000.jxl": 60291,
+            "2000.jpg": 301290,
+            "2000.jxl": 193813
+          }
+        }
+      },
+      {
+        "file": "dsc03948",
+        "original": "DSC03948-Edit.jpg",
+        "caption": "",
+        "alt": "A glass-railed footbridge at night leading to lit terraces, the castle lit blue above",
+        "settings": {
+          "aperture": "f/1.4",
+          "shutter": "1/60 s",
+          "iso": "ISO 320",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-05-20 20:56"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 66082,
+            "1000.jxl": 42481,
+            "2000.jpg": 198414,
+            "2000.jxl": 117943
+          }
+        }
+      },
+      {
+        "file": "dsc03956",
+        "original": "DSC03956-Edit.jpg",
+        "caption": "",
+        "alt": "A narrow street at night, people walking, a lit blue tower at the top",
+        "settings": {
+          "aperture": "f/1.4",
+          "shutter": "1/60 s",
+          "iso": "ISO 250",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-05-20 21:01"
+        },
+        "web": {
+          "400": [
+            400,
+            600
+          ],
+          "1000": [
+            1000,
+            1500
+          ],
+          "bytes": {
+            "1000.jpg": 122011,
+            "1000.jxl": 77267,
+            "2000.jpg": 445201,
+            "2000.jxl": 274462
+          }
+        }
+      },
+      {
+        "file": "dsc03958",
+        "original": "DSC03958-Edit.jpg",
+        "caption": "",
+        "alt": "An empty square at night with a baroque fountain and an obelisk, two church towers behind",
+        "settings": {
+          "aperture": "f/1.4",
+          "shutter": "1/60 s",
+          "iso": "ISO 800",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-05-20 21:03"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 80928,
+            "1000.jxl": 53901,
+            "2000.jpg": 277543,
+            "2000.jxl": 182697
+          }
+        }
+      },
+      {
+        "file": "dsc03960",
+        "original": "DSC03960-Edit.jpg",
+        "caption": "",
+        "alt": "A vaulted arcade at night, lamps reflected on the floor, seen past dark pillars",
+        "settings": {
+          "aperture": "f/1.4",
+          "shutter": "1/60 s",
+          "iso": "ISO 640",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-05-20 21:05"
+        },
+        "web": {
+          "400": [
+            400,
+            266
+          ],
+          "1000": [
+            1000,
+            666
+          ],
+          "bytes": {
+            "1000.jpg": 56626,
+            "1000.jxl": 32665,
+            "2000.jpg": 216919,
+            "2000.jxl": 131832
+          }
+        }
+      },
+      {
+        "file": "dsc03961",
+        "original": "DSC03961-Edit.jpg",
+        "caption": "",
+        "alt": "A lit hotel across dark water, small green lights reflected below",
+        "settings": {
+          "aperture": "f/1.4",
+          "shutter": "1/60 s",
+          "iso": "ISO 640",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-05-20 21:09"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 29358,
+            "1000.jxl": 19688,
+            "2000.jpg": 86196,
+            "2000.jxl": 51627
+          }
+        }
+      },
+      {
+        "file": "dsc03963",
+        "original": "DSC03963-Edit.jpg",
+        "caption": "",
+        "alt": "Black and white: a fountain in a square at night, lit windows behind",
+        "settings": {
+          "aperture": "f/1.4",
+          "shutter": "1/60 s",
+          "iso": "ISO 3200",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-05-20 21:10"
+        },
+        "web": {
+          "400": [
+            400,
+            266
+          ],
+          "1000": [
+            1000,
+            666
+          ],
+          "bytes": {
+            "1000.jpg": 60820,
+            "1000.jxl": 45455,
+            "2000.jpg": 248603,
+            "2000.jxl": 174485
+          }
+        }
+      },
+      {
+        "file": "dsc03968",
+        "original": "DSC03968-Edit.jpg",
+        "caption": "",
+        "alt": "A stone wall under a blue street lamp, an orange light far down a dark passage",
+        "settings": {
+          "aperture": "f/1.4",
+          "shutter": "1/60 s",
+          "iso": "ISO 2000",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-05-20 21:16"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 39933,
+            "1000.jxl": 26174,
+            "2000.jpg": 142745,
+            "2000.jxl": 86975
+          }
+        }
+      },
+      {
+        "file": "dsc03970",
+        "original": "DSC03970-Edit.jpg",
+        "caption": "",
+        "alt": "A yield sign under a street lamp, green crossing lights and red leaves in the dark",
+        "settings": {
+          "aperture": "f/1.4",
+          "shutter": "1/60 s",
+          "iso": "ISO 200",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-05-20 21:18"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 28424,
+            "1000.jxl": 18111,
+            "2000.jpg": 80969,
+            "2000.jxl": 47013
+          }
+        }
+      },
+      {
+        "file": "dsc03972",
+        "original": "DSC03972-Edit.jpg",
+        "caption": "",
+        "alt": "Red maple leaves lit against black",
+        "settings": {
+          "aperture": "f/1.4",
+          "shutter": "1/60 s",
+          "iso": "ISO 2000",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-05-20 21:19"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 94876,
+            "1000.jxl": 58817,
+            "2000.jpg": 318629,
+            "2000.jxl": 199614
+          }
+        }
+      },
+      {
+        "file": "dsc03976",
+        "original": "DSC03976-Edit.jpg",
+        "caption": "",
+        "alt": "The castle lit blue far off on its hill, a dark square below",
+        "settings": {
+          "aperture": "f/1.4",
+          "shutter": "1/60 s",
+          "iso": "ISO 800",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-05-20 21:27"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 26800,
+            "1000.jxl": 17303,
+            "2000.jpg": 87029,
+            "2000.jxl": 49013
+          }
+        }
+      },
+      {
+        "file": "dsc03977",
+        "original": "DSC03977-Edit.jpg",
+        "caption": "",
+        "alt": "Black and white: a street lamp with a cluster of lights above a lit glass wall and steps",
+        "settings": {
+          "aperture": "f/1.4",
+          "shutter": "1/60 s",
+          "iso": "ISO 200",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-05-20 21:33"
+        },
+        "web": {
+          "400": [
+            400,
+            600
+          ],
+          "1000": [
+            1000,
+            1500
+          ],
+          "bytes": {
+            "1000.jpg": 73974,
+            "1000.jxl": 55318,
+            "2000.jpg": 296819,
+            "2000.jxl": 219024
+          }
+        }
+      },
+      {
+        "file": "dsc03979",
+        "original": "DSC03979-Edit.jpg",
+        "caption": "",
+        "alt": "Black and white: a row of cluster street lamps along a lit building front at night",
+        "settings": {
+          "aperture": "f/1.4",
+          "shutter": "1/60 s",
+          "iso": "ISO 200",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-05-20 21:34"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 39801,
+            "1000.jxl": 30556,
+            "2000.jpg": 124870,
+            "2000.jxl": 87714
+          }
+        }
+      },
+      {
+        "file": "dsc03985",
+        "original": "DSC03985-Edit.jpg",
+        "caption": "",
+        "alt": "A concrete and marble facade with wooden window frames, close up",
+        "settings": {
+          "aperture": "f/1.4",
+          "shutter": "1/60 s",
+          "iso": "ISO 2500",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-05-20 21:37"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 111258,
+            "1000.jxl": 80731,
+            "2000.jpg": 465629,
+            "2000.jxl": 340642
+          }
+        }
+      }
+    ],
+    "rolls": [
+      {
+        "key": "",
+        "name": "",
+        "files": [
+          "DSC03944-Edit.jpg",
+          "DSC03945-Edit.jpg",
+          "DSC03948-Edit.jpg",
+          "DSC03956-Edit.jpg",
+          "DSC03958-Edit.jpg",
+          "DSC03960-Edit.jpg",
+          "DSC03961-Edit.jpg",
+          "DSC03963-Edit.jpg",
+          "DSC03968-Edit.jpg",
+          "DSC03970-Edit.jpg",
+          "DSC03972-Edit.jpg",
+          "DSC03976-Edit.jpg",
+          "DSC03977-Edit.jpg",
+          "DSC03979-Edit.jpg",
+          "DSC03985-Edit.jpg"
+        ],
+        "labels": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15"
+        ],
+        "taken": [
+          "2025-05-20 20:53",
+          "2025-05-20 20:53",
+          "2025-05-20 20:56",
+          "2025-05-20 21:01",
+          "2025-05-20 21:03",
+          "2025-05-20 21:05",
+          "2025-05-20 21:09",
+          "2025-05-20 21:10",
+          "2025-05-20 21:16",
+          "2025-05-20 21:18",
+          "2025-05-20 21:19",
+          "2025-05-20 21:27",
+          "2025-05-20 21:33",
+          "2025-05-20 21:34",
+          "2025-05-20 21:37"
+        ]
+      }
+    ],
+    "frames": 15,
+    "from": "2025-05-20",
+    "to": "2025-05-20"
+  },
+  {
+    "id": "ljubljana-2025-08",
+    "title": "Ljubljana",
+    "folder": "Ljubljana 2025",
+    "photos": [
+      {
+        "file": "hdr-6",
+        "original": "Ljubljana HDR (6 of 27).jpg",
+        "caption": "",
+        "alt": "A corner building with a round balcony tower and a small dome against blue sky",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/1000 s",
+          "iso": "ISO 100",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-08-28 17:35"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 86814,
+            "1000.jxl": 64354,
+            "2000.jpg": 330097,
+            "2000.jxl": 237314
+          }
+        }
+      },
+      {
+        "file": "hdr-19",
+        "original": "Ljubljana HDR (19 of 27).jpg",
+        "caption": "",
+        "alt": "A pink facade painted with blue and red patterns around its windows",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/1000 s",
+          "iso": "ISO 100",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-08-28 17:38"
+        },
+        "web": {
+          "400": [
+            400,
+            320
+          ],
+          "1000": [
+            1000,
+            800
+          ],
+          "bytes": {
+            "1000.jpg": 222238,
+            "1000.jxl": 151998,
+            "2000.jpg": 730372,
+            "2000.jxl": 501365
+          }
+        }
+      },
+      {
+        "file": "hdr-20",
+        "original": "Ljubljana HDR (20 of 27).jpg",
+        "caption": "",
+        "alt": "The pink patterned building from its corner beside a glass building, blue sky",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/1000 s",
+          "iso": "ISO 100",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-08-28 17:38"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 134740,
+            "1000.jxl": 96804,
+            "2000.jpg": 436787,
+            "2000.jxl": 298480
+          }
+        }
+      },
+      {
+        "file": "hdr-9",
+        "original": "Ljubljana HDR (9 of 27).jpg",
+        "caption": "",
+        "alt": "A pink church front behind a bronze statue and a lamp post",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/640 s",
+          "iso": "ISO 100",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-08-28 17:42"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 146518,
+            "1000.jxl": 110823,
+            "2000.jpg": 503493,
+            "2000.jxl": 371183
+          }
+        }
+      },
+      {
+        "file": "hdr-18",
+        "original": "Ljubljana HDR (18 of 27).jpg",
+        "caption": "",
+        "alt": "A street of old buildings with a castle on a green hill at the end, tram wires above",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/400 s",
+          "iso": "ISO 100",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-08-28 17:44"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 130013,
+            "1000.jxl": 98402,
+            "2000.jpg": 430788,
+            "2000.jxl": 312073
+          }
+        }
+      },
+      {
+        "file": "hdr-27",
+        "original": "Ljubljana HDR (27 of 27).jpg",
+        "caption": "",
+        "alt": "A narrow old town street with bollards, people at the far end, a parked car",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/500 s",
+          "iso": "ISO 100",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-08-28 18:08"
+        },
+        "web": {
+          "400": [
+            400,
+            320
+          ],
+          "1000": [
+            1000,
+            800
+          ],
+          "bytes": {
+            "1000.jpg": 184192,
+            "1000.jxl": 138815,
+            "2000.jpg": 694542,
+            "2000.jxl": 515744
+          }
+        }
+      },
+      {
+        "file": "hdr-17",
+        "original": "Ljubljana HDR (17 of 27).jpg",
+        "caption": "",
+        "alt": "Red market stalls with striped awnings in warm evening light",
+        "settings": {
+          "aperture": "f/2.5",
+          "shutter": "1/1250 s",
+          "iso": "ISO 100",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-08-28 18:20"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 175138,
+            "1000.jxl": 124961,
+            "2000.jpg": 591066,
+            "2000.jxl": 412853
+          }
+        }
+      },
+      {
+        "file": "hdr-1",
+        "original": "Ljubljana HDR (1 of 27).jpg",
+        "caption": "",
+        "alt": "Empty red market stalls under green and white striped awnings, a white building behind",
+        "settings": {
+          "aperture": "f/4",
+          "shutter": "1/640 s",
+          "iso": "ISO 100",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-08-28 18:21"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 121300,
+            "1000.jxl": 87975,
+            "2000.jpg": 406949,
+            "2000.jxl": 288007
+          }
+        }
+      },
+      {
+        "file": "hdr-26",
+        "original": "Ljubljana HDR (26 of 27).jpg",
+        "caption": "",
+        "alt": "Empty red market stalls with striped awnings, trees and a white building behind",
+        "settings": {
+          "aperture": "f/4",
+          "shutter": "1/250 s",
+          "iso": "ISO 100",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-08-28 18:21"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 137433,
+            "1000.jxl": 101520,
+            "2000.jpg": 457042,
+            "2000.jxl": 321627
+          }
+        }
+      },
+      {
+        "file": "hdr-25",
+        "original": "Ljubljana HDR (25 of 27).jpg",
+        "caption": "",
+        "alt": "A street with graffiti-covered walls and open windows, people walking",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/320 s",
+          "iso": "ISO 100",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-08-28 18:30"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 167030,
+            "1000.jxl": 122687,
+            "2000.jpg": 546590,
+            "2000.jxl": 390318
+          }
+        }
+      },
+      {
+        "file": "hdr-3",
+        "original": "Ljubljana HDR (3 of 27).jpg",
+        "caption": "",
+        "alt": "A concrete entrance with three radio station signs, orange bicycles parked in front",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/30 s",
+          "iso": "ISO 50",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-08-28 18:37"
+        },
+        "web": {
+          "400": [
+            400,
+            320
+          ],
+          "1000": [
+            1000,
+            800
+          ],
+          "bytes": {
+            "1000.jpg": 116857,
+            "1000.jxl": 80374,
+            "2000.jpg": 484882,
+            "2000.jxl": 328619
+          }
+        }
+      },
+      {
+        "file": "hdr-24",
+        "original": "Ljubljana HDR (24 of 27).jpg",
+        "caption": "",
+        "alt": "A street of old buildings in evening light, a parking sign on the left",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/250 s",
+          "iso": "ISO 50",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-08-28 18:37"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 130823,
+            "1000.jxl": 94427,
+            "2000.jpg": 447616,
+            "2000.jxl": 315829
+          }
+        }
+      },
+      {
+        "file": "hdr-16",
+        "original": "Ljubljana HDR (16 of 27).jpg",
+        "caption": "",
+        "alt": "Two people cycling past a large tree in low sun",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/40 s",
+          "iso": "ISO 50",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-08-28 18:40"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 185049,
+            "1000.jxl": 133867,
+            "2000.jpg": 644581,
+            "2000.jxl": 438067
+          }
+        }
+      }
+    ],
+    "rolls": [
+      {
+        "key": "Ljubljana HDR",
+        "name": "HDR",
+        "files": [
+          "Ljubljana HDR (1 of 27).jpg",
+          "Ljubljana HDR (3 of 27).jpg",
+          "Ljubljana HDR (6 of 27).jpg",
+          "Ljubljana HDR (9 of 27).jpg",
+          "Ljubljana HDR (16 of 27).jpg",
+          "Ljubljana HDR (17 of 27).jpg",
+          "Ljubljana HDR (18 of 27).jpg",
+          "Ljubljana HDR (19 of 27).jpg",
+          "Ljubljana HDR (20 of 27).jpg",
+          "Ljubljana HDR (24 of 27).jpg",
+          "Ljubljana HDR (25 of 27).jpg",
+          "Ljubljana HDR (26 of 27).jpg",
+          "Ljubljana HDR (27 of 27).jpg"
+        ],
+        "labels": [
+          "1",
+          "3",
+          "6",
+          "9",
+          "16",
+          "17",
+          "18",
+          "19",
+          "20",
+          "24",
+          "25",
+          "26",
+          "27"
+        ],
+        "taken": [
+          "2025-08-28 18:21",
+          "2025-08-28 18:37",
+          "2025-08-28 17:35",
+          "2025-08-28 17:42",
+          "2025-08-28 18:40",
+          "2025-08-28 18:20",
+          "2025-08-28 17:44",
+          "2025-08-28 17:38",
+          "2025-08-28 17:38",
+          "2025-08-28 18:37",
+          "2025-08-28 18:30",
+          "2025-08-28 18:21",
+          "2025-08-28 18:08"
+        ]
+      }
+    ],
+    "frames": 13,
+    "from": "2025-08-28",
+    "to": "2025-08-28",
+    "except": [
+      "Ljubljana HDR (2 of 27).jpg",
+      "Ljubljana HDR (4 of 27).jpg",
+      "Ljubljana HDR (5 of 27).jpg",
+      "Ljubljana HDR (7 of 27).jpg",
+      "Ljubljana HDR (8 of 27).jpg",
+      "Ljubljana HDR (10 of 27).jpg",
+      "Ljubljana HDR (11 of 27).jpg",
+      "Ljubljana HDR (12 of 27).jpg",
+      "Ljubljana HDR (13 of 27).jpg",
+      "Ljubljana HDR (14 of 27).jpg",
+      "Ljubljana HDR (15 of 27).jpg",
+      "Ljubljana HDR (21 of 27).jpg",
+      "Ljubljana HDR (22 of 27).jpg",
+      "Ljubljana HDR (23 of 27).jpg"
+    ]
+  },
+  {
+    "id": "belgrade-2025",
+    "title": "Belgrade",
+    "folder": "Ljubljana 2025",
+    "except": [
+      "Ljubljana HDR (1 of 27).jpg",
+      "Ljubljana HDR (3 of 27).jpg",
+      "Ljubljana HDR (6 of 27).jpg",
+      "Ljubljana HDR (9 of 27).jpg",
+      "Ljubljana HDR (16 of 27).jpg",
+      "Ljubljana HDR (17 of 27).jpg",
+      "Ljubljana HDR (18 of 27).jpg",
+      "Ljubljana HDR (19 of 27).jpg",
+      "Ljubljana HDR (20 of 27).jpg",
+      "Ljubljana HDR (24 of 27).jpg",
+      "Ljubljana HDR (25 of 27).jpg",
+      "Ljubljana HDR (26 of 27).jpg",
+      "Ljubljana HDR (27 of 27).jpg"
+    ],
+    "photos": [
+      {
+        "file": "hdr-2",
+        "original": "Ljubljana HDR (2 of 27).jpg",
+        "caption": "",
+        "alt": "A curved lakeside path with a red cycle lane and railings, a child cycling, clouds over the water",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/1250 s",
+          "iso": "ISO 100",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-08-23 17:11"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 142218,
+            "1000.jxl": 112099,
+            "2000.jpg": 518473,
+            "2000.jxl": 394715
+          }
+        }
+      },
+      {
+        "file": "hdr-15",
+        "original": "Ljubljana HDR (15 of 27).jpg",
+        "caption": "",
+        "alt": "A row of yellow floats at the water's edge, sun on the water",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/500 s",
+          "iso": "ISO 100",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-08-23 17:12"
+        },
+        "web": {
+          "400": [
+            400,
+            167
+          ],
+          "1000": [
+            1000,
+            418
+          ],
+          "bytes": {
+            "1000.jpg": 116109,
+            "1000.jxl": 90705,
+            "2000.jpg": 461484,
+            "2000.jxl": 351009
+          }
+        }
+      },
+      {
+        "file": "hdr-4",
+        "original": "Ljubljana HDR (4 of 27).jpg",
+        "caption": "",
+        "alt": "A bridge railing seen from below against blue sky, someone cycling across, a shaded wall beneath",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/400 s",
+          "iso": "ISO 100",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-08-23 17:14"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 149024,
+            "1000.jxl": 111929,
+            "2000.jpg": 604408,
+            "2000.jxl": 461719
+          }
+        }
+      },
+      {
+        "file": "hdr-23",
+        "original": "Ljubljana HDR (23 of 27).jpg",
+        "caption": "",
+        "alt": "Two orange benches under a large pine, bags on the ground, a red path in front",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/250 s",
+          "iso": "ISO 200",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-08-23 17:15"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 165310,
+            "1000.jxl": 127287,
+            "2000.jpg": 617085,
+            "2000.jxl": 473120
+          }
+        }
+      },
+      {
+        "file": "hdr-22",
+        "original": "Ljubljana HDR (22 of 27).jpg",
+        "caption": "",
+        "alt": "A cyclist riding through a park of tall thin trees",
+        "settings": {
+          "aperture": "f/2.5",
+          "shutter": "1/400 s",
+          "iso": "ISO 100",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-08-23 17:21"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 221213,
+            "1000.jxl": 171020,
+            "2000.jpg": 851349,
+            "2000.jxl": 623298
+          }
+        }
+      },
+      {
+        "file": "hdr-14",
+        "original": "Ljubljana HDR (14 of 27).jpg",
+        "caption": "",
+        "alt": "Black and white: a long row of pale tree trunks",
+        "settings": {
+          "aperture": "f/2.5",
+          "shutter": "1/2000 s",
+          "iso": "ISO 100",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-08-23 17:24"
+        },
+        "web": {
+          "400": [
+            400,
+            167
+          ],
+          "1000": [
+            1000,
+            418
+          ],
+          "bytes": {
+            "1000.jpg": 134537,
+            "1000.jxl": 121120,
+            "2000.jpg": 459306,
+            "2000.jxl": 378791
+          }
+        }
+      },
+      {
+        "file": "hdr-7",
+        "original": "Ljubljana HDR (7 of 27).jpg",
+        "caption": "",
+        "alt": "Black and white: a tall plane tree in a park",
+        "settings": {
+          "aperture": "f/2.5",
+          "shutter": "1/2000 s",
+          "iso": "ISO 100",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-08-23 17:27"
+        },
+        "web": {
+          "400": [
+            400,
+            600
+          ],
+          "1000": [
+            1000,
+            1500
+          ],
+          "bytes": {
+            "1000.jpg": 418415,
+            "1000.jxl": 367656,
+            "2000.jpg": 1247761,
+            "2000.jxl": 993889
+          }
+        }
+      },
+      {
+        "file": "hdr-8",
+        "original": "Ljubljana HDR (8 of 27).jpg",
+        "caption": "",
+        "alt": "Black and white: a tall plane tree in a park, framed a little wider",
+        "settings": {
+          "aperture": "f/2.5",
+          "shutter": "1/2000 s",
+          "iso": "ISO 100",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-08-23 17:27"
+        },
+        "web": {
+          "400": [
+            400,
+            600
+          ],
+          "1000": [
+            1000,
+            1500
+          ],
+          "bytes": {
+            "1000.jpg": 466978,
+            "1000.jxl": 427462,
+            "2000.jpg": 1440075,
+            "2000.jxl": 1245616
+          }
+        }
+      },
+      {
+        "file": "hdr-21",
+        "original": "Ljubljana HDR (21 of 27).jpg",
+        "caption": "",
+        "alt": "Black and white: a plane tree in a park, darker trees behind",
+        "settings": {
+          "aperture": "f/2.5",
+          "shutter": "1/1600 s",
+          "iso": "ISO 100",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-08-23 17:27"
+        },
+        "web": {
+          "400": [
+            400,
+            500
+          ],
+          "1000": [
+            1000,
+            1250
+          ],
+          "bytes": {
+            "1000.jpg": 361825,
+            "1000.jxl": 315794,
+            "2000.jpg": 1118938,
+            "2000.jxl": 907771
+          }
+        }
+      },
+      {
+        "file": "hdr-13",
+        "original": "Ljubljana HDR (13 of 27).jpg",
+        "caption": "",
+        "alt": "A café awning with a Šuma klub sign and large PEPSI letters",
+        "settings": {
+          "aperture": "f/4",
+          "shutter": "1/500 s",
+          "iso": "ISO 100",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-08-23 18:45"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 82771,
+            "1000.jxl": 52800,
+            "2000.jpg": 287289,
+            "2000.jxl": 193052
+          }
+        }
+      },
+      {
+        "file": "hdr-12",
+        "original": "Ljubljana HDR (12 of 27).jpg",
+        "caption": "",
+        "alt": "Rusty metal panels covered in graffiti among plants",
+        "settings": {
+          "aperture": "f/4",
+          "shutter": "1/250 s",
+          "iso": "ISO 160",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-08-23 18:46"
+        },
+        "web": {
+          "400": [
+            400,
+            500
+          ],
+          "1000": [
+            1000,
+            1250
+          ],
+          "bytes": {
+            "1000.jpg": 271200,
+            "1000.jxl": 177171,
+            "2000.jpg": 823468,
+            "2000.jxl": 512448
+          }
+        }
+      },
+      {
+        "file": "hdr-11",
+        "original": "Ljubljana HDR (11 of 27).jpg",
+        "caption": "",
+        "alt": "A small sandy beach on a lake, people sitting by the water, trees lit by low sun",
+        "settings": {
+          "aperture": "f/4",
+          "shutter": "1/250 s",
+          "iso": "ISO 100",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-08-23 18:47"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 176621,
+            "1000.jxl": 124605,
+            "2000.jpg": 681768,
+            "2000.jxl": 471216
+          }
+        }
+      },
+      {
+        "file": "hdr-5",
+        "original": "Ljubljana HDR (5 of 27).jpg",
+        "caption": "",
+        "alt": "Wooden steps and a signboard on a dry bank in low evening sun",
+        "settings": {
+          "aperture": "f/2.8",
+          "shutter": "1/250 s",
+          "iso": "ISO 160",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-08-23 19:03"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 222996,
+            "1000.jxl": 150301,
+            "2000.jpg": 762241,
+            "2000.jxl": 498145
+          }
+        }
+      },
+      {
+        "file": "hdr-10",
+        "original": "Ljubljana HDR (10 of 27).jpg",
+        "caption": "",
+        "alt": "A bicycle leaning against a tree in a park in low sun",
+        "settings": {
+          "aperture": "f/2.8",
+          "shutter": "1/250 s",
+          "iso": "ISO 320",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-08-23 19:04"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 201510,
+            "1000.jxl": 135646,
+            "2000.jpg": 669478,
+            "2000.jxl": 444447
+          }
+        }
+      }
+    ],
+    "rolls": [
+      {
+        "key": "Ljubljana HDR",
+        "name": "HDR",
+        "files": [
+          "Ljubljana HDR (2 of 27).jpg",
+          "Ljubljana HDR (4 of 27).jpg",
+          "Ljubljana HDR (5 of 27).jpg",
+          "Ljubljana HDR (7 of 27).jpg",
+          "Ljubljana HDR (8 of 27).jpg",
+          "Ljubljana HDR (10 of 27).jpg",
+          "Ljubljana HDR (11 of 27).jpg",
+          "Ljubljana HDR (12 of 27).jpg",
+          "Ljubljana HDR (13 of 27).jpg",
+          "Ljubljana HDR (14 of 27).jpg",
+          "Ljubljana HDR (15 of 27).jpg",
+          "Ljubljana HDR (21 of 27).jpg",
+          "Ljubljana HDR (22 of 27).jpg",
+          "Ljubljana HDR (23 of 27).jpg"
+        ],
+        "labels": [
+          "2",
+          "4",
+          "5",
+          "7",
+          "8",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "21",
+          "22",
+          "23"
+        ],
+        "taken": [
+          "2025-08-23 17:11",
+          "2025-08-23 17:14",
+          "2025-08-23 19:03",
+          "2025-08-23 17:27",
+          "2025-08-23 17:27",
+          "2025-08-23 19:04",
+          "2025-08-23 18:47",
+          "2025-08-23 18:46",
+          "2025-08-23 18:45",
+          "2025-08-23 17:24",
+          "2025-08-23 17:12",
+          "2025-08-23 17:27",
+          "2025-08-23 17:21",
+          "2025-08-23 17:15"
+        ]
+      }
+    ],
+    "frames": 14,
+    "from": "2025-08-23",
+    "to": "2025-08-23"
   }
 ]

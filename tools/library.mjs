@@ -6,6 +6,7 @@
 // (title, note, the printed frames and their captions) is kept; only "rolls", "frames", "from" and "to" are rewritten.
 // Each roll keeps its files in order, their labels, and the time each was taken (from the Exif in its first 256 KB).
 // A roll filed in the folder that belongs to another dump is left out by its export name: "except": ["CG Konoba"].
+// A loose file that is not a frame (a strip cut up for Instagram) is left out by its file name: "except": ["row-1-column-1.png"].
 //
 // Rolls and labels:
 //   Lightroom exports named "Name (N of M).ext" become one roll per Name, each frame labelled N.
@@ -72,7 +73,8 @@ export function sync(ids = [], site = 'site', log = console.log) {
     try { files = list(dump.folder); } catch { log(`${dump.id}: could not list "${dump.folder}" on plex; left as it was`); continue; }
     const known = new Map((dump.rolls || []).flatMap(r => r.files.map((f, i) => [f, Array.isArray(r.taken) && r.taken.length === r.files.length ? r.taken[i] : undefined])));
     let read = 0;
-    const next = rolls(files, dump.folder).filter(r => !(dump.except || []).includes(r.key)).map(r => {
+    const except = dump.except || [];
+    const next = rolls(files.filter(f => !except.includes(f)), dump.folder).filter(r => !except.includes(r.key)).map(r => {
       r.taken = r.files.map(f => known.get(f) !== undefined ? known.get(f) : (read++, taken(dump.folder, f)));
       return r;
     });

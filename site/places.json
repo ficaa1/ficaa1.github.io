@@ -3,5 +3,6 @@
   { "id": "montenegro/dubrovnik", "title": "Dubrovnik", "in": "montenegro" },
   { "id": "montenegro/herceg-novi", "title": "Herceg Novi", "in": "montenegro" },
   { "id": "montenegro/budva", "title": "Budva", "in": "montenegro" },
-  { "id": "montenegro/kolasin", "title": "Kolasin", "in": "montenegro" }
+  { "id": "montenegro/kolasin", "title": "Kolasin", "in": "montenegro" },
+  { "id": "ljubljana", "title": "Ljubljana", "dumps": ["ljubljana-2025-05", "ljubljana-2025-08"] }
 ]
