@@ -537,6 +537,21 @@ html:has(.daygrid[open]) { overflow: hidden; }
   .daygrid .grid li { flex-basis: calc(var(--r) * 150px); }
 }
 
+/* ---- Back to the top: a small square in the bottom right corner, in the page's link colour, ringed in its ground so it
+   shows on black too. Hidden until the page has been scrolled most of a screen down. */
+#top {
+  position: fixed; z-index: 6; right: calc(16px + env(safe-area-inset-right)); bottom: calc(16px + env(safe-area-inset-bottom));
+  width: 44px; height: 44px; padding: 0; display: grid; place-items: center;
+  background: var(--link); color: var(--bg); border: 2px solid var(--bg);
+  opacity: 0; visibility: hidden; translate: 0 8px;
+  transition: opacity 200ms ease, translate 200ms ease, visibility 0s linear 200ms;
+}
+#top svg { fill: currentColor; }
+#top.on { opacity: 1; visibility: visible; translate: none; transition: opacity 200ms ease, translate 200ms ease; }
+#top:hover { background: var(--link); opacity: 0.85; }
+#top:active { translate: 0 1px; }
+@media (prefers-reduced-motion: reduce) { #top, #top.on { translate: none; transition: none; } }
+
 @media (max-width: 900px) {
   #player { position: static; max-width: none; margin: 0; padding: 12px 20px 0; }
   #player.open { width: auto; padding: 12px 20px 8px; --big: min(calc(100vw - 40px), 520px, calc(100svh - 220px)); }

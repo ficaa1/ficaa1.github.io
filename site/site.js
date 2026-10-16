@@ -499,6 +499,24 @@
     return { tracklist, el };
   })();
 
+  // ---- Back to the top: a small button in the bottom right corner, there once the page has been scrolled most of a screen down.
+  // Like the player it lives outside the swapped part of the page; it takes focus back to the page's heading.
+  (() => {
+    const b = document.createElement('button');
+    b.id = 'top'; b.type = 'button'; b.title = 'Back to the top'; b.setAttribute('aria-label', 'Back to the top');
+    b.innerHTML = '<svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M10 3 L17 11 H12.5 V17 H7.5 V11 H3 Z"/></svg>';
+    b.addEventListener('click', () => {
+      scrollTo({ top: 0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+      const h1 = document.querySelector('main h1');
+      if (h1) { h1.tabIndex = -1; h1.focus({ preventScroll: true }); }
+    });
+    let queued = false;
+    const place = () => { queued = false; b.classList.toggle('on', scrollY > innerHeight * 0.6); };
+    addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(place); } }, { passive: true });
+    document.body.append(b);
+    place();
+  })();
+
   // ---- Page setup, run on the first load and after every swap.
   function init() {
     entrances();
