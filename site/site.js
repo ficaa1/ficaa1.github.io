@@ -99,6 +99,65 @@
     if (target) view(figs, figs.indexOf(target));
   }
 
+  // ---- Sheets: anything with data-sheet-open="<id>" (a date, say) opens the pictures inside that part of the page
+  // ([data-sheet="<its name>"], usually a day) as one large grid. A picture there opens in the viewer; Esc closes the
+  // viewer back to the grid, and Esc again closes the grid where the page was left. Without script the links still jump.
+  let sheet;
+  function sheets() {
+    document.querySelectorAll('main [data-sheet-open]').forEach(el => el.addEventListener('click', e => {
+      const part = document.getElementById(el.dataset.sheetOpen);
+      if (!part || e.metaKey || e.ctrlKey || e.shiftKey || e.button) return;
+      e.preventDefault();
+      openSheet(part, el.closest('a, button') || el);
+    }));
+  }
+  function openSheet(part, from) {
+    if (!sheet) {
+      sheet = document.createElement('dialog');
+      sheet.className = 'daygrid';
+      sheet.setAttribute('aria-labelledby', 'sheet-name');
+      sheet.innerHTML = `<div class="top"><h2 id="sheet-name" tabindex="-1" autofocus></h2><button type="button" data-close>Close</button></div>
+        <ol class="parts" aria-label="Days"></ol><ol class="grid"></ol>`;
+      document.body.append(sheet);
+      sheet.addEventListener('click', e => {
+        const b = e.target.closest('button');
+        if (b && b.dataset.close !== undefined) sheet.close();
+        else if (b && b.dataset.part) fill(document.getElementById(b.dataset.part));
+      });
+      sheet.addEventListener('close', () => {
+        const f = sheet.from;
+        if (f && f.isConnected) f.focus({ preventScroll: true });
+      });
+    }
+    sheet.from = from;
+    if (!sheet.open) sheet.showModal();
+    fill(part);
+  }
+  function fill(part) {
+    if (!part) return;
+    sheet.querySelector('h2').textContent = part.dataset.sheet;
+    sheet.querySelector('.parts').innerHTML = [...document.querySelectorAll('main [data-sheet]')].map(p =>
+      `<li><button type="button" data-part="${p.id}"${p === part ? ' aria-current="true"' : ''}>${p.dataset.sheetTab || p.dataset.sheet}</button></li>`).join('');
+    const figs = [...part.querySelectorAll('.print, [data-view]')];
+    const grid = sheet.querySelector('.grid'), cells = [];
+    grid.replaceChildren(...figs.map((f, n) => {
+      const li = document.createElement('li'), a = document.createElement('a'), pic = f.querySelector('picture').cloneNode(true);
+      const img = pic.querySelector('img');
+      li.style.setProperty('--r', (img.width / img.height || 1.5).toFixed(3));
+      pic.querySelectorAll('source, img').forEach(x => x.sizes = '(max-width: 640px) 50vw, 30vw');
+      a.href = '#' + f.id;
+      a.append(pic);
+      cells.push(a);
+      a.addEventListener('click', e => {
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.button) return;
+        e.preventDefault(); view(figs, n, cells);
+      });
+      li.append(a);
+      return li;
+    }));
+    sheet.scrollTop = 0;
+  }
+
   // The switcher: sleeves and tabs rise in a few at a time, and on a narrow screen the row of tabs starts at this dump.
   function dumps() {
     const here = document.querySelector('.tabs [aria-current]');
@@ -116,7 +175,7 @@
     els.forEach(el => { el.classList.add('rise'); io.observe(el); });
   }
 
-  function view(figs, n) {
+  function view(figs, n, back) {
     if (!viewer) {
       viewer = document.createElement('dialog');
       viewer.className = 'viewer';
@@ -135,11 +194,14 @@
       });
       viewer.addEventListener('close', () => {
         history.replaceState(history.state, '', location.pathname + location.search);
-        const f = viewer.figs && viewer.figs[viewer.n];
-        if (f && f.isConnected) (f.querySelector('.open') || f).focus({ preventScroll: true });
+        // Opened from a sheet: back to the grid, at the picture last shown. Otherwise back to that picture on the page.
+        const f = viewer.figs && viewer.figs[viewer.n], cell = viewer.back && viewer.back[viewer.n];
+        if (cell && cell.isConnected) cell.focus();
+        else if (f && f.isConnected) (f.querySelector('.open') || f).focus({ preventScroll: true });
       });
     }
     viewer.figs = figs;
+    viewer.back = back || null;
     viewer.step = d => show((viewer.n + d + figs.length) % figs.length);
     const show = i => {
       viewer.n = i;
@@ -436,6 +498,7 @@
     blog();
     contact();
     photos();
+    sheets();
     player.tracklist();
   }
 

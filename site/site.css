@@ -512,6 +512,31 @@ html:has(.viewer[open]) { overflow: hidden; }
 .viewer .keys button { font: inherit; background: none; color: var(--link); text-decoration: underline; padding: 6px 8px; }
 .viewer .keys button:hover { background: var(--panel); }
 
+/* The day grid: one part of a dump (a day) as a large grid on a plain page. Rows keep each picture whole: every cell grows
+   in proportion to its picture's width, so a row shares one height; the last row is not stretched. */
+.daygrid { border: 0; margin: 0; padding: 0 20px 48px; width: 100vw; height: 100dvh; max-width: none; max-height: none; overflow-y: auto; background: var(--bg); color: var(--ink); }
+.daygrid::backdrop { background: var(--bg); }
+html:has(.daygrid[open]) { overflow: hidden; }
+.daygrid .top { position: sticky; top: 0; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 0 8px; background: var(--bg); }
+.daygrid h2 { outline: 0; margin: 0; font-size: clamp(28px, 3.6vw, 52px); line-height: 1.05; letter-spacing: -0.02em; }
+.daygrid button { font: inherit; font-size: 18px; min-height: 44px; padding: 6px 10px; background: none; color: var(--link); text-decoration: underline; cursor: pointer; }
+.daygrid button:hover { background: var(--panel); }
+.daygrid .parts { list-style: none; margin: 0 0 20px -10px; padding: 0; display: flex; flex-wrap: wrap; }
+.daygrid .parts [aria-current] { color: var(--ink); text-decoration: none; font-weight: bold; }
+.daygrid .grid { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 12px; }
+.daygrid .grid::after { content: ""; flex: 1000 1 0; }
+.daygrid .grid li { flex: var(--r) 1 calc(var(--r) * 320px); margin: 0; }
+.daygrid .grid a { display: block; }
+.daygrid .grid img { display: block; width: 100%; height: auto; transition: opacity 200ms ease; }
+.daygrid .grid a:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+@media (hover: hover) and (pointer: fine) { .daygrid .grid a:hover img { opacity: 0.85; } }
+@media (max-width: 640px) {
+  .daygrid { padding: 0 8px 32px; }
+  .daygrid .top { padding-top: 8px; }
+  .daygrid .grid { gap: 6px; }
+  .daygrid .grid li { flex-basis: calc(var(--r) * 150px); }
+}
+
 @media (max-width: 900px) {
   #player { position: static; max-width: none; margin: 0; padding: 12px 20px 0; }
   #player.open { width: auto; padding: 12px 20px 8px; --big: min(calc(100vw - 40px), 520px, calc(100svh - 220px)); }
