@@ -3,7 +3,7 @@
 Each dump has its own page that you design by hand, at `site/photos/<id>/index.html`, with its own `dump.css` beside it.
 Some parts are shared:
 - the switcher: `photos.html` lists every dump, and each page has tabs and a "next" stub;
-- the nav, the player, the footer and the viewer.
+- the nav, the player, the footer, the viewer and the day grid.
 
 The build never rewrites a dump page. It only fills the markers the page contains.
 
@@ -132,6 +132,15 @@ This writes `site/photos/<id>/index.html` and `dump.css`. From then on the page 
 Options go before `:start`, for example `<!-- print:dsc09415 lazy=no:start -->`.
 
 Anything with `data-view`, or any `.print`, opens the viewer.
+
+Every dump also gets the day grid. Group the frames by day (or by stop, if a dump is one day) and mark it up:
+- each day's container gets an `id`, `data-sheet="Tuesday 20 August"` and a short `data-sheet-tab="20"`;
+- every date on the page (the day heading, a list of days near the top, a big numeral) gets
+  `data-sheet-open="<that container's id>"`, on a real link to the day so it still works without script.
+
+Clicking a date opens that day's pictures as a large grid, uncropped, rows of mixed widths. A picture opens the
+viewer; Esc goes back to the grid, Esc again back to the page where you were. Style the openers in the dump's own
+type; the grid itself is shared and has no per-dump styling.
 
 ## 5. Check
 

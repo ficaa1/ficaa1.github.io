@@ -73,6 +73,20 @@ main[data-dump="istanbul-2025"] .opening .when { margin-top: 32px; font-size: va
 main[data-dump="istanbul-2025"] .opening .gear { margin-top: 10px; font-size: var(--s-body); color: var(--soft); }
 main[data-dump="istanbul-2025"] .cover img { width: 100%; height: auto; }
 
+/* The three days under the name; each opens as a grid. */
+main[data-dump="istanbul-2025"] .opening .days { display: flex; gap: clamp(20px, 2.4vw, 40px); margin-top: clamp(40px, 5vw, 72px); }
+main[data-dump="istanbul-2025"] .days a {
+  display: flex; align-items: baseline; gap: 0.25em; min-height: 44px; color: inherit; text-decoration: none;
+  transition: color 200ms var(--ease);
+}
+main[data-dump="istanbul-2025"] .days .n { font-size: clamp(44px, 5vw, 88px); line-height: 0.9; letter-spacing: -0.045em; font-weight: 500; }
+main[data-dump="istanbul-2025"] .days .w { font-size: var(--s-body); color: var(--soft); }
+main[data-dump="istanbul-2025"] .day > h2 > a { color: inherit; text-decoration: none; transition: color 200ms var(--ease); }
+main[data-dump="istanbul-2025"] .days a:active, main[data-dump="istanbul-2025"] .day > h2 > a:active { color: var(--mark); }
+@media (hover: hover) and (pointer: fine) {
+  main[data-dump="istanbul-2025"] .days a:hover, main[data-dump="istanbul-2025"] .day > h2 > a:hover { color: var(--mark); }
+}
+
 /* ---- A day: its name, large, then its stops. */
 main[data-dump="istanbul-2025"] .day { padding: 0 var(--gut); }
 main[data-dump="istanbul-2025"] .day > h2 {
@@ -164,6 +178,8 @@ main[data-dump="istanbul-2025"] .times button:focus-visible { outline: 3px solid
   main[data-dump="istanbul-2025"] .opening { display: block; padding-top: 48px; }
   main[data-dump="istanbul-2025"] .opening h1 { font-size: clamp(64px, 22vw, 140px); }
   main[data-dump="istanbul-2025"] .opening .when { margin-top: 20px; }
+  main[data-dump="istanbul-2025"] .opening .days { margin-top: 28px; }
+  main[data-dump="istanbul-2025"] .days .n { font-size: 56px; }
   main[data-dump="istanbul-2025"] .cover { margin: 40px calc(-1 * var(--gut)) 0; }
   main[data-dump="istanbul-2025"] .day > h2 { margin: 112px 0 32px; }
   main[data-dump="istanbul-2025"] .stop { display: block; }
