@@ -1,0 +1,7 @@
+[
+  { "id": "montenegro", "title": "Montenegro", "dumps": ["montenegro-2024", "montenegro-2025"] },
+  { "id": "montenegro/dubrovnik", "title": "Dubrovnik", "in": "montenegro" },
+  { "id": "montenegro/herceg-novi", "title": "Herceg Novi", "in": "montenegro" },
+  { "id": "montenegro/budva", "title": "Budva", "in": "montenegro" },
+  { "id": "montenegro/kolasin", "title": "Kolasin", "in": "montenegro" }
+]

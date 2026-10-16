@@ -86,6 +86,14 @@ Add the chosen frames to the dump's `photos` list in `site/photos.json`:
 
 Remove `"provisional"` once Filip has signed off on the frame.
 
+A frame filed in another dump's folder names that folder itself, and is fetched from there:
+
+```json
+{ "file": "cg-konoba-1-2", "original": "CG Konoba (1 of 3)-2.jxl", "folder": "Rim edited 2025", "caption": "", "alt": "…" }
+```
+
+To take a frame off the pages, delete it from `photos`, take its marker off the page (a country's pages too) and rebuild. Its copies stay on R2, so also delete its local copies in `site/photos/<id>/` before the dump's next `--upload`, which copies the whole folder.
+
 ## 3. Fetch, convert and fill
 
 ```sh
@@ -131,6 +139,7 @@ This writes `site/photos/<id>/index.html` and `dump.css`. From then on the page 
 | `picture:<file>` | a bare picture that opens the viewer. Options: `sizes=60vw`, `link=no`, `lazy=no`; a value with spaces goes in quotes, `sizes="(min-width: 900px) 50vw, 100vw"` |
 | `days` | one tile per day the dump was shot, one mark per frame |
 | `day:YYYY-MM-DD` | the tile for a single day |
+| `places` | (country and place pages) the country's places, each with its years |
 
 Options go before `:start`, for example `<!-- print:dsc09415 lazy=no:start -->`.
 
@@ -144,6 +153,21 @@ Every dump also gets the day grid. Group the frames by day (or by stop, if a dum
 Clicking a date opens that day's pictures as a large grid, uncropped, rows of mixed widths. A picture opens the
 viewer; Esc goes back to the grid, Esc again back to the page where you were. Style the openers in the dump's own
 type; the grid itself is shared and has no per-dump styling.
+
+## Countries and places
+
+Some dumps are shelved under a country, whose pages gather the frames of every year. `site/places.json` lists them:
+
+```json
+{ "id": "montenegro", "title": "Montenegro", "dumps": ["montenegro-2024", "montenegro-2025"] },
+{ "id": "montenegro/budva", "title": "Budva", "in": "montenegro" }
+```
+
+- A country page is `site/photos/<country>/index.html`; a place page is `site/photos/<country>/<place>/index.html`.
+- In the switcher and in `photos.html`, the country stands in for its dumps.
+- Both are made by hand like a dump's page. A picture on them names its dump: `<!-- picture:montenegro-2025/dsc06009:start -->`. A frame's link and its label in the viewer go to the deepest page that shows it.
+- The `places` marker lists the country's places. Order them in `places.json` as they should appear.
+- Scope their CSS to `main[data-country="<country>"]`, in one stylesheet beside the country page.
 
 ## 5. Check
 

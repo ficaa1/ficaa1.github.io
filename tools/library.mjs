@@ -89,7 +89,7 @@ export function sync(ids = [], site = 'site', log = console.log) {
     dump.frames = next.reduce((n, r) => n + r.files.length, 0);
     dump.from = dates[0] ? dates[0].slice(0, 10) : dump.from;
     dump.to = dates.at(-1) ? dates.at(-1).slice(0, 10) : dump.to;
-    for (const p of dump.photos || []) if (p.original && !next.some(r => r.files.includes(p.original))) log(`${dump.id}: printed frame "${p.original}" is no longer in the folder`);
+    for (const p of dump.photos || []) if (p.original && !p.folder && !next.some(r => r.files.includes(p.original))) log(`${dump.id}: printed frame "${p.original}" is no longer in the folder`);
     log(`${dump.id}: ${dump.frames} frames in ${next.length} roll${next.length === 1 ? '' : 's'}${was && was !== dump.frames ? ` (was ${was})` : ''}, ${dump.from} to ${dump.to}; read the time of ${read}`);
   }
   writeFileSync(path, JSON.stringify(dumps, null, 2) + '\n');

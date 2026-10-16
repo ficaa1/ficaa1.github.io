@@ -45,7 +45,8 @@ export function page(frames = catalogue(), cache = readMeta()) {
   const sections = [...groups].sort(([a], [b]) => a.localeCompare(b)).map(([name, rows]) =>
     `<section><h2>${esc(name)} <small data-count>${rows.length}</small></h2><div class="grid">` + rows.map(f => {
       const date = cache.frames[f.id]?.settings?.taken || '';
-      const src = f.thumb && available(f.thumb) ? `t/${f.thumb}.jpg` : '';
+      // A JXL is never thumbnailed here (plex can't decode it), but one made by hand with djxl is shown.
+      const src = available(f.thumb || f.id) ? `t/${f.thumb || f.id}.jpg` : '';
       return `<article data-id="${f.id}" data-path="${esc(f.path)}"><button class="tile" aria-pressed="false" aria-label="${esc(f.path)}">` +
         `<span class="image">${src ? `<img src="${src}" alt="" loading="lazy" decoding="async" width="800" height="800">` : ''}</span>` +
         `<span class="name">${esc(basename(f.relative))}</span><time>${esc(date.slice(0, 10))}</time></button>` +

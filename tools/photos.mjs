@@ -29,6 +29,7 @@
 // Those copies are gitignored: they are for previewing here and for uploading. Their sizes are kept in photos.json
 // ("web"), so pages can be rebuilt on a machine that does not have them.
 // Originals can be JPEG XL or JPEG, found in photos-src-local/<id>/ (fetched with --fetch, gitignored) or photos-src/.
+// A frame filed in another dump's folder names that folder itself: {"file", "original", "folder": "Rim edited 2025"}.
 // --fetch reads each missing original from plex: a JPEG is scaled to 2000 px there with ffmpeg and streamed back,
 // a JPEG XL comes whole (nothing on plex decodes it). Camera settings come from the original's first 256 KB and are
 // kept in photos.json, so pages rebuild without the originals. A 7000 px JPEG XL takes about 1 GB to decode;
@@ -64,12 +65,19 @@ const ORIGIN = existsSync('CNAME') ? `https://${readFileSync('CNAME', 'utf8').tr
 const WIDTHS = [1000, 2000];
 const THUMB = 400;
 const DEPTH = 2; // site/photos/<id>/index.html is two folders below the site root
+const depthOf = id => 1 + id.split('/').length; // a place, site/photos/<country>/<place>/index.html, is three
 const dir = id => join(site, 'photos', id);
 const pagePath = id => join(dir(id), 'index.html');
 
 const listPath = join(site, 'photos.json');
 const dumps = JSON.parse(readFileSync(listPath, 'utf8'));
-if (ONLY && !dumps.some(d => d.id === ONLY)) { console.error(`${ONLY}: not in site/photos.json. Add {"id", "title", "folder"} and run node tools/library.mjs ${ONLY}`); process.exit(1); }
+// Countries and places (site/places.json): pages that gather the frames of several dumps. A country names the dumps it
+// shelves ("dumps": ["montenegro-2024", "montenegro-2025"]) and stands in for them in the switcher and the archive box;
+// a place sits in a country ("in": "montenegro") and shows the days spent there, from any of its dumps. Both pages are
+// made by hand like a dump's; a picture on them names its dump: <!-- picture:montenegro-2025/dsc06009:start -->.
+const placesPath = join(site, 'places.json');
+const places = existsSync(placesPath) ? JSON.parse(readFileSync(placesPath, 'utf8')) : [];
+if (ONLY && !dumps.some(d => d.id === ONLY) && !places.some(c => c.id === ONLY)) { console.error(`${ONLY}: not in site/photos.json or site/places.json. Add {"id", "title", "folder"} and run node tools/library.mjs ${ONLY}`); process.exit(1); }
 const mine = d => !ONLY || d.id === ONLY;
 
 // ---- Codecs, loaded only when there is something to encode.
@@ -123,15 +131,16 @@ function original(dump, p) {
 if (FETCH) {
   const plex = await import('./plex.mjs');
   for (const dump of dumps.filter(mine)) for (const p of dump.photos) {
-    if (!p.original || !dump.folder) continue;
-    if (!p.settings) p.settings = settings(exif(plex.head(dump.folder, p.original)));
+    const folder = p.folder || dump.folder; // a frame filed in another dump's folder names it: "folder": "Rim edited 2025"
+    if (!p.original || !folder) continue;
+    if (!p.settings) p.settings = settings(exif(plex.head(folder, p.original)));
     if (original(dump, p)) continue;
     const to = join(SOURCES[0], dump.id);
     mkdirSync(to, { recursive: true });
     const jpeg = /\.jpe?g$/i.test(p.original);
-    const data = jpeg ? plex.resizedJpeg(dump.folder, p.original, WIDTHS.at(-1)) : plex.whole(dump.folder, p.original);
+    const data = jpeg ? plex.resizedJpeg(folder, p.original, WIDTHS.at(-1)) : plex.whole(folder, p.original);
     writeFileSync(join(to, `${p.file}.${jpeg ? 'jpg' : 'jxl'}`), data);
-    console.log(`fetched ${dump.folder}/${p.original} (${(data.length / 1048576).toFixed(1)} MB)`);
+    console.log(`fetched ${folder}/${p.original} (${(data.length / 1048576).toFixed(1)} MB)`);
   }
 }
 
@@ -222,10 +231,41 @@ function locate(dump, p) {
   return { r: -1, i: -1, roll: null, label: '' };
 }
 const printed = dump => dump.photos.filter(p => p.web);
-const hasPage = dump => existsSync(pagePath(dump.id));
-const visible = dumps.filter(d => !d.hidden).sort((a, b) => (b.to || '').localeCompare(a.to || '') || a.title.localeCompare(b.title));
+const hasPage = e => existsSync(pagePath(e.id));
+const byId = new Map(dumps.map(d => [d.id, d]));
+const countries = places.filter(c => !c.in);
+const countryOf = e => countries.find(c => c.id === e.in || (c.dumps || []).includes(e.id));
+const newest = (a, b) => (b.to || '').localeCompare(a.to || '') || a.title.localeCompare(b.title);
+const taken = p => (p.settings && p.settings.taken) || '';
+// What each country and place page shows: the pictures its markers name, in page order, each once (a cover may repeat a frame).
+const PICTURE = /<!-- picture:([\w.-]+)\/([\w.-]+)(?: [^>]*)?:start -->/g;
+const shows = new Map(places.filter(hasPage).map(c => [c.id, [...new Set([...readFileSync(pagePath(c.id), 'utf8').matchAll(PICTURE)].map(m => `${m[1]}/${m[2]}`))]
+  .map(k => k.split('/')).map(([id, file]) => ({ dump: byId.get(id), file })).filter(x => x.dump)
+  .map(({ dump, file }) => ({ dump, p: dump.photos.find(p => p.file === file && p.web) })).filter(x => x.p)]));
+// A country spans its dumps; a place spans the frames it shows. Both are named by their years: "2024 and 2025".
+const list = words => words.length < 2 ? words.join('') : `${words.slice(0, -1).join(', ')} and ${words.at(-1)}`;
+for (const c of places) {
+  const shelved = c.in ? [] : (c.dumps || []).map(id => byId.get(id)).filter(Boolean);
+  const dates = c.in ? (shows.get(c.id) || []).map(x => taken(x.p).slice(0, 10)).filter(Boolean).sort() : shelved.flatMap(d => [d.from, d.to]).filter(Boolean).sort();
+  Object.assign(c, { shelved, from: dates[0], to: dates.at(-1), frames: c.in ? (shows.get(c.id) || []).length : shelved.reduce((n, d) => n + (d.frames || 0), 0),
+    years: list([...new Set(c.in ? (shows.get(c.id) || []).map(x => taken(x.p).slice(0, 4)).filter(Boolean) : shelved.map(year))].sort()) });
+}
+// The switcher lists dumps and countries; a country takes the place of the dumps it shelves. The archive box still has every dump.
+const visible = [...dumps.filter(d => !d.hidden && !countryOf(d)), ...countries].sort(newest);
+const sleeves = dumps.filter(d => !d.hidden).sort(newest);
 const open = visible.filter(hasPage);
-const href = (dump, depth) => depth ? `${'../'.repeat(depth - 1)}${dump.id}/` : `photos/${dump.id}/`;
+const href = (e, depth) => depth ? `${'../'.repeat(depth - 1)}${e.id}/` : `photos/${e.id}/`;
+// Where a frame is shown: the deepest page whose markers name it, else its dump's own page.
+const shownAt = new Map();
+for (const [id, xs] of shows) for (const { dump, p } of xs) {
+  const k = `${dump.id}/${p.file}`;
+  if (!shownAt.has(k) || depthOf(id) > depthOf(shownAt.get(k))) shownAt.set(k, id);
+}
+const pageOf = (dump, p) => { const id = shownAt.get(`${dump.id}/${p.file}`); return id ? places.find(c => c.id === id) : hasPage(dump) ? dump : null; };
+const homeOf = dump => hasPage(dump) ? dump : countryOf(dump) && hasPage(countryOf(dump)) ? countryOf(dump) : null;
+const when = e => e.years || months(e.from, e.to);
+// The viewer's heading for a frame: the place it is shown in and its year, or its dump.
+const label = (dump, p) => { const e = pageOf(dump, p); return e && e.in ? `${e.title}, ${taken(p).slice(0, 4)}` : `${dump.title}, ${year(dump)}`; };
 const home = depth => `${'../'.repeat(depth)}photos.html`;
 const counted = dump => plural(dump.frames, 'frame');
 const photo = (dump, file) => dump.photos.find(p => p.file === file && printed(dump).includes(p));
@@ -238,7 +278,8 @@ function strip(dump, roll, r, depth, link) {
   return roll.labels.map((label, i) => {
     const p = marks.get(i);
     if (!p) return `<li><span class="slot"></span><span class="n">${esc(label)}</span></li>`;
-    const to = link ? `${href(dump, depth)}#${p.file}` : `#${p.file}`;
+    const on = link && pageOf(dump, p);
+    const to = on ? `${href(on, depth)}#${p.file}` : `#${p.file}`;
     const { width, height } = sized(p, THUMB);
     return `<li class="printed"><a href="${esc(to)}" aria-label="Frame ${esc(label)}${roll.name ? ` of ${esc(roll.name)}` : ''}"><img src="${media(depth, dump.id, `${p.file}-${THUMB}.jpg`)}" width="${width}" height="${height}" alt="" loading="lazy"></a><span class="n">${esc(label)}</span></li>`;
   }).join('');
@@ -269,11 +310,12 @@ const exifLine = p => {
   const when = s.taken ? (({ d, m }) => `${d} ${m}, ${s.taken.slice(11)}`)(day(s.taken)) : '';
   return `${[s.aperture, s.shutter, s.iso].filter(Boolean).join(', ')}${when ? `. ${when}` : ''}.`;
 };
-function print(dump, p, depth, { lazy = true, lead = false } = {}) {
+// `lead`: the page this print stands for (a dump or a country), named and linked in place of the frame's label.
+function print(dump, p, depth, { lazy = true, lead = null } = {}) {
   const { width, height } = sized(p, WIDTHS[0]);
   const at = locate(dump, p);
   const frame = lead
-    ? `<a href="${href(dump, depth)}">${esc(dump.title)}, ${esc(months(dump.from, dump.to))}</a>.`
+    ? `<a href="${href(lead, depth)}">${esc(lead.title)}, ${esc(when(lead))}</a>.`
     : `${esc(at.label)}${at.roll && at.roll.name && dump.rolls.length > 1 ? ` of ${esc(at.roll.name)}` : ''}.`;
   return `<figure class="print${height > width ? ' tall' : ''}" id="${esc(p.file)}" data-dump="${esc(`${dump.title}, ${year(dump)}`)}" data-bytes="${esc(JSON.stringify(bytes(dump, p)))}">
 <a href="${media(depth, dump.id, `${p.file}-${WIDTHS.at(-1)}.jpg`)}" class="open"><span class="load">${picture(dump, p, depth, { lazy })}</span></a>
@@ -282,7 +324,7 @@ function print(dump, p, depth, { lazy = true, lead = false } = {}) {
 }
 // A bare picture for a page's own composition; it still opens the viewer and still names the frame.
 const bare = (dump, p, depth, o) => o.link === 'no' ? picture(dump, p, depth, { sizes: o.sizes, lazy: o.lazy !== 'no' })
-  : `<a class="open" id="${esc(p.file)}" href="${media(depth, dump.id, `${p.file}-${WIDTHS.at(-1)}.jpg`)}" data-view data-dump="${esc(`${dump.title}, ${year(dump)}`)}" data-caption="${esc(`${p.caption} ${exifLine(p)}`)}" data-bytes="${esc(JSON.stringify(bytes(dump, p)))}">${picture(dump, p, depth, { sizes: o.sizes, lazy: o.lazy !== 'no' })}</a>`;
+  : `<a class="open" id="${esc(p.file)}" href="${media(depth, dump.id, `${p.file}-${WIDTHS.at(-1)}.jpg`)}" data-view data-dump="${esc(label(dump, p))}" data-caption="${esc(`${p.caption} ${exifLine(p)}`)}" data-bytes="${esc(JSON.stringify(bytes(dump, p)))}">${picture(dump, p, depth, { sizes: o.sizes, lazy: o.lazy !== 'no' })}</a>`;
 
 // ---- Kit: one tile per day the dump was shot, each frame a mark, the printed ones filled.
 function dayTiles(dump, only) {
@@ -300,15 +342,19 @@ function dayTiles(dump, only) {
   }).join('\n');
 }
 
-// ---- Standard: the switcher. Dumps without a page yet are listed, not linked.
+// ---- Standard: the switcher. Dumps without a page yet are listed, not linked; a country stands for its dumps.
+const at = (d, p) => { const a = locate(d, p); return d.rolls.slice(0, Math.max(0, a.r)).reduce((n, r) => n + r.files.length, 0) + a.i; };
+function marks(e) {
+  let before = 0;
+  return (e.shelved || [e]).flatMap(d => {
+    const ms = printed(d).filter(p => locate(d, p).r >= 0).map(p => `<i style="--at:${((before + at(d, p) + 0.5) / e.frames * 100).toFixed(1)}%"></i>`);
+    before += d.frames;
+    return ms;
+  }).join('');
+}
 function tabs(current, depth) {
   const items = visible.map(d => {
-    const marks = printed(d).map(p => {
-      const at = locate(d, p);
-      const before = d.rolls.slice(0, Math.max(0, at.r)).reduce((n, r) => n + r.files.length, 0);
-      return `<i style="--at:${((before + at.i + 0.5) / d.frames * 100).toFixed(1)}%"></i>`;
-    }).join('');
-    const inner = `<span class="place">${esc(d.title)}</span> <span class="yr">${esc(year(d))}</span> <span class="n">${d.frames}<span class="vh"> frames</span></span><span class="bar" style="--w:${Math.min(1, d.frames / 80).toFixed(3)}" aria-hidden="true">${marks}</span>`;
+    const inner = `<span class="place">${esc(d.title)}</span> <span class="yr">${esc(d.shelved ? d.years : year(d))}</span> <span class="n">${d.frames}<span class="vh"> frames</span></span><span class="bar" style="--w:${Math.min(1, d.frames / 80).toFixed(3)}" aria-hidden="true">${marks(d)}</span>`;
     if (d === current) return `<li class="here"><a href="${href(d, depth)}" aria-current="page">${inner}</a></li>`;
     return hasPage(d) ? `<li><a href="${href(d, depth)}">${inner}</a></li>` : `<li class="sealed"><span title="Not up yet">${inner}</span></li>`;
   }).join('\n');
@@ -319,29 +365,47 @@ ${items}
 </ol>
 </div>`;
 }
-function next(dump, depth) {
-  const i = open.indexOf(dump), n = open[(i + 1) % open.length];
-  return `${n && n !== dump ? `<p class="next">Next: <a href="${href(n, depth)}">${esc(n.title)}, ${esc(months(n.from, n.to))}</a></p>\n` : ''}<p><a href="${home(depth)}">All photos</a></p>`;
+// A place's way on is the next place in its country (the last goes round to the first), and the country itself.
+function next(e, depth) {
+  const country = e.in && countries.find(c => c.id === e.in);
+  const row = country ? places.filter(x => x.in === e.in && hasPage(x)) : open;
+  const i = row.indexOf(e), n = row[(i + 1) % row.length];
+  const name = x => x.in ? esc(x.title) : `${esc(x.title)}, ${esc(when(x))}`;
+  return `${n && n !== e ? `<p class="next">Next: <a href="${href(n, depth)}">${name(n)}</a></p>\n` : ''}${country && hasPage(country) ? `<p><a href="${href(country, depth)}">${esc(country.title)}</a></p>\n` : ''}<p><a href="${home(depth)}">All photos</a></p>`;
 }
-function meta(dump) {
-  const title = `${dump.title}, ${year(dump)}`;
-  const p = printed(dump)[0];
-  const image = p ? (absolute ? '' : ORIGIN) + media(0, dump.id, `${p.file}-1000.jpg`) : '';
+// The places of a country, the one shown marked: <!-- places:start --> on the country's page and on each place's.
+function placeList(e, depth) {
+  const country = e.in ? countries.find(c => c.id === e.in) : e;
+  return `<ol class="places">
+${places.filter(x => x.in === country.id).map(x => {
+    const inner = `<span class="place">${esc(x.title)}</span> <span class="yr">${esc(x.years)}</span>`;
+    if (x === e) return `<li class="here"><a href="${href(x, depth)}" aria-current="page">${inner}</a></li>`;
+    return hasPage(x) ? `<li><a href="${href(x, depth)}">${inner}</a></li>` : `<li class="sealed"><span title="Not up yet">${inner}</span></li>`;
+  }).join('\n')}
+</ol>`;
+}
+const first = e => e.shelved || e.in ? (shows.get(e.id) || [])[0] : printed(e)[0] && { dump: e, p: printed(e)[0] };
+function meta(e) {
+  const country = e.in && countries.find(c => c.id === e.in);
+  const title = country ? `${e.title}, ${country.title}` : `${e.title}, ${e.shelved ? e.years : year(e)}`;
+  const x = first(e);
+  const image = x ? (absolute ? '' : ORIGIN) + media(0, x.dump.id, `${x.p.file}-1000.jpg`) : '';
   return `<title>${esc(title)} - Photos - Filip Biljic</title>
 <meta name="description" content="${esc(`${title}. Photos by Filip Biljic.`)}">
 <meta property="og:title" content="${esc(title)}">${image ? `\n<meta property="og:image" content="${esc(image)}">` : ''}`;
 }
-const stamp = (dump, depth) => { const p = dump && printed(dump)[0]; return p ? `<img class="stamp" src="${media(depth, dump.id, `${p.file}-${THUMB}.jpg`)}" width="400" height="${sized(p, THUMB).height}" alt="" loading="lazy">` : ''; };
+const stamp = (e, depth) => { const x = e && first(e); return x ? `<img class="stamp" src="${media(depth, x.dump.id, `${x.p.file}-${THUMB}.jpg`)}" width="400" height="${sized(x.p, THUMB).height}" alt="" loading="lazy">` : ''; };
 
-// ---- Standard: the archive box (photos.html). Every dump as a sleeve, grouped by year.
+// ---- Standard: the archive box (photos.html). Every dump as a sleeve, grouped by year; a shelved one opens its country.
 function sleeve(dump) {
+  const to = homeOf(dump);
   const place = `<span class="place">${esc(dump.title)}</span> <span class="when">${esc(months(dump.from, dump.to))}</span> <span class="count">${esc(counted(dump))}</span>`;
-  const strips = dump.rolls.map((roll, r) => `<div class="strip">${roll.name ? `<p class="edge">${esc(roll.name)}</p>` : ''}<ol aria-label="${esc(roll.name || dump.title)}">${strip(dump, roll, r, 0, hasPage(dump))}</ol></div>`).join('');
-  return `<li class="sleeve${hasPage(dump) ? '' : ' sealed'}">${hasPage(dump) ? `<a class="label" href="${href(dump, 0)}">${place}</a>` : `<p class="label">${place}</p>`}<div class="strips">${strips}</div></li>`;
+  const strips = dump.rolls.map((roll, r) => `<div class="strip">${roll.name ? `<p class="edge">${esc(roll.name)}</p>` : ''}<ol aria-label="${esc(roll.name || dump.title)}">${strip(dump, roll, r, 0, Boolean(to))}</ol></div>`).join('');
+  return `<li class="sleeve${to ? '' : ' sealed'}">${to ? `<a class="label" href="${href(to, 0)}">${place}</a>` : `<p class="label">${place}</p>`}<div class="strips">${strips}</div></li>`;
 }
 function archive() {
-  const years = [...new Set(visible.map(d => (d.to || d.from || '').slice(0, 4)))];
-  const leads = open.filter(d => printed(d).length).slice(0, 4);
+  const years = [...new Set(sleeves.map(d => (d.to || d.from || '').slice(0, 4)))];
+  const leads = open.map(e => [e, first(e)]).filter(([, x]) => x).slice(0, 4);
   return `<section class="set archive" id="dumps">
 <div class="field">
 <article class="contact box" aria-label="Photos">
@@ -349,19 +413,19 @@ function archive() {
 ${years.map(y => `<section class="shelf" aria-label="${y}">
 <h2 class="year">${y}</h2>
 <ol class="sleeves">
-${visible.filter(d => (d.to || d.from || '').startsWith(y)).map(sleeve).join('\n')}
+${sleeves.filter(d => (d.to || d.from || '').startsWith(y)).map(sleeve).join('\n')}
 </ol>
 </section>`).join('\n')}
 </article>
 </div>
 <div class="prints">
-${leads.map((d, n) => print(d, printed(d)[0], 0, { lazy: n > 0, lead: true })).join('\n')}
+${leads.map(([e, x], n) => print(x.dump, x.p, 0, { lazy: n > 0, lead: e })).join('\n')}
 </div>
 </section>`;
 }
 
 // ---- Markers. <!-- name[:arg][ key=value ...]:start --> ... <!-- name[:arg]:end -->; a value may be "in quotes".
-const MARKER = /<!-- ([a-z]+)((?::[\w.-]+)?)((?: [a-z]+=(?:"[^"]*"|[^\s>"]+))*):start -->[\s\S]*?<!-- \1\2:end -->/g;
+const MARKER = /<!-- ([a-z]+)((?::[\w.\/-]+)?)((?: [a-z]+=(?:"[^"]*"|[^\s>"]+))*):start -->[\s\S]*?<!-- \1\2:end -->/g;
 const options = opts => Object.fromEntries([...opts.matchAll(/([a-z]+)=(?:"([^"]*)"|(\S+))/g)].map(m => [m[1], m[2] ?? m[3]]));
 function fill(html, make, where) {
   return html.replace(MARKER, (all, name, arg, opts) => {
@@ -391,9 +455,23 @@ function dumpParts(dump, full) {
     return null;
   };
 }
-function fillPage(html, dump, full, where) {
+// Everything a country's or a place's page can ask for. Its pictures name their dumps: picture:<dump>/<file>.
+function placeParts(e, full) {
+  const depth = depthOf(e.id), country = e.in ? countries.find(c => c.id === e.in) : e;
+  return (name, arg, o) => {
+    if (name === 'tabs') return tabs(country, depth);
+    if (name === 'next') return next(e, depth);
+    if (name === 'places') return placeList(e, depth);
+    if (!full) return KEEP;
+    if (name === 'meta') return meta(e);
+    if (name === 'stamp') return stamp(e, depth) || null;
+    const [id, file] = arg.split('/'), dump = byId.get(id), p = dump && file && photo(dump, file);
+    if (name === 'picture') return p ? bare(dump, p, depth, o) : null;
+    return null;
+  };
+}
+function fillPage(html, parts, where) {
   // A refresh leaves every marker but the switcher's exactly as it was.
-  const parts = dumpParts(dump, full);
   return html.replace(MARKER, (all, name, arg, opts) => {
     const o = options(opts);
     const body = parts(name, arg.slice(1), o);
@@ -424,12 +502,17 @@ if (NEW) {
   console.log(`started ${pagePath(dump.id)} and dump.css from the ${kit}`);
 }
 
-// ---- 3. Fill: this dump's page in full, the switcher on every page, and the archive box.
-for (const dump of open) {
+// ---- 3. Fill: this dump's page in full, the switcher on every page, and the archive box. A country's and its places'
+// pages are filled in full when one of their dumps (or the country itself) is named, or when none is.
+for (const dump of dumps.filter(hasPage)) {
   const path = pagePath(dump.id);
-  writeFileSync(path, fillPage(readFileSync(path, 'utf8'), dump, mine(dump), path));
+  writeFileSync(path, fillPage(readFileSync(path, 'utf8'), dumpParts(dump, mine(dump)), path));
 }
-const lead = open.find(d => printed(d).length);
-writeFileSync(indexPath, fill(readFileSync(indexPath, 'utf8'), name => name === 'archive' ? archive() : name === 'stamp' ? stamp(lead, 0) : null, indexPath));
-for (const dump of visible) if (printed(dump).length && !hasPage(dump)) console.log(`${dump.id}: has prints but no page; start one with node tools/photos.mjs ${dump.id} --new`);
-console.log(`photos.html: ${visible.length} dumps, ${open.length} with a page${ONLY ? `; filled ${ONLY}` : ''}; pictures from ${absolute ? MEDIA : `site/${MEDIA} (local preview; set PHOTOS_BASE before committing)`}`);
+for (const e of places.filter(hasPage)) {
+  const path = pagePath(e.id), country = e.in ? countries.find(c => c.id === e.in) : e;
+  const full = !ONLY || ONLY === country.id || ONLY === e.id || (country.dumps || []).includes(ONLY);
+  writeFileSync(path, fillPage(readFileSync(path, 'utf8'), placeParts(e, full), path));
+}
+writeFileSync(indexPath, fill(readFileSync(indexPath, 'utf8'), name => name === 'archive' ? archive() : name === 'stamp' ? stamp(open.find(first), 0) : null, indexPath));
+for (const dump of sleeves) if (printed(dump).length && !homeOf(dump)) console.log(`${dump.id}: has prints but no page; start one with node tools/photos.mjs ${dump.id} --new${countryOf(dump) ? `, or show them on ${countryOf(dump).id}'s pages` : ''}`);
+console.log(`photos.html: ${sleeves.length} dumps, ${open.length} pages in the switcher${places.filter(hasPage).length ? `, ${places.filter(hasPage).length} country and place pages` : ''}${ONLY ? `; filled ${ONLY}` : ''}; pictures from ${absolute ? MEDIA : `site/${MEDIA} (local preview; set PHOTOS_BASE before committing)`}`);
