@@ -277,11 +277,11 @@ const bytes = (dump, p) => p.web.bytes;
 const sized = (p, w) => { const [width, height] = p.web[w]; return { width, height }; };
 
 // ---- Kit: a strip of film, one cell per frame, the printed ones as pictures circled in red.
-function strip(dump, roll, r, depth, link) {
+function strip(dump, roll, r, depth, link, only) {
   const marks = new Map(printed(dump).map(p => [locate(dump, p), p]).filter(([at]) => at.r === r).map(([at, p]) => [at.i, p]));
   return roll.labels.map((label, i) => {
     const p = marks.get(i);
-    if (!p) return `<li><span class="slot"></span><span class="n">${esc(label)}</span></li>`;
+    if (!p) return only ? '' : `<li><span class="slot"></span><span class="n">${esc(label)}</span></li>`;
     const on = link && pageOf(dump, p);
     const to = on ? `${href(on, depth)}#${p.file}` : `#${p.file}`;
     const { width, height } = sized(p, THUMB);
@@ -401,10 +401,12 @@ function meta(e) {
 const stamp = (e, depth) => { const x = e && first(e); return x ? `<img class="stamp" src="${media(depth, x.dump.id, `${x.p.file}-${THUMB}.jpg`)}" width="400" height="${sized(x.p, THUMB).height}" alt="" loading="lazy">` : ''; };
 
 // ---- Standard: the archive box (photos.html). Every dump as a sleeve, grouped by year; a shelved one opens its country.
+// A dump with a page shows and counts only its printed frames; a sealed one keeps its whole roll.
 function sleeve(dump) {
   const to = homeOf(dump);
-  const place = `<span class="place">${esc(dump.title)}</span> <span class="when">${esc(months(dump.from, dump.to))}</span> <span class="count">${esc(counted(dump))}</span>`;
-  const strips = dump.rolls.map((roll, r) => `<div class="strip">${roll.name ? `<p class="edge">${esc(roll.name)}</p>` : ''}<ol aria-label="${esc(roll.name || dump.title)}">${strip(dump, roll, r, 0, Boolean(to))}</ol></div>`).join('');
+  const place = `<span class="place">${esc(dump.title)}</span> <span class="when">${esc(months(dump.from, dump.to))}</span> <span class="count">${esc(to ? plural(printed(dump).length, 'frame') : counted(dump))}</span>`;
+  const strips = dump.rolls.map((roll, r) => [roll, strip(dump, roll, r, 0, Boolean(to), Boolean(to))]).filter(([, cells]) => cells)
+    .map(([roll, cells]) => `<div class="strip">${roll.name ? `<p class="edge">${esc(roll.name)}</p>` : ''}<ol aria-label="${esc(roll.name || dump.title)}">${cells}</ol></div>`).join('');
   return `<li class="sleeve${to ? '' : ' sealed'}">${to ? `<a class="label" href="${href(to, 0)}">${place}</a>` : `<p class="label">${place}</p>`}<div class="strips">${strips}</div></li>`;
 }
 function archive() {
