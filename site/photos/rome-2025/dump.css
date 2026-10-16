@@ -3,3 +3,191 @@
      main[data-dump="rome-2025"] ...                   anything inside the page
      body:has(main[data-dump="rome-2025"]) ...         the page's colours, the nav, the footer and the player
    The kit's own rules (contact sheet, prints, tabs, stub) live in the photos block of site.css. */
+
+/* The city's marble street plaques, carved Roman capitals in a moulded frame, set on an ochre wall: the name, the
+   year and the five days are plaques. Each day is a walk, frames stepping down the page from side to side, on white;
+   the afternoon in the Vatican is on black.
+   Cinzel (SIL Open Font Licence), latin subset, served from this folder. */
+@font-face {
+  font-family: "Cinzel"; src: url("cinzel.woff2") format("woff2");
+  font-weight: 400 700; font-style: normal; font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+body:has(main[data-dump="rome-2025"]) {
+  --bg: #fff; --surface: #efefef; --ink: #1d1a17; --soft: #5f5a55; --panel: #efefef;
+  --paper: #fff; --paper-ink: #1d1a17; --film: #1d1a17; --mark: #9b2f23;
+  --link: #1d1a17; --visited: #1d1a17;
+  --wall: #d2914a; --marble: #ecebe7; --edge: #dcdad3; --vein: #b3b0a8; --carve: #1d1a17;
+  --night: #000; --night-ink: #ececec; --night-soft: #a3a3a3;
+  --cut: "Cinzel", "Trajan Pro", "Times New Roman", Times, serif;
+  --s-small: 14px;
+  --s-body: clamp(17px, 16px + 0.25vw, 19px);
+  --s-lead: clamp(19px, 16px + 0.6vw, 24px);
+  --s-plaque: clamp(40px, 26px + 3.2vw, 76px);
+  --ease: cubic-bezier(.22, 1, .36, 1);
+  --gut: clamp(16px, 2.2vw, 32px);
+  --col-gap: clamp(12px, 1.6vw, 24px);
+  background: var(--bg); color: var(--ink);
+}
+body:has(main[data-dump="rome-2025"]) nav, body:has(main[data-dump="rome-2025"]) #player { background: var(--bg); }
+body:has(main[data-dump="rome-2025"]) ::selection { background: var(--ink); color: var(--bg); }
+body:has(main[data-dump="rome-2025"]) :focus-visible { outline-color: var(--mark); }
+
+main[data-dump="rome-2025"] { background: var(--bg); }
+
+/* The tabs. */
+main[data-dump="rome-2025"] > .tabs { padding: 28px 12px 0; }
+@media (min-width: 900px) { main[data-dump="rome-2025"] > .tabs ol { flex-wrap: wrap; overflow: visible; } }
+main[data-dump="rome-2025"] .tabs .bar { background: #d6d6d6; }
+main[data-dump="rome-2025"] .tabs .here > a { background: var(--wall); color: var(--ink); }
+main[data-dump="rome-2025"] .tabs .here .n { color: var(--ink); }
+main[data-dump="rome-2025"] .tabs .here .bar { background: #9e6a2c; }
+main[data-dump="rome-2025"] .tabs .here .bar i { background: var(--marble); }
+@media (hover: hover) and (pointer: fine) {
+  main[data-dump="rome-2025"] .tabs li:not(.here) > a:hover { background: var(--surface); }
+}
+
+main[data-dump="rome-2025"] h1, main[data-dump="rome-2025"] h2, main[data-dump="rome-2025"] h3,
+main[data-dump="rome-2025"] p { margin: 0; font-weight: 400; font-style: normal; }
+main[data-dump="rome-2025"] ol { list-style: none; margin: 0; padding: 0; }
+main[data-dump="rome-2025"] img { display: block; width: 100%; height: auto; }
+
+/* ---- A plaque: marble, a carved line inside the edge, the letters cut in. Links among them darken to red. */
+main[data-dump="rome-2025"] .plaque {
+  display: inline-flex; flex-direction: column; align-items: center; justify-content: center;
+  background: var(--marble); color: var(--carve); font-family: var(--cut); font-weight: 600; text-transform: uppercase;
+  text-decoration: none; text-align: center; letter-spacing: 0.06em; line-height: 1;
+  border: clamp(5px, 0.6vw, 9px) solid var(--edge); outline: 1.5px solid var(--vein); outline-offset: calc(-1 * clamp(9px, 1vw, 14px));
+}
+main[data-dump="rome-2025"] a.plaque { transition: color 200ms var(--ease), translate 300ms var(--ease); }
+main[data-dump="rome-2025"] a.plaque:active { color: var(--mark); translate: 0 1px; }
+@media (hover: hover) and (pointer: fine) {
+  main[data-dump="rome-2025"] a.plaque:hover { color: var(--mark); }
+}
+
+/* ---- Opening: the wall, the name plaque with the year over it like a rione's number, and five day plaques under it. */
+main[data-dump="rome-2025"] .wall {
+  background: var(--wall); color: var(--carve); margin-top: 28px;
+  min-height: max(560px, min(calc(100svh - 200px), 940px));
+  display: grid; grid-template-rows: 1fr auto auto; justify-items: center; align-items: center;
+  gap: clamp(32px, 4vw, 56px); padding: clamp(48px, 6vw, 96px) var(--gut) clamp(20px, 2.4vw, 32px);
+}
+main[data-dump="rome-2025"] .title { padding: clamp(24px, 3vw, 44px) clamp(40px, 7vw, 120px) clamp(28px, 3.4vw, 52px); }
+main[data-dump="rome-2025"] .title h1 { display: flex; flex-direction: column; align-items: center; font-weight: 600; }
+main[data-dump="rome-2025"] .title .nm { font-size: clamp(88px, 16vw, 260px); line-height: 0.9; letter-spacing: 0.04em; margin-right: -0.04em; }
+main[data-dump="rome-2025"] .title .yr { margin-top: 0.7em; font-size: clamp(18px, 12px + 1vw, 28px); letter-spacing: 0.32em; margin-right: -0.32em; }
+main[data-dump="rome-2025"] .index ol {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: clamp(12px, 1.6vw, 24px);
+}
+main[data-dump="rome-2025"] .index .plaque {
+  min-width: 5.4em; padding: 0.7em 0.9em 0.75em; font-size: clamp(30px, 18px + 1.8vw, 48px); gap: 0.32em;
+  border-width: 5px; outline-offset: -9px;
+}
+main[data-dump="rome-2025"] .index .wd { font-size: max(13px, 0.32em); letter-spacing: 0.18em; font-weight: 700; }
+main[data-dump="rome-2025"] .facts {
+  justify-self: stretch; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 32px;
+  font-family: var(--cut); font-size: var(--s-lead); font-weight: 600;
+}
+main[data-dump="rome-2025"] .gear { font-weight: 400; }
+
+/* The first picture: the plaque of a lane, on its wall. */
+main[data-dump="rome-2025"] .cover { width: min(66vw, calc(84svh * 1.5)); margin: clamp(56px, 7vw, 112px) var(--gut) 0 auto; }
+
+/* ---- A day: its plaque, then the walk. */
+main[data-dump="rome-2025"] .day { padding: 0 var(--gut); margin-top: clamp(160px, 15vw, 260px); scroll-margin-top: 24px; }
+main[data-dump="rome-2025"] .day.first { margin-top: clamp(96px, 10vw, 160px); }
+main[data-dump="rome-2025"] .head { margin-bottom: clamp(48px, 6vw, 96px); }
+main[data-dump="rome-2025"] .head h2 { font-size: var(--s-plaque); }
+main[data-dump="rome-2025"] .head .plaque {
+  display: inline-block; padding: 0.42em 0.8em 0.4em; line-height: 1.15;
+}
+main[data-dump="rome-2025"] .head .wd, main[data-dump="rome-2025"] .head .mm { font-size: 0.56em; }
+main[data-dump="rome-2025"] .where { margin-top: 18px; font-family: var(--cut); font-size: var(--s-lead); font-weight: 600; letter-spacing: 0.08em; }
+
+/* The walk. Twelve columns; a beat is one, two or a wide frame. A step puts the second frame lower and smaller on
+   the other side; a duo with an upright frame stands on one line. Frames are never cropped. */
+main[data-dump="rome-2025"] .walk { display: grid; gap: clamp(72px, 9vw, 160px); }
+main[data-dump="rome-2025"] .beat {
+  display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--col-gap); align-items: start;
+}
+main[data-dump="rome-2025"] .f { grid-row: 1; min-width: 0; }
+main[data-dump="rome-2025"] .wide .f { grid-column: 1 / -1; }
+main[data-dump="rome-2025"] .one.l .f { grid-column: 1 / span 9; }
+main[data-dump="rome-2025"] .one.r .f { grid-column: 4 / span 9; }
+main[data-dump="rome-2025"] .one .f.tall { grid-column: 2 / span 5; }
+main[data-dump="rome-2025"] .one.r .f.tall { grid-column: 7 / span 5; }
+main[data-dump="rome-2025"] .step .f + .f { margin-top: clamp(96px, 16vw, 280px); }
+main[data-dump="rome-2025"] .step.l .f:first-child { grid-column: 1 / span 7; }
+main[data-dump="rome-2025"] .step.l .f + .f { grid-column: 8 / span 5; }
+main[data-dump="rome-2025"] .step.r .f:first-child { grid-column: 6 / span 7; }
+main[data-dump="rome-2025"] .step.r .f + .f { grid-column: 1 / span 5; }
+main[data-dump="rome-2025"] .duo { align-items: end; }
+main[data-dump="rome-2025"] .duo.l .f:first-child { grid-column: 1 / span 7; }
+main[data-dump="rome-2025"] .duo.l .f + .f { grid-column: 9 / span 4; }
+main[data-dump="rome-2025"] .duo.r .f:first-child { grid-column: 2 / span 4; }
+main[data-dump="rome-2025"] .duo.r .f + .f { grid-column: 6 / span 7; }
+main[data-dump="rome-2025"] .duo .f.tall:first-child { grid-column: 1 / span 4; }
+main[data-dump="rome-2025"] .duo .f.big:first-child + .tall { grid-column: 9 / span 4; }
+main[data-dump="rome-2025"] .duo.r .f.tall:first-child + .big { grid-column: 6 / span 7; }
+main[data-dump="rome-2025"] .duo.tt .f:first-child { grid-column: 2 / span 4; }
+main[data-dump="rome-2025"] .duo.tt .f + .f { grid-column: 8 / span 4; }
+main[data-dump="rome-2025"] .duo.tt { align-items: start; }
+main[data-dump="rome-2025"] .duo.tt .f + .f { margin-top: clamp(96px, 14vw, 240px); }
+main[data-dump="rome-2025"] .meta { margin-top: 10px; font-size: var(--s-small); color: var(--soft); font-variant-numeric: tabular-nums; }
+main[data-dump="rome-2025"] .f a { display: block; }
+main[data-dump="rome-2025"] .f img { transition: opacity 300ms var(--ease); }
+@media (hover: hover) and (pointer: fine) {
+  main[data-dump="rome-2025"] .f a:hover img { opacity: 0.88; }
+}
+
+/* ---- The Vatican, on black: the marble stays. */
+main[data-dump="rome-2025"] .day.dark {
+  background: var(--night); color: var(--night-ink); padding-top: clamp(96px, 10vw, 160px); padding-bottom: clamp(120px, 12vw, 200px);
+}
+main[data-dump="rome-2025"] .dark .meta { color: var(--night-soft); }
+main[data-dump="rome-2025"] .dark + .day { margin-top: clamp(120px, 12vw, 200px); }
+
+/* The way on. */
+main[data-dump="rome-2025"] > .stub {
+  width: auto; margin: clamp(140px, 14vw, 240px) 0 0; border: 0; padding: 0 var(--gut) clamp(96px, 10vw, 160px);
+}
+main[data-dump="rome-2025"] > .stub .next { font-family: var(--cut); font-weight: 600; font-style: normal; font-size: var(--s-plaque); line-height: 1.1; }
+
+/* ---- Motion: each part rises once as it arrives. */
+@media (prefers-reduced-motion: no-preference) {
+  main[data-dump="rome-2025"] .rise { opacity: 0; translate: 0 24px; }
+  main[data-dump="rome-2025"] .rise.in {
+    opacity: 1; translate: none;
+    transition: opacity 700ms var(--ease) var(--d, 0ms), translate 900ms var(--ease) var(--d, 0ms);
+  }
+  main[data-dump="rome-2025"] .title .nm, main[data-dump="rome-2025"] .title .yr { animation: rm-cut 1100ms var(--ease) both; }
+  main[data-dump="rome-2025"] .title .yr { animation-delay: 160ms; }
+  @keyframes rm-cut { from { opacity: 0; translate: 0 0.12em; } to { opacity: 1; translate: none; } }
+}
+
+/* ---- Narrow screens: landscapes edge to edge, upright and second frames inset to alternate sides. */
+@media (max-width: 899px) {
+  main[data-dump="rome-2025"] > .tabs { padding: 16px 0 0 16px; }
+  main[data-dump="rome-2025"] .wall { margin-top: 16px; min-height: 86svh; padding-top: 40px; }
+  main[data-dump="rome-2025"] .title { padding: 20px 26px 24px; }
+  main[data-dump="rome-2025"] .title .nm { font-size: 21vw; }
+  main[data-dump="rome-2025"] .index { width: 100%; }
+  main[data-dump="rome-2025"] .index ol { gap: 10px; }
+  main[data-dump="rome-2025"] .index li { flex: 0 0 calc((100% - 20px) / 3); }
+  main[data-dump="rome-2025"] .index .plaque { display: flex; width: 100%; min-width: 0; font-size: 28px; padding: 0.6em 0.2em 0.65em; }
+  main[data-dump="rome-2025"] .index .wd { white-space: nowrap; }
+  main[data-dump="rome-2025"] .facts { font-size: 18px; }
+  main[data-dump="rome-2025"] .facts { display: block; }
+  main[data-dump="rome-2025"] .gear { margin-top: 6px; }
+  main[data-dump="rome-2025"] .cover { width: auto; margin: 40px 0 0; }
+  main[data-dump="rome-2025"] .walk { margin: 0 calc(-1 * var(--gut)); gap: 64px; }
+  main[data-dump="rome-2025"] .beat { display: block; }
+  main[data-dump="rome-2025"] .beat .f + .f { margin-top: 40px; }
+  main[data-dump="rome-2025"] .f.small, main[data-dump="rome-2025"] .f.tall { width: 78%; }
+  /* the smaller frame of a beat leans to the side the beat leans away from */
+  main[data-dump="rome-2025"] .l .f:not(.big) { margin-left: auto; }
+  main[data-dump="rome-2025"] .meta { padding: 0 var(--gut); }
+  main[data-dump="rome-2025"] > .stub .next { font-size: 26px; }
+}

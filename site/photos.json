@@ -625,19 +625,18 @@
     "note": "Late April to May, and an evening in August.",
     "photos": [
       {
-        "file": "last-day-hdr-7",
-        "original": "Rim Last Day HDR (7 of 10).jpg",
-        "caption": "Woman with a blue bag.",
-        "alt": "A woman with a phone and a blue bag in front of an ochre wall.",
-        "provisional": true,
+        "file": "dsc02594",
+        "original": "DSC02594-Edit.jpg",
+        "caption": "",
+        "alt": "An ochre street of apartment blocks, two people on a scooter crossing.",
         "settings": {
-          "aperture": "f/5.6",
-          "shutter": "1/1250 s",
+          "aperture": "f/8",
+          "shutter": "1/500 s",
           "iso": "ISO 100",
           "focal": "35 mm",
           "camera": "Sony ILCE-7M3",
           "lens": "35mm F1.4 DG DN | Art 021",
-          "taken": "2025-05-05 13:54"
+          "taken": "2025-04-29 13:37"
         },
         "web": {
           "400": [
@@ -649,10 +648,1746 @@
             667
           ],
           "bytes": {
-            "1000.jpg": 130212,
-            "1000.jxl": 91970,
-            "2000.jpg": 440586,
-            "2000.jxl": 307098
+            "1000.jpg": 156300,
+            "1000.jxl": 110994,
+            "2000.jpg": 523386,
+            "2000.jxl": 358419
+          }
+        }
+      },
+      {
+        "file": "dsc02603",
+        "original": "DSC02603-Edit.jpg",
+        "caption": "",
+        "alt": "A park path under plane trees, a blue truck parked on it.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/80 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-04-29 13:57"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 222245,
+            "1000.jxl": 166863,
+            "2000.jpg": 760759,
+            "2000.jxl": 541190
+          }
+        }
+      },
+      {
+        "file": "dsc02611",
+        "original": "DSC02611-Edit.jpg",
+        "caption": "",
+        "alt": "Ochre apartment blocks with balconies against a blue sky, from below.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/800 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-04-29 14:04"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 98016,
+            "1000.jxl": 64389,
+            "2000.jpg": 329061,
+            "2000.jxl": 205978
+          }
+        }
+      },
+      {
+        "file": "dsc02613",
+        "original": "DSC02613-Edit.jpg",
+        "caption": "",
+        "alt": "Looking up between building fronts at a blue sky with small clouds.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/1250 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-04-29 14:08"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 93500,
+            "1000.jxl": 64505,
+            "2000.jpg": 281236,
+            "2000.jxl": 177714
+          }
+        }
+      },
+      {
+        "file": "dsc02655",
+        "original": "DSC02655-Edit.jpg",
+        "caption": "",
+        "alt": "A street between ochre and red buildings, wide.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/800 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-04-29 14:59"
+        },
+        "web": {
+          "400": [
+            400,
+            167
+          ],
+          "1000": [
+            1000,
+            418
+          ],
+          "bytes": {
+            "1000.jpg": 100692,
+            "1000.jxl": 68740,
+            "2000.jpg": 310246,
+            "2000.jxl": 204535
+          }
+        }
+      },
+      {
+        "file": "dsc02656",
+        "original": "DSC02656-Edit.jpg",
+        "caption": "",
+        "alt": "A red brick tower with a small loggia against the sky.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/500 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-04-29 15:01"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 55891,
+            "1000.jxl": 39088,
+            "2000.jpg": 225267,
+            "2000.jxl": 144567
+          }
+        }
+      },
+      {
+        "file": "dsc02668",
+        "original": "DSC02668-Edit.jpg",
+        "caption": "",
+        "alt": "Umbrella pines over a path with benches, buildings behind.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/320 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-04-29 15:10"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 146444,
+            "1000.jxl": 110103,
+            "2000.jpg": 512343,
+            "2000.jxl": 365713
+          }
+        }
+      },
+      {
+        "file": "dsc02669",
+        "original": "DSC02669-Edit.jpg",
+        "caption": "",
+        "alt": "A park avenue between tall trees and lamp posts.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/125 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-04-29 15:10"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 116421,
+            "1000.jxl": 87994,
+            "2000.jpg": 457863,
+            "2000.jxl": 322854
+          }
+        }
+      },
+      {
+        "file": "dsc02673",
+        "original": "DSC02673-Edit.jpg",
+        "caption": "",
+        "alt": "Pine trunks on a grassy slope, a building far behind.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/160 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-04-29 15:24"
+        },
+        "web": {
+          "400": [
+            400,
+            600
+          ],
+          "1000": [
+            1000,
+            1500
+          ],
+          "bytes": {
+            "1000.jpg": 317785,
+            "1000.jxl": 221428,
+            "2000.jpg": 1226302,
+            "2000.jxl": 846589
+          }
+        }
+      },
+      {
+        "file": "dsc02674",
+        "original": "DSC02674-Edit.jpg",
+        "caption": "",
+        "alt": "Umbrella pines and shrubs in front of a long pale building.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/200 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-04-29 15:26"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 145826,
+            "1000.jxl": 103020,
+            "2000.jpg": 561161,
+            "2000.jxl": 387532
+          }
+        }
+      },
+      {
+        "file": "dsc02677",
+        "original": "DSC02677-Edit.jpg",
+        "caption": "",
+        "alt": "The Colosseum at the end of an avenue of cypresses.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/500 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-04-29 15:36"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 78610,
+            "1000.jxl": 57942,
+            "2000.jpg": 343107,
+            "2000.jxl": 256653
+          }
+        }
+      },
+      {
+        "file": "dsc02680-2",
+        "original": "DSC02680-Edit-2.jpg",
+        "caption": "",
+        "alt": "Black and white: the arches of the Colosseum, close.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/320 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-04-29 15:42"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 93575,
+            "1000.jxl": 76603,
+            "2000.jpg": 336697,
+            "2000.jxl": 278082
+          }
+        }
+      },
+      {
+        "file": "dsc02743",
+        "original": "DSC02743-Edit.jpg",
+        "caption": "",
+        "alt": "A pine trunk, the Colosseum and a palm behind it.",
+        "settings": {
+          "aperture": "f/1.4",
+          "shutter": "1/6400 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-04-29 16:00"
+        },
+        "web": {
+          "400": [
+            400,
+            600
+          ],
+          "1000": [
+            1000,
+            1500
+          ],
+          "bytes": {
+            "1000.jpg": 216031,
+            "1000.jxl": 145920,
+            "2000.jpg": 767205,
+            "2000.jxl": 527418
+          }
+        }
+      },
+      {
+        "file": "day-2-17",
+        "original": "Rim day 2 (17 of 18).jxl",
+        "caption": "",
+        "alt": "An orange wall with shuttered windows under a blue sky, from below.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/160 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-04-30 11:27"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 72343,
+            "1000.jxl": 49110,
+            "2000.jpg": 291571,
+            "2000.jxl": 203961
+          }
+        }
+      },
+      {
+        "file": "day-2-18",
+        "original": "Rim day 2 (18 of 18).jxl",
+        "caption": "",
+        "alt": "A white Fiat 500 parked on cobbles below a wall with graffiti, two people behind it.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/60 s",
+          "iso": "ISO 125",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-04-30 11:27"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 148936,
+            "1000.jxl": 111343,
+            "2000.jpg": 540086,
+            "2000.jxl": 393994
+          }
+        }
+      },
+      {
+        "file": "day-2-9",
+        "original": "Rim day 2 (9 of 18).jxl",
+        "caption": "",
+        "alt": "A marble street plaque, Vicolo del Buco, on a peeling orange wall beside a no-entry sign.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/100 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-04-30 11:28"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 159289,
+            "1000.jxl": 114826,
+            "2000.jpg": 578474,
+            "2000.jxl": 402347
+          }
+        }
+      },
+      {
+        "file": "day-2-2",
+        "original": "Rim day 2 (2 of 18).jxl",
+        "caption": "",
+        "alt": "A church nave with a gilded apse and an altar canopy, seen through a doorway.",
+        "settings": {
+          "aperture": "f/1.4",
+          "shutter": "1/200 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-04-30 12:15"
+        },
+        "web": {
+          "400": [
+            400,
+            167
+          ],
+          "1000": [
+            1000,
+            418
+          ],
+          "bytes": {
+            "1000.jpg": 90791,
+            "1000.jxl": 61231,
+            "2000.jpg": 372756,
+            "2000.jxl": 254792
+          }
+        }
+      },
+      {
+        "file": "day-2-3",
+        "original": "Rim day 2 (3 of 18).jxl",
+        "caption": "",
+        "alt": "A pale building front in a slot of light between two dark walls.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/500 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-04-30 12:37"
+        },
+        "web": {
+          "400": [
+            400,
+            320
+          ],
+          "1000": [
+            1000,
+            800
+          ],
+          "bytes": {
+            "1000.jpg": 62748,
+            "1000.jxl": 45009,
+            "2000.jpg": 237866,
+            "2000.jxl": 160023
+          }
+        }
+      },
+      {
+        "file": "day-2-4",
+        "original": "Rim day 2 (4 of 18).jxl",
+        "caption": "",
+        "alt": "A shirtless man sitting on the stone embankment of the Tiber above a weir.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/200 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-04-30 13:49"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 159772,
+            "1000.jxl": 126085,
+            "2000.jpg": 632773,
+            "2000.jxl": 489980
+          }
+        }
+      },
+      {
+        "file": "day-2-16",
+        "original": "Rim day 2 (16 of 18).jxl",
+        "caption": "",
+        "alt": "The same man on the embankment, wider and darker.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/640 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-04-30 13:50"
+        },
+        "web": {
+          "400": [
+            400,
+            167
+          ],
+          "1000": [
+            1000,
+            418
+          ],
+          "bytes": {
+            "1000.jpg": 88348,
+            "1000.jxl": 77252,
+            "2000.jpg": 335135,
+            "2000.jxl": 280194
+          }
+        }
+      },
+      {
+        "file": "day-2-15",
+        "original": "Rim day 2 (15 of 18).jxl",
+        "caption": "",
+        "alt": "A shaded courtyard with shuttered windows and an arched door.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/1000 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-04-30 14:21"
+        },
+        "web": {
+          "400": [
+            400,
+            600
+          ],
+          "1000": [
+            1000,
+            1500
+          ],
+          "bytes": {
+            "1000.jpg": 179582,
+            "1000.jxl": 128018,
+            "2000.jpg": 747940,
+            "2000.jxl": 523445
+          }
+        }
+      },
+      {
+        "file": "day-2-1",
+        "original": "Rim day 2 (1 of 18).jxl",
+        "caption": "",
+        "alt": "A street of ochre houses with café tables and people walking, a pine above.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/80 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-04-30 17:02"
+        },
+        "web": {
+          "400": [
+            400,
+            600
+          ],
+          "1000": [
+            1000,
+            1500
+          ],
+          "bytes": {
+            "1000.jpg": 302766,
+            "1000.jxl": 224884,
+            "2000.jpg": 1020709,
+            "2000.jxl": 743469
+          }
+        }
+      },
+      {
+        "file": "day-2-14",
+        "original": "Rim day 2 (14 of 18).jxl",
+        "caption": "",
+        "alt": "An ochre wall with green shutters in late sun.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/320 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-04-30 17:15"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 128638,
+            "1000.jxl": 80808,
+            "2000.jpg": 304972,
+            "2000.jxl": 249350
+          }
+        }
+      },
+      {
+        "file": "day-2-12",
+        "original": "Rim day 2 (12 of 18).jxl",
+        "caption": "",
+        "alt": "A man cycling past a pink wall with a round window, parked cars.",
+        "settings": {
+          "aperture": "f/3.5",
+          "shutter": "1/60 s",
+          "iso": "ISO 160",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-04-30 17:45"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 116230,
+            "1000.jxl": 85711,
+            "2000.jpg": 432254,
+            "2000.jxl": 308687
+          }
+        }
+      },
+      {
+        "file": "day-2-5",
+        "original": "Rim day 2 (5 of 18).jxl",
+        "caption": "",
+        "alt": "Black and white: a marble bust on a hill, the city below.",
+        "settings": {
+          "aperture": "f/11",
+          "shutter": "1/250 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-04-30 18:06"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 86410,
+            "1000.jxl": 75284,
+            "2000.jpg": 326343,
+            "2000.jxl": 270845
+          }
+        }
+      },
+      {
+        "file": "day-2-6",
+        "original": "Rim day 2 (6 of 18).jxl",
+        "caption": "",
+        "alt": "A marble bust against a blue sky, the city below in evening light.",
+        "settings": {
+          "aperture": "f/4",
+          "shutter": "1/2500 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-04-30 18:09"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 57850,
+            "1000.jxl": 36222,
+            "2000.jpg": 181481,
+            "2000.jxl": 110954
+          }
+        }
+      },
+      {
+        "file": "day-2-7",
+        "original": "Rim day 2 (7 of 18).jxl",
+        "caption": "",
+        "alt": "Tall grass lit from behind by the low sun, trees beyond.",
+        "settings": {
+          "aperture": "f/4",
+          "shutter": "1/800 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-04-30 18:10"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 141758,
+            "1000.jxl": 92547,
+            "2000.jpg": 437782,
+            "2000.jxl": 270386
+          }
+        }
+      },
+      {
+        "file": "day-2-13",
+        "original": "Rim day 2 (13 of 18).jxl",
+        "caption": "",
+        "alt": "An inscribed stone standing in long grass in the low sun.",
+        "settings": {
+          "aperture": "f/4",
+          "shutter": "1/500 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-04-30 18:11"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 191829,
+            "1000.jxl": 127520,
+            "2000.jpg": 661057,
+            "2000.jxl": 423049
+          }
+        }
+      },
+      {
+        "file": "day-2-8",
+        "original": "Rim day 2 (8 of 18).jxl",
+        "caption": "",
+        "alt": "An equestrian statue on a tall plinth in silhouette, umbrella pines around it.",
+        "settings": {
+          "aperture": "f/4",
+          "shutter": "1/2500 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-04-30 18:36"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 50821,
+            "1000.jxl": 34807,
+            "2000.jpg": 137856,
+            "2000.jxl": 94648
+          }
+        }
+      },
+      {
+        "file": "day-2-10",
+        "original": "Rim day 2 (10 of 18).jxl",
+        "caption": "",
+        "alt": "A road under an avenue of plane trees in evening light.",
+        "settings": {
+          "aperture": "f/4",
+          "shutter": "1/200 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-04-30 18:37"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 184354,
+            "1000.jxl": 130529,
+            "2000.jpg": 605975,
+            "2000.jxl": 406184
+          }
+        }
+      },
+      {
+        "file": "day-2-11",
+        "original": "Rim day 2 (11 of 18).jxl",
+        "caption": "",
+        "alt": "A road curving down a hill, a scooter on it, trees in the low sun.",
+        "settings": {
+          "aperture": "f/4",
+          "shutter": "1/160 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-04-30 18:38"
+        },
+        "web": {
+          "400": [
+            400,
+            500
+          ],
+          "1000": [
+            1000,
+            1250
+          ],
+          "bytes": {
+            "1000.jpg": 259513,
+            "1000.jxl": 189492,
+            "2000.jpg": 981846,
+            "2000.jxl": 681220
+          }
+        }
+      },
+      {
+        "file": "day-3-4",
+        "original": "Rim day 3 (4 of 20).jxl",
+        "caption": "",
+        "alt": "Looking up at a pale building with shutters and a balcony.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/1000 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-05-02 11:27"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 129677,
+            "1000.jxl": 98602,
+            "2000.jpg": 423485,
+            "2000.jxl": 307112
+          }
+        }
+      },
+      {
+        "file": "day-3-5",
+        "original": "Rim day 3 (5 of 20).jxl",
+        "caption": "",
+        "alt": "The legs of someone walking on cobbles, a hard shadow.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/200 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-05-02 11:28"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 105677,
+            "1000.jxl": 91583,
+            "2000.jpg": 397648,
+            "2000.jxl": 328753
+          }
+        }
+      },
+      {
+        "file": "day-3-1",
+        "original": "Rim day 3 (1 of 20).jxl",
+        "caption": "",
+        "alt": "A dark shop front with a wooden door frame and a sign reading Luxury Vintage.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/125 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-05-02 11:30"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 53730,
+            "1000.jxl": 35838,
+            "2000.jpg": 167614,
+            "2000.jxl": 107461
+          }
+        }
+      },
+      {
+        "file": "day-3-2",
+        "original": "Rim day 3 (2 of 20).jxl",
+        "caption": "",
+        "alt": "A narrow street with café tables, plants and people.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/200 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-05-02 11:35"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 142063,
+            "1000.jxl": 103083,
+            "2000.jpg": 472466,
+            "2000.jxl": 326157
+          }
+        }
+      },
+      {
+        "file": "day-3-6",
+        "original": "Rim day 3 (6 of 20).jxl",
+        "caption": "",
+        "alt": "Black and white: two men talking in front of a weathered wall.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/640 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-05-02 11:44"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 122758,
+            "1000.jxl": 112551,
+            "2000.jpg": 478976,
+            "2000.jxl": 425557
+          }
+        }
+      },
+      {
+        "file": "day-3-7",
+        "original": "Rim day 3 (7 of 20).jxl",
+        "caption": "",
+        "alt": "A woman on a scooter crossing a wide street, buildings around.",
+        "settings": {
+          "aperture": "f/7.1",
+          "shutter": "1/1000 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-05-02 13:02"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 124113,
+            "1000.jxl": 92991,
+            "2000.jpg": 467807,
+            "2000.jxl": 343796
+          }
+        }
+      },
+      {
+        "file": "day-3-13",
+        "original": "Rim day 3 (13 of 20).jxl",
+        "caption": "",
+        "alt": "A row of ochre buildings against a blue sky, wide.",
+        "settings": {
+          "aperture": "f/7.1",
+          "shutter": "1/320 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-05-02 13:05"
+        },
+        "web": {
+          "400": [
+            400,
+            167
+          ],
+          "1000": [
+            1000,
+            418
+          ],
+          "bytes": {
+            "1000.jpg": 79093,
+            "1000.jxl": 56273,
+            "2000.jpg": 252428,
+            "2000.jxl": 172209
+          }
+        }
+      },
+      {
+        "file": "day-3-3",
+        "original": "Rim day 3 (3 of 20).jxl",
+        "caption": "",
+        "alt": "A street of ochre buildings with an arched doorway, wide.",
+        "settings": {
+          "aperture": "f/7.1",
+          "shutter": "1/640 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-05-02 13:08"
+        },
+        "web": {
+          "400": [
+            400,
+            167
+          ],
+          "1000": [
+            1000,
+            418
+          ],
+          "bytes": {
+            "1000.jpg": 92796,
+            "1000.jxl": 66628,
+            "2000.jpg": 303742,
+            "2000.jxl": 205244
+          }
+        }
+      },
+      {
+        "file": "day-3-15",
+        "original": "Rim day 3 (15 of 20).jxl",
+        "caption": "",
+        "alt": "A woman in an orange apron standing outside a mini market.",
+        "settings": {
+          "aperture": "f/7.1",
+          "shutter": "1/1600 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-05-02 14:38"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 136783,
+            "1000.jxl": 97940,
+            "2000.jpg": 464163,
+            "2000.jxl": 324799
+          }
+        }
+      },
+      {
+        "file": "day-3-9",
+        "original": "Rim day 3 (9 of 20).jxl",
+        "caption": "",
+        "alt": "Worn marble steps half in sun, half in shade.",
+        "settings": {
+          "aperture": "f/7.1",
+          "shutter": "1/1250 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-05-02 14:45"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 129131,
+            "1000.jxl": 106187,
+            "2000.jpg": 472868,
+            "2000.jxl": 369387
+          }
+        }
+      },
+      {
+        "file": "day-3-8",
+        "original": "Rim day 3 (8 of 20).jxl",
+        "caption": "",
+        "alt": "Black and white: ancient columns among ruins, pines and buildings behind.",
+        "settings": {
+          "aperture": "f/7.1",
+          "shutter": "1/400 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-05-02 15:01"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 68774,
+            "1000.jxl": 55142,
+            "2000.jpg": 240700,
+            "2000.jxl": 188018
+          }
+        }
+      },
+      {
+        "file": "day-3-16",
+        "original": "Rim day 3 (16 of 20).jxl",
+        "caption": "",
+        "alt": "Inside a bus: seats, a window and a handle in the sun.",
+        "settings": {
+          "aperture": "f/7.1",
+          "shutter": "1/200 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-05-02 15:40"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 38636,
+            "1000.jxl": 26583,
+            "2000.jpg": 143688,
+            "2000.jxl": 99612
+          }
+        }
+      },
+      {
+        "file": "day-3-10",
+        "original": "Rim day 3 (10 of 20).jxl",
+        "caption": "",
+        "alt": "Black and white: a brick bell tower above a church front.",
+        "settings": {
+          "aperture": "f/7.1",
+          "shutter": "1/1250 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-05-02 15:53"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 66210,
+            "1000.jxl": 56742,
+            "2000.jpg": 256121,
+            "2000.jxl": 217840
+          }
+        }
+      },
+      {
+        "file": "day-3-17",
+        "original": "Rim day 3 (17 of 20).jxl",
+        "caption": "",
+        "alt": "A rusticated stone building front in the sun.",
+        "settings": {
+          "aperture": "f/7.1",
+          "shutter": "1/800 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-05-02 15:59"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 122772,
+            "1000.jxl": 86940,
+            "2000.jpg": 425512,
+            "2000.jxl": 297006
+          }
+        }
+      },
+      {
+        "file": "day-3-14",
+        "original": "Rim day 3 (14 of 20).jxl",
+        "caption": "",
+        "alt": "A large green door under a stone arch.",
+        "settings": {
+          "aperture": "f/7.1",
+          "shutter": "1/1000 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-05-02 16:00"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 134842,
+            "1000.jxl": 106283,
+            "2000.jpg": 514812,
+            "2000.jxl": 392629
+          }
+        }
+      },
+      {
+        "file": "day-3-18",
+        "original": "Rim day 3 (18 of 20).jxl",
+        "caption": "",
+        "alt": "Trees seen from below against a bright sky.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/60 s",
+          "iso": "ISO 640",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-05-02 17:07"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 189908,
+            "1000.jxl": 136170,
+            "2000.jpg": 597333,
+            "2000.jxl": 401073
+          }
+        }
+      },
+      {
+        "file": "day-3-11",
+        "original": "Rim day 3 (11 of 20).jxl",
+        "caption": "",
+        "alt": "A hand reaching toward a ginger cat crossing a street, a parked car.",
+        "settings": {
+          "aperture": "f/1.4",
+          "shutter": "1/640 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-05-02 17:30"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 115817,
+            "1000.jxl": 89072,
+            "2000.jpg": 419306,
+            "2000.jxl": 306743
+          }
+        }
+      },
+      {
+        "file": "day-3-12",
+        "original": "Rim day 3 (12 of 20).jxl",
+        "caption": "",
+        "alt": "A pink gate pier and a balustrade, cypresses behind.",
+        "settings": {
+          "aperture": "f/1.4",
+          "shutter": "1/1600 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-05-02 17:30"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 111465,
+            "1000.jxl": 75340,
+            "2000.jpg": 359302,
+            "2000.jxl": 234330
+          }
+        }
+      },
+      {
+        "file": "day-3-19",
+        "original": "Rim day 3 (19 of 20).jxl",
+        "caption": "",
+        "alt": "A horse-drawn carriage passing a parked car, pines and houses behind.",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/125 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-05-02 17:40"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 137905,
+            "1000.jxl": 96253,
+            "2000.jpg": 460118,
+            "2000.jxl": 300492
+          }
+        }
+      },
+      {
+        "file": "day-3-20",
+        "original": "Rim day 3 (20 of 20).jxl",
+        "caption": "",
+        "alt": "A lit restaurant terrace at night, people and parked cars in front.",
+        "settings": {
+          "aperture": "f/1.4",
+          "shutter": "1/60 s",
+          "iso": "ISO 500",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-05-02 20:13"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 90355,
+            "1000.jxl": 58064,
+            "2000.jpg": 272689,
+            "2000.jxl": 166692
+          }
+        }
+      },
+      {
+        "file": "vatikan-3",
+        "original": "Rim Vatikan (3 of 6).jxl",
+        "caption": "",
+        "alt": "Two Swiss Guards in striped uniform and a man in a suit at a doorway, a dark figure in front.",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/60 s",
+          "iso": "ISO 2500",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-05-04 16:04"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 90998,
+            "1000.jxl": 63653,
+            "2000.jpg": 322339,
+            "2000.jxl": 217463
+          }
+        }
+      },
+      {
+        "file": "vatikan-4",
+        "original": "Rim Vatikan (4 of 6).jxl",
+        "caption": "",
+        "alt": "A gilded coffered ceiling with a row of lights inside a basilica.",
+        "settings": {
+          "aperture": "f/5",
+          "shutter": "1/60 s",
+          "iso": "ISO 1000",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-05-04 16:09"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 181114,
+            "1000.jxl": 138048,
+            "2000.jpg": 658236,
+            "2000.jxl": 493990
+          }
+        }
+      },
+      {
+        "file": "vatikan-5",
+        "original": "Rim Vatikan (5 of 6).jxl",
+        "caption": "",
+        "alt": "The inside of a dome, gilded coffers around it.",
+        "settings": {
+          "aperture": "f/5",
+          "shutter": "1/60 s",
+          "iso": "ISO 1250",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-05-04 16:10"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 196384,
+            "1000.jxl": 146333,
+            "2000.jpg": 683825,
+            "2000.jxl": 496322
+          }
+        }
+      },
+      {
+        "file": "vatikan-1",
+        "original": "Rim Vatikan (1 of 6).jxl",
+        "caption": "",
+        "alt": "Gilded coffered arches and a dome, from below.",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/60 s",
+          "iso": "ISO 2500",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-05-04 16:12"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 198196,
+            "1000.jxl": 147785,
+            "2000.jpg": 721047,
+            "2000.jxl": 534963
+          }
+        }
+      },
+      {
+        "file": "vatikan-2",
+        "original": "Rim Vatikan (2 of 6).jxl",
+        "caption": "",
+        "alt": "Two Swiss Guards beside sentry boxes at an arched gate.",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/160 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-05-04 16:15"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 122034,
+            "1000.jxl": 90407,
+            "2000.jpg": 447676,
+            "2000.jxl": 322307
+          }
+        }
+      },
+      {
+        "file": "vatikan-6",
+        "original": "Rim Vatikan (6 of 6).jxl",
+        "caption": "",
+        "alt": "A small stall against a stone wall with a picture of the Pope, flowers and drinks.",
+        "settings": {
+          "aperture": "f/6.3",
+          "shutter": "1/60 s",
+          "iso": "ISO 2000",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-05-04 16:40"
+        },
+        "web": {
+          "400": [
+            400,
+            500
+          ],
+          "1000": [
+            1000,
+            1250
+          ],
+          "bytes": {
+            "1000.jpg": 244896,
+            "1000.jxl": 204563,
+            "2000.jpg": 974566,
+            "2000.jxl": 773359
           }
         }
       },
@@ -689,6 +2424,130 @@
         }
       },
       {
+        "file": "last-day-hdr-9",
+        "original": "Rim Last Day HDR (9 of 10).jpg",
+        "caption": "",
+        "alt": "A white marble monument seen through the window frame of a bus.",
+        "settings": {
+          "aperture": "f/1.4",
+          "shutter": "1/5000 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-05-05 11:21"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 87579,
+            "1000.jxl": 65748,
+            "2000.jpg": 297249,
+            "2000.jxl": 213737
+          }
+        }
+      },
+      {
+        "file": "last-day-hdr-2",
+        "original": "Rim Last Day HDR (2 of 10).jpg",
+        "caption": "",
+        "alt": "An Italian flag over the Tiber embankment and the buildings beyond, wide.",
+        "settings": {
+          "aperture": "f/1.6",
+          "shutter": "1/8000 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-05-05 11:49"
+        },
+        "web": {
+          "400": [
+            400,
+            167
+          ],
+          "1000": [
+            1000,
+            418
+          ],
+          "bytes": {
+            "1000.jpg": 47507,
+            "1000.jxl": 33719,
+            "2000.jpg": 170029,
+            "2000.jxl": 128303
+          }
+        }
+      },
+      {
+        "file": "last-day-hdr-3",
+        "original": "Rim Last Day HDR (3 of 10).jpg",
+        "caption": "",
+        "alt": "Black and white: the columns of a portico over a glass canopy.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/160 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-05-05 13:10"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 70298,
+            "1000.jxl": 55153,
+            "2000.jpg": 252189,
+            "2000.jxl": 199350
+          }
+        }
+      },
+      {
+        "file": "last-day-1",
+        "original": "Rim Last Day (1 of 2).jxl",
+        "caption": "",
+        "alt": "Rooftops and a building seen past a stone ledge, under cloud.",
+        "settings": {
+          "aperture": "f/1.4",
+          "shutter": "1/8000 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-05-05 13:14"
+        },
+        "web": {
+          "400": [
+            400,
+            500
+          ],
+          "1000": [
+            1000,
+            1250
+          ],
+          "bytes": {
+            "1000.jpg": 102230,
+            "1000.jxl": 71403,
+            "2000.jpg": 462037,
+            "2000.jxl": 326163
+          }
+        }
+      },
+      {
         "file": "last-day-hdr-10",
         "original": "Rim Last Day HDR (10 of 10).jpg",
         "caption": "Horses and a winged figure.",
@@ -717,6 +2576,193 @@
             "1000.jxl": 49160,
             "2000.jpg": 253477,
             "2000.jxl": 190326
+          }
+        }
+      },
+      {
+        "file": "last-day-hdr-4",
+        "original": "Rim Last Day HDR (4 of 10).jpg",
+        "caption": "",
+        "alt": "A man with a backpack walking up a cobbled street, a car coming.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/320 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-05-05 13:49"
+        },
+        "web": {
+          "400": [
+            400,
+            500
+          ],
+          "1000": [
+            1000,
+            1250
+          ],
+          "bytes": {
+            "1000.jpg": 221558,
+            "1000.jxl": 171518,
+            "2000.jpg": 768173,
+            "2000.jxl": 561375
+          }
+        }
+      },
+      {
+        "file": "last-day-hdr-5",
+        "original": "Rim Last Day HDR (5 of 10).jpg",
+        "caption": "",
+        "alt": "A woman in a pink cap seen from behind in a street with bins, a church front beyond.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/100 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-05-05 13:51"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 89767,
+            "1000.jxl": 60079,
+            "2000.jpg": 306936,
+            "2000.jxl": 212100
+          }
+        }
+      },
+      {
+        "file": "last-day-hdr-6",
+        "original": "Rim Last Day HDR (6 of 10).jpg",
+        "caption": "",
+        "alt": "Ochre and pink apartment blocks from below, a cloudy sky.",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/4000 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-05-05 13:54"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 131762,
+            "1000.jxl": 93958,
+            "2000.jpg": 445852,
+            "2000.jxl": 303245
+          }
+        }
+      },
+      {
+        "file": "last-day-hdr-7",
+        "original": "Rim Last Day HDR (7 of 10).jpg",
+        "caption": "Woman with a blue bag.",
+        "alt": "A woman with a phone and a blue bag in front of an ochre wall.",
+        "provisional": true,
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/1250 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-05-05 13:54"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 130212,
+            "1000.jxl": 91970,
+            "2000.jpg": 440586,
+            "2000.jxl": 307098
+          }
+        }
+      },
+      {
+        "file": "last-day-hdr-8",
+        "original": "Rim Last Day HDR (8 of 10).jpg",
+        "caption": "",
+        "alt": "A pale building front with shutters, straight on.",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/800 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-05-05 13:55"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 92304,
+            "1000.jxl": 60736,
+            "2000.jpg": 332821,
+            "2000.jxl": 219093
+          }
+        }
+      },
+      {
+        "file": "last-day-2",
+        "original": "Rim Last Day (2 of 2).jxl",
+        "caption": "",
+        "alt": "A narrow street of pale ochre houses, people and scooters.",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/1000 s",
+          "iso": "ISO 100",
+          "focal": "35 mm",
+          "camera": "Sony ILCE-7M3",
+          "lens": "35mm F1.4 DG DN | Art 021",
+          "taken": "2025-05-05 13:56"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 144996,
+            "1000.jxl": 99018,
+            "2000.jpg": 492208,
+            "2000.jxl": 315171
           }
         }
       }

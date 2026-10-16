@@ -21,6 +21,7 @@
 //   prints            every printed frame as a full-screen print        (kit)
 //   print:<file>      one print figure, with caption and camera settings (kit)
 //   picture:<file>    one bare picture (JXL + JPEG), opening the viewer; options: sizes=60vw link=no
+//                     (a value with spaces goes in double quotes: sizes="(min-width: 900px) 50vw, 100vw")
 //   days              one tile per day the dump was shot, each frame a mark; day:<YYYY-MM-DD> for one tile
 //   archive           (photos.html only) the box itself
 //
@@ -32,8 +33,13 @@
 // a JPEG XL comes whole (nothing on plex decodes it). Camera settings come from the original's first 256 KB and are
 // kept in photos.json, so pages rebuild without the originals. A 7000 px JPEG XL takes about 1 GB to decode;
 // files are done one at a time.
-import { readFileSync, writeFileSync, mkdirSync, existsSync, statSync } from 'node:fs';
-import { join } from 'node:path';
+// A JPEG XL is decoded with libjxl's djxl when it is installed (DJXL, or ~/.local/opt/libjxl/usr/bin/djxl): it reads
+// every colour encoding, and tone maps Lightroom's HDR edits to an ordinary screen. The wasm decoder used otherwise
+// leaves those nearly black.
+import { readFileSync, writeFileSync, mkdirSync, existsSync, statSync, mkdtempSync, rmSync } from 'node:fs';
+import { join, dirname } from 'node:path';
+import { homedir, tmpdir } from 'node:os';
+import { execFileSync } from 'node:child_process';
 import { createRequire } from 'node:module';
 import { exif, settings } from './exif.mjs';
 
@@ -83,7 +89,28 @@ async function codecs() {
   await rs.initResize(await wasm('@jsquash/resize/lib/resize/pkg/squoosh_resize_bg.wasm'));
   return codec = { decodeJxl: jxlDec.default, encodeJxl: jxlEnc.default, decodeJpeg: jpgDec.default, encodeJpeg: jpgEnc.default, resize: rs.default };
 }
-const decode = async file => { const c = await codecs(), b = readFileSync(file).buffer; return /\.jxl$/i.test(file) ? c.decodeJxl(b) : c.decodeJpeg(b); };
+const DJXL = process.env.DJXL || join(homedir(), '.local/opt/libjxl/usr/bin/djxl');
+function djxl(file) {
+  const hdr = readFileSync(file).subarray(0, 262144).includes('crs:HDREditMode="1"');
+  const tmp = mkdtempSync(join(tmpdir(), 'djxl-')), out = join(tmp, 'x.ppm');
+  try {
+    execFileSync(DJXL, [file, out, '--color_space=RGB_D65_SRG_Per_SRG', '--num_threads=1', ...(hdr ? ['--display_nits=203'] : [])],
+      { stdio: 'ignore', env: { ...process.env, LD_LIBRARY_PATH: join(dirname(DJXL), '../lib/x86_64-linux-gnu') } });
+    // A PPM, 8 or 16 bits a sample (djxl writes the original's depth whatever it is asked).
+    const ppm = readFileSync(out), m = ppm.subarray(0, 64).toString('latin1').match(/^P6\s+(\d+)\s+(\d+)\s+(\d+)\s/);
+    const w = +m[1], h = +m[2], max = +m[3], wide = max > 255, rgba = new Uint8ClampedArray(w * h * 4);
+    const at = wide ? j => (ppm[j] * 256 + ppm[j + 1]) * 255 / max : j => ppm[j] * 255 / max, step = wide ? 2 : 1;
+    for (let i = 0, j = m[0].length; i < rgba.length; i += 4, j += 3 * step) {
+      rgba[i] = at(j); rgba[i + 1] = at(j + step); rgba[i + 2] = at(j + 2 * step); rgba[i + 3] = 255;
+    }
+    return new ImageData(rgba, w, h);
+  } finally { rmSync(tmp, { recursive: true, force: true }); }
+}
+const decode = async file => {
+  const c = await codecs(), b = readFileSync(file).buffer;
+  if (!/\.jxl$/i.test(file)) return c.decodeJpeg(b);
+  return existsSync(DJXL) ? djxl(file) : c.decodeJxl(b);
+};
 const shrink = async (img, w) => w >= img.width ? img : (await codecs()).resize(img, { width: w, height: Math.round(img.height * w / img.width), method: 'lanczos3' });
 
 function original(dump, p) {
@@ -142,7 +169,6 @@ writeFileSync(listPath, JSON.stringify(dumps, null, 2) + '\n');
 // ---- Upload: one dump's copies to R2, keyed <id>/<file>, the same layout as site/photos/. Never deletes anything there.
 if (UPLOAD) {
   if (!ONLY) { console.error('--upload needs a dump id: node tools/photos.mjs <id> --upload'); process.exit(1); }
-  const { execFileSync } = await import('node:child_process');
   const cache = ['--header-upload', 'Cache-Control: public, max-age=31536000, immutable'];
   for (const [ext, type] of [['jpg', 'image/jpeg'], ['jxl', 'image/jxl']])
     execFileSync('rclone', ['copy', dir(ONLY), `${BUCKET}/${ONLY}`, '--include', `*.${ext}`, '--s3-no-check-bucket',
@@ -334,11 +360,12 @@ ${leads.map((d, n) => print(d, printed(d)[0], 0, { lazy: n > 0, lead: true })).j
 </section>`;
 }
 
-// ---- Markers. <!-- name[:arg][ key=value ...]:start --> ... <!-- name[:arg]:end -->
-const MARKER = /<!-- ([a-z]+)((?::[\w.-]+)?)((?: [a-z]+=[^\s>]+)*):start -->[\s\S]*?<!-- \1\2:end -->/g;
+// ---- Markers. <!-- name[:arg][ key=value ...]:start --> ... <!-- name[:arg]:end -->; a value may be "in quotes".
+const MARKER = /<!-- ([a-z]+)((?::[\w.-]+)?)((?: [a-z]+=(?:"[^"]*"|[^\s>"]+))*):start -->[\s\S]*?<!-- \1\2:end -->/g;
+const options = opts => Object.fromEntries([...opts.matchAll(/([a-z]+)=(?:"([^"]*)"|(\S+))/g)].map(m => [m[1], m[2] ?? m[3]]));
 function fill(html, make, where) {
   return html.replace(MARKER, (all, name, arg, opts) => {
-    const o = Object.fromEntries(opts.trim().split(/\s+/).filter(Boolean).map(kv => kv.split('=')));
+    const o = options(opts);
     const body = make(name, arg.slice(1), o);
     if (body == null) { console.log(`${where}: nothing to put in <!-- ${name}${arg} -->; left as it was`); return all; }
     return `<!-- ${name}${arg}${opts}:start -->\n${body}\n<!-- ${name}${arg}:end -->`;
@@ -368,7 +395,7 @@ function fillPage(html, dump, full, where) {
   // A refresh leaves every marker but the switcher's exactly as it was.
   const parts = dumpParts(dump, full);
   return html.replace(MARKER, (all, name, arg, opts) => {
-    const o = Object.fromEntries(opts.trim().split(/\s+/).filter(Boolean).map(kv => kv.split('=')));
+    const o = options(opts);
     const body = parts(name, arg.slice(1), o);
     if (body === KEEP) return all;
     if (body == null) { console.log(`${where}: nothing to put in <!-- ${name}${arg} -->; left as it was`); return all; }

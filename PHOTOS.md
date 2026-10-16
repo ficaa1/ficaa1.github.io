@@ -94,6 +94,7 @@ This command does four things:
 1. It copies each missing original into `photos-src-local/<id>/`, which is gitignored. A JPEG is scaled to 2000 px on plex with niced ffmpeg, in a `mktemp -d` folder that is removed afterwards.
 2. It reads the camera settings from the original's first 256 KB.
 3. It writes the web copies to `site/photos/<id>/`: `<file>-1000.jpg/.jxl`, `<file>-2000.jpg/.jxl` and `<file>-400.jpg`. Their sizes are saved in `photos.json` under `"web"`. The copies are gitignored.
+   A JPEG XL original is decoded with libjxl's `djxl` when it is installed (`DJXL`, or `~/.local/opt/libjxl/usr/bin/djxl`). It reads every colour encoding and tone maps Lightroom's HDR exports to an ordinary screen; without it, the wasm decoder leaves those exports nearly black.
 4. It fills the markers on the page and refreshes the switcher.
 
 ## 4. Start the page
@@ -125,7 +126,7 @@ This writes `site/photos/<id>/index.html` and `dump.css`. From then on the page 
 | `sheet` | the paper contact sheet; `rolls` gives only the film strips |
 | `prints` | every printed frame as a full-screen print |
 | `print:<file>` | one print, with its caption and camera settings |
-| `picture:<file>` | a bare picture that opens the viewer. Options: `sizes=60vw`, `link=no`, `lazy=no` |
+| `picture:<file>` | a bare picture that opens the viewer. Options: `sizes=60vw`, `link=no`, `lazy=no`; a value with spaces goes in quotes, `sizes="(min-width: 900px) 50vw, 100vw"` |
 | `days` | one tile per day the dump was shot, one mark per frame |
 | `day:YYYY-MM-DD` | the tile for a single day |
 
