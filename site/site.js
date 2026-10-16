@@ -138,24 +138,31 @@
     sheet.querySelector('h2').textContent = part.dataset.sheet;
     sheet.querySelector('.parts').innerHTML = [...document.querySelectorAll('main [data-sheet]')].map(p =>
       `<li><button type="button" data-part="${p.id}"${p === part ? ' aria-current="true"' : ''}>${p.dataset.sheetTab || p.dataset.sheet}</button></li>`).join('');
-    const figs = [...part.querySelectorAll('.print, [data-view]')];
-    const grid = sheet.querySelector('.grid'), cells = [];
-    grid.replaceChildren(...figs.map((f, n) => {
+    // The viewer steps through the whole dump, not just this day; Esc comes back to the grid of the day it stopped on.
+    const figs = [...part.querySelectorAll('.print, [data-view]')], all = [...document.querySelectorAll('main .print, main [data-view]')];
+    const grid = sheet.querySelector('.grid');
+    sheet.part = part;
+    grid.replaceChildren(...figs.map(f => {
       const li = document.createElement('li'), a = document.createElement('a'), pic = f.querySelector('picture').cloneNode(true);
       const img = pic.querySelector('img');
       li.style.setProperty('--r', (img.width / img.height || 1.5).toFixed(3));
       pic.querySelectorAll('source, img').forEach(x => x.sizes = '(max-width: 640px) 50vw, 30vw');
       a.href = '#' + f.id;
       a.append(pic);
-      cells.push(a);
       a.addEventListener('click', e => {
         if (e.metaKey || e.ctrlKey || e.shiftKey || e.button) return;
-        e.preventDefault(); view(figs, n, cells);
+        e.preventDefault(); view(all, all.indexOf(f), cellFor);
       });
       li.append(a);
       return li;
     }));
     sheet.scrollTop = 0;
+  }
+
+  function cellFor(f) {
+    const part = f.closest('main [data-sheet]');
+    if (part && part !== sheet.part) fill(part);
+    return (part && sheet.querySelector(`.grid a[href="#${CSS.escape(f.id)}"]`)) || sheet.querySelector('.grid a');
   }
 
   // The switcher: sleeves and tabs rise in a few at a time, and on a narrow screen the row of tabs starts at this dump.
@@ -195,7 +202,7 @@
       viewer.addEventListener('close', () => {
         history.replaceState(history.state, '', location.pathname + location.search);
         // Opened from a sheet: back to the grid, at the picture last shown. Otherwise back to that picture on the page.
-        const f = viewer.figs && viewer.figs[viewer.n], cell = viewer.back && viewer.back[viewer.n];
+        const f = viewer.figs && viewer.figs[viewer.n], cell = f && viewer.back && viewer.back(f);
         if (cell && cell.isConnected) cell.focus();
         else if (f && f.isConnected) (f.querySelector('.open') || f).focus({ preventScroll: true });
       });
