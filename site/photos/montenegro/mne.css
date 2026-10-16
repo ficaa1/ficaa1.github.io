@@ -272,10 +272,14 @@ main[data-country="montenegro"] .picks .meta a { color: var(--ink); }
   main[data-country="montenegro"] .intro .index { margin-top: 40px; }
   main[data-country="montenegro"] .month li.on { font-size: 64px; }
   main[data-country="montenegro"] .date { flex-wrap: wrap; }
-  main[data-country="montenegro"] .waterline { --seam: 46%; min-height: 78svh; }
-  main[data-country="montenegro"] .name { font-size: var(--fit-s, 30vw); }
-  main[data-country="montenegro"] .waterline:has(.name.one) { --seam: 50%; }
-  main[data-country="montenegro"] .facts { grid-template-columns: minmax(0, 1fr) auto; gap: 0 20px; }
+  /* On a phone the facts are too tall to sit on the water under the name, so they follow it: the name keeps a stage of
+     its own with the waterline through its middle, and the facts start below the name's lower half. */
+  main[data-country="montenegro"] .waterline, main[data-country="montenegro"] .waterline:has(.name.one) {
+    --stage: 72svh; --seam: calc(var(--stage) / 2); min-height: 0;
+    padding: calc(var(--seam) + var(--fit-s, 30vw) * 0.55 + 24px) 0 28px;
+  }
+  main[data-country="montenegro"] .name { font-size: var(--fit-s, 30vw); bottom: auto; height: var(--stage); }
+  main[data-country="montenegro"] .facts { position: relative; inset: auto; margin: 0 var(--gut); grid-template-columns: minmax(0, 1fr) auto; gap: 0 20px; }
   main[data-country="montenegro"] .facts .when, main[data-country="montenegro"] .facts .gear { grid-column: 1; justify-self: start; }
   main[data-country="montenegro"] .arms { grid-column: 2; grid-row: 1 / span 2; height: 64px; }
   main[data-country="montenegro"] .gear { margin-top: 6px; }

@@ -26,6 +26,8 @@ a:visited { color: var(--visited); }
 a:hover { text-decoration-thickness: 2px; }
 a:active { color: #ee0000; }
 :focus-visible { outline: 3px solid var(--link); outline-offset: 2px; }
+/* A heading given focus after a page swap (for screen readers) is not something to point at. */
+main h1[tabindex="-1"]:focus { outline: none; }
 ::selection { background: var(--link); color: #fff; }
 
 nav, main, footer { padding-left: var(--left); padding-right: 20px; }
