@@ -27,8 +27,9 @@ a:hover { text-decoration-thickness: 2px; }
 a:active { color: #ee0000; }
 :focus-visible { outline: 3px solid var(--link); outline-offset: 2px; }
 /* A heading given focus for screen readers (after a page swap, or as the day grid opens) is not something to point at,
-   nor is focus that script puts back after a tap ([data-quiet], see refocus in site.js). */
-h1[tabindex="-1"]:focus, h2[tabindex="-1"]:focus, [data-quiet]:focus { outline: none; }
+   nor is a control clicked or tapped ([data-quiet], see quiet in site.js). !important so that no page's own ring wins. */
+h1[tabindex="-1"]:focus, h2[tabindex="-1"]:focus { outline: none; }
+[data-quiet]:focus { outline: none !important; }
 ::selection { background: var(--link); color: #fff; }
 
 nav, main, footer { padding-left: var(--left); padding-right: 20px; }
@@ -265,7 +266,7 @@ body.cv #player .cover { background-color: #fff; }
 #player .level::-moz-range-track { background: var(--pl-track); }
 #player .level::-webkit-slider-thumb { background: var(--ink); }
 #player .level::-moz-range-thumb { background: var(--ink); }
-#player .vol:has(:focus-visible) .level, #player .vol.open .level { opacity: 1; clip-path: inset(0); pointer-events: auto; }
+#player .vol:has(:focus-visible:not([data-quiet])) .level, #player .vol.open .level { opacity: 1; clip-path: inset(0); pointer-events: auto; }
 @media (hover: hover) { #player .vol:hover .level { opacity: 1; clip-path: inset(0); pointer-events: auto; } }
 #player.fixed-volume .level { display: none; }
 @media (prefers-reduced-motion: reduce) {

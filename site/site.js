@@ -6,15 +6,25 @@
 
   let clockTimer = 0;
 
-  // ---- Focus put back by script (closing the viewer or the day grid) is outlined only for someone on the keyboard. After a
-  // tap or a click it is set quietly, so Safari does not ring the link the picture was opened from.
+  // ---- Focus rings are for the keyboard. A control clicked or tapped stays quiet ([data-quiet]) until it loses focus, even
+  // when a key is pressed afterwards (Esc to leave full screen, an arrow in the viewer), which would otherwise ring it in
+  // Chrome. Focus put back by script (closing the viewer or the day grid) is quiet too when the last input was a pointer.
   let byKey = false;
   addEventListener('keydown', () => { byKey = true; }, true);
   addEventListener('pointerdown', () => { byKey = false; }, true);
+  function quiet(el) {
+    if ('quiet' in el.dataset) return;
+    el.dataset.quiet = '';
+    el.addEventListener('blur', () => delete el.dataset.quiet, { once: true });
+  }
   function refocus(el, opts) {
-    if (!byKey) { el.dataset.quiet = ''; el.addEventListener('blur', () => delete el.dataset.quiet, { once: true }); }
+    if (!byKey) quiet(el);
     el.focus(opts);
   }
+  addEventListener('click', e => {
+    const el = document.activeElement;
+    if (e.detail && el && el !== document.body && el.contains(e.target)) quiet(el);
+  }, true);
 
   // ---- Entrances: each block rises in once; pictures draw top to bottom like a slow modem.
   function entrances() {
