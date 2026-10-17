@@ -252,7 +252,12 @@
         // Opened from a sheet: back to the grid, at the picture last shown. Otherwise back to that picture on the page.
         const f = viewer.figs && viewer.figs[viewer.n], cell = f && viewer.back && viewer.back(f);
         if (cell && cell.isConnected) refocus(cell);
-        else if (f && f.isConnected) refocus(f.querySelector('.open') || f, { preventScroll: true });
+        else if (f && f.isConnected) {
+          // Back on the page at the picture last shown, wherever the viewer was stepped to.
+          const r = f.getBoundingClientRect(), bar = document.querySelector('body > .pbar.on');
+          if (r.top < (bar ? bar.offsetHeight : 0) || r.bottom > innerHeight) f.scrollIntoView({ block: 'center' });
+          refocus(f.querySelector('.open') || f, { preventScroll: true });
+        }
       });
     }
     viewer.figs = figs;
@@ -566,6 +571,115 @@
     place();
   })();
 
+  // ---- The photo bar. On a photo page, once its own switcher has gone by, a thin bar keeps the way round in view: the
+  // dumps, the places of the country, and the days of this page with the one in view marked. It is made from what the
+  // page already has (.tabs, .places, [data-sheet]) and takes the page's look: the type of its day numbers, and the
+  // ground and ink of the day in view. On a phone the dumps and places fold under a button named for this page.
+  const ground = el => {
+    for (; el && el !== document.documentElement; el = el.parentElement) {
+      const c = getComputedStyle(el).backgroundColor;
+      if (c && !/^rgba\(.*,\s*0\)$/.test(c) && c !== 'transparent') return c;
+    }
+    return getComputedStyle(document.body).backgroundColor;
+  };
+  const lum = c => {
+    const [r, g, b] = (c.match(/[\d.]+/g) || [0, 0, 0]).slice(0, 3).map(v => { v /= 255; return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; });
+    return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+  };
+  const contrast = (a, b) => { const [x, y] = [lum(a), lum(b)].sort((m, n) => n - m); return (x + 0.05) / (y + 0.05); };
+  function photoBar() {
+    document.querySelectorAll('body > .pbar').forEach(b => b.remove());
+    document.documentElement.style.removeProperty('--pbar');
+    const main = document.querySelector('main'), tabs = main && main.querySelector('.tabs');
+    if (!tabs) return;
+    const list = items => items.filter(li => !li.classList.contains('sealed') && li.querySelector('a')).map(li =>
+      `<li><a href="${esc(li.querySelector('a').getAttribute('href'))}"${li.classList.contains('here') ? ' aria-current="page"' : ''}>${esc((li.querySelector('.place') || li).textContent.trim())}</a></li>`).join('');
+    const places = main.querySelector('.places');
+    const parts = [...main.querySelectorAll('[data-sheet]')].filter(p => p.id);
+    // Days, with the month (and the year, when the page has more than one) where it changes.
+    const when = p => (p.dataset.sheet.match(/\d{1,2} ([A-Z][a-z]+)(?: (\d{4}))?/) || []).slice(1);
+    const years = new Set(parts.map(p => when(p)[1]).filter(Boolean));
+    let last = '';
+    const days = parts.map(p => {
+      const [m, y] = when(p), mo = m ? m.slice(0, 3) + (years.size > 1 && y ? ' ' + y : '') : '';
+      const head = mo && mo !== last ? `<li class="mo" aria-hidden="true">${esc(mo)}</li>` : '';
+      last = mo || last;
+      return `${head}<li><a href="#${esc(p.id)}" aria-label="${esc(p.dataset.sheet)}">${esc(p.dataset.sheetTab || (p.dataset.sheet.match(/\d{1,2}/) || [''])[0])}</a></li>`;
+    }).join('');
+    const here = (places && places.querySelector('.here .place')) || tabs.querySelector('.here .place');
+    const bar = document.createElement('div');
+    bar.className = 'pbar';
+    bar.setAttribute('role', 'navigation');
+    bar.setAttribute('aria-label', 'Photo pages and days');
+    bar.innerHTML = `<button type="button" class="which" aria-expanded="false">${esc(here ? here.textContent.trim() : 'Photos')}</button>
+      <div class="where"><ol class="dumps">${list([...tabs.querySelectorAll('li')])}</ol>${places ? `<ol class="places">${list([...places.querySelectorAll('li')])}</ol>` : ''}</div>
+      ${days ? `<ol class="days">${days}</ol>` : ''}`;
+    // Type: the page's own day numbers (the first date that opens a day), else its heading; labels in its text face.
+    const opener = main.querySelector('[data-sheet-open]'), target = opener && document.getElementById(opener.dataset.sheetOpen);
+    const tab = target && (target.dataset.sheetTab || '');
+    const num = (opener && [...opener.querySelectorAll('*')].find(e => !e.children.length && e.textContent.trim() === tab)) || opener || main.querySelector('h1') || main;
+    const n = getComputedStyle(num);
+    bar.style.setProperty('--pb-font', getComputedStyle(main).fontFamily);
+    bar.style.setProperty('--pb-num-font', n.fontFamily);
+    bar.style.setProperty('--pb-num-weight', n.fontWeight);
+    bar.mark = n.color;
+    bar.parts = parts;
+    bar.top = tabs;
+    bar.querySelectorAll('.days a').forEach((a, i) => { a.day = parts[i]; });
+    bar.addEventListener('click', e => {
+      const b = e.target.closest('.which');
+      if (b) { b.setAttribute('aria-expanded', String(bar.classList.toggle('open'))); return; }
+      const a = e.target.closest('.days a');
+      if (!a || e.metaKey || e.ctrlKey || e.shiftKey || e.button) return;
+      e.preventDefault();
+      a.day.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+    });
+    document.body.append(bar);
+    paint(bar, parts[0] || main.querySelector('h1') || main);
+    barUpdate();
+  }
+  function paint(bar, el) {
+    const bg = ground(el), ink = getComputedStyle(el).color;
+    bar.style.setProperty('--pb-bg', bg);
+    bar.style.setProperty('--pb-ink', ink);
+    bar.style.setProperty('--pb-mark', contrast(bar.mark, bg) >= 3 ? bar.mark : ink);
+  }
+  let barTick = 0;
+  function barUpdate() {
+    barTick = 0;
+    const bar = document.querySelector('body > .pbar');
+    if (!bar) return;
+    const past = bar.top.getBoundingClientRect().bottom < 0;
+    if (past !== bar.classList.contains('on')) {
+      bar.classList.toggle('on', past);
+      // Things the page keeps stuck to the top move down below the bar (top: calc(... + var(--pbar, 0px))).
+      document.documentElement.style.setProperty('--pbar', past ? bar.offsetHeight + 'px' : '0px');
+      if (!past) { bar.classList.remove('open'); bar.querySelector('.which').setAttribute('aria-expanded', 'false'); }
+    }
+    // The day in view: the last whose top has passed a third of the way down the screen.
+    const line = innerHeight / 3;
+    let cur = null;
+    bar.parts.forEach(p => { if (p.getBoundingClientRect().top <= line) cur = p; });
+    if (cur === bar.cur) return;
+    bar.cur = cur;
+    paint(bar, cur || bar.parts[0] || document.querySelector('main'));
+    const days = bar.querySelector('.days');
+    if (!days) return;
+    let on = null;
+    days.querySelectorAll('a').forEach(a => { if (a.day === cur) { a.setAttribute('aria-current', 'true'); on = a; } else a.removeAttribute('aria-current'); });
+    if (on && days.scrollWidth > days.clientWidth) days.scrollTo({ left: on.offsetLeft - days.clientWidth / 2 + on.offsetWidth / 2, behavior: 'smooth' });
+  }
+  // The unfolded list folds again on a tap anywhere else or on Esc.
+  const fold = () => {
+    const bar = document.querySelector('body > .pbar.open');
+    if (bar) { bar.classList.remove('open'); bar.querySelector('.which').setAttribute('aria-expanded', 'false'); }
+    return bar;
+  };
+  addEventListener('click', e => { if (!e.target.closest('.pbar')) fold(); });
+  addEventListener('keydown', e => { if (e.key === 'Escape' && fold()) refocus(document.querySelector('.pbar .which')); });
+  addEventListener('scroll', () => { if (!barTick) barTick = requestAnimationFrame(barUpdate); }, { passive: true });
+  addEventListener('resize', () => { if (!barTick) barTick = requestAnimationFrame(barUpdate); });
+
   // ---- Page setup, run on the first load and after every swap.
   function init() {
     entrances();
@@ -573,6 +687,7 @@
     contact();
     photos();
     sheets();
+    photoBar();
     player.tracklist();
   }
 

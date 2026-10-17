@@ -186,7 +186,7 @@ main[data-country="italy"] .atlas {
   display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 4vw, 72px); align-items: start;
   padding: clamp(64px, 7vw, 120px) var(--gut) 0;
 }
-main[data-country="italy"] .atlas .map { position: sticky; top: 24px; }
+main[data-country="italy"] .atlas .map { position: sticky; top: calc(24px + var(--pbar, 0px)); transition: top 240ms cubic-bezier(.2,.7,.2,1); }
 main[data-country="italy"] .boot { display: block; width: 100%; height: auto; max-height: 88svh; }
 main[data-country="italy"] .boot .coast { fill: none; stroke: var(--ink); stroke-width: 1.6; stroke-linejoin: round; }
 main[data-country="italy"] .boot .border { fill: none; stroke: var(--soft); stroke-width: 1.2; stroke-dasharray: 4 6; }

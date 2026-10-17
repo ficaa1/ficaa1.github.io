@@ -116,7 +116,7 @@ main[data-dump="istanbul-2025"] .stop {
 }
 main[data-dump="istanbul-2025"] .stop + .stop { margin-top: clamp(72px, 8vw, 128px); }
 main[data-dump="istanbul-2025"] .sign {
-  position: sticky; top: 16px; z-index: 2;
+  position: sticky; top: calc(16px + var(--pbar, 0px)); z-index: 2; transition: top 240ms cubic-bezier(.2,.7,.2,1);
   padding: 18px 22px 20px; border-radius: 10px; background: var(--sign); color: var(--sign-ink);
   outline: 2px solid var(--sign-ink); outline-offset: -8px;
 }

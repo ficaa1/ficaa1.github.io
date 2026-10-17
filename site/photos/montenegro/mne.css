@@ -197,7 +197,7 @@ main[data-country="montenegro"] .dusk {
   background: var(--night); color: var(--night-ink);
   display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: var(--gut); align-items: start;
 }
-main[data-country="montenegro"] .dusk .side { position: sticky; top: 24px; }
+main[data-country="montenegro"] .dusk .side { position: sticky; top: calc(24px + var(--pbar, 0px)); transition: top 240ms cubic-bezier(.2,.7,.2,1); }
 main[data-country="montenegro"] .dusk .date { display: block; margin: 0; }
 main[data-country="montenegro"] .dusk .date h2 { margin-top: 20px; }
 main[data-country="montenegro"] .dusk .meta { color: var(--night-soft); }
@@ -301,7 +301,7 @@ main[data-country="montenegro"] .picks .meta a { color: var(--ink); }
   main[data-country="montenegro"] .dusk { display: block; padding-top: 80px; }
   main[data-country="montenegro"] .dusk .side { display: contents; }
   main[data-country="montenegro"] .clock {
-    position: sticky; top: 0; z-index: 2; margin: 24px calc(-1 * var(--gut)) 24px; padding: 12px var(--gut);
+    position: sticky; top: var(--pbar, 0px); z-index: 2; transition: top 240ms cubic-bezier(.2,.7,.2,1); margin: 24px calc(-1 * var(--gut)) 24px; padding: 12px var(--gut);
     background: var(--night);
   }
   main[data-country="montenegro"][data-js] .clock { font-size: 56px; }
