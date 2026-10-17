@@ -26,8 +26,9 @@ a:visited { color: var(--visited); }
 a:hover { text-decoration-thickness: 2px; }
 a:active { color: #ee0000; }
 :focus-visible { outline: 3px solid var(--link); outline-offset: 2px; }
-/* A heading given focus after a page swap (for screen readers) is not something to point at. */
-main h1[tabindex="-1"]:focus { outline: none; }
+/* A heading given focus for screen readers (after a page swap, or as the day grid opens) is not something to point at,
+   nor is focus that script puts back after a tap ([data-quiet], see refocus in site.js). */
+h1[tabindex="-1"]:focus, h2[tabindex="-1"]:focus, [data-quiet]:focus { outline: none; }
 ::selection { background: var(--link); color: #fff; }
 
 nav, main, footer { padding-left: var(--left); padding-right: 20px; }
@@ -504,7 +505,7 @@ body.photos footer > * { max-width: none; }
 .viewer::backdrop { background: var(--bg); }
 .viewer[open] { display: flex; flex-direction: column; justify-content: center; padding: 20px; }
 .viewer figure { margin: 0; display: flex; flex-direction: column; align-items: center; min-height: 0; flex: 0 1 auto; }
-.viewer:focus, .daygrid:focus { outline: none; }
+.viewer:focus { outline: none; }
 html:has(.viewer[open]) { overflow: hidden; }
 .viewer .touch { display: none; }
 @media (pointer: coarse) { .viewer .mouse { display: none; } .viewer .touch { display: inline; } }

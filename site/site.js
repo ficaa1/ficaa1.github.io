@@ -6,6 +6,16 @@
 
   let clockTimer = 0;
 
+  // ---- Focus put back by script (closing the viewer or the day grid) is outlined only for someone on the keyboard. After a
+  // tap or a click it is set quietly, so Safari does not ring the link the picture was opened from.
+  let byKey = false;
+  addEventListener('keydown', () => { byKey = true; }, true);
+  addEventListener('pointerdown', () => { byKey = false; }, true);
+  function refocus(el, opts) {
+    if (!byKey) { el.dataset.quiet = ''; el.addEventListener('blur', () => delete el.dataset.quiet, { once: true }); }
+    el.focus(opts);
+  }
+
   // ---- Entrances: each block rises in once; pictures draw top to bottom like a slow modem.
   function entrances() {
     document.querySelectorAll('main figure img').forEach(img => {
@@ -115,7 +125,6 @@
     if (!sheet) {
       sheet = document.createElement('dialog');
       sheet.className = 'daygrid';
-      sheet.tabIndex = -1;
       sheet.setAttribute('aria-labelledby', 'sheet-name');
       sheet.innerHTML = `<div class="top"><h2 id="sheet-name" tabindex="-1" autofocus></h2><button type="button" data-close>Close</button></div>
         <ol class="parts" aria-label="Days"></ol><ol class="grid"></ol>`;
@@ -127,12 +136,11 @@
       });
       sheet.addEventListener('close', () => {
         const f = sheet.from;
-        if (f && f.isConnected) f.focus({ preventScroll: true });
+        if (f && f.isConnected) refocus(f, { preventScroll: true });
       });
     }
     sheet.from = from;
-    // The dialog itself takes focus when it opens, not its first button, so no button shows a focus ring on a tap.
-    if (!sheet.open) { sheet.showModal(); sheet.focus(); }
+    if (!sheet.open) sheet.showModal();
     fill(part);
   }
   function fill(part) {
@@ -206,8 +214,8 @@
         history.replaceState(history.state, '', location.pathname + location.search);
         // Opened from a sheet: back to the grid, at the picture last shown. Otherwise back to that picture on the page.
         const f = viewer.figs && viewer.figs[viewer.n], cell = f && viewer.back && viewer.back(f);
-        if (cell && cell.isConnected) cell.focus();
-        else if (f && f.isConnected) (f.querySelector('.open') || f).focus({ preventScroll: true });
+        if (cell && cell.isConnected) refocus(cell);
+        else if (f && f.isConnected) refocus(f.querySelector('.open') || f, { preventScroll: true });
       });
     }
     viewer.figs = figs;
@@ -227,6 +235,7 @@
       history.replaceState(history.state, '', '#' + f.id);
     };
     show(n);
+    // The viewer itself takes focus when it opens, not its first button, so no button shows a focus ring on a tap.
     if (!viewer.open) { viewer.showModal(); viewer.focus(); }
   }
 
