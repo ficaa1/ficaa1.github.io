@@ -197,20 +197,47 @@
       viewer = document.createElement('dialog');
       viewer.className = 'viewer';
       viewer.tabIndex = -1;
-      viewer.innerHTML = `<figure><img alt=""><figcaption><span class="where"></span> <span class="cap"></span></figcaption></figure>
-        <p class="keys"><button type="button" data-step="-1">&larr; Previous</button> <button type="button" data-step="1">Next &rarr;</button> <button type="button" data-close>Close</button> <span class="soft mouse">Arrow keys and Esc work too.</span><span class="soft touch">Or tap either side of the picture.</span></p>`;
+      viewer.innerHTML = `<figure><img alt=""><figcaption><p class="line"><span class="where"></span> <span class="cap"></span></p>
+        <p class="keys"><button type="button" data-step="-1">&larr; Previous</button> <button type="button" data-step="1">Next &rarr;</button> <button type="button" data-full hidden>Full screen</button> <button type="button" data-close>Close</button></p></figcaption></figure>`;
       document.body.append(viewer);
+      // The picture fills the screen and the caption lies over its foot. A tap on either side of the picture steps, a tap
+      // in its middle hides or shows the caption; on a phone held sideways it starts hidden.
+      const low = matchMedia('(orientation: landscape) and (max-height: 500px)');
+      low.addEventListener('change', () => viewer.classList.toggle('bare', low.matches));
+      viewer.bare = () => viewer.classList.toggle('bare', low.matches);
+      const full = viewer.querySelector('[data-full]');
+      full.hidden = !document.fullscreenEnabled;
+      document.addEventListener('fullscreenchange', () => { full.textContent = document.fullscreenElement ? 'Leave full screen' : 'Full screen'; });
       viewer.addEventListener('click', e => {
         const b = e.target.closest('button');
         if (b && b.dataset.step) viewer.step(+b.dataset.step);
+        // A dialog cannot itself go full screen, so the whole page does, with the viewer still on top.
+        else if (b === full) document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen().catch(() => {});
         else if (b || e.target === viewer) viewer.close();
-        else if (e.target.tagName === 'IMG') viewer.step(e.offsetX < e.target.clientWidth / 3 ? -1 : 1);
+        else if (e.target.tagName === 'IMG') {
+          const x = e.offsetX / e.target.clientWidth;
+          if (x < 1 / 3) viewer.step(-1); else if (x > 2 / 3) viewer.step(1); else viewer.classList.toggle('bare');
+        }
+      });
+      // Swipe sideways to step, down to close; not while the page is pinched in.
+      let t0 = null;
+      viewer.addEventListener('touchstart', e => {
+        const t = e.touches[0];
+        t0 = e.touches.length === 1 && !(window.visualViewport && visualViewport.scale > 1.01) ? { x: t.clientX, y: t.clientY } : null;
+      }, { passive: true });
+      viewer.addEventListener('touchend', e => {
+        if (!t0) return;
+        const t = e.changedTouches[0], dx = t.clientX - t0.x, dy = t.clientY - t0.y;
+        t0 = null;
+        if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) viewer.step(dx < 0 ? 1 : -1);
+        else if (dy > 80 && dy > Math.abs(dx) * 1.5) viewer.close();
       });
       viewer.addEventListener('keydown', e => {
         if (e.key === 'ArrowLeft') viewer.step(-1);
         if (e.key === 'ArrowRight') viewer.step(1);
       });
       viewer.addEventListener('close', () => {
+        if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
         history.replaceState(history.state, '', location.pathname + location.search);
         // Opened from a sheet: back to the grid, at the picture last shown. Otherwise back to that picture on the page.
         const f = viewer.figs && viewer.figs[viewer.n], cell = f && viewer.back && viewer.back(f);
@@ -236,7 +263,7 @@
     };
     show(n);
     // The viewer itself takes focus when it opens, not its first button, so no button shows a focus ring on a tap.
-    if (!viewer.open) { viewer.showModal(); viewer.focus(); }
+    if (!viewer.open) { viewer.bare(); viewer.showModal(); viewer.focus(); }
   }
 
   // ---- The player. It lives outside the swapped part of the page, so it keeps playing between pages.

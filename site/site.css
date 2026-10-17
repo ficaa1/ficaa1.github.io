@@ -500,22 +500,24 @@ body.photos footer > * { max-width: none; }
   .js .tabs .rise.in { transform: none; }
 }
 
-/* The viewer: a plain white page with one picture on it. */
-.viewer { border: 0; padding: 0; margin: 0; width: 100vw; height: 100dvh; max-width: none; max-height: none; background: var(--bg); color: var(--ink); }
-.viewer::backdrop { background: var(--bg); }
-.viewer[open] { display: flex; flex-direction: column; justify-content: center; padding: 20px; }
-.viewer figure { margin: 0; display: flex; flex-direction: column; align-items: center; min-height: 0; flex: 0 1 auto; }
+/* The viewer: one picture as large as the screen allows, on black. The caption and the buttons lie over its foot and go
+   away with a tap on its middle (.bare); a keyboard that tabs to a button brings them back. */
+.viewer { border: 0; padding: 0; margin: 0; width: 100vw; height: 100dvh; max-width: none; max-height: none; overflow: hidden; background: #000; color: #fff; touch-action: pinch-zoom; overscroll-behavior: contain; }
+.viewer::backdrop { background: #000; }
 .viewer:focus { outline: none; }
-html:has(.viewer[open]) { overflow: hidden; }
-.viewer .touch { display: none; }
-@media (pointer: coarse) { .viewer .mouse { display: none; } .viewer .touch { display: inline; } }
-/* When the caption and the buttons need more room (a phone), the picture gives way, not the text. */
-.viewer img { max-width: 100%; max-height: calc(100dvh - 150px); width: auto; height: auto; min-height: 0; flex: 0 1 auto; object-fit: contain; cursor: pointer; }
-.viewer figcaption { flex-shrink: 0; margin-top: 12px; font-size: 18px; color: var(--ink); max-width: 1000px; text-align: center; }
-.viewer .where { color: var(--soft); }
-.viewer .keys { flex-shrink: 0; text-align: center; margin: 8px 0 0; font-size: 18px; }
-.viewer .keys button { font: inherit; background: none; color: var(--link); text-decoration: underline; padding: 6px 8px; }
-.viewer .keys button:hover { background: var(--panel); }
+html:has(.viewer[open]) { overflow: hidden; background: #000; }
+.viewer figure { position: absolute; inset: 0; margin: 0; }
+.viewer img { display: block; width: 100%; height: 100%; object-fit: contain; cursor: pointer; }
+.viewer figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 56px max(20px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) max(20px, env(safe-area-inset-left)); background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,.6) 40px, rgba(0,0,0,.8)); color: #fff; text-shadow: 0 1px 2px #000; font-size: 18px; text-align: center; transition: opacity 200ms ease; }
+.viewer .line { max-width: 1000px; margin: 0 auto; }
+.viewer .where { color: #c4c4c4; }
+.viewer .keys { margin: 4px 0 0; }
+.viewer .keys button { font: inherit; background: none; color: #fff; text-decoration: underline; padding: 6px 8px; }
+@media (hover: hover) { .viewer .keys button:hover { background: rgba(255,255,255,.16); } }
+.viewer.bare figcaption { opacity: 0; pointer-events: none; }
+.viewer.bare figcaption:focus-within { opacity: 1; pointer-events: auto; }
+@media (max-width: 480px) { .viewer figcaption { font-size: 16px; } .viewer .keys button { padding: 6px 5px; } }
+@media (prefers-reduced-motion: reduce) { .viewer figcaption { transition: none; } }
 
 /* The day grid: one part of a dump (a day) as a large grid on a plain page. Rows keep each picture whole: every cell grows
    in proportion to its picture's width, so a row shares one height; the last row is not stretched. */
