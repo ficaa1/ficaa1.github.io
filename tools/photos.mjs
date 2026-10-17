@@ -406,7 +406,7 @@ function sleeve(dump) {
   const to = homeOf(dump);
   const place = `<span class="place">${esc(dump.title)}</span> <span class="when">${esc(months(dump.from, dump.to))}</span> <span class="count">${esc(to ? plural(printed(dump).length, 'frame') : counted(dump))}</span>`;
   const strips = dump.rolls.map((roll, r) => [roll, strip(dump, roll, r, 0, Boolean(to), Boolean(to))]).filter(([, cells]) => cells)
-    .map(([roll, cells]) => `<div class="strip">${roll.name ? `<p class="edge">${esc(roll.name)}</p>` : ''}<ol aria-label="${esc(roll.name || dump.title)}">${cells}</ol></div>`).join('');
+    .map(([roll, cells]) => `<div class="strip"><ol aria-label="${esc(roll.name || dump.title)}">${cells}</ol></div>`).join('');
   return `<li class="sleeve${to ? '' : ' sealed'}">${to ? `<a class="label" href="${href(to, 0)}">${place}</a>` : `<p class="label">${place}</p>`}<div class="strips">${strips}</div></li>`;
 }
 function archive() {
