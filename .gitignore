@@ -9,3 +9,6 @@ site/photos/*/*.jxl
 
 # Private photo picker and its thumbnail links.
 site/picker/
+
+# Music lives on R2; optional local preview copies.
+site/music/

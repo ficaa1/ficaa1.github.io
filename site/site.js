@@ -283,7 +283,7 @@
   }
 
   // ---- The player. It lives outside the swapped part of the page, so it keeps playing between pages.
-  // Songs come from music.json: [{ "title", "artist", "src", "cover", "coverFull" }], paths relative to the site root.
+  // Songs come from music.json: [{ "title", "artist", "src", "cover", "coverFull" }], absolute URLs or paths relative to the site root.
   // "cover" is the square thumbnail and "coverFull" the uncropped picture shown when the player opens; both are optional.
   // Without art, the cover is drawn from the song itself, its waveform set in lines like a page of text.
   // Lines not heard yet are link blue, heard ones are visited purple, and the bar playing now is the red of a link being clicked.
@@ -353,8 +353,10 @@
     // ---- The waveform: decoded once at a low sample rate, and the loudness of each bar kept in localStorage for next time.
     // It is only fetched once the visitor plays the song or opens the player; until then the cover is the title set in type.
     const ROWS = 10, COLS = 48, waves = {};
+    // A song on another host (R2) can't be read by script, so music.json carries its bars as "wave": { "d", "p" }.
     function wave(s, fetchIt) {
       if (!s || s.cover || waves[s.src]) return;
+      if (s.wave && s.wave.p) { waves[s.src] = { ...s.wave }; return; }
       try { const kept = JSON.parse(localStorage.getItem('fb-wave:' + s.src) || 'null'); if (kept && kept.p) { waves[s.src] = kept; return; } } catch {}
       const Ctx = window.OfflineAudioContext || window.webkitOfflineAudioContext;
       if (!fetchIt || !Ctx) return;
