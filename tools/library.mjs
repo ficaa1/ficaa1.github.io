@@ -80,11 +80,8 @@ export function sync(ids = [], site = 'site', log = console.log) {
     });
     const first = r => r.taken.filter(Boolean).sort()[0] || '9';
     next.sort((a, b) => first(a).localeCompare(first(b)) || natural(a.key, b.key));
-    // Camera-number rolls are named after the numbers they span; a lone roll needs no name.
-    for (const r of next) if (!r.key) {
-      const nums = r.files.map(f => (f.match(/[a-z_]*\d{4,}/i) || [])[0]).filter(Boolean);
-      r.name = next.length > 1 && nums.length ? `${nums[0]} to ${nums.at(-1)}` : '';
-    }
+    // Loose camera files make a roll with no name.
+    for (const r of next) if (!r.key) r.name = '';
     const dates = next.flatMap(r => r.taken).filter(Boolean).sort();
     const was = dump.frames;
     dump.rolls = next;
