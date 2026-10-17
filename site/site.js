@@ -115,6 +115,7 @@
     if (!sheet) {
       sheet = document.createElement('dialog');
       sheet.className = 'daygrid';
+      sheet.tabIndex = -1;
       sheet.setAttribute('aria-labelledby', 'sheet-name');
       sheet.innerHTML = `<div class="top"><h2 id="sheet-name" tabindex="-1" autofocus></h2><button type="button" data-close>Close</button></div>
         <ol class="parts" aria-label="Days"></ol><ol class="grid"></ol>`;
@@ -130,7 +131,8 @@
       });
     }
     sheet.from = from;
-    if (!sheet.open) sheet.showModal();
+    // The dialog itself takes focus when it opens, not its first button, so no button shows a focus ring on a tap.
+    if (!sheet.open) { sheet.showModal(); sheet.focus(); }
     fill(part);
   }
   function fill(part) {
@@ -186,6 +188,7 @@
     if (!viewer) {
       viewer = document.createElement('dialog');
       viewer.className = 'viewer';
+      viewer.tabIndex = -1;
       viewer.innerHTML = `<figure><img alt=""><figcaption><span class="where"></span> <span class="cap"></span></figcaption></figure>
         <p class="keys"><button type="button" data-step="-1">&larr; Previous</button> <button type="button" data-step="1">Next &rarr;</button> <button type="button" data-close>Close</button> <span class="soft mouse">Arrow keys and Esc work too.</span><span class="soft touch">Or tap either side of the picture.</span></p>`;
       document.body.append(viewer);
@@ -224,7 +227,7 @@
       history.replaceState(history.state, '', '#' + f.id);
     };
     show(n);
-    if (!viewer.open) viewer.showModal();
+    if (!viewer.open) { viewer.showModal(); viewer.focus(); }
   }
 
   // ---- The player. It lives outside the swapped part of the page, so it keeps playing between pages.

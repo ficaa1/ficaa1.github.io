@@ -503,14 +503,16 @@ body.photos footer > * { max-width: none; }
 .viewer { border: 0; padding: 0; margin: 0; width: 100vw; height: 100dvh; max-width: none; max-height: none; background: var(--bg); color: var(--ink); }
 .viewer::backdrop { background: var(--bg); }
 .viewer[open] { display: flex; flex-direction: column; justify-content: center; padding: 20px; }
-.viewer figure { margin: 0; display: flex; flex-direction: column; align-items: center; min-height: 0; }
+.viewer figure { margin: 0; display: flex; flex-direction: column; align-items: center; min-height: 0; flex: 0 1 auto; }
+.viewer:focus, .daygrid:focus { outline: none; }
 html:has(.viewer[open]) { overflow: hidden; }
 .viewer .touch { display: none; }
 @media (pointer: coarse) { .viewer .mouse { display: none; } .viewer .touch { display: inline; } }
-.viewer img { max-width: 100%; max-height: calc(100dvh - 150px); width: auto; height: auto; object-fit: contain; cursor: pointer; }
-.viewer figcaption { margin-top: 12px; font-size: 18px; color: var(--ink); max-width: 1000px; text-align: center; }
+/* When the caption and the buttons need more room (a phone), the picture gives way, not the text. */
+.viewer img { max-width: 100%; max-height: calc(100dvh - 150px); width: auto; height: auto; min-height: 0; flex: 0 1 auto; object-fit: contain; cursor: pointer; }
+.viewer figcaption { flex-shrink: 0; margin-top: 12px; font-size: 18px; color: var(--ink); max-width: 1000px; text-align: center; }
 .viewer .where { color: var(--soft); }
-.viewer .keys { text-align: center; margin: 8px 0 0; font-size: 18px; }
+.viewer .keys { flex-shrink: 0; text-align: center; margin: 8px 0 0; font-size: 18px; }
 .viewer .keys button { font: inherit; background: none; color: var(--link); text-decoration: underline; padding: 6px 8px; }
 .viewer .keys button:hover { background: var(--panel); }
 
