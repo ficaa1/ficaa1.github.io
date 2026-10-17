@@ -8,7 +8,8 @@
 
   // ---- Focus rings are for the keyboard. A control clicked or tapped stays quiet ([data-quiet]) until it loses focus, even
   // when a key is pressed afterwards (Esc to leave full screen, an arrow in the viewer), which would otherwise ring it in
-  // Chrome. Focus put back by script (closing the viewer or the day grid) is quiet too when the last input was a pointer.
+  // Chrome. Focus put back by script (closing the viewer or the day grid) is quiet too when that was opened with a pointer,
+  // or when the last input was one; Esc or an arrow pressed inside does not bring the ring back.
   let byKey = false;
   addEventListener('keydown', () => { byKey = true; }, true);
   addEventListener('pointerdown', () => { byKey = false; }, true);
@@ -17,8 +18,8 @@
     el.dataset.quiet = '';
     el.addEventListener('blur', () => delete el.dataset.quiet, { once: true });
   }
-  function refocus(el, opts) {
-    if (!byKey) quiet(el);
+  function refocus(el, opts, tapped) {
+    if (tapped || !byKey) quiet(el);
     el.focus(opts);
   }
   addEventListener('click', e => {
@@ -146,11 +147,11 @@
       });
       sheet.addEventListener('close', () => {
         const f = sheet.from;
-        if (f && f.isConnected) refocus(f, { preventScroll: true });
+        if (f && f.isConnected) refocus(f, { preventScroll: true }, sheet.tapped);
       });
     }
     sheet.from = from;
-    if (!sheet.open) sheet.showModal();
+    if (!sheet.open) { sheet.tapped = !byKey; sheet.showModal(); }
     fill(part);
   }
   function fill(part) {
@@ -251,12 +252,12 @@
         history.replaceState(history.state, '', location.pathname + location.search);
         // Opened from a sheet: back to the grid, at the picture last shown. Otherwise back to that picture on the page.
         const f = viewer.figs && viewer.figs[viewer.n], cell = f && viewer.back && viewer.back(f);
-        if (cell && cell.isConnected) refocus(cell);
+        if (cell && cell.isConnected) refocus(cell, undefined, viewer.tapped);
         else if (f && f.isConnected) {
           // Back on the page at the picture last shown, wherever the viewer was stepped to.
           const r = f.getBoundingClientRect(), bar = document.querySelector('body > .pbar.on');
           if (r.top < (bar ? bar.offsetHeight : 0) || r.bottom > innerHeight) f.scrollIntoView({ block: 'center' });
-          refocus(f.querySelector('.open') || f, { preventScroll: true });
+          refocus(f.querySelector('.open') || f, { preventScroll: true }, viewer.tapped);
         }
       });
     }
@@ -278,7 +279,7 @@
     };
     show(n);
     // The viewer itself takes focus when it opens, not its first button, so no button shows a focus ring on a tap.
-    if (!viewer.open) { viewer.bare(); viewer.showModal(); viewer.focus(); }
+    if (!viewer.open) { viewer.tapped = !byKey; viewer.bare(); viewer.showModal(); viewer.focus(); }
   }
 
   // ---- The player. It lives outside the swapped part of the page, so it keeps playing between pages.
