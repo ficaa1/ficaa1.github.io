@@ -257,15 +257,15 @@ main[data-country="belgrade"] .vidovdan .hush .frame { align-self: center; width
 main[data-country="belgrade"] .vidovdan .hush .meta { margin-top: 8px; color: #fff; opacity: 0.8; }
 main[data-country="belgrade"] .vidovdan .strips { position: absolute; inset: 0; z-index: -1; display: grid; grid-template-columns: repeat(16, minmax(0, 1fr)); gap: clamp(2px, 0.25vw, 4px); }
 main[data-country="belgrade"] .vidovdan .strips i { background: #000; transform-origin: top; }
-main[data-country="belgrade"] .vidovdan .silence .t, main[data-country="belgrade"] .vidovdan .deadline .t {
+main[data-country="belgrade"] .vidovdan .silence .t {
   font: 900 min(34vw, 560px)/0.8 var(--strike); font-variant-numeric: tabular-nums; letter-spacing: -0.01em;
 }
 main[data-country="belgrade"] .vidovdan .say .cy { display: block; font: 900 clamp(30px, 3.4vw, 60px)/1 var(--strike); text-transform: uppercase; }
 main[data-country="belgrade"] .vidovdan .say .la { display: block; margin-top: 12px; font-size: var(--s-body); }
 
-main[data-country="belgrade"] .vidovdan .deadline .pin { min-height: 86svh; align-content: center; gap: clamp(20px, 2.4vw, 40px); padding: 64px var(--gut); text-align: center; }
-main[data-country="belgrade"] .vidovdan .deadline .t { color: var(--glow); }
-main[data-country="belgrade"] .vidovdan .deadline .say { max-width: 22ch; font: 900 clamp(26px, 2.6vw, 46px)/1.02 var(--strike); text-transform: uppercase; }
+main[data-country="belgrade"] .vidovdan .deadline .pin { min-height: 70svh; align-content: center; justify-items: center; gap: clamp(12px, 1.4vw, 20px); padding: 64px var(--gut); text-align: center; }
+main[data-country="belgrade"] .vidovdan .deadline .t { font: 900 clamp(88px, 11vw, 180px)/0.9 var(--strike); font-variant-numeric: tabular-nums; color: #fff; }
+main[data-country="belgrade"] .vidovdan .deadline .say { max-width: 34ch; font-size: var(--s-lead); line-height: 1.35; opacity: 0.85; }
 
 /* The hours. */
 main[data-country="belgrade"] .vidovdan .hour { position: relative; isolation: isolate; display: grid; grid-template-columns: var(--rim) minmax(0, 1fr); padding: var(--rim-r) var(--rim-r) var(--rim-r) 0; }
@@ -327,7 +327,7 @@ main[data-country="belgrade"] .vidovdan .night::before { content: ""; position: 
   /* The held moments, pinned while their scroll runs by. */
   main[data-country="belgrade"].moving .vidovdan .zoom { height: 250svh; }
   main[data-country="belgrade"].moving .vidovdan .silence { height: 300svh; }
-  main[data-country="belgrade"].moving .vidovdan .deadline { height: 240svh; }
+  main[data-country="belgrade"].moving .vidovdan .deadline { height: 170svh; }
   main[data-country="belgrade"].moving .vidovdan .stage .pin {
     position: sticky; top: var(--pbar, 0px); height: calc(100svh - var(--pbar, 0px)); min-height: 0; overflow: hidden; padding-block: 0;
   }
@@ -337,16 +337,10 @@ main[data-country="belgrade"] .vidovdan .night::before { content: ""; position: 
   /* In the held silence its frames take the same place, the later one coming up at its minute. */
   main[data-country="belgrade"].moving .vidovdan .hush > .frame { grid-area: 1 / 1; opacity: 0; transform: scale(1.04); transition: opacity 900ms var(--ease), transform 1600ms var(--heavy); }
   main[data-country="belgrade"].moving .vidovdan .hush > .frame.now { opacity: 1; transform: none; }
-  main[data-country="belgrade"].moving .vidovdan .deadline .t { opacity: 0.32; color: #fff; transition: opacity 300ms var(--ease); }
-  main[data-country="belgrade"].moving .vidovdan .deadline .say { opacity: 0; transform: translateY(24px); transition: opacity 600ms var(--ease) 260ms, transform 800ms var(--heavy) 260ms; }
-  main[data-country="belgrade"].moving .vidovdan .deadline.out .t { opacity: 1; color: var(--glow); animation: bg-strike 560ms cubic-bezier(.55, 0, .85, .35) both; }
-  main[data-country="belgrade"].moving .vidovdan .deadline.out .say { opacity: 1; transform: none; }
-  main[data-country="belgrade"].moving .vidovdan .deadline.out .pin { animation: bg-quake 520ms linear 380ms both; }
-  @keyframes bg-strike { 0% { transform: scale(1.5); opacity: 0.32; } 70% { transform: scale(0.97); opacity: 1; } 100% { transform: none; opacity: 1; } }
-  @keyframes bg-quake {
-    0%, 100% { transform: none; } 12% { transform: translate(0, 9px); } 28% { transform: translate(-6px, -5px); }
-    46% { transform: translate(5px, 3px); } 66% { transform: translate(-2px, -2px); }
-  }
+  main[data-country="belgrade"].moving .vidovdan .deadline .t { opacity: 0.4; transition: opacity 600ms var(--ease); }
+  main[data-country="belgrade"].moving .vidovdan .deadline .say { opacity: 0; transform: translateY(12px); transition: opacity 600ms var(--ease) 200ms, transform 800ms var(--heavy) 200ms; }
+  main[data-country="belgrade"].moving .vidovdan .deadline.out .t { opacity: 1; }
+  main[data-country="belgrade"].moving .vidovdan .deadline.out .say { opacity: 0.85; transform: none; }
 
   /* Sajam's sun and Ada's flip. */
   main[data-country="belgrade"].moving .sajam .sun { will-change: transform; }
@@ -407,12 +401,13 @@ main[data-country="belgrade"] .vidovdan .night::before { content: ""; position: 
   main[data-country="belgrade"] .vidovdan .crowd .k { font-size: 24vw; }
   main[data-country="belgrade"] .vidovdan .zoom .pin { padding: 24px 8px; }
   main[data-country="belgrade"] .vidovdan .frame { width: min(100%, calc((100svh - 64px) * var(--r))); padding: 6px; }
-  main[data-country="belgrade"] .vidovdan .silence .t, main[data-country="belgrade"] .vidovdan .deadline .t { font-size: 38vw; }
+  main[data-country="belgrade"] .vidovdan .silence .t { font-size: 38vw; }
+  main[data-country="belgrade"] .vidovdan .deadline .t { font-size: 24vw; }
   main[data-country="belgrade"] .vidovdan .silence .pin { grid-template-columns: minmax(0, 1fr); grid-template-areas: "t" "hush" "say"; padding: 32px 16px; row-gap: 16px; }
   main[data-country="belgrade"] .vidovdan .silence .pin .t { font-size: 27vw; }
   main[data-country="belgrade"] .vidovdan .hush .frame { width: min(100%, calc((100svh - var(--pbar, 0px) - 22vw - 280px) * var(--r))); }
   main[data-country="belgrade"] .vidovdan .say .cy { font-size: 34px; }
-  main[data-country="belgrade"] .vidovdan .deadline .say { font-size: 26px; }
+  main[data-country="belgrade"] .vidovdan .deadline .say { font-size: 18px; }
   main[data-country="belgrade"] .vidovdan .hour, main[data-country="belgrade"] .vidovdan .hour + .hour { grid-template-columns: minmax(0, 1fr); padding: 8px 8px 0; }
   main[data-country="belgrade"] .vidovdan .hour:last-child { padding-bottom: 8px; }
   main[data-country="belgrade"] .vidovdan .clock { position: static; padding: 20px 8px 12px; text-align: left; font-size: 64px; }
