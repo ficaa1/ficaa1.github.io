@@ -7,6 +7,7 @@
 // Each roll keeps its files in order, their labels, and the time each was taken (from the Exif in its first 256 KB).
 // A roll filed in the folder that belongs to another dump is left out by its export name: "except": ["CG Konoba"].
 // A loose file that is not a frame (a strip cut up for Instagram) is left out by its file name: "except": ["row-1-column-1.png"].
+// A dump in the library root ("folder": ".") reads only its printed originals; it never lists the whole root.
 //
 // Rolls and labels:
 //   Lightroom exports named "Name (N of M).ext" become one roll per Name, each frame labelled N.
@@ -70,7 +71,9 @@ export function sync(ids = [], site = 'site', log = console.log) {
   for (const dump of dumps) {
     if (!dump.folder || (ids.length && !ids.includes(dump.id))) continue;
     let files;
-    try { files = list(dump.folder); } catch { log(`${dump.id}: could not list "${dump.folder}" on plex; left as it was`); continue; }
+    try {
+      files = dump.folder === '.' ? (dump.photos || []).filter(p => p.original && (!p.folder || p.folder === '.')).map(p => p.original) : list(dump.folder);
+    } catch { log(`${dump.id}: could not list "${dump.folder}" on plex; left as it was`); continue; }
     const known = new Map((dump.rolls || []).flatMap(r => r.files.map((f, i) => [f, Array.isArray(r.taken) && r.taken.length === r.files.length ? r.taken[i] : undefined])));
     let read = 0;
     const except = dump.except || [];

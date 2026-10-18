@@ -11745,6 +11745,2374 @@
     ]
   },
   {
+    "id": "belgrade-2020",
+    "title": "Belgrade",
+    "folder": ".",
+    "except": [
+      "20200825-DSC_0378.jpg",
+      "20200825-DSC_0379.jpg",
+      "20200825-DSC_0384.jpg"
+    ],
+    "note": "A splav between Ada and Ada Međica, 25 August 2020.",
+    "photos": [
+      {
+        "file": "dsc_0374",
+        "original": "20200825-DSC_0374.jpg",
+        "caption": "",
+        "alt": "A man in silhouette lighting a cigarette against a dusk lake, orange sky behind a dark treeline, railing posts either side",
+        "provisional": true,
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 41783,
+            "1000.jxl": 25006,
+            "2000.jpg": 158186,
+            "2000.jxl": 108519
+          }
+        },
+        "settings": {
+          "aperture": "f/11",
+          "shutter": "1/500 s",
+          "iso": "ISO 1600",
+          "focal": "70 mm",
+          "camera": "NIKON CORPORATION NIKON D3300",
+          "lens": "24.0-70.0 mm f/2.8",
+          "taken": "2020-08-25 18:30"
+        }
+      },
+      {
+        "file": "dsc_0375",
+        "original": "20200825-DSC_0375.jpg",
+        "caption": "",
+        "alt": "A man's silhouette beneath a roof edge and railing, purple and orange dusk sky with a dark treeline",
+        "provisional": true,
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 32993,
+            "1000.jxl": 19841,
+            "2000.jpg": 141247,
+            "2000.jxl": 86226
+          }
+        },
+        "settings": {
+          "aperture": "f/11",
+          "shutter": "1/500 s",
+          "iso": "ISO 1600",
+          "focal": "70 mm",
+          "camera": "NIKON CORPORATION NIKON D3300",
+          "lens": "24.0-70.0 mm f/2.8",
+          "taken": "2020-08-25 18:30"
+        }
+      }
+    ],
+    "rolls": [
+      {
+        "key": "",
+        "name": "",
+        "files": [
+          "20200825-DSC_0374.jpg",
+          "20200825-DSC_0375.jpg"
+        ],
+        "labels": [
+          "1",
+          "2"
+        ],
+        "taken": [
+          "2020-08-25 18:30",
+          "2020-08-25 18:30"
+        ]
+      }
+    ],
+    "frames": 2,
+    "from": "2020-08-25",
+    "to": "2020-08-25"
+  },
+  {
+    "id": "belgrade-2022",
+    "title": "Belgrade",
+    "folder": ".",
+    "note": "Ada Ciganlija lake at dusk, 7 October 2022.",
+    "photos": [
+      {
+        "file": "matka-45",
+        "original": "matka (45 of 63).jpg",
+        "caption": "",
+        "alt": "A still lake at dusk with the far bank's lights reflected, dark clouds over a red horizon, a post in the foreground",
+        "provisional": true,
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 56691,
+            "1000.jxl": 39818,
+            "2000.jpg": 297809,
+            "2000.jxl": 232777
+          }
+        },
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/125 s",
+          "iso": "ISO 6400",
+          "focal": "24 mm",
+          "camera": "NIKON CORPORATION NIKON D3300",
+          "lens": "24.0-70.0 mm f/2.8",
+          "taken": "2022-10-07 17:24"
+        }
+      },
+      {
+        "file": "matka-46",
+        "original": "matka (46 of 63).jpg",
+        "caption": "",
+        "alt": "A tall view of a calm lake at sunset, layered clouds, a line of lights along the far shore reflected in the water",
+        "provisional": true,
+        "web": {
+          "400": [
+            400,
+            600
+          ],
+          "1000": [
+            1000,
+            1500
+          ],
+          "bytes": {
+            "1000.jpg": 120263,
+            "1000.jxl": 85576,
+            "2000.jpg": 834192,
+            "2000.jxl": 700090
+          }
+        },
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/125 s",
+          "iso": "ISO 6400",
+          "focal": "24 mm",
+          "camera": "NIKON CORPORATION NIKON D3300",
+          "lens": "24.0-70.0 mm f/2.8",
+          "taken": "2022-10-07 17:24"
+        }
+      },
+      {
+        "file": "matka-47",
+        "original": "matka (47 of 63).jpg",
+        "caption": "",
+        "alt": "A cyclist in silhouette at the water's edge beside a railing, far shore lights reflected, tree branches at the top corner",
+        "provisional": true,
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 46341,
+            "1000.jxl": 30576,
+            "2000.jpg": 236623,
+            "2000.jxl": 147953
+          }
+        },
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/125 s",
+          "iso": "ISO 6400",
+          "focal": "24 mm",
+          "camera": "NIKON CORPORATION NIKON D3300",
+          "lens": "24.0-70.0 mm f/2.8",
+          "taken": "2022-10-07 17:25"
+        }
+      },
+      {
+        "file": "matka-48",
+        "original": "matka (48 of 63).jpg",
+        "caption": "",
+        "alt": "A curved shoreline leading to a dark lake, a crane and lit far bank under a stormy red sky",
+        "provisional": true,
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 50975,
+            "1000.jxl": 32974,
+            "2000.jpg": 269554,
+            "2000.jxl": 196770
+          }
+        },
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/125 s",
+          "iso": "ISO 6400",
+          "focal": "24 mm",
+          "camera": "NIKON CORPORATION NIKON D3300",
+          "lens": "24.0-70.0 mm f/2.8",
+          "taken": "2022-10-07 17:25"
+        }
+      },
+      {
+        "file": "matka-49",
+        "original": "matka (49 of 63).jpg",
+        "caption": "",
+        "alt": "A man in silhouette leaning forward at the lake, clouds and far bank lights behind him",
+        "provisional": true,
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 51066,
+            "1000.jxl": 34629,
+            "2000.jpg": 264828,
+            "2000.jxl": 195806
+          }
+        },
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/125 s",
+          "iso": "ISO 6400",
+          "focal": "24 mm",
+          "camera": "NIKON CORPORATION NIKON D3300",
+          "lens": "24.0-70.0 mm f/2.8",
+          "taken": "2022-10-07 17:25"
+        }
+      },
+      {
+        "file": "matka-50",
+        "original": "matka (50 of 63).jpg",
+        "caption": "",
+        "alt": "A man in silhouette leaning on a rail at the lake, dark clouds and a lit far shore",
+        "provisional": true,
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 46851,
+            "1000.jxl": 31768,
+            "2000.jpg": 254490,
+            "2000.jxl": 189479
+          }
+        },
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/125 s",
+          "iso": "ISO 6400",
+          "focal": "24 mm",
+          "camera": "NIKON CORPORATION NIKON D3300",
+          "lens": "24.0-70.0 mm f/2.8",
+          "taken": "2022-10-07 17:25"
+        }
+      },
+      {
+        "file": "matka-51",
+        "original": "matka (51 of 63).jpg",
+        "caption": "",
+        "alt": "A close silhouette of a head bowed in profile, blurred lights on the far shore, red band on the horizon",
+        "provisional": true,
+        "web": {
+          "400": [
+            400,
+            600
+          ],
+          "1000": [
+            1000,
+            1500
+          ],
+          "bytes": {
+            "1000.jpg": 80006,
+            "1000.jxl": 53184,
+            "2000.jpg": 623123,
+            "2000.jxl": 454641
+          }
+        },
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/125 s",
+          "iso": "ISO 6400",
+          "focal": "70 mm",
+          "camera": "NIKON CORPORATION NIKON D3300",
+          "lens": "24.0-70.0 mm f/2.8",
+          "taken": "2022-10-07 17:25"
+        }
+      },
+      {
+        "file": "matka-52",
+        "original": "matka (52 of 63).jpg",
+        "caption": "",
+        "alt": "A silhouette of a man leaning forward with a hand lowered, lake reflecting a yellow and red sky",
+        "provisional": true,
+        "web": {
+          "400": [
+            400,
+            600
+          ],
+          "1000": [
+            1000,
+            1500
+          ],
+          "bytes": {
+            "1000.jpg": 110863,
+            "1000.jxl": 76362,
+            "2000.jpg": 775300,
+            "2000.jxl": 607761
+          }
+        },
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/125 s",
+          "iso": "ISO 6400",
+          "focal": "46 mm",
+          "camera": "NIKON CORPORATION NIKON D3300",
+          "lens": "24.0-70.0 mm f/2.8",
+          "taken": "2022-10-07 17:25"
+        }
+      },
+      {
+        "file": "matka-53",
+        "original": "matka (53 of 63).jpg",
+        "caption": "",
+        "alt": "A silhouette of a man's head in profile with a cigarette in his mouth, glowing lights across the lake",
+        "provisional": true,
+        "web": {
+          "400": [
+            400,
+            600
+          ],
+          "1000": [
+            1000,
+            1500
+          ],
+          "bytes": {
+            "1000.jpg": 73390,
+            "1000.jxl": 50635,
+            "2000.jpg": 616174,
+            "2000.jxl": 456496
+          }
+        },
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/125 s",
+          "iso": "ISO 6400",
+          "focal": "70 mm",
+          "camera": "NIKON CORPORATION NIKON D3300",
+          "lens": "24.0-70.0 mm f/2.8",
+          "taken": "2022-10-07 17:25"
+        }
+      },
+      {
+        "file": "matka-54",
+        "original": "matka (54 of 63).jpg",
+        "caption": "",
+        "alt": "A bowed head in silhouette with a cigarette hanging from the lips, pink sky and bokeh lights on the water",
+        "provisional": true,
+        "web": {
+          "400": [
+            400,
+            600
+          ],
+          "1000": [
+            1000,
+            1500
+          ],
+          "bytes": {
+            "1000.jpg": 66742,
+            "1000.jxl": 42105,
+            "2000.jpg": 537348,
+            "2000.jxl": 395309
+          }
+        },
+        "settings": {
+          "aperture": "f/2.8",
+          "shutter": "1/125 s",
+          "iso": "ISO 6400",
+          "focal": "70 mm",
+          "camera": "NIKON CORPORATION NIKON D3300",
+          "lens": "24.0-70.0 mm f/2.8",
+          "taken": "2022-10-07 17:25"
+        }
+      },
+      {
+        "file": "matka-55",
+        "original": "matka (55 of 63).jpg",
+        "caption": "",
+        "alt": "A blurred silhouetted head in the foreground, lake with a lit far shore and a yellow cloud streak",
+        "provisional": true,
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 38892,
+            "1000.jxl": 24202,
+            "2000.jpg": 177873,
+            "2000.jxl": 139547
+          }
+        },
+        "settings": {
+          "aperture": "f/2.8",
+          "shutter": "1/125 s",
+          "iso": "ISO 2500",
+          "focal": "70 mm",
+          "camera": "NIKON CORPORATION NIKON D3300",
+          "lens": "24.0-70.0 mm f/2.8",
+          "taken": "2022-10-07 17:26"
+        }
+      },
+      {
+        "file": "matka-56",
+        "original": "matka (56 of 63).jpg",
+        "caption": "",
+        "alt": "A silhouetted man looking down with a cigarette, pink dusk sky and soft lights across the lake",
+        "provisional": true,
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 28985,
+            "1000.jxl": 16172,
+            "2000.jpg": 151455,
+            "2000.jxl": 120217
+          }
+        },
+        "settings": {
+          "aperture": "f/2.8",
+          "shutter": "1/125 s",
+          "iso": "ISO 3600",
+          "focal": "70 mm",
+          "camera": "NIKON CORPORATION NIKON D3300",
+          "lens": "24.0-70.0 mm f/2.8",
+          "taken": "2022-10-07 17:26"
+        }
+      },
+      {
+        "file": "matka-57",
+        "original": "matka (57 of 63).jpg",
+        "caption": "",
+        "alt": "A man in silhouette with a cigarette in his mouth, holding a lighter in both hands, lake and far lights behind",
+        "provisional": true,
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 31671,
+            "1000.jxl": 18213,
+            "2000.jpg": 127204,
+            "2000.jxl": 93598
+          }
+        },
+        "settings": {
+          "aperture": "f/2.8",
+          "shutter": "1/80 s",
+          "iso": "ISO 1800",
+          "focal": "52 mm",
+          "camera": "NIKON CORPORATION NIKON D3300",
+          "lens": "24.0-70.0 mm f/2.8",
+          "taken": "2022-10-07 17:26"
+        }
+      },
+      {
+        "file": "matka-58",
+        "original": "matka (58 of 63).jpg",
+        "caption": "",
+        "alt": "A man in silhouette lighting a cigarette, the flame glowing in his hands, pink sky over the lake",
+        "provisional": true,
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 35112,
+            "1000.jxl": 20196,
+            "2000.jpg": 157986,
+            "2000.jxl": 119956
+          }
+        },
+        "settings": {
+          "aperture": "f/2.8",
+          "shutter": "1/80 s",
+          "iso": "ISO 2500",
+          "focal": "56 mm",
+          "camera": "NIKON CORPORATION NIKON D3300",
+          "lens": "24.0-70.0 mm f/2.8",
+          "taken": "2022-10-07 17:26"
+        }
+      },
+      {
+        "file": "matka-59",
+        "original": "matka (59 of 63).jpg",
+        "caption": "",
+        "alt": "A silhouetted man bending to light a cigarette, small flame in his hand, lake behind",
+        "provisional": true,
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 32417,
+            "1000.jxl": 18535,
+            "2000.jpg": 141913,
+            "2000.jxl": 107810
+          }
+        },
+        "settings": {
+          "aperture": "f/2.8",
+          "shutter": "1/80 s",
+          "iso": "ISO 2500",
+          "focal": "56 mm",
+          "camera": "NIKON CORPORATION NIKON D3300",
+          "lens": "24.0-70.0 mm f/2.8",
+          "taken": "2022-10-07 17:26"
+        }
+      },
+      {
+        "file": "matka-60",
+        "original": "matka (60 of 63).jpg",
+        "caption": "",
+        "alt": "A silhouetted man lighting a cigarette, flame close to his face, far shore lights reflected in the water",
+        "provisional": true,
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 36378,
+            "1000.jxl": 21215,
+            "2000.jpg": 159914,
+            "2000.jxl": 120775
+          }
+        },
+        "settings": {
+          "aperture": "f/2.8",
+          "shutter": "1/80 s",
+          "iso": "ISO 2500",
+          "focal": "56 mm",
+          "camera": "NIKON CORPORATION NIKON D3300",
+          "lens": "24.0-70.0 mm f/2.8",
+          "taken": "2022-10-07 17:26"
+        }
+      },
+      {
+        "file": "matka-61",
+        "original": "matka (61 of 63).jpg",
+        "caption": "",
+        "alt": "A man in silhouette holding a lit cigarette up in one hand, lake with a row of lights behind",
+        "provisional": true,
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 38920,
+            "1000.jxl": 22587,
+            "2000.jpg": 161848,
+            "2000.jxl": 121026
+          }
+        },
+        "settings": {
+          "aperture": "f/2.8",
+          "shutter": "1/80 s",
+          "iso": "ISO 2200",
+          "focal": "56 mm",
+          "camera": "NIKON CORPORATION NIKON D3300",
+          "lens": "24.0-70.0 mm f/2.8",
+          "taken": "2022-10-07 17:26"
+        }
+      },
+      {
+        "file": "matka-62",
+        "original": "matka (62 of 63).jpg",
+        "caption": "",
+        "alt": "A tall view of a still lake at dusk, a bicycle wheel at the lower left, ripples in the water, lights on the far bank",
+        "provisional": true,
+        "web": {
+          "400": [
+            400,
+            600
+          ],
+          "1000": [
+            1000,
+            1500
+          ],
+          "bytes": {
+            "1000.jpg": 84955,
+            "1000.jxl": 54242,
+            "2000.jpg": 432022,
+            "2000.jxl": 329546
+          }
+        },
+        "settings": {
+          "aperture": "f/2.8",
+          "shutter": "1/80 s",
+          "iso": "ISO 2000",
+          "focal": "24 mm",
+          "camera": "NIKON CORPORATION NIKON D3300",
+          "lens": "24.0-70.0 mm f/2.8",
+          "taken": "2022-10-07 17:27"
+        }
+      },
+      {
+        "file": "matka-63",
+        "original": "matka (63 of 63).jpg",
+        "caption": "",
+        "alt": "A green metal railing leading into a dark lake, tree branches overhead, lit buildings reflected across the water",
+        "provisional": true,
+        "web": {
+          "400": [
+            400,
+            600
+          ],
+          "1000": [
+            1000,
+            1500
+          ],
+          "bytes": {
+            "1000.jpg": 127965,
+            "1000.jxl": 82523,
+            "2000.jpg": 714637,
+            "2000.jxl": 500743
+          }
+        },
+        "settings": {
+          "aperture": "f/2.8",
+          "shutter": "1/80 s",
+          "iso": "ISO 5000",
+          "focal": "38 mm",
+          "camera": "NIKON CORPORATION NIKON D3300",
+          "lens": "24.0-70.0 mm f/2.8",
+          "taken": "2022-10-07 17:27"
+        }
+      }
+    ],
+    "rolls": [
+      {
+        "key": "matka",
+        "name": "Matka",
+        "files": [
+          "matka (45 of 63).jpg",
+          "matka (46 of 63).jpg",
+          "matka (47 of 63).jpg",
+          "matka (48 of 63).jpg",
+          "matka (49 of 63).jpg",
+          "matka (50 of 63).jpg",
+          "matka (51 of 63).jpg",
+          "matka (52 of 63).jpg",
+          "matka (53 of 63).jpg",
+          "matka (54 of 63).jpg",
+          "matka (55 of 63).jpg",
+          "matka (56 of 63).jpg",
+          "matka (57 of 63).jpg",
+          "matka (58 of 63).jpg",
+          "matka (59 of 63).jpg",
+          "matka (60 of 63).jpg",
+          "matka (61 of 63).jpg",
+          "matka (62 of 63).jpg",
+          "matka (63 of 63).jpg"
+        ],
+        "labels": [
+          "45",
+          "46",
+          "47",
+          "48",
+          "49",
+          "50",
+          "51",
+          "52",
+          "53",
+          "54",
+          "55",
+          "56",
+          "57",
+          "58",
+          "59",
+          "60",
+          "61",
+          "62",
+          "63"
+        ],
+        "taken": [
+          "2022-10-07 17:24",
+          "2022-10-07 17:24",
+          "2022-10-07 17:25",
+          "2022-10-07 17:25",
+          "2022-10-07 17:25",
+          "2022-10-07 17:25",
+          "2022-10-07 17:25",
+          "2022-10-07 17:25",
+          "2022-10-07 17:25",
+          "2022-10-07 17:25",
+          "2022-10-07 17:26",
+          "2022-10-07 17:26",
+          "2022-10-07 17:26",
+          "2022-10-07 17:26",
+          "2022-10-07 17:26",
+          "2022-10-07 17:26",
+          "2022-10-07 17:26",
+          "2022-10-07 17:27",
+          "2022-10-07 17:27"
+        ]
+      }
+    ],
+    "frames": 19,
+    "from": "2022-10-07",
+    "to": "2022-10-07"
+  },
+  {
+    "id": "belgrade-2025-06",
+    "title": "Belgrade",
+    "folder": "Vidovdan 2025",
+    "except": [
+      "row-1-column-1.png",
+      "row-1-column-2.png",
+      "row-1-column-3.png",
+      "row-1-column-4.png",
+      "row-1-column-5.png",
+      "row-1-column-6.png"
+    ],
+    "photos": [
+      {
+        "file": "dsc05089",
+        "original": "DSC05089-Edit.jpg",
+        "caption": "",
+        "alt": "A Serbian flag hanging from a building window, concrete facade, blue sky with clouds",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/250 s",
+          "iso": "ISO 320",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-06-28 17:27"
+        },
+        "web": {
+          "400": [
+            400,
+            167
+          ],
+          "1000": [
+            1000,
+            418
+          ],
+          "bytes": {
+            "1000.jpg": 78923,
+            "1000.jxl": 59618,
+            "2000.jpg": 264163,
+            "2000.jxl": 194234
+          }
+        }
+      },
+      {
+        "file": "dsc05102",
+        "original": "DSC05102-Edit.jpg",
+        "caption": "",
+        "alt": "A red, blue and white painted wall with yellow letters and a trespassing sign in Serbian and English",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/250 s",
+          "iso": "ISO 800",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-06-28 17:35"
+        },
+        "web": {
+          "400": [
+            400,
+            500
+          ],
+          "1000": [
+            1000,
+            1250
+          ],
+          "bytes": {
+            "1000.jpg": 221717,
+            "1000.jxl": 153433,
+            "2000.jpg": 789081,
+            "2000.jxl": 538438
+          }
+        }
+      },
+      {
+        "file": "dsc05108",
+        "original": "DSC05108-Edit.jpg",
+        "caption": "",
+        "alt": "Red graffiti on a grey wall reading ГЕНЕРАЛНИ ШТРАЈК!, a person with a backpack walking past",
+        "settings": {
+          "aperture": "f/9",
+          "shutter": "1/250 s",
+          "iso": "ISO 500",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-06-28 17:39"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 104909,
+            "1000.jxl": 81182,
+            "2000.jpg": 448825,
+            "2000.jxl": 358629
+          }
+        }
+      },
+      {
+        "file": "dsc05132",
+        "original": "DSC05132-Edit.jpg",
+        "caption": "",
+        "alt": "A crowd of protesters under tree leaves, a white flag with a coat of arms and Serbian flags above them",
+        "settings": {
+          "aperture": "f/9",
+          "shutter": "1/250 s",
+          "iso": "ISO 320",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-06-28 17:44"
+        },
+        "web": {
+          "400": [
+            400,
+            320
+          ],
+          "1000": [
+            1000,
+            800
+          ],
+          "bytes": {
+            "1000.jpg": 174167,
+            "1000.jxl": 125643,
+            "2000.jpg": 562226,
+            "2000.jxl": 378017
+          }
+        }
+      },
+      {
+        "file": "dsc05136",
+        "original": "DSC05136-Edit.jpg",
+        "caption": "",
+        "alt": "A dense crowd with flags and a large poster of a woman's face above them, buildings and traffic signs behind",
+        "settings": {
+          "aperture": "f/11",
+          "shutter": "1/250 s",
+          "iso": "ISO 160",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-06-28 17:53"
+        },
+        "web": {
+          "400": [
+            400,
+            167
+          ],
+          "1000": [
+            1000,
+            418
+          ],
+          "bytes": {
+            "1000.jpg": 97992,
+            "1000.jxl": 72170,
+            "2000.jpg": 319807,
+            "2000.jxl": 225993
+          }
+        }
+      },
+      {
+        "file": "dsc05143",
+        "original": "DSC05143-Edit.jpg",
+        "caption": "",
+        "alt": "A street vendor at a table of badges and cups, people gathered around, a McDonald's sign above",
+        "settings": {
+          "aperture": "f/11",
+          "shutter": "1/250 s",
+          "iso": "ISO 500",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-06-28 18:06"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 138213,
+            "1000.jxl": 97460,
+            "2000.jpg": 429319,
+            "2000.jxl": 294340
+          }
+        }
+      },
+      {
+        "file": "dsc05149",
+        "original": "DSC05149-Edit.jpg",
+        "caption": "",
+        "alt": "A motorcyclist in a black helmet in the foreground, a large Serbian flag and a poster behind, crowd with phones raised",
+        "settings": {
+          "aperture": "f/11",
+          "shutter": "1/250 s",
+          "iso": "ISO 160",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-06-28 18:06"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 151145,
+            "1000.jxl": 108194,
+            "2000.jpg": 454354,
+            "2000.jxl": 312281
+          }
+        }
+      },
+      {
+        "file": "dsc05158",
+        "original": "DSC05158-Edit.jpg",
+        "caption": "",
+        "alt": "A wide view of a crowd with many Serbian flags, motorcycles among the protesters, glass buildings behind",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/500 s",
+          "iso": "ISO 100",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-06-28 18:06"
+        },
+        "web": {
+          "400": [
+            400,
+            167
+          ],
+          "1000": [
+            1000,
+            418
+          ],
+          "bytes": {
+            "1000.jpg": 117351,
+            "1000.jxl": 85389,
+            "2000.jpg": 348731,
+            "2000.jxl": 239640
+          }
+        }
+      },
+      {
+        "file": "dsc05179",
+        "original": "DSC05179-Edit.jpg",
+        "caption": "",
+        "alt": "A man on a motorcycle in a red and black suit, protesters with flags and banners around him",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/320 s",
+          "iso": "ISO 100",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-06-28 18:08"
+        },
+        "web": {
+          "400": [
+            400,
+            320
+          ],
+          "1000": [
+            1000,
+            800
+          ],
+          "bytes": {
+            "1000.jpg": 144407,
+            "1000.jxl": 96383,
+            "2000.jpg": 418188,
+            "2000.jxl": 275905
+          }
+        }
+      },
+      {
+        "file": "dsc05226",
+        "original": "DSC05226-Edit.jpg",
+        "caption": "",
+        "alt": "Motorcyclists riding slowly through a crowd lined with protesters, a large flag overhead, a poster on a building",
+        "settings": {
+          "aperture": "f/11",
+          "shutter": "1/250 s",
+          "iso": "ISO 160",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-06-28 18:14"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 143372,
+            "1000.jxl": 103761,
+            "2000.jpg": 446703,
+            "2000.jxl": 311865
+          }
+        }
+      },
+      {
+        "file": "dsc05229",
+        "original": "DSC05229-Edit.jpg",
+        "caption": "",
+        "alt": "A person on a three-wheeled motorcycle in front of a crowd of onlookers, flags among them",
+        "settings": {
+          "aperture": "f/22",
+          "shutter": "1/250 s",
+          "iso": "ISO 2500",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-06-28 18:16"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 149085,
+            "1000.jxl": 111440,
+            "2000.jpg": 452832,
+            "2000.jxl": 321820
+          }
+        }
+      },
+      {
+        "file": "dsc05240",
+        "original": "DSC05240-Edit.jpg",
+        "caption": "",
+        "alt": "A man in a cap and blue polo in close-up, a flag pole and a crowd of protesters behind him",
+        "settings": {
+          "aperture": "f/11",
+          "shutter": "1/250 s",
+          "iso": "ISO 400",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-06-28 18:30"
+        },
+        "web": {
+          "400": [
+            400,
+            320
+          ],
+          "1000": [
+            1000,
+            800
+          ],
+          "bytes": {
+            "1000.jpg": 175021,
+            "1000.jxl": 119455,
+            "2000.jpg": 551367,
+            "2000.jxl": 364376
+          }
+        }
+      },
+      {
+        "file": "dsc05247",
+        "original": "DSC05247-Edit.jpg",
+        "caption": "",
+        "alt": "A crowd under trees with banners and flags raised above it, a dark flag in the centre",
+        "settings": {
+          "aperture": "f/11",
+          "shutter": "1/250 s",
+          "iso": "ISO 500",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-06-28 18:31"
+        },
+        "web": {
+          "400": [
+            400,
+            167
+          ],
+          "1000": [
+            1000,
+            418
+          ],
+          "bytes": {
+            "1000.jpg": 90474,
+            "1000.jxl": 63511,
+            "2000.jpg": 276950,
+            "2000.jxl": 182980
+          }
+        }
+      },
+      {
+        "file": "dsc05250",
+        "original": "DSC05250-Edit.jpg",
+        "caption": "",
+        "alt": "Two helmeted people on a motorcycle, a crowd behind them, a white flag and a Serbian flag on a balcony",
+        "settings": {
+          "aperture": "f/11",
+          "shutter": "1/250 s",
+          "iso": "ISO 1250",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-06-28 18:36"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 121284,
+            "1000.jxl": 82166,
+            "2000.jpg": 364086,
+            "2000.jxl": 247953
+          }
+        }
+      },
+      {
+        "file": "dsc05258",
+        "original": "DSC05258-Edit.jpg",
+        "caption": "",
+        "alt": "A traffic police officer in a yellow vest directing cars at an empty junction, blurred cars passing",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/6 s",
+          "iso": "ISO 50",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-06-28 19:52"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 116852,
+            "1000.jxl": 86739,
+            "2000.jpg": 389105,
+            "2000.jxl": 288856
+          }
+        }
+      },
+      {
+        "file": "dsc05261",
+        "original": "DSC05261-Edit.jpg",
+        "caption": "",
+        "alt": "People sitting and standing on a raised platform above the crowd, a pale building behind, evening sky",
+        "settings": {
+          "aperture": "f/5",
+          "shutter": "1/250 s",
+          "iso": "ISO 200",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-06-28 20:04"
+        },
+        "web": {
+          "400": [
+            400,
+            320
+          ],
+          "1000": [
+            1000,
+            800
+          ],
+          "bytes": {
+            "1000.jpg": 91424,
+            "1000.jxl": 61131,
+            "2000.jpg": 324328,
+            "2000.jxl": 209581
+          }
+        }
+      },
+      {
+        "file": "dsc05272",
+        "original": "DSC05272-Edit.jpg",
+        "caption": "",
+        "alt": "People sitting on a roof in front of a flare, a man with an arm raised, smoke drifting over buildings",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/250 s",
+          "iso": "ISO 400",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-06-28 20:22"
+        },
+        "web": {
+          "400": [
+            400,
+            320
+          ],
+          "1000": [
+            1000,
+            800
+          ],
+          "bytes": {
+            "1000.jpg": 108336,
+            "1000.jxl": 76676,
+            "2000.jpg": 472260,
+            "2000.jxl": 342018
+          }
+        }
+      },
+      {
+        "file": "dsc05284",
+        "original": "DSC05284-Edit.jpg",
+        "caption": "",
+        "alt": "A crowd with flares and raised phone lights at dusk, smoke over buildings, tall grass in the foreground",
+        "settings": {
+          "aperture": "f/4",
+          "shutter": "1/250 s",
+          "iso": "ISO 3200",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-06-28 20:48"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 84263,
+            "1000.jxl": 53123,
+            "2000.jpg": 293242,
+            "2000.jxl": 196090
+          }
+        }
+      },
+      {
+        "file": "dsc05298",
+        "original": "DSC05298-Edit.jpg",
+        "caption": "",
+        "alt": "A wide view of a crowd lit by flares, smoke between street lamps, buildings behind, wild plants in front",
+        "settings": {
+          "aperture": "f/2.5",
+          "shutter": "1/250 s",
+          "iso": "ISO 2000",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-06-28 20:49"
+        },
+        "web": {
+          "400": [
+            400,
+            167
+          ],
+          "1000": [
+            1000,
+            418
+          ],
+          "bytes": {
+            "1000.jpg": 91823,
+            "1000.jxl": 64621,
+            "2000.jpg": 290012,
+            "2000.jxl": 202513
+          }
+        }
+      },
+      {
+        "file": "dsc05301",
+        "original": "DSC05301-Edit.jpg",
+        "caption": "",
+        "alt": "A tall view of a crowd in orange flare smoke at dusk, street lamps, tall grass and yellow flowers in front",
+        "settings": {
+          "aperture": "f/2.5",
+          "shutter": "1/250 s",
+          "iso": "ISO 2500",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-06-28 20:49"
+        },
+        "web": {
+          "400": [
+            400,
+            500
+          ],
+          "1000": [
+            1000,
+            1250
+          ],
+          "bytes": {
+            "1000.jpg": 175039,
+            "1000.jxl": 117568,
+            "2000.jpg": 670518,
+            "2000.jxl": 471272
+          }
+        }
+      },
+      {
+        "file": "dsc05303",
+        "original": "DSC05303-Edit.jpg",
+        "caption": "",
+        "alt": "A crowd gathered near a building under construction, a flag in the middle, tall grass in the foreground",
+        "settings": {
+          "aperture": "f/2.5",
+          "shutter": "1/250 s",
+          "iso": "ISO 3200",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-06-28 20:49"
+        },
+        "web": {
+          "400": [
+            400,
+            320
+          ],
+          "1000": [
+            1000,
+            800
+          ],
+          "bytes": {
+            "1000.jpg": 152246,
+            "1000.jxl": 102682,
+            "2000.jpg": 496010,
+            "2000.jxl": 326354
+          }
+        }
+      },
+      {
+        "file": "dsc05319-enhanced-nr",
+        "original": "DSC05319-Enhanced-NR-Edit.jpg",
+        "caption": "",
+        "alt": "Police in helmets lined up along a stone building, a crowd of protesters in the foreground with their backs turned",
+        "settings": {
+          "aperture": "f/2.5",
+          "shutter": "1/250 s",
+          "iso": "ISO 10000",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-06-28 21:00"
+        },
+        "web": {
+          "400": [
+            400,
+            167
+          ],
+          "1000": [
+            1000,
+            418
+          ],
+          "bytes": {
+            "1000.jpg": 100805,
+            "1000.jxl": 67842,
+            "2000.jpg": 331922,
+            "2000.jxl": 224617
+          }
+        }
+      },
+      {
+        "file": "dsc05323",
+        "original": "DSC05323-Edit.jpg",
+        "caption": "",
+        "alt": "An ambulance with its light on and a man in a yellow vest with Cyrillic lettering gesturing, a crowd behind it at night",
+        "settings": {
+          "aperture": "f/2.5",
+          "shutter": "1/250 s",
+          "iso": "ISO 8000",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-06-28 21:00"
+        },
+        "web": {
+          "400": [
+            400,
+            320
+          ],
+          "1000": [
+            1000,
+            800
+          ],
+          "bytes": {
+            "1000.jpg": 118740,
+            "1000.jxl": 72650,
+            "2000.jpg": 392815,
+            "2000.jxl": 262433
+          }
+        }
+      },
+      {
+        "file": "dsc05326-enhanced-nr",
+        "original": "DSC05326-Enhanced-NR-Edit.jpg",
+        "caption": "",
+        "alt": "Police in helmets and body armour behind riot shields marked ПОЛИЦИЈА, in front of a carved wooden door",
+        "settings": {
+          "aperture": "f/2.5",
+          "shutter": "1/250 s",
+          "iso": "ISO 10000",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-06-28 21:00"
+        },
+        "web": {
+          "400": [
+            400,
+            320
+          ],
+          "1000": [
+            1000,
+            800
+          ],
+          "bytes": {
+            "1000.jpg": 145456,
+            "1000.jxl": 97736,
+            "2000.jpg": 524096,
+            "2000.jxl": 366587
+          }
+        }
+      }
+    ],
+    "rolls": [
+      {
+        "key": "",
+        "name": "",
+        "files": [
+          "DSC05089-Edit.jpg",
+          "DSC05102-Edit.jpg",
+          "DSC05108-Edit.jpg",
+          "DSC05132-Edit.jpg",
+          "DSC05136-Edit.jpg",
+          "DSC05143-Edit.jpg",
+          "DSC05149-Edit.jpg",
+          "DSC05158-Edit.jpg",
+          "DSC05179-Edit.jpg",
+          "DSC05226-Edit.jpg",
+          "DSC05229-Edit.jpg",
+          "DSC05240-Edit.jpg",
+          "DSC05247-Edit.jpg",
+          "DSC05250-Edit.jpg",
+          "DSC05258-Edit.jpg",
+          "DSC05261-Edit.jpg",
+          "DSC05272-Edit.jpg",
+          "DSC05284-Edit.jpg",
+          "DSC05298-Edit.jpg",
+          "DSC05301-Edit.jpg",
+          "DSC05303-Edit.jpg",
+          "DSC05319-Enhanced-NR-Edit.jpg",
+          "DSC05323-Edit.jpg",
+          "DSC05326-Enhanced-NR-Edit.jpg"
+        ],
+        "labels": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "16",
+          "17",
+          "18",
+          "19",
+          "20",
+          "21",
+          "22",
+          "23",
+          "24"
+        ],
+        "taken": [
+          "2025-06-28 17:27",
+          "2025-06-28 17:35",
+          "2025-06-28 17:39",
+          "2025-06-28 17:44",
+          "2025-06-28 17:53",
+          "2025-06-28 18:06",
+          "2025-06-28 18:06",
+          "2025-06-28 18:06",
+          "2025-06-28 18:08",
+          "2025-06-28 18:14",
+          "2025-06-28 18:16",
+          "2025-06-28 18:30",
+          "2025-06-28 18:31",
+          "2025-06-28 18:36",
+          "2025-06-28 19:52",
+          "2025-06-28 20:04",
+          "2025-06-28 20:22",
+          "2025-06-28 20:48",
+          "2025-06-28 20:49",
+          "2025-06-28 20:49",
+          "2025-06-28 20:49",
+          "2025-06-28 21:00",
+          "2025-06-28 21:00",
+          "2025-06-28 21:00"
+        ]
+      }
+    ],
+    "frames": 24,
+    "from": "2025-06-28",
+    "to": "2025-06-28"
+  },
+  {
+    "id": "belgrade-2025-07",
+    "title": "Belgrade",
+    "folder": "Brodic 2025",
+    "photos": [
+      {
+        "file": "dsc05897",
+        "original": "DSC05897-Edit.jpg",
+        "caption": "",
+        "alt": "A half-sunk barge with a collapsed roof beside a river, a cable bridge and a distant boat",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/250 s",
+          "iso": "ISO 200",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-07-22 19:40"
+        },
+        "web": {
+          "400": [
+            400,
+            320
+          ],
+          "1000": [
+            1000,
+            800
+          ],
+          "bytes": {
+            "1000.jpg": 100364,
+            "1000.jxl": 70190,
+            "2000.jpg": 380267,
+            "2000.jxl": 259182
+          }
+        }
+      },
+      {
+        "file": "dsc05899",
+        "original": "DSC05899-Edit.jpg",
+        "caption": "",
+        "alt": "A half-sunk barge with a tilted roof and railing in the river, a boat passing and a bridge behind",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/250 s",
+          "iso": "ISO 160",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-07-22 19:40"
+        },
+        "web": {
+          "400": [
+            400,
+            500
+          ],
+          "1000": [
+            1000,
+            1250
+          ],
+          "bytes": {
+            "1000.jpg": 152938,
+            "1000.jxl": 108390,
+            "2000.jpg": 632450,
+            "2000.jxl": 434412
+          }
+        }
+      },
+      {
+        "file": "dsc05901",
+        "original": "DSC05901-Edit.jpg",
+        "caption": "",
+        "alt": "A tilted sunken floating building with a hexagon-patterned wall and the sign KARTEL, driftwood in the foreground",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/250 s",
+          "iso": "ISO 400",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-07-22 19:40"
+        },
+        "web": {
+          "400": [
+            400,
+            320
+          ],
+          "1000": [
+            1000,
+            800
+          ],
+          "bytes": {
+            "1000.jpg": 116809,
+            "1000.jxl": 81319,
+            "2000.jpg": 406504,
+            "2000.jxl": 273530
+          }
+        }
+      },
+      {
+        "file": "dsc05903",
+        "original": "DSC05903-Edit.jpg",
+        "caption": "",
+        "alt": "A steel frame and ramp leading to a sunken building with the sign KARTEL, river and trees beyond",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/250 s",
+          "iso": "ISO 200",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-07-22 19:41"
+        },
+        "web": {
+          "400": [
+            400,
+            600
+          ],
+          "1000": [
+            1000,
+            1500
+          ],
+          "bytes": {
+            "1000.jpg": 200469,
+            "1000.jxl": 130890,
+            "2000.jpg": 711792,
+            "2000.jxl": 452111
+          }
+        }
+      },
+      {
+        "file": "dsc05906",
+        "original": "DSC05906-Edit.jpg",
+        "caption": "",
+        "alt": "A folding chair and fishing gear at the river's edge, a boat and a blue barge, a cable bridge behind",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/250 s",
+          "iso": "ISO 250",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-07-22 19:42"
+        },
+        "web": {
+          "400": [
+            400,
+            500
+          ],
+          "1000": [
+            1000,
+            1250
+          ],
+          "bytes": {
+            "1000.jpg": 191768,
+            "1000.jxl": 140107,
+            "2000.jpg": 730935,
+            "2000.jxl": 518752
+          }
+        }
+      },
+      {
+        "file": "dsc05907",
+        "original": "DSC05907-Edit.jpg",
+        "caption": "",
+        "alt": "A folding chair, a bag and fishing rods on the river bank, a blue barge and a bridge in the distance",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/250 s",
+          "iso": "ISO 320",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-07-22 19:42"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 111150,
+            "1000.jxl": 81517,
+            "2000.jpg": 417984,
+            "2000.jxl": 293132
+          }
+        }
+      },
+      {
+        "file": "dsc05908",
+        "original": "DSC05908-Edit.jpg",
+        "caption": "",
+        "alt": "A green folding chair with a bag, a net and fishing rods on the concrete bank beside the water",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/250 s",
+          "iso": "ISO 640",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-07-22 19:42"
+        },
+        "web": {
+          "400": [
+            400,
+            320
+          ],
+          "1000": [
+            1000,
+            800
+          ],
+          "bytes": {
+            "1000.jpg": 173497,
+            "1000.jxl": 124233,
+            "2000.jpg": 617080,
+            "2000.jxl": 433326
+          }
+        }
+      },
+      {
+        "file": "dsc05909",
+        "original": "DSC05909-Edit.jpg",
+        "caption": "",
+        "alt": "The front of a blue barge with the sign ПЛАВИ ШЛЕП, hanging plant pots under its roof, a mooring post in front",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/250 s",
+          "iso": "ISO 800",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-07-22 19:43"
+        },
+        "web": {
+          "400": [
+            400,
+            500
+          ],
+          "1000": [
+            1000,
+            1250
+          ],
+          "bytes": {
+            "1000.jpg": 196625,
+            "1000.jxl": 133544,
+            "2000.jpg": 711616,
+            "2000.jxl": 475542
+          }
+        }
+      },
+      {
+        "file": "dsc05912",
+        "original": "DSC05912-Edit.jpg",
+        "caption": "",
+        "alt": "A blue barge with a covered deck and the sign ПЛАВИ ШЛЕП, hanging plants, a mooring post in the foreground",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/250 s",
+          "iso": "ISO 500",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-07-22 19:44"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 119763,
+            "1000.jxl": 80824,
+            "2000.jpg": 407144,
+            "2000.jxl": 271695
+          }
+        }
+      },
+      {
+        "file": "dsc05915-2",
+        "original": "DSC05915-Edit-2.jpg",
+        "caption": "",
+        "alt": "A wide crop of the ПЛАВИ ШЛЕП sign above a deck with hanging plant pots and tables, the barge hull below",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/250 s",
+          "iso": "ISO 800",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-07-22 19:44"
+        },
+        "web": {
+          "400": [
+            400,
+            167
+          ],
+          "1000": [
+            1000,
+            418
+          ],
+          "bytes": {
+            "1000.jpg": 93646,
+            "1000.jxl": 65320,
+            "2000.jpg": 300927,
+            "2000.jxl": 205161
+          }
+        }
+      },
+      {
+        "file": "dsc05915",
+        "original": "DSC05915-Edit.jpg",
+        "caption": "",
+        "alt": "A blue barge deck with tables beneath the sign ПЛАВИ ШЛЕП, hanging plants, the hull in the foreground",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/250 s",
+          "iso": "ISO 800",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-07-22 19:44"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 127008,
+            "1000.jxl": 87757,
+            "2000.jpg": 431206,
+            "2000.jxl": 296355
+          }
+        }
+      },
+      {
+        "file": "dsc05916",
+        "original": "DSC05916-Edit.jpg",
+        "caption": "",
+        "alt": "The ПЛАВИ ШЛЕП sign over empty tables on a barge at sunset, white boats on the river behind",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/250 s",
+          "iso": "ISO 200",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-07-22 19:45"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 95693,
+            "1000.jxl": 64329,
+            "2000.jpg": 333029,
+            "2000.jxl": 214471
+          }
+        }
+      },
+      {
+        "file": "dsc05918",
+        "original": "DSC05918-Edit.jpg",
+        "caption": "",
+        "alt": "A close crop of a barge wall in orange light, a round porthole, a window with a curtain and plants",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/250 s",
+          "iso": "ISO 400",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-07-22 19:45"
+        },
+        "web": {
+          "400": [
+            400,
+            167
+          ],
+          "1000": [
+            1000,
+            418
+          ],
+          "bytes": {
+            "1000.jpg": 70564,
+            "1000.jxl": 46283,
+            "2000.jpg": 250149,
+            "2000.jxl": 164962
+          }
+        }
+      },
+      {
+        "file": "dsc05921",
+        "original": "DSC05921-Edit.jpg",
+        "caption": "",
+        "alt": "A cable-stayed bridge with a tall pylon over the river, a dark barge below it, a cracked concrete path at sunset",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/320 s",
+          "iso": "ISO 100",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-07-22 19:45"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 78049,
+            "1000.jxl": 54293,
+            "2000.jpg": 318729,
+            "2000.jxl": 217168
+          }
+        }
+      },
+      {
+        "file": "dsc05922",
+        "original": "DSC05922-Edit.jpg",
+        "caption": "",
+        "alt": "A train crossing a cable-stayed bridge, a parked car on a gravel lot, a leaning pole with a sign",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/250 s",
+          "iso": "ISO 160",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-07-22 19:47"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 102768,
+            "1000.jxl": 69294,
+            "2000.jpg": 369531,
+            "2000.jxl": 245653
+          }
+        }
+      },
+      {
+        "file": "dsc05929",
+        "original": "DSC05929-Edit.jpg",
+        "caption": "",
+        "alt": "A street lamp against a cloudy sky over dry grass, a cyclist cut off at the lower right",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/250 s",
+          "iso": "ISO 250",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-07-22 19:48"
+        },
+        "web": {
+          "400": [
+            400,
+            600
+          ],
+          "1000": [
+            1000,
+            1500
+          ],
+          "bytes": {
+            "1000.jpg": 229700,
+            "1000.jxl": 162255,
+            "2000.jpg": 882057,
+            "2000.jxl": 636349
+          }
+        }
+      },
+      {
+        "file": "dsc05931",
+        "original": "DSC05931-Edit.jpg",
+        "caption": "",
+        "alt": "A bicycle leaning against a rusty pole and a graffitied box on dry grass, a round-roofed building beyond",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/250 s",
+          "iso": "ISO 200",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-07-22 19:49"
+        },
+        "web": {
+          "400": [
+            400,
+            500
+          ],
+          "1000": [
+            1000,
+            1250
+          ],
+          "bytes": {
+            "1000.jpg": 238668,
+            "1000.jxl": 175117,
+            "2000.jpg": 904491,
+            "2000.jxl": 647091
+          }
+        }
+      },
+      {
+        "file": "dsc05933",
+        "original": "DSC05933-Edit.jpg",
+        "caption": "",
+        "alt": "A bicycle leaning against a rusty pole and a graffitied box in a dry field, trees and a house under evening clouds",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/250 s",
+          "iso": "ISO 320",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-07-22 19:49"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 133237,
+            "1000.jxl": 96595,
+            "2000.jpg": 505067,
+            "2000.jxl": 367717
+          }
+        }
+      },
+      {
+        "file": "dsc05937",
+        "original": "DSC05937-Edit.jpg",
+        "caption": "",
+        "alt": "A man cycling past on a path, trees and an apartment building behind, clouds in the sky",
+        "settings": {
+          "aperture": "f/9",
+          "shutter": "1/250 s",
+          "iso": "ISO 800",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-07-22 19:50"
+        },
+        "web": {
+          "400": [
+            400,
+            500
+          ],
+          "1000": [
+            1000,
+            1250
+          ],
+          "bytes": {
+            "1000.jpg": 211980,
+            "1000.jxl": 158771,
+            "2000.jpg": 801982,
+            "2000.jxl": 595261
+          }
+        }
+      },
+      {
+        "file": "dsc05939",
+        "original": "DSC05939-Edit.jpg",
+        "caption": "",
+        "alt": "The sun low over the river with a dark treeline and a bridge on the left, orange sky",
+        "settings": {
+          "aperture": "f/9",
+          "shutter": "1/250 s",
+          "iso": "ISO 125",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-07-22 19:56"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 79052,
+            "1000.jxl": 52484,
+            "2000.jpg": 339137,
+            "2000.jxl": 242565
+          }
+        }
+      },
+      {
+        "file": "dsc05946",
+        "original": "DSC05946-Edit.jpg",
+        "caption": "",
+        "alt": "A small outboard motor and rigging on a boat in the foreground, a bridge and the river at sunset",
+        "settings": {
+          "aperture": "f/3.2",
+          "shutter": "1/640 s",
+          "iso": "ISO 100",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-07-22 19:59"
+        },
+        "web": {
+          "400": [
+            400,
+            600
+          ],
+          "1000": [
+            1000,
+            1500
+          ],
+          "bytes": {
+            "1000.jpg": 126812,
+            "1000.jxl": 85741,
+            "2000.jpg": 579314,
+            "2000.jxl": 424581
+          }
+        }
+      }
+    ],
+    "rolls": [
+      {
+        "key": "",
+        "name": "",
+        "files": [
+          "DSC05897-Edit.jpg",
+          "DSC05899-Edit.jpg",
+          "DSC05901-Edit.jpg",
+          "DSC05903-Edit.jpg",
+          "DSC05906-Edit.jpg",
+          "DSC05907-Edit.jpg",
+          "DSC05908-Edit.jpg",
+          "DSC05909-Edit.jpg",
+          "DSC05912-Edit.jpg",
+          "DSC05915-Edit-2.jpg",
+          "DSC05915-Edit.jpg",
+          "DSC05916-Edit.jpg",
+          "DSC05918-Edit.jpg",
+          "DSC05921-Edit.jpg",
+          "DSC05922-Edit.jpg",
+          "DSC05929-Edit.jpg",
+          "DSC05931-Edit.jpg",
+          "DSC05933-Edit.jpg",
+          "DSC05937-Edit.jpg",
+          "DSC05939-Edit.jpg",
+          "DSC05946-Edit.jpg"
+        ],
+        "labels": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "16",
+          "17",
+          "18",
+          "19",
+          "20",
+          "21"
+        ],
+        "taken": [
+          "2025-07-22 19:40",
+          "2025-07-22 19:40",
+          "2025-07-22 19:40",
+          "2025-07-22 19:41",
+          "2025-07-22 19:42",
+          "2025-07-22 19:42",
+          "2025-07-22 19:42",
+          "2025-07-22 19:43",
+          "2025-07-22 19:44",
+          "2025-07-22 19:44",
+          "2025-07-22 19:44",
+          "2025-07-22 19:45",
+          "2025-07-22 19:45",
+          "2025-07-22 19:45",
+          "2025-07-22 19:47",
+          "2025-07-22 19:48",
+          "2025-07-22 19:49",
+          "2025-07-22 19:49",
+          "2025-07-22 19:50",
+          "2025-07-22 19:56",
+          "2025-07-22 19:59"
+        ]
+      }
+    ],
+    "frames": 21,
+    "from": "2025-07-22",
+    "to": "2025-07-22"
+  },
+  {
     "id": "belgrade-2025",
     "title": "Belgrade",
     "folder": "Ljubljana 2025",

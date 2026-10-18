@@ -1,0 +1,421 @@
+/* Belgrade: Vidovdan at Slavija, the Sava at Sajam, and Ada Ciganlija. Loaded by a <link> inside <main>, so it arrives
+   and leaves with the page when the site swaps pages in place. Scope every rule to this page:
+     main[data-country="belgrade"] ...                 anything inside the page
+     body:has(main[data-country="belgrade"]) ...       the page's colours, the nav, the footer and the player
+   Two faces, both under the SIL Open Font Licence and served from this folder, Cyrillic and Latin: PT Sans Narrow Bold
+   for the city and its places, and Fira Sans Extra Condensed Black for Vidovdan alone. */
+@font-face {
+  font-family: "PT Sans Narrow"; src: url("narrow-cyrillic.woff2") format("woff2");
+  font-weight: 700; font-style: normal; font-display: swap;
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: "PT Sans Narrow"; src: url("narrow-latin-ext.woff2") format("woff2");
+  font-weight: 700; font-style: normal; font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF,
+    U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "PT Sans Narrow"; src: url("narrow-latin.woff2") format("woff2");
+  font-weight: 700; font-style: normal; font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Fira Sans Extra Condensed"; src: url("black-cyrillic.woff2") format("woff2");
+  font-weight: 900; font-style: normal; font-display: swap;
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: "Fira Sans Extra Condensed"; src: url("black-latin-ext.woff2") format("woff2");
+  font-weight: 900; font-style: normal; font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF,
+    U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Fira Sans Extra Condensed"; src: url("black-latin.woff2") format("woff2");
+  font-weight: 900; font-style: normal; font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+body:has(main[data-country="belgrade"]) {
+  --bg: #fff; --surface: #f0f0f0; --ink: #111; --soft: #5c5c5c; --panel: #f0f0f0;
+  --paper: #fff; --paper-ink: #111; --film: #111; --mark: #d40a1e;
+  --link: #111; --visited: #111;
+  --revolt: #d40a1e; --revolt-up: #ec1b2f; --glow: #ff2a3a;
+  --sign: "PT Sans Narrow", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --strike: "Fira Sans Extra Condensed", "Arial Narrow", sans-serif;
+  --s-small: 15px;
+  --s-body: clamp(17px, 16px + 0.25vw, 19px);
+  --s-lead: clamp(20px, 17px + 0.7vw, 26px);
+  --ease: cubic-bezier(.22, 1, .36, 1);
+  --heavy: cubic-bezier(.16, 1, .3, 1);
+  --gut: clamp(16px, 2.6vw, 40px);
+  --row-gap: clamp(8px, 1vw, 16px);
+  --rail: clamp(280px, 25vw, 420px);
+  --rim: clamp(72px, 9vw, 150px); --rim-r: clamp(10px, 1.4vw, 22px);
+  background: var(--bg); color: var(--ink);
+}
+body:has(main[data-country="belgrade"]) nav, body:has(main[data-country="belgrade"]) #player { background: var(--bg); }
+body:has(main[data-country="belgrade"]) ::selection { background: var(--revolt); color: #fff; }
+body:has(main[data-country="belgrade"]) :focus-visible { outline-color: var(--revolt); }
+
+main[data-country="belgrade"] { background: var(--bg); }
+
+/* The tabs. */
+main[data-country="belgrade"] > .tabs { padding: 28px 12px 0; }
+@media (min-width: 900px) { main[data-country="belgrade"] > .tabs ol { flex-wrap: wrap; overflow: visible; } }
+main[data-country="belgrade"] .tabs .bar { background: #cfcfcf; }
+main[data-country="belgrade"] .tabs .place { font-style: normal; font-weight: 600; }
+main[data-country="belgrade"] .tabs .here > a { background: #111; color: #fff; }
+main[data-country="belgrade"] .tabs .here .n { color: #bdbdbd; }
+main[data-country="belgrade"] .tabs .here .bar { background: #555; }
+main[data-country="belgrade"] .tabs .here .bar i { background: #fff; }
+@media (hover: hover) and (pointer: fine) {
+  main[data-country="belgrade"] .tabs li:not(.here) > a:hover { background: var(--surface); }
+}
+
+main[data-country="belgrade"] h1, main[data-country="belgrade"] h2, main[data-country="belgrade"] h3,
+main[data-country="belgrade"] p { margin: 0; font-weight: 400; font-style: normal; }
+main[data-country="belgrade"] ol { list-style: none; margin: 0; padding: 0; }
+main[data-country="belgrade"] img { display: block; width: 100%; height: auto; }
+main[data-country="belgrade"] a { color: inherit; }
+
+/* ---- The opening: the name across a field of the protest's red, split by the arms of the city; then the days at the
+   left and the map at the right, the land white, the rivers black, each place a disc in its colour. Slavija's keeps beating. */
+main[data-country="belgrade"] .opening {
+  margin-top: 28px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2.15fr);
+  grid-template-areas: "name name" "key map"; grid-template-rows: auto 1fr;
+  column-gap: clamp(24px, 3vw, 56px); row-gap: clamp(32px, 3.4vw, 56px);
+  padding: 0 var(--gut) clamp(56px, 6vw, 110px);
+}
+main[data-country="belgrade"] .opening h1 {
+  grid-area: name; margin-inline: calc(-1 * var(--gut)); padding: 0.16em var(--gut) 0.12em;
+  background: var(--revolt); color: #fff; font: 700 min(18vw, 300px)/0.8 var(--sign); text-transform: uppercase;
+}
+main[data-country="belgrade"] .opening h1 .cy { display: flex; align-items: center; justify-content: space-between; gap: 0.16em; padding-bottom: 0.14em; }
+main[data-country="belgrade"] .opening h1 .half { display: block; letter-spacing: -0.005em; }
+main[data-country="belgrade"] .opening .arms {
+  flex: none; width: 0.66em; aspect-ratio: 420 / 500; background: currentColor;
+  -webkit-mask: url(arms-mono.svg) center / contain no-repeat; mask: url(arms-mono.svg) center / contain no-repeat;
+}
+main[data-country="belgrade"] .opening h1 .la { display: block; font-size: max(16px, 0.075em); line-height: 1; letter-spacing: 0.32em; }
+main[data-country="belgrade"] .city { grid-area: map; display: block; width: 100%; height: auto; }
+main[data-country="belgrade"] .city .water { fill: #111; }
+main[data-country="belgrade"] .city .river { fill: #fff; font: 700 15px var(--sign); letter-spacing: 0.24em; text-transform: uppercase; }
+main[data-country="belgrade"] .city .river.by { fill: #111; }
+main[data-country="belgrade"] .city .spot { text-decoration: none; }
+main[data-country="belgrade"] .city .dot { fill: var(--wall); stroke: #111; stroke-width: 2.5; transition: transform 300ms var(--ease); transform-box: fill-box; transform-origin: center; }
+main[data-country="belgrade"] .city .ring { fill: none; stroke: var(--wall); stroke-width: 3; opacity: 0; transform-box: fill-box; transform-origin: center; }
+main[data-country="belgrade"] .city text { fill: #111; }
+main[data-country="belgrade"] .city .pn { font: 700 30px var(--sign); text-transform: uppercase; letter-spacing: 0.02em; }
+main[data-country="belgrade"] .city .pw { font: 15px var(--face); }
+main[data-country="belgrade"] .city .chapter .pn { fill: var(--revolt); }
+@media (hover: hover) and (pointer: fine) { main[data-country="belgrade"] .city .spot:hover .dot { transform: scale(1.45); } }
+main[data-country="belgrade"] .city .spot:focus-visible .dot { transform: scale(1.45); }
+main[data-country="belgrade"] .city .spot:focus-visible { outline: none; }
+main[data-country="belgrade"] .city .spot:focus-visible .pn { text-decoration: underline; }
+
+main[data-country="belgrade"] .key { grid-area: key; align-self: end; display: grid; gap: 18px; }
+main[data-country="belgrade"] .openers { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-bottom: 10px; }
+main[data-country="belgrade"] .openers a { text-decoration: none; font-size: var(--s-body); white-space: nowrap; }
+main[data-country="belgrade"] .openers .n, main[data-country="belgrade"] .years .y, main[data-country="belgrade"] .day h3 .y {
+  font-family: var(--sign); font-weight: 700; font-variant-numeric: lining-nums;
+}
+main[data-country="belgrade"] .openers .n { font-size: 1.9em; line-height: 1; margin-right: 0.08em; }
+main[data-country="belgrade"] .openers a:hover .n, main[data-country="belgrade"] .openers a:focus-visible .n { color: var(--revolt); }
+main[data-country="belgrade"] .opening .when { font-size: var(--s-lead); font-weight: 600; }
+main[data-country="belgrade"] .opening .gear { font-size: var(--s-small); line-height: 1.5; color: var(--soft); }
+
+/* ---- Runs of frames: on white; on black for the dusk silhouettes and the trees in black and white; and the flip, frames
+   from one spot within a minute that turn over one into the next as the page scrolls (bg.js), side by side without it. */
+main[data-country="belgrade"] .run .rows { padding: clamp(40px, 4vw, 80px) var(--gut) clamp(56px, 6vw, 110px); }
+main[data-country="belgrade"] .run.light { background: #fff; color: var(--ink); }
+main[data-country="belgrade"] :is(.run.dark, .flip) { background: #000; color: #fff; }
+main[data-country="belgrade"] :is(.run.dark, .flip) .meta { color: #a9a9a9; }
+main[data-country="belgrade"] .flip .pin { padding: clamp(40px, 4vw, 80px) var(--gut); }
+main[data-country="belgrade"] .flip .deck { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 380px), 1fr)); gap: clamp(28px, 3vw, 48px) var(--row-gap); }
+
+/* ---- Sajam: the sign on the blue barge on the bank, ПЛАВИ ШЛЕП, white letters spaced out across the hull's blue, under
+   the gold of the evening; the sun goes down behind the board as the walk goes by. */
+main[data-country="belgrade"] .sajam { background: var(--hull); color: #fff; }
+main[data-country="belgrade"] .sajam a { text-decoration: none; }
+main[data-country="belgrade"] .sajam .sign { margin: 0; position: relative; isolation: isolate; overflow: hidden; }
+main[data-country="belgrade"] .sajam .sky { position: relative; z-index: -1; height: clamp(160px, 18vw, 320px); background: var(--sky); }
+main[data-country="belgrade"] .sajam .sun {
+  position: absolute; left: 64%; bottom: 0; width: clamp(110px, 14vw, 250px); aspect-ratio: 1; border-radius: 50%;
+  background: #fff0c9; transform: translateY(calc(var(--set, 0.3) * 100%));
+}
+main[data-country="belgrade"] .sajam .board { display: grid; justify-items: center; gap: clamp(14px, 1.6vw, 28px); padding: clamp(28px, 3vw, 56px) var(--gut) clamp(48px, 5vw, 96px); text-align: center; }
+main[data-country="belgrade"] .sajam h2 { font: 700 min(19vw, 330px)/0.8 var(--sign); text-transform: uppercase; }
+main[data-country="belgrade"] .sajam h2 .cy { display: block; letter-spacing: 0.16em; margin-right: -0.16em; white-space: nowrap; }
+main[data-country="belgrade"] .sajam h2 .la { display: block; margin-top: 0.42em; font-size: max(0.1em, 18px); letter-spacing: 0.5em; margin-right: -0.5em; }
+main[data-country="belgrade"] .sajam .when { font-size: var(--s-lead); font-weight: 600; }
+main[data-country="belgrade"] .sajam .when a { font-family: var(--sign); font-weight: 700; font-size: 1.5em; text-transform: uppercase; letter-spacing: 0.06em; }
+main[data-country="belgrade"] .sajam .when a:hover, main[data-country="belgrade"] .sajam .when a:focus-visible { color: var(--sky); }
+main[data-country="belgrade"] .sajam .row.wide { width: auto; margin-inline: calc(-1 * var(--gut)); }
+main[data-country="belgrade"] .sajam .row.wide .meta { padding-inline: var(--gut); }
+
+/* ---- Ada Ciganlija: the lake, drawn from the map, on the green of the birches, the years under it; each day its own band
+   of the green with the year large, then its frames. */
+main[data-country="belgrade"] .ada { background: var(--wall); color: var(--wall-ink); }
+main[data-country="belgrade"] .ada a { text-decoration: none; }
+main[data-country="belgrade"] .ada .shore {
+  margin: 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.45fr); grid-template-areas: "name lake" "years lake";
+  align-items: end; column-gap: clamp(28px, 4vw, 72px); row-gap: clamp(28px, 3vw, 48px);
+  padding: clamp(56px, 6vw, 110px) var(--gut) clamp(24px, 2vw, 40px);
+}
+main[data-country="belgrade"] .ada h2 { grid-area: name; font: 700 clamp(52px, 6.6vw, 124px)/0.86 var(--sign); text-transform: uppercase; }
+main[data-country="belgrade"] .ada h2 .cy { display: block; }
+main[data-country="belgrade"] .ada h2 .la { display: block; margin-top: 0.24em; font-size: max(0.26em, 18px); letter-spacing: 0.06em; color: #111; }
+main[data-country="belgrade"] .ada .lake { grid-area: lake; display: block; width: 100%; height: auto; }
+main[data-country="belgrade"] .ada .lake path { fill: #111; }
+main[data-country="belgrade"] .ada .lake text { font: 700 8.5px var(--sign); letter-spacing: 0.2em; text-transform: uppercase; }
+main[data-country="belgrade"] .ada .lake .w { fill: #fff; }
+main[data-country="belgrade"] .ada .years { grid-area: years; display: flex; flex-wrap: wrap; gap: 12px clamp(20px, 2.4vw, 40px); }
+main[data-country="belgrade"] .ada .years a { display: grid; font-size: var(--s-body); line-height: 1.2; transition: color 200ms var(--ease); }
+main[data-country="belgrade"] .ada .years .y { font-size: 2.6em; line-height: 0.9; }
+main[data-country="belgrade"] .ada .years a:hover, main[data-country="belgrade"] .ada .years a:focus-visible { color: #111; }
+main[data-country="belgrade"] .ada .years a:active { transform: translateY(2px); }
+main[data-country="belgrade"] .ada .day { padding-top: clamp(120px, 10vw, 160px); }
+main[data-country="belgrade"] .ada .day h3 { padding: 0 var(--gut) clamp(20px, 2vw, 32px); }
+main[data-country="belgrade"] .ada .day h3 a { display: inline-flex; align-items: baseline; flex-wrap: wrap; gap: 0 0.4em; font-size: var(--s-lead); font-weight: 600; }
+main[data-country="belgrade"] .ada .day h3 .y { font-size: min(5.4em, 21vw); line-height: 0.8; }
+main[data-country="belgrade"] .ada .day h3 a:hover .y, main[data-country="belgrade"] .ada .day h3 a:focus-visible .y { color: #111; }
+
+/* ---- Rows: uncropped frames of mixed sizes. Each keeps its own shape; a row's frames share one height. */
+main[data-country="belgrade"] .rows { display: grid; gap: clamp(28px, 3vw, 48px); }
+main[data-country="belgrade"] .row { display: flex; gap: var(--row-gap); align-items: flex-start; width: min(100%, calc(80svh * var(--sum))); margin-inline: auto; }
+main[data-country="belgrade"] .row.one { width: min(78%, calc(78svh * var(--sum))); }
+main[data-country="belgrade"] .shot { flex: var(--r) 1 0; min-width: 0; }
+main[data-country="belgrade"] .shot a { display: block; }
+main[data-country="belgrade"] .shot img { transition: opacity 300ms var(--ease); }
+@media (hover: hover) and (pointer: fine) {
+  main[data-country="belgrade"] .shot a:hover img { opacity: 0.86; }
+}
+main[data-country="belgrade"] .shot a:active img { opacity: 0.7; }
+main[data-country="belgrade"] .meta { margin-top: 10px; font-size: var(--s-small); font-variant-numeric: tabular-nums; color: var(--soft); }
+
+/* ---- The way on, and the credits. */
+main[data-country="belgrade"] > .stub { margin-top: clamp(48px, 6vw, 96px); margin-bottom: 48px; }
+main[data-country="belgrade"] > .stub .next { font-family: var(--sign); font-weight: 700; font-style: normal; text-transform: uppercase; font-size: clamp(36px, 24px + 2.4vw, 64px); line-height: 1.05; }
+main[data-country="belgrade"] > .credit { max-width: 70ch; margin: 0 var(--gut) 72px; font-size: var(--s-small); line-height: 1.5; color: var(--soft); }
+
+/* ==== Vidovdan, 28 June 2025: the students' protest at Slavija, its own chapter. Red, white and black, the colours of a
+   strike poster. The name is slammed down over the size of the crowd; the strike wall comes up to fill the screen; the
+   evening goes by the hour, the frames on white while it is light and on black from eight, the hour standing in a red
+   margin that darkens with the evening, from the red of the flags at five to oxblood at nine. Two moments hold the
+   scroll: sixteen minutes of silence, and nine o'clock. bg.js runs the red, the clock and the held moments; without it
+   each hour has the red of its first minute and the moments stand still. */
+main[data-country="belgrade"] .vidovdan { background: var(--red, var(--revolt)); color: #fff; }
+main[data-country="belgrade"] .vidovdan a { color: inherit; text-decoration: none; }
+main[data-country="belgrade"] .vidovdan :is(.banner, .hour, .stage) { background: var(--step); }
+main[data-country="belgrade"] .vidovdan.live :is(.banner, .hour, .stage) { background: transparent; }
+
+main[data-country="belgrade"] .vidovdan .banner {
+  position: relative; overflow: hidden;
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); grid-template-areas: "name name" "what crowd";
+  column-gap: var(--gut); row-gap: clamp(28px, 3vw, 56px); align-items: end;
+  padding: clamp(40px, 5vw, 88px) var(--gut) clamp(56px, 6vw, 110px);
+}
+main[data-country="belgrade"] .vidovdan h2 { grid-area: name; font: 900 min(20vw, 360px)/0.8 var(--strike); text-transform: uppercase; letter-spacing: -0.005em; }
+main[data-country="belgrade"] .vidovdan h2 a { display: block; transition: color 200ms var(--ease); }
+main[data-country="belgrade"] .vidovdan h2 .cy { display: block; white-space: nowrap; padding-bottom: 0.16em; }
+main[data-country="belgrade"] .vidovdan h2 .l { display: inline-block; }
+main[data-country="belgrade"] .vidovdan h2 .la { display: block; margin-top: 0.14em; font-size: 0.13em; line-height: 1; letter-spacing: 0.02em; color: #000; }
+@media (hover: hover) and (pointer: fine) { main[data-country="belgrade"] .vidovdan h2 a:hover .cy { color: #000; } }
+main[data-country="belgrade"] .vidovdan h2 a:active { transform: translateY(3px); }
+main[data-country="belgrade"] .vidovdan .what {
+  grid-area: what; color: #000;
+  font: 900 clamp(26px, 1.2vw + 20px, 44px)/1 var(--strike); text-transform: uppercase; letter-spacing: 0.01em;
+}
+main[data-country="belgrade"] .vidovdan .what a { display: block; margin-top: 0.3em; font-size: 2.6em; line-height: 0.85; color: #fff; }
+main[data-country="belgrade"] .vidovdan .crowd { grid-area: crowd; justify-self: end; text-align: right; }
+main[data-country="belgrade"] .vidovdan .crowd .k { display: block; font: 900 min(11.5vw, 210px)/0.8 var(--strike); font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+main[data-country="belgrade"] .vidovdan .crowd .by { display: block; margin-top: 14px; font-size: var(--s-body); }
+
+/* The held moments. */
+main[data-country="belgrade"] .vidovdan .stage { position: relative; }
+main[data-country="belgrade"] .vidovdan .stage .pin { position: relative; display: grid; place-items: center; isolation: isolate; }
+main[data-country="belgrade"] .vidovdan .zoom .pin { padding: clamp(24px, 3vw, 56px) var(--gut); }
+main[data-country="belgrade"] .vidovdan .zoom .pin::before { content: ""; position: absolute; inset: 0; z-index: -1; background: #000; opacity: var(--dark, 0); }
+main[data-country="belgrade"] .vidovdan .frame {
+  width: min(100%, calc((100svh - 96px) * var(--r))); background: #000; padding: clamp(8px, 1vw, 16px);
+  transform: scale(var(--z, 1)); transform-origin: center;
+}
+main[data-country="belgrade"] .vidovdan .frame a { display: block; }
+
+main[data-country="belgrade"] .vidovdan .silence .pin {
+  min-height: 86svh; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); grid-template-areas: "t hush" "say hush";
+  align-content: center; place-items: end start; column-gap: clamp(28px, 4vw, 72px); row-gap: clamp(16px, 2vw, 32px); padding: 64px var(--gut);
+}
+main[data-country="belgrade"] .vidovdan .silence .pin .t { grid-area: t; font-size: min(14vw, 250px); }
+main[data-country="belgrade"] .vidovdan .silence .say { grid-area: say; align-self: start; }
+main[data-country="belgrade"] .vidovdan .hush { grid-area: hush; align-self: center; justify-self: stretch; display: grid; gap: 28px; justify-items: center; }
+main[data-country="belgrade"] .vidovdan .hush .frame { align-self: center; width: min(100%, calc((100svh - var(--pbar, 0px) - 128px) * var(--r))); }
+main[data-country="belgrade"] .vidovdan .hush .meta { margin-top: 8px; color: #fff; opacity: 0.8; }
+main[data-country="belgrade"] .vidovdan .strips { position: absolute; inset: 0; z-index: -1; display: grid; grid-template-columns: repeat(16, minmax(0, 1fr)); gap: clamp(2px, 0.25vw, 4px); }
+main[data-country="belgrade"] .vidovdan .strips i { background: #000; transform-origin: top; }
+main[data-country="belgrade"] .vidovdan .silence .t, main[data-country="belgrade"] .vidovdan .deadline .t {
+  font: 900 min(34vw, 560px)/0.8 var(--strike); font-variant-numeric: tabular-nums; letter-spacing: -0.01em;
+}
+main[data-country="belgrade"] .vidovdan .say .cy { display: block; font: 900 clamp(30px, 3.4vw, 60px)/1 var(--strike); text-transform: uppercase; }
+main[data-country="belgrade"] .vidovdan .say .la { display: block; margin-top: 12px; font-size: var(--s-body); }
+
+main[data-country="belgrade"] .vidovdan .deadline .pin { min-height: 86svh; align-content: center; gap: clamp(20px, 2.4vw, 40px); padding: 64px var(--gut); text-align: center; }
+main[data-country="belgrade"] .vidovdan .deadline .t { color: var(--glow); }
+main[data-country="belgrade"] .vidovdan .deadline .say { max-width: 22ch; font: 900 clamp(26px, 2.6vw, 46px)/1.02 var(--strike); text-transform: uppercase; }
+
+/* The hours. */
+main[data-country="belgrade"] .vidovdan .hour { position: relative; isolation: isolate; display: grid; grid-template-columns: var(--rim) minmax(0, 1fr); padding: var(--rim-r) var(--rim-r) var(--rim-r) 0; }
+main[data-country="belgrade"] .vidovdan .hour + .hour { padding-top: 0; }
+main[data-country="belgrade"] .vidovdan .clock {
+  position: sticky; top: calc(28px + var(--pbar, 0px)); align-self: start; padding-top: clamp(32px, 3.4vw, 64px);
+  text-align: center; font: 900 calc(var(--rim) * 0.4)/0.8 var(--strike); font-variant-numeric: tabular-nums;
+}
+main[data-country="belgrade"] .vidovdan .rows { background: #fff; color: var(--ink); padding: clamp(40px, 4vw, 80px) var(--gut) clamp(56px, 6vw, 110px); }
+main[data-country="belgrade"] .vidovdan .night .rows { background: #000; color: #fff; }
+main[data-country="belgrade"] .vidovdan .night .meta { color: #a9a9a9; }
+/* At night the margin catches the light of the flares. */
+main[data-country="belgrade"] .vidovdan .night::before { content: ""; position: absolute; inset: 0; z-index: -1; background: #ff4b1c; opacity: 0; pointer-events: none; }
+
+/* ---- Entrances: each part rises once as it arrives. The page reads the same without them. */
+@media (prefers-reduced-motion: no-preference) {
+  main[data-country="belgrade"][data-js] .rise { opacity: 0; transform: translateY(24px); }
+  main[data-country="belgrade"][data-js] .rise.in {
+    opacity: 1; transform: none;
+    transition: opacity 700ms var(--ease) var(--d, 0ms), transform 900ms var(--ease) var(--d, 0ms);
+  }
+  main[data-country="belgrade"] .city .chapter .ring { animation: bg-beat 2400ms cubic-bezier(.3, 0, .2, 1) infinite; }
+  /* The name comes apart and the arms of the city come up between its halves. */
+  main[data-country="belgrade"] .opening h1 .half { animation: bg-part 1200ms var(--heavy) 150ms both; }
+  main[data-country="belgrade"] .opening h1 .half:last-child { --to: -0.7em; }
+  main[data-country="belgrade"] .opening .arms { animation: bg-arms 900ms cubic-bezier(.34, 1.56, .64, 1) 700ms both; }
+  main[data-country="belgrade"] .opening h1 .la { animation: bg-up 700ms var(--ease) 1100ms both; }
+  @keyframes bg-part { from { transform: translateX(var(--to, 0.7em)); } to { transform: none; } }
+  @keyframes bg-arms { from { opacity: 0; transform: scale(0.3) rotate(-8deg); } to { opacity: 1; transform: none; } }
+  @keyframes bg-beat { 0% { opacity: 0.9; transform: scale(1); } 70%, 100% { opacity: 0; transform: scale(3.2); } }
+  main[data-country="belgrade"][data-js] .city .water.rise { transform: none; }
+  main[data-country="belgrade"][data-js] .city .spot.rise { transform: translateY(-14px); }
+  main[data-country="belgrade"][data-js] .city .spot.rise.in { transform: none; transition: opacity 500ms var(--ease) var(--d, 0ms), transform 700ms cubic-bezier(.34, 1.56, .64, 1) var(--d, 0ms); }
+
+  /* Vidovdan's entrance: a black curtain lifts off the red, the letters come down one by one like blows, the name
+     shudders when the last lands, and the crowd counts up. */
+  main[data-country="belgrade"] .vidovdan .banner.armed::before { content: ""; position: absolute; inset: 0; z-index: 2; background: #000; transform-origin: top; pointer-events: none; }
+  main[data-country="belgrade"] .vidovdan .banner.armed .l { opacity: 0; transform: translateY(-0.42em) scale(1.4); }
+  main[data-country="belgrade"] .vidovdan .banner.armed :is(.la, .what, .crowd) { opacity: 0; transform: translateY(28px); }
+  main[data-country="belgrade"] .vidovdan .banner.go::before { animation: bg-lift 900ms cubic-bezier(.7, 0, .2, 1) both; }
+  main[data-country="belgrade"] .vidovdan .banner.go .l { animation: bg-slam 460ms cubic-bezier(.55, 0, .85, .35) calc(560ms + var(--i) * 95ms) both; }
+  main[data-country="belgrade"] .vidovdan .banner.go h2 .cy { animation: bg-shake 420ms linear 1420ms both; }
+  main[data-country="belgrade"] .vidovdan .banner.go :is(.la, .what, .crowd) { animation: bg-up 900ms var(--heavy) both; }
+  main[data-country="belgrade"] .vidovdan .banner.go .la { animation-delay: 1500ms; }
+  main[data-country="belgrade"] .vidovdan .banner.go .what { animation-delay: 1620ms; }
+  main[data-country="belgrade"] .vidovdan .banner.go .crowd { animation-delay: 1740ms; }
+  @keyframes bg-lift { from { transform: scaleY(1); } to { transform: scaleY(0); } }
+  @keyframes bg-slam {
+    0% { opacity: 0; transform: translateY(-0.42em) scale(1.4); }
+    72% { opacity: 1; transform: translateY(0.035em) scale(0.97); }
+    100% { opacity: 1; transform: none; }
+  }
+  @keyframes bg-shake {
+    0%, 100% { transform: none; } 15% { transform: translate(0, 0.022em); } 32% { transform: translate(-0.012em, -0.012em); }
+    50% { transform: translate(0.01em, 0.008em); } 70% { transform: translate(-0.005em, -0.004em); }
+  }
+  @keyframes bg-up { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+
+  /* The held moments, pinned while their scroll runs by. */
+  main[data-country="belgrade"].moving .vidovdan .zoom { height: 250svh; }
+  main[data-country="belgrade"].moving .vidovdan .silence { height: 300svh; }
+  main[data-country="belgrade"].moving .vidovdan .deadline { height: 240svh; }
+  main[data-country="belgrade"].moving .vidovdan .stage .pin {
+    position: sticky; top: var(--pbar, 0px); height: calc(100svh - var(--pbar, 0px)); min-height: 0; overflow: hidden; padding-block: 0;
+  }
+  main[data-country="belgrade"].moving .vidovdan .frame { will-change: transform; }
+  main[data-country="belgrade"].moving .vidovdan .strips i { transform: scaleY(0); transition: transform 900ms var(--heavy); }
+  main[data-country="belgrade"].moving .vidovdan .strips i.on { transform: none; }
+  /* In the held silence its frames take the same place, the later one coming up at its minute. */
+  main[data-country="belgrade"].moving .vidovdan .hush > .frame { grid-area: 1 / 1; opacity: 0; transform: scale(1.04); transition: opacity 900ms var(--ease), transform 1600ms var(--heavy); }
+  main[data-country="belgrade"].moving .vidovdan .hush > .frame.now { opacity: 1; transform: none; }
+  main[data-country="belgrade"].moving .vidovdan .deadline .t { opacity: 0.32; color: #fff; transition: opacity 300ms var(--ease); }
+  main[data-country="belgrade"].moving .vidovdan .deadline .say { opacity: 0; transform: translateY(24px); transition: opacity 600ms var(--ease) 260ms, transform 800ms var(--heavy) 260ms; }
+  main[data-country="belgrade"].moving .vidovdan .deadline.out .t { opacity: 1; color: var(--glow); animation: bg-strike 560ms cubic-bezier(.55, 0, .85, .35) both; }
+  main[data-country="belgrade"].moving .vidovdan .deadline.out .say { opacity: 1; transform: none; }
+  main[data-country="belgrade"].moving .vidovdan .deadline.out .pin { animation: bg-quake 520ms linear 380ms both; }
+  @keyframes bg-strike { 0% { transform: scale(1.5); opacity: 0.32; } 70% { transform: scale(0.97); opacity: 1; } 100% { transform: none; opacity: 1; } }
+  @keyframes bg-quake {
+    0%, 100% { transform: none; } 12% { transform: translate(0, 9px); } 28% { transform: translate(-6px, -5px); }
+    46% { transform: translate(5px, 3px); } 66% { transform: translate(-2px, -2px); }
+  }
+
+  /* Sajam's sun and Ada's flip. */
+  main[data-country="belgrade"].moving .sajam .sun { will-change: transform; }
+  main[data-country="belgrade"].moving .flip { height: 260svh; }
+  main[data-country="belgrade"].moving .flip .pin { position: sticky; top: var(--pbar, 0px); height: calc(100svh - var(--pbar, 0px)); display: grid; place-items: center; overflow: hidden; padding-block: 0; }
+  main[data-country="belgrade"].moving .flip .deck { grid-template-columns: minmax(0, 1fr); justify-items: center; width: 100%; }
+  main[data-country="belgrade"].moving .flip .leaf { grid-area: 1 / 1; width: min(100%, calc((100svh - var(--pbar, 0px) - 120px) * var(--r))); visibility: hidden; }
+  main[data-country="belgrade"].moving .flip .leaf.now { visibility: visible; }
+  main[data-country="belgrade"][data-js] .ada .lake.rise { transform: scale(0.94); transform-origin: 30% 60%; }
+  main[data-country="belgrade"][data-js] .ada .lake.rise.in { transform: none; transition: opacity 900ms var(--ease) var(--d, 0ms), transform 1400ms var(--heavy) var(--d, 0ms); }
+
+  /* The frames come in heavier here, a row at a time. */
+  main[data-country="belgrade"][data-js] .vidovdan .shot.rise { transform: translateY(80px) scale(0.96); }
+  main[data-country="belgrade"][data-js] .vidovdan .shot.rise.in { transform: none; transition: opacity 900ms var(--ease) var(--d, 0ms), transform 1300ms var(--heavy) var(--d, 0ms); }
+  main[data-country="belgrade"] .vidovdan .night::before { animation: bg-flare 6.4s linear infinite; }
+  main[data-country="belgrade"] .vidovdan .night + .night::before { animation-duration: 4.8s; animation-delay: -2s; }
+  @keyframes bg-flare {
+    0%, 100% { opacity: 0; } 8% { opacity: 0.16; } 11% { opacity: 0.07; } 19% { opacity: 0.22; } 27% { opacity: 0.1; }
+    40% { opacity: 0.04; } 52% { opacity: 0.18; } 57% { opacity: 0.08; } 71% { opacity: 0.2; } 84% { opacity: 0.05; }
+  }
+}
+
+/* ---- A phone: the opening stacks; each place's rail runs across the top of its days. */
+@media (max-width: 899px) {
+  main[data-country="belgrade"] .opening { grid-template-columns: minmax(0, 1fr); grid-template-areas: "name" "map" "key"; grid-template-rows: none; padding: 0 0 56px; row-gap: 28px; }
+  main[data-country="belgrade"] .opening h1, main[data-country="belgrade"] .key { padding-inline: 16px; }
+  main[data-country="belgrade"] .opening h1 { margin-inline: 0; }
+  main[data-country="belgrade"] .city .pn { font-size: 46px; }
+  main[data-country="belgrade"] .city .pw { font-size: 26px; }
+  main[data-country="belgrade"] .city .river { font-size: 22px; }
+  main[data-country="belgrade"] .city .dot, main[data-country="belgrade"] .city .ring { r: 13px; }
+  main[data-country="belgrade"] .run .rows { padding: 24px 12px 72px; }
+  main[data-country="belgrade"] .flip .pin { padding: 24px 12px; }
+  main[data-country="belgrade"] .sajam .sky { height: 150px; }
+  main[data-country="belgrade"] .sajam .sun { width: 96px; left: 60%; }
+  main[data-country="belgrade"] .sajam .board { padding: 24px 16px 48px; }
+  main[data-country="belgrade"] .sajam h2 { font-size: 19vw; }
+  main[data-country="belgrade"] .sajam .row.wide { margin-inline: -12px; }
+  main[data-country="belgrade"] .sajam .row.wide .meta { padding-inline: 12px; }
+  main[data-country="belgrade"] .ada .shore { grid-template-columns: minmax(0, 1fr); grid-template-areas: "name" "lake" "years"; padding: 56px 16px 32px; }
+  main[data-country="belgrade"] .ada h2 { font-size: 15vw; }
+  main[data-country="belgrade"] .ada .lake text { font-size: 13px; }
+  main[data-country="belgrade"] .ada .day { padding-top: 72px; }
+  main[data-country="belgrade"] .ada .day h3 { padding: 0 16px 20px; }
+  main[data-country="belgrade"] .rows > .row { width: auto; margin-inline: 0; }
+  main[data-country="belgrade"] .row:not(.keep) { display: block; }
+  main[data-country="belgrade"] .row:not(.keep) .shot + .shot { margin-top: 28px; }
+  main[data-country="belgrade"] .rows { gap: 28px; }
+  main[data-country="belgrade"] .row.keep { gap: 6px; }
+  main[data-country="belgrade"] .row.keep .meta { font-size: 13px; }
+  main[data-country="belgrade"] > .stub { margin-bottom: 40px; }
+
+  main[data-country="belgrade"] .vidovdan .banner { grid-template-columns: minmax(0, 1fr); grid-template-areas: "name" "what" "crowd"; padding: 80px 16px 56px; row-gap: 32px; align-items: start; }
+  main[data-country="belgrade"] .vidovdan h2 { font-size: 21.5vw; }
+  main[data-country="belgrade"] .vidovdan h2 .la { font-size: 0.24em; }
+  main[data-country="belgrade"] .vidovdan .what { font-size: 24px; }
+  main[data-country="belgrade"] .vidovdan .crowd { justify-self: start; text-align: left; }
+  main[data-country="belgrade"] .vidovdan .crowd .k { font-size: 24vw; }
+  main[data-country="belgrade"] .vidovdan .zoom .pin { padding: 24px 8px; }
+  main[data-country="belgrade"] .vidovdan .frame { width: min(100%, calc((100svh - 64px) * var(--r))); padding: 6px; }
+  main[data-country="belgrade"] .vidovdan .silence .t, main[data-country="belgrade"] .vidovdan .deadline .t { font-size: 38vw; }
+  main[data-country="belgrade"] .vidovdan .silence .pin { grid-template-columns: minmax(0, 1fr); grid-template-areas: "t" "hush" "say"; padding: 32px 16px; row-gap: 16px; }
+  main[data-country="belgrade"] .vidovdan .silence .pin .t { font-size: 27vw; }
+  main[data-country="belgrade"] .vidovdan .hush .frame { width: min(100%, calc((100svh - var(--pbar, 0px) - 22vw - 280px) * var(--r))); }
+  main[data-country="belgrade"] .vidovdan .say .cy { font-size: 34px; }
+  main[data-country="belgrade"] .vidovdan .deadline .say { font-size: 26px; }
+  main[data-country="belgrade"] .vidovdan .hour, main[data-country="belgrade"] .vidovdan .hour + .hour { grid-template-columns: minmax(0, 1fr); padding: 8px 8px 0; }
+  main[data-country="belgrade"] .vidovdan .hour:last-child { padding-bottom: 8px; }
+  main[data-country="belgrade"] .vidovdan .clock { position: static; padding: 20px 8px 12px; text-align: left; font-size: 64px; }
+  main[data-country="belgrade"] .vidovdan .rows { padding: 24px 12px 96px; }
+  main[data-country="belgrade"][data-js] .vidovdan .shot.rise { transform: translateY(24px) scale(0.98); }
+}

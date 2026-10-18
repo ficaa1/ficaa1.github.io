@@ -9,5 +9,6 @@
   { "id": "italy/puglia", "title": "Puglia", "in": "italy" },
   { "id": "italy/sicily", "title": "Sicily", "in": "italy" },
   { "id": "italy/statues", "title": "Statues", "in": "italy" },
-  { "id": "ljubljana", "title": "Ljubljana", "dumps": ["ljubljana-2025-05", "ljubljana-2025-08"] }
+  { "id": "ljubljana", "title": "Ljubljana", "dumps": ["ljubljana-2025-05", "ljubljana-2025-08"] },
+  { "id": "belgrade", "title": "Belgrade", "dumps": ["belgrade-2020", "belgrade-2022", "belgrade-2025-06", "belgrade-2025-07", "belgrade-2025"] }
 ]
