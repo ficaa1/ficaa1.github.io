@@ -531,9 +531,257 @@
             "2000.jxl": 305264
           }
         }
+      },
+      {
+        "file": "istanbul-2025-part2-3",
+        "original": "Istanbul-part2 (3 of 7).jxl",
+        "caption": "",
+        "alt": "A red tram with passengers at its windows, a mosque dome behind it.",
+        "settings": {
+          "aperture": "f/2.5",
+          "shutter": "1/125 s",
+          "iso": "ISO 160",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-12-25 15:52"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 102899,
+            "1000.jxl": 65626,
+            "2000.jpg": 313847,
+            "2000.jxl": 196920
+          }
+        }
+      },
+      {
+        "file": "istanbul-2025-part2-1",
+        "original": "Istanbul-part2 (1 of 7).jxl",
+        "caption": "",
+        "alt": "Two Piknik Köfte shopfronts at night, people standing on wet paving outside.",
+        "settings": {
+          "aperture": "f/2.5",
+          "shutter": "1/125 s",
+          "iso": "ISO 200",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-12-25 17:31"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 151243,
+            "1000.jxl": 103896,
+            "2000.jpg": 500082,
+            "2000.jxl": 334841
+          }
+        }
+      },
+      {
+        "file": "istanbul-2025-part2-5",
+        "original": "Istanbul-part2 (5 of 7).jxl",
+        "caption": "",
+        "alt": "A red tram with a Taksim–Tünel sign on a wet street at night, a man walking beside it.",
+        "settings": {
+          "aperture": "f/2.5",
+          "shutter": "1/125 s",
+          "iso": "ISO 1000",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-12-25 18:03"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 146599,
+            "1000.jxl": 103570,
+            "2000.jpg": 472441,
+            "2000.jxl": 315914
+          }
+        }
+      },
+      {
+        "file": "istanbul-2025-part2-4",
+        "original": "Istanbul-part2 (4 of 7).jxl",
+        "caption": "",
+        "alt": "A cobbled street at night under string lights, Galata Tower at the far end.",
+        "settings": {
+          "aperture": "f/2.5",
+          "shutter": "1/125 s",
+          "iso": "ISO 1000",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-12-25 18:46"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 148178,
+            "1000.jxl": 95745,
+            "2000.jpg": 492247,
+            "2000.jxl": 303908
+          }
+        }
+      },
+      {
+        "file": "istanbul-2025-part2-6",
+        "original": "Istanbul-part2 (6 of 7).jxl",
+        "caption": "",
+        "alt": "A zebra crossing seen from a high window, two people crossing and a blue car waiting.",
+        "settings": {
+          "aperture": "f/5.6",
+          "shutter": "1/640 s",
+          "iso": "ISO 800",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-12-26 10:35"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 115210,
+            "1000.jxl": 91194,
+            "2000.jpg": 500998,
+            "2000.jxl": 380540
+          }
+        }
+      },
+      {
+        "file": "istanbul-2025-part2-7",
+        "original": "Istanbul-part2 (7 of 7).jxl",
+        "caption": "",
+        "alt": "A yellow taxi on a street of cream buildings, with an ECZANE sign on the right.",
+        "settings": {
+          "aperture": "f/4",
+          "shutter": "1/4000 s",
+          "iso": "ISO 800",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-12-26 13:46"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 133770,
+            "1000.jxl": 100749,
+            "2000.jpg": 498657,
+            "2000.jxl": 360707
+          }
+        }
+      },
+      {
+        "file": "istanbul-2025-part2-2",
+        "original": "Istanbul-part2 (2 of 7).jxl",
+        "caption": "",
+        "alt": "A wet paved square under heavy cloud, people walking toward a stone obelisk.",
+        "settings": {
+          "aperture": "f/8",
+          "shutter": "1/125 s",
+          "iso": "ISO 160",
+          "focal": "40 mm",
+          "camera": "Sony ILCE-7CM2",
+          "lens": "FE 40mm F2.5 G",
+          "taken": "2025-12-27 15:13"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            667
+          ],
+          "bytes": {
+            "1000.jpg": 132894,
+            "1000.jxl": 107076,
+            "2000.jpg": 499699,
+            "2000.jxl": 385869
+          }
+        }
       }
     ],
     "rolls": [
+      {
+        "key": "Istanbul-part2",
+        "name": "Part 2",
+        "files": [
+          "Istanbul-part2 (1 of 7).jxl",
+          "Istanbul-part2 (2 of 7).jxl",
+          "Istanbul-part2 (3 of 7).jxl",
+          "Istanbul-part2 (4 of 7).jxl",
+          "Istanbul-part2 (5 of 7).jxl",
+          "Istanbul-part2 (6 of 7).jxl",
+          "Istanbul-part2 (7 of 7).jxl"
+        ],
+        "labels": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7"
+        ],
+        "taken": [
+          "2025-12-25 17:31",
+          "2025-12-27 15:13",
+          "2025-12-25 15:52",
+          "2025-12-25 18:46",
+          "2025-12-25 18:03",
+          "2025-12-26 10:35",
+          "2025-12-26 13:46"
+        ]
+      },
       {
         "key": "Istanbul-part1",
         "name": "Part 1",
@@ -614,7 +862,7 @@
         ]
       }
     ],
-    "frames": 23,
+    "frames": 30,
     "from": "2025-12-25",
     "to": "2025-12-27"
   },
