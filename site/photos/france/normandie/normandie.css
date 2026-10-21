@@ -1,0 +1,106 @@
+/* Normandie: the flag, then each place as a gallery wall in a colour from the painting hung on it, then its frames on
+   white. Scoped to main[data-country="france"][data-place="normandie"]; the type and the rows come from ../france.css. */
+main[data-place="normandie"] { --red: #d90d16; --gold: #fcd41c; }
+
+/* ---- The opening: the two leopards on red, the name in their gold. */
+main[data-place="normandie"] .flag {
+  position: relative; display: grid; align-items: center; min-height: min(88svh, 900px); padding: clamp(56px, 6vw, 96px) var(--gut);
+  background: var(--red); color: #fff; overflow: hidden;
+}
+main[data-place="normandie"] .leopards { position: absolute; right: -9vw; top: 50%; width: min(76vw, 150svh); height: auto; translate: 0 -50%; }
+main[data-place="normandie"] .flag .title { position: relative; display: grid; gap: clamp(20px, 2.4vw, 36px); max-width: 46vw; }
+main[data-place="normandie"] h1 { font-family: var(--tight); font-weight: 700; font-size: clamp(72px, 9.4vw, 170px); line-height: 0.92; letter-spacing: -0.01em; color: var(--gold); }
+main[data-place="normandie"] .flag .when { font-size: var(--s-lead); font-weight: 500; }
+main[data-place="normandie"] .stops { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+main[data-place="normandie"] .stops a { display: inline-flex; align-items: baseline; gap: 14px; padding: 4px 0; color: #fff; text-decoration: none; }
+main[data-place="normandie"] .stops .nm { font-family: var(--tight); font-weight: 700; font-size: clamp(30px, 3.2vw, 52px); line-height: 1.05; transition: color 200ms var(--ease); }
+main[data-place="normandie"] .stops .d { font-size: var(--s-body); }
+main[data-place="normandie"] .stops a:active .nm { color: var(--gold); }
+@media (hover: hover) and (pointer: fine) { main[data-place="normandie"] .stops a:hover .nm { color: var(--gold); } }
+main[data-place="normandie"] .flag .gear { font-size: var(--s-small); }
+main[data-place="normandie"] .opening .places { padding: clamp(28px, 3vw, 40px) var(--gut) 0; }
+
+/* ---- A place: the wall in its colour, the name large, the painting hung on it with its label. */
+main[data-place="normandie"] .place { scroll-margin-top: 0; }
+main[data-place="normandie"] .wall {
+  display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); grid-template-areas: "name canvas" "when canvas" ". canvas";
+  grid-template-rows: auto auto 1fr; gap: 16px clamp(32px, 4vw, 72px); padding: clamp(72px, 8vw, 140px) var(--gut);
+  background: var(--wall); color: var(--wall-ink);
+}
+main[data-place="normandie"] .wall h2 { grid-area: name; font-family: var(--tight); font-weight: 700; font-size: clamp(64px, 8.4vw, 150px); line-height: 0.95; letter-spacing: -0.01em; }
+main[data-place="normandie"] .wall h2 a { color: inherit; text-decoration: none; }
+@media (hover: hover) and (pointer: fine) { main[data-place="normandie"] .wall h2 a:hover { text-decoration: underline 0.06em currentColor; text-underline-offset: 0.12em; } }
+main[data-place="normandie"] .wall .when { grid-area: when; display: grid; gap: 4px; font-size: var(--s-lead); }
+main[data-place="normandie"] .wall .when .d { font-weight: 500; }
+main[data-place="normandie"] .wall .when .t { font-variant-numeric: tabular-nums; opacity: 0.8; }
+main[data-place="normandie"] .canvas { grid-area: canvas; justify-self: end; width: min(100%, calc(76svh * var(--r))); }
+main[data-place="normandie"] .canvas img, main[data-place="normandie"] .hang img { display: block; width: 100%; height: auto; }
+main[data-place="normandie"] .cartel { display: flex; flex-wrap: wrap; gap: 2px 8px; margin-top: 14px; font-size: var(--s-small); line-height: 1.4; }
+main[data-place="normandie"] .cartel .by { font-weight: 500; }
+main[data-place="normandie"] .cartel .src { color: inherit; opacity: 0.8; }
+main[data-place="normandie"] .cartel .src:hover { opacity: 1; }
+
+/* ---- Étretat: the canvases painted from its cliffs in a row, the year of the one in front large; the last is a frame. */
+main[data-place="normandie"] .long .wall { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "name when" "hang hang"; grid-template-rows: auto auto; align-items: end; padding-right: 0; }
+main[data-place="normandie"] .long .wall .when { padding-right: var(--gut); text-align: right; }
+main[data-place="normandie"] .hang { grid-area: hang; position: relative; margin-top: clamp(24px, 3vw, 48px); }
+main[data-place="normandie"] .hang .year { font-family: var(--tight); font-weight: 700; font-size: clamp(88px, 13vw, 230px); line-height: 0.85; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; overflow: hidden; }
+main[data-place="normandie"] .hang .year .y { display: inline-block; }
+main[data-place="normandie"] .row-of {
+  display: flex; gap: clamp(20px, 2.4vw, 40px); margin: clamp(16px, 2vw, 32px) 0 0; padding: 0 var(--gut) 8px 0; list-style: none;
+  overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain;
+}
+main[data-place="normandie"] .row-of::-webkit-scrollbar { display: none; }
+main[data-place="normandie"] .row-of:focus-visible { outline: 3px solid var(--wall-ink); outline-offset: 6px; }
+main[data-place="normandie"] .row-of li { flex: 0 0 auto; width: calc(clamp(260px, 56svh, 640px) * var(--r)); max-width: 86vw; scroll-snap-align: start; }
+main[data-place="normandie"] .row-of li.now { width: calc(clamp(260px, 56svh, 640px) * var(--r) + 28px); }
+main[data-place="normandie"] .row-of .mat { padding: 14px; background: #fff; }
+main[data-place="normandie"] .row-of .now .cartel .yr { font-weight: 500; }
+main[data-place="normandie"] .hang .go { display: none; }
+main[data-place="normandie"][data-js] .hang .go { display: flex; gap: 10px; position: absolute; right: var(--gut); top: clamp(12px, 3vw, 60px); }
+main[data-place="normandie"] .hang .go button {
+  display: grid; place-items: center; width: 56px; height: 56px; border: 0; border-radius: 50%; background: var(--wall-ink); color: var(--wall);
+  font: 500 26px/1 var(--face); cursor: pointer; transition: transform 200ms var(--ease), opacity 200ms var(--ease);
+}
+main[data-place="normandie"] .hang .go button:disabled { opacity: 0.35; cursor: default; }
+main[data-place="normandie"] .hang .go button:not(:disabled):active { transform: scale(0.92); }
+@media (hover: hover) and (pointer: fine) { main[data-place="normandie"] .hang .go button:not(:disabled):hover { transform: scale(1.08); } }
+
+/* ---- Motion. The leopards walk in from the right and stop; the name and the stops come up after them; the paintings
+   settle onto their walls; the year rolls over as the row turns. The page reads the same without any of it. */
+@media (prefers-reduced-motion: no-preference) {
+  main[data-place="normandie"] .leopards { animation: no-walk 1700ms var(--heavy) 100ms both; }
+  main[data-place="normandie"] h1 { animation: no-up 900ms var(--ease) 500ms both; }
+  main[data-place="normandie"] .flag .when { animation: no-up 800ms var(--ease) 680ms both; }
+  main[data-place="normandie"] .stops li { animation: no-up 800ms var(--ease) both; }
+  main[data-place="normandie"] .stops li:nth-child(1) { animation-delay: 800ms; } main[data-place="normandie"] .stops li:nth-child(2) { animation-delay: 880ms; }
+  main[data-place="normandie"] .stops li:nth-child(3) { animation-delay: 960ms; }
+  main[data-place="normandie"] .flag .gear { animation: no-up 800ms var(--ease) 1040ms both; }
+  main[data-place="normandie"][data-js] .rise { opacity: 0; transform: translateY(24px); }
+  main[data-place="normandie"][data-js] .rise.in { opacity: 1; transform: none; transition: opacity 700ms var(--ease) var(--d, 0ms), transform 900ms var(--ease) var(--d, 0ms); }
+  main[data-place="normandie"][data-js] :is(.canvas, .row-of li).rise { transform: translateY(40px) scale(0.96); }
+  main[data-place="normandie"][data-js] :is(.canvas, .row-of li).rise.in { transition: opacity 900ms var(--ease) var(--d, 0ms), transform 1300ms var(--heavy) var(--d, 0ms); }
+  main[data-place="normandie"] .hang .year .y.roll { animation: no-roll 520ms var(--heavy) both; }
+  @keyframes no-walk { from { transform: translateX(34vw); opacity: 0; } 30% { opacity: 1; } to { transform: none; } }
+  @keyframes no-up { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+  @keyframes no-roll { from { opacity: 0; transform: translateY(45%); } to { opacity: 1; transform: none; } }
+}
+
+/* ---- A phone: the leopards above the name; the wall stacks; the row of canvases runs under the thumb. */
+@media (max-width: 899px) {
+  main[data-place="normandie"] .flag { display: block; min-height: 0; padding: 0 0 48px; }
+  main[data-place="normandie"] .leopards { position: static; width: 132vw; max-width: none; margin: 0 -16vw; translate: none; }
+  main[data-place="normandie"] .flag .title { max-width: none; padding: 0 var(--gut); margin-top: -8vw; }
+  main[data-place="normandie"] h1 { font-size: 18.5vw; }
+  main[data-place="normandie"] .wall { display: block; padding: 64px var(--gut) 48px; }
+  main[data-place="normandie"] .wall .when { margin-top: 12px; }
+  main[data-place="normandie"] .canvas { width: auto; margin-top: 32px; }
+  main[data-place="normandie"] .long .wall { padding-right: 0; }
+  main[data-place="normandie"] .long .wall .when { text-align: left; }
+  main[data-place="normandie"] .hang .year { margin-top: 24px; }
+  main[data-place="normandie"][data-js] .hang .go { top: 30px; }
+  main[data-place="normandie"] .hang .go button { width: 48px; height: 48px; }
+  main[data-place="normandie"] .row-of li { width: calc(52svh * var(--r)); max-width: 84vw; }
+  main[data-place="normandie"] .row-of li.now { width: calc(52svh * var(--r) + 20px); }
+  main[data-place="normandie"] .row-of .mat { padding: 10px; }
+}

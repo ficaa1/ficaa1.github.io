@@ -595,6 +595,13 @@
     document.documentElement.style.removeProperty('--pbar');
     const main = document.querySelector('main'), tabs = main && main.querySelector('.tabs');
     if (!tabs) return;
+    // The bar takes its type and colours from the page, so it waits for the page's own stylesheets (linked in <main>).
+    const loading = [...main.querySelectorAll('link[rel="stylesheet"]')].filter(l => !l.sheet);
+    if (loading.length) {
+      Promise.all(loading.map(l => new Promise(r => { l.addEventListener('load', r, { once: true }); l.addEventListener('error', r, { once: true }); })))
+        .then(() => { if (main.isConnected) photoBar(); });
+      return;
+    }
     const list = items => items.filter(li => !li.classList.contains('sealed') && li.querySelector('a')).map(li =>
       `<li><a href="${esc(li.querySelector('a').getAttribute('href'))}"${li.classList.contains('here') ? ' aria-current="page"' : ''}>${esc((li.querySelector('.place') || li).textContent.trim())}</a></li>`).join('');
     const places = main.querySelector('.places');

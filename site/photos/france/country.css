@@ -1,0 +1,156 @@
+/* France, the country page: the lower Seine pinned under the opening with the frames from its banks floating over it,
+   the two doors, and the board of days. Scoped to main[data-country="france"]:not([data-place]); the type, the colours
+   and the rows come from france.css. The map is drawn in map units; --u (map units per screen pixel, set by country.js
+   as it zooms) keeps its lines and labels the same size on screen at every zoom. */
+main[data-country="france"]:not([data-place]) { --sea: var(--bleu); --gold: #fcd41c; --red: #d90d16; --yellow: #ffbe00; }
+
+/* ---- The river: the map pinned, the frames floating over it. */
+main[data-country="france"]:not([data-place]) .river { position: relative; background: var(--sea); }
+main[data-country="france"]:not([data-place]) .river .pin { position: sticky; top: var(--pbar, 0px); height: calc(100svh - var(--pbar, 0px)); overflow: hidden; transition: top 240ms cubic-bezier(.2,.7,.2,1); }
+main[data-country="france"]:not([data-place]) .chart { display: block; width: 100%; height: 100%; --u: 0.19; }
+main[data-country="france"]:not([data-place]) .chart .sea { fill: var(--sea); }
+main[data-country="france"]:not([data-place]) .chart .land { fill: #fff; }
+main[data-country="france"]:not([data-place]) .chart :is(.up, .bed, .ran) { fill: none; stroke-linejoin: round; stroke-linecap: round; }
+main[data-country="france"]:not([data-place]) .chart .up { stroke: var(--sea); stroke-width: calc(var(--u) * 2px); opacity: 0.45; }
+main[data-country="france"]:not([data-place]) .chart .bed { stroke: var(--sea); stroke-width: calc(var(--u) * 3px); }
+main[data-country="france"]:not([data-place]) .chart .water { fill: var(--sea); }
+/* In Paris the métro lines, faint, in their own colours. */
+main[data-country="france"]:not([data-place]) .chart .metro path { fill: none; stroke: var(--l); stroke-width: calc(var(--u) * var(--k) * 5px); stroke-linecap: round; stroke-linejoin: round; opacity: 0.35; }
+main[data-country="france"]:not([data-place]) .chart:not(.close) .metro { opacity: 0; }
+main[data-country="france"]:not([data-place]) .chart .metro { transition: opacity 400ms var(--ease); }
+main[data-country="france"]:not([data-place]) .chart .ran { stroke: var(--rouge); stroke-width: calc(var(--u) * 4px); display: none; }
+main[data-country="france"]:not([data-place])[data-js] .chart .ran { display: inline; }
+main[data-country="france"]:not([data-place]) .chart text { font-family: var(--face); }
+main[data-country="france"]:not([data-place]) .chart .manche { fill: #fff; font-size: calc(var(--u) * 17px); font-weight: 500; opacity: 0.8; transition: opacity 300ms var(--ease); }
+main[data-country="france"]:not([data-place]) .chart .town { fill: var(--enamel); font-size: calc(var(--u) * 14px); opacity: 0.7; transition: opacity 300ms var(--ease); }
+main[data-country="france"]:not([data-place]) .chart .town.big { font-size: calc(var(--u) * 24px); font-weight: 700; opacity: 1; }
+main[data-country="france"]:not([data-place]) .chart .town:not(.big) { translate: calc(var(--u) * 8px) calc(var(--u) * 5px); }
+main[data-country="france"]:not([data-place]) .chart .town.n { translate: calc(var(--u) * 2px) calc(var(--u) * -10px); }
+main[data-country="france"]:not([data-place]) .chart .town.big { translate: calc(var(--u) * 12px) calc(var(--u) * -10px); }
+main[data-country="france"]:not([data-place]) .chart.close :is(.town, .manche) { opacity: 0; }
+main[data-country="france"]:not([data-place]) .chart .pt circle { r: calc(var(--u) * 6px); fill: #fff; stroke: var(--rouge); stroke-width: calc(var(--u) * 3px); transition: fill 300ms var(--ease); }
+main[data-country="france"]:not([data-place]) .chart .pt.done circle { fill: var(--rouge); }
+main[data-country="france"]:not([data-place]) .chart .pt.on circle { r: calc(var(--u) * 9px); }
+main[data-country="france"]:not([data-place]) .chart .pt text { font-size: calc(var(--u) * 16px); font-weight: 500; fill: var(--ink); translate: calc(var(--u) * 13px) calc(var(--u) * 5px); transition: opacity 300ms var(--ease); }
+main[data-country="france"]:not([data-place]) .chart .pt.on text { font-weight: 700; }
+/* From far away the frames in Paris are one point: their names wait until the map comes close. */
+main[data-country="france"]:not([data-place]) .chart:not(.close) .pt.city text { opacity: 0; }
+main[data-country="france"]:not([data-place]) .chart .barge { display: none; }
+main[data-country="france"]:not([data-place])[data-js] .chart .barge { display: inline; fill: var(--enamel); stroke: #fff; stroke-width: 1.4px; stroke-linejoin: round; }
+
+main[data-country="france"]:not([data-place]) .river .flow { position: relative; margin-top: calc(-100svh + var(--pbar, 0px)); padding-bottom: 50svh; }
+main[data-country="france"]:not([data-place]) .opening { min-height: calc(100svh - var(--pbar, 0px)); display: flex; }
+/* The title on a band of the sea's own blue, the map beside it. */
+main[data-country="france"]:not([data-place]) .opening .panel {
+  width: 40vw; display: grid; align-content: center; gap: clamp(16px, 2vw, 28px); padding: clamp(40px, 5vw, 80px) var(--gut);
+  background: var(--sea); color: #fff;
+}
+main[data-country="france"]:not([data-place]) h1 { font-family: var(--tight); font-weight: 700; font-size: clamp(96px, 13vw, 240px); line-height: 0.86; letter-spacing: -0.015em; }
+main[data-country="france"]:not([data-place]) .opening .when { font-size: var(--s-lead); font-weight: 500; }
+main[data-country="france"]:not([data-place]) .opening .places a { font-size: clamp(26px, 2.6vw, 40px); }
+main[data-country="france"]:not([data-place]) .opening .places .place { font-family: var(--tight); font-weight: 700; }
+main[data-country="france"]:not([data-place]) .opening .places a:active .place { color: var(--gold); }
+@media (hover: hover) and (pointer: fine) { main[data-country="france"]:not([data-place]) .opening .places a:hover .place { color: var(--gold); } }
+
+main[data-country="france"]:not([data-place]) .float { position: relative; width: min(40vw, calc(64svh * var(--r, 1.5))); margin: 0 0 0 7vw; padding: 0 0 62svh; }
+main[data-country="france"]:not([data-place]) .float.tall { width: min(26vw, calc(64svh * 0.667)); }
+main[data-country="france"]:not([data-place]) .float.r { margin: 0 7vw 0 auto; }
+main[data-country="france"]:not([data-place]) .float .mat { padding: clamp(8px, 0.8vw, 14px); background: #fff; }
+main[data-country="france"]:not([data-place]) .float figcaption { background: #fff; padding: 0 clamp(8px, 0.8vw, 14px) clamp(10px, 1vw, 16px); }
+main[data-country="france"]:not([data-place]) .float figcaption a { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; text-decoration: none; }
+main[data-country="france"]:not([data-place]) .float .nm { font-family: var(--tight); font-weight: 700; font-size: clamp(24px, 2vw, 34px); line-height: 1.1; }
+main[data-country="france"]:not([data-place]) .float .d { font-size: var(--s-small); }
+@media (hover: hover) and (pointer: fine) { main[data-country="france"]:not([data-place]) .float figcaption a:hover .nm { text-decoration: underline 0.08em; text-underline-offset: 0.14em; } }
+main[data-country="france"]:not([data-place]) .float figcaption a:active { opacity: 0.7; }
+
+/* ---- The doors: Paris in the yellow of line 1 under its enamel plate, Normandie in the red of its flag. */
+main[data-country="france"]:not([data-place]) .doors { display: grid; grid-template-columns: 1fr 1fr; }
+main[data-country="france"]:not([data-place]) .door { position: relative; display: grid; align-content: start; gap: clamp(16px, 1.8vw, 28px); padding: clamp(48px, 6vw, 104px) var(--gut) clamp(56px, 6vw, 110px); overflow: hidden; }
+main[data-country="france"]:not([data-place]) .door.paris { background: var(--yellow); color: #111; }
+main[data-country="france"]:not([data-place]) .door.normandie { background: var(--red); color: #fff; }
+main[data-country="france"]:not([data-place]) .door h2 { font-size: clamp(56px, 7vw, 128px); line-height: 1; }
+main[data-country="france"]:not([data-place]) .door h2 a { text-decoration: none; display: inline-block; transition: transform 300ms var(--ease); }
+main[data-country="france"]:not([data-place]) .door h2 a:active { transform: scale(0.97); }
+@media (hover: hover) and (pointer: fine) { main[data-country="france"]:not([data-place]) .door h2 a:hover { transform: translateX(10px); } }
+main[data-country="france"]:not([data-place]) .door.paris .enamel {
+  display: inline-block; padding: 0.04em 0.3em 0.1em; border: max(3px, 0.04em) solid #fff; border-radius: 0.14em; outline: max(5px, 0.07em) solid var(--enamel);
+  background: var(--enamel); color: #fff; font-weight: 500; letter-spacing: 0.01em;
+}
+main[data-country="france"]:not([data-place]) .door.normandie h2 { font-family: var(--tight); font-weight: 700; color: var(--gold); letter-spacing: -0.01em; }
+main[data-country="france"]:not([data-place]) .door .lines { display: inline-flex; flex-wrap: wrap; gap: 8px; justify-self: start; padding: 8px; border-radius: 30px; background: var(--enamel); }
+main[data-country="france"]:not([data-place]) .ln { display: inline-grid; place-items: center; width: 1.6em; height: 1.6em; border-radius: 50%; background: var(--l); color: var(--li); font: 700 20px/1 var(--face); font-variant-numeric: tabular-nums; }
+main[data-country="france"]:not([data-place]) .door .leopards { width: clamp(160px, 18vw, 280px); height: auto; margin-left: -1.6%; }
+main[data-country="france"]:not([data-place]) .door .when { font-size: var(--s-lead); font-weight: 500; }
+main[data-country="france"]:not([data-place]) .door .stops { display: flex; flex-wrap: wrap; gap: 6px 22px; margin: 0; padding: 0; list-style: none; font-size: var(--s-body); }
+main[data-country="france"]:not([data-place]) .door .stops a { text-decoration: underline 2px; text-underline-offset: 5px; text-decoration-color: color-mix(in srgb, currentColor 40%, transparent); transition: text-decoration-color 200ms var(--ease); }
+@media (hover: hover) and (pointer: fine) { main[data-country="france"]:not([data-place]) .door .stops a:hover { text-decoration-color: currentColor; } }
+main[data-country="france"]:not([data-place]) .door .pic { margin-top: clamp(8px, 1.6vw, 24px); padding: clamp(8px, 0.8vw, 14px); background: #fff; justify-self: start; width: min(100%, calc(62svh * var(--r, 1.5))); }
+
+/* ---- The board: every day in the blue of the departures boards, the time of its first frame in yellow. */
+main[data-country="france"]:not([data-place]) .board { background: #0d1d4f; color: #fff; padding: clamp(56px, 6vw, 110px) var(--gut) clamp(64px, 7vw, 120px); }
+main[data-country="france"]:not([data-place]) .board .head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 20px 40px; margin-bottom: clamp(24px, 3vw, 44px); }
+main[data-country="france"]:not([data-place]) .board h2 { font-family: var(--tight); font-weight: 700; font-size: var(--s-head); line-height: 1; }
+main[data-country="france"]:not([data-place]) .board .years { display: flex; flex-wrap: wrap; gap: 8px; }
+main[data-country="france"]:not([data-place]) .board .years[hidden] { display: none; }
+main[data-country="france"]:not([data-place]) .board .years button {
+  min-width: 72px; min-height: 44px; padding: 8px 16px; border: 2px solid #fff; border-radius: 22px; background: transparent; color: #fff;
+  font: 500 18px/1 var(--face); font-variant-numeric: tabular-nums; cursor: pointer; transition: background-color 200ms var(--ease), color 200ms var(--ease), transform 200ms var(--ease);
+}
+main[data-country="france"]:not([data-place]) .board .years button[aria-pressed="true"] { background: var(--yellow); border-color: var(--yellow); color: #111; }
+main[data-country="france"]:not([data-place]) .board .years button:active { transform: scale(0.95); }
+@media (hover: hover) and (pointer: fine) { main[data-country="france"]:not([data-place]) .board .years button:not([aria-pressed="true"]):hover { background: rgba(255, 255, 255, 0.14); } }
+main[data-country="france"]:not([data-place]) .board table { width: 100%; border-collapse: collapse; font-size: var(--s-body); }
+main[data-country="france"]:not([data-place]) .board th { padding: 0 16px 12px; text-align: left; font-weight: 500; font-size: var(--s-small); color: #c8d0ec; }
+main[data-country="france"]:not([data-place]) .board tbody tr:nth-child(odd of :not([hidden])) { background: #16296b; }
+main[data-country="france"]:not([data-place]) .board td { padding: 12px 16px; vertical-align: middle; }
+main[data-country="france"]:not([data-place]) .board .day { white-space: nowrap; font-variant-numeric: tabular-nums; }
+main[data-country="france"]:not([data-place]) .board .day .wd { display: inline-block; width: 2.6em; color: #c8d0ec; }
+main[data-country="france"]:not([data-place]) .board .t { font-family: var(--tight); font-weight: 700; font-size: clamp(22px, 1.8vw, 28px); color: var(--yellow); font-variant-numeric: tabular-nums; }
+main[data-country="france"]:not([data-place]) .board .pl { width: 100%; }
+main[data-country="france"]:not([data-place]) .board .pl a { font-weight: 500; font-size: clamp(19px, 1.5vw, 24px); text-decoration: none; }
+@media (hover: hover) and (pointer: fine) { main[data-country="france"]:not([data-place]) .board .pl a:hover { text-decoration: underline 2px; text-underline-offset: 5px; } }
+main[data-country="france"]:not([data-place]) .board .pl a:active { opacity: 0.7; }
+main[data-country="france"]:not([data-place]) .board .by { text-align: right; white-space: nowrap; }
+main[data-country="france"]:not([data-place]) .board .ln { font-size: 16px; }
+main[data-country="france"]:not([data-place]) .board .nd { display: inline-block; padding: 5px 12px; border-radius: 4px; background: var(--red); color: #fff; font-size: 15px; font-weight: 500; }
+main[data-country="france"]:not([data-place]) > .stub { background: #fff; }
+
+/* ---- Motion. The frames rise as they come up the river; the doors' names come in from their side; the board's rows
+   drop in like the flaps of a board. The page reads the same without any of it. */
+@media (prefers-reduced-motion: no-preference) {
+  main[data-country="france"]:not([data-place]) h1 { animation: fr-up 1000ms var(--heavy) 150ms both; }
+  main[data-country="france"]:not([data-place]) .opening .when { animation: fr-up 900ms var(--ease) 380ms both; }
+  main[data-country="france"]:not([data-place]) .opening .places li { animation: fr-up 900ms var(--ease) 520ms both; }
+  main[data-country="france"]:not([data-place]) .opening .places li + li { animation-delay: 600ms; }
+  main[data-country="france"]:not([data-place])[data-js] .rise { opacity: 0; transform: translateY(28px); }
+  main[data-country="france"]:not([data-place])[data-js] .rise.in { opacity: 1; transform: none; transition: opacity 700ms var(--ease) var(--d, 0ms), transform 1000ms var(--heavy) var(--d, 0ms); }
+  main[data-country="france"]:not([data-place])[data-js] .float.rise { transform: translateY(80px) rotate(var(--tilt, 0deg)); }
+  main[data-country="france"]:not([data-place])[data-js] .float.rise.in { transform: none; transition: opacity 900ms var(--ease), transform 1400ms var(--heavy); }
+  main[data-country="france"]:not([data-place])[data-js] .float.l { --tilt: -2.5deg; }
+  main[data-country="france"]:not([data-place])[data-js] .float.r { --tilt: 2.5deg; }
+  main[data-country="france"]:not([data-place])[data-js] .door h2.rise { transform: translateX(-40px); }
+  main[data-country="france"]:not([data-place])[data-js] .door h2.rise.in { transform: none; }
+  main[data-country="france"]:not([data-place])[data-js] .board tr.rise { transform: perspective(600px) rotateX(-70deg); transform-origin: 50% 0; }
+  main[data-country="france"]:not([data-place])[data-js] .board tr.rise.in { transform: none; transition: opacity 400ms var(--ease) var(--d, 0ms), transform 600ms var(--heavy) var(--d, 0ms); }
+  @keyframes fr-up { from { opacity: 0; transform: translateY(32px); } to { opacity: 1; transform: none; } }
+}
+
+/* ---- A phone: the map fills the screen behind; the frames take its width; the doors stack; the board is a list. */
+@media (max-width: 899px) {
+  main[data-country="france"]:not([data-place]) .opening { display: block; }
+  main[data-country="france"]:not([data-place]) .opening .panel { width: auto; padding: 28px 16px 32px; }
+  main[data-country="france"]:not([data-place]) h1 { font-size: 27vw; }
+  main[data-country="france"]:not([data-place]) .float, main[data-country="france"]:not([data-place]) .float.r { width: auto; margin: 0 16px; padding-bottom: 70svh; }
+  main[data-country="france"]:not([data-place]) .float.tall { width: 74vw; }
+  main[data-country="france"]:not([data-place]) .float.tall.r { margin-left: auto; }
+  main[data-country="france"]:not([data-place]) .doors { grid-template-columns: 1fr; }
+  main[data-country="france"]:not([data-place]) .door { padding: 56px 16px 64px; }
+  main[data-country="france"]:not([data-place]) .door .pic { width: 100%; }
+  main[data-country="france"]:not([data-place]) .board { padding: 56px 12px 64px; }
+  main[data-country="france"]:not([data-place]) .board thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  main[data-country="france"]:not([data-place]) .board tr { display: grid; grid-template-columns: 1fr auto; grid-template-areas: "day t" "pl by"; gap: 4px 12px; padding: 12px; }
+  main[data-country="france"]:not([data-place]) .board tr[hidden] { display: none; }
+  main[data-country="france"]:not([data-place]) .board td { padding: 0; }
+  main[data-country="france"]:not([data-place]) .board .day { grid-area: day; } main[data-country="france"]:not([data-place]) .board .t { grid-area: t; text-align: right; }
+  main[data-country="france"]:not([data-place]) .board .pl { grid-area: pl; width: auto; } main[data-country="france"]:not([data-place]) .board .by { grid-area: by; }
+}

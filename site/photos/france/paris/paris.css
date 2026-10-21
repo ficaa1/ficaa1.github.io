@@ -1,0 +1,196 @@
+/* Paris: one ride on métro line 1, getting off where the frames were taken. Scoped to main[data-country="france"][data-place="paris"].
+   The signage: the blue enamel plates with their white border, the white bevelled tiles of the stations, the plan of the
+   line as it hangs in the car, and each line in its own colour (set per section as --l, its ink as --li). */
+main[data-place="paris"] { --tile: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='32'%3E%3Crect width='64' height='32' fill='%23cfcbc1'/%3E%3Crect x='1.5' y='1.5' width='61' height='29' rx='3' fill='%23e4e1d9'/%3E%3Cpath d='M1.5 4.5a3 3 0 0 1 3-3h56l-4 4h-51v20l-4 4z' fill='%23fff'/%3E%3Crect x='6' y='6' width='52' height='20' rx='2' fill='%23f7f6f2'/%3E%3C/svg%3E"); }
+
+/* ---- An enamel plate: the name in white on the blue, inside a white border, round at the corners. A second plate
+   under it carries the place by the stop. */
+main[data-place="paris"] .plate { display: flex; flex-direction: column; align-items: flex-start; gap: 0.14em; font-family: var(--face); font-weight: 500; line-height: 1; }
+main[data-place="paris"] .enamel { display: inline-block; max-width: 100%; padding: 0.085em; border-radius: 0.2em; background: var(--enamel); color: var(--enamel-ink); }
+main[data-place="paris"] .enamel .nm { display: block; padding: 0.13em 0.42em 0.16em; border: max(3px, 0.04em) solid currentColor; border-radius: 0.13em; letter-spacing: 0.005em; }
+main[data-place="paris"] .enamel.sub { font-size: 0.42em; }
+main[data-place="paris"] .ln {
+  display: inline-grid; place-items: center; width: 1.6em; height: 1.6em; border-radius: 50%; background: var(--l); color: var(--li);
+  font-family: var(--face); font-weight: 700; font-size: 1em; line-height: 1; letter-spacing: -0.02em; font-variant-numeric: tabular-nums;
+}
+main[data-place="paris"] .lines { display: flex; flex-wrap: wrap; gap: 0.35em; font-size: clamp(20px, 1.8vw, 30px); }
+
+/* ---- The opening: line 1's yellow, the name on a plate that runs off the edge, then the plan of the line on white. */
+main[data-place="paris"] .opening .field { display: block; background: #FFBE00; color: #111; padding: clamp(40px, 5vw, 80px) 0 0 var(--gut); overflow: hidden; }
+/* Line 1's own yellow would vanish on its yellow field, so the roundels sit on a strip of the enamel blue. */
+main[data-place="paris"] .opening .lines { display: inline-flex; margin-bottom: clamp(24px, 3vw, 44px); padding: 0.3em; border-radius: 1.2em; background: var(--enamel); }
+main[data-place="paris"] .opening h1 { font-size: clamp(112px, 24vw, 400px); align-items: stretch; }
+main[data-place="paris"] .opening h1 .enamel { display: block; border-radius: 0.2em 0 0 0.2em; padding-right: 0; }
+main[data-place="paris"] .opening h1 .enamel .nm { border-right: 0; border-radius: 0.13em 0 0 0.13em; padding-left: 0.3em; }
+main[data-place="paris"] .opening .facts {
+  display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 32px;
+  margin-top: clamp(24px, 3vw, 44px); padding: 0 var(--gut) clamp(36px, 4vw, 64px) 0; font-size: var(--s-lead);
+}
+main[data-place="paris"] .opening .when { font-weight: 500; font-size: clamp(26px, 2.6vw, 44px); line-height: 1.1; }
+main[data-place="paris"] .opening .field > .plan { margin-left: calc(-1 * var(--gut)); }
+main[data-place="paris"] .opening .places { padding: clamp(28px, 3vw, 40px) var(--gut) 0; }
+
+/* ---- The plan of a line, as it hangs in the car: the bar in the line's colour, a stop on it for each station, the names
+   slanting up. Stops passed are grey; this one is large and blinks; those with frames are filled. */
+main[data-place="paris"] .plan {
+  --step: clamp(36px, 100% / var(--n), 120px);
+  position: relative; display: grid; grid-template-columns: repeat(var(--n), minmax(36px, 1fr)); margin: 0; padding: 0 clamp(120px, 10vw, 170px) 0 var(--gut);
+  list-style: none; background: #fff; color: #111; overflow-x: auto; scrollbar-width: none;
+}
+main[data-place="paris"] .plan::-webkit-scrollbar { display: none; }
+main[data-place="paris"] .plan li { position: relative; height: clamp(190px, 15vw, 250px); }
+main[data-place="paris"] .plan li::before { content: ""; position: absolute; left: 0; right: 0; bottom: 34px; height: 12px; background: var(--l); }
+main[data-place="paris"] .plan li:first-child::before { left: 50%; }
+main[data-place="paris"] .plan li:last-child::before { right: 50%; }
+main[data-place="paris"] .plan li::after {
+  content: ""; position: absolute; left: 50%; bottom: 31px; width: 18px; height: 18px; margin-left: -9px; border-radius: 50%;
+  background: #fff; border: 4px solid var(--l); box-sizing: border-box;
+}
+main[data-place="paris"] .plan li.got::after { background: #111; border-color: #111; }
+main[data-place="paris"] .plan li.here::after { width: 30px; height: 30px; margin-left: -15px; bottom: 25px; background: #111; border: 6px solid var(--l); }
+main[data-place="paris"] .plan .nm {
+  position: absolute; left: 50%; bottom: 62px; transform-origin: 0 100%; transform: rotate(-52deg); white-space: nowrap;
+  font-size: 15px; line-height: 1; padding-left: 4px;
+}
+main[data-place="paris"] .plan .gone .nm { color: #8a8a8a; }
+main[data-place="paris"] .plan .here .nm { font-weight: 700; font-size: 19px; }
+main[data-place="paris"] .plan.car { padding-block: 8px 0; }
+main[data-place="paris"] .plan.car li { height: clamp(200px, 15vw, 260px); }
+/* A stop of the ride: the link takes its name and the foot of its column, so the dot takes a thumb too. It stops short
+   of the slanted names, which run over the next columns. */
+main[data-place="paris"] .plan li { pointer-events: none; }
+main[data-place="paris"] .plan a { position: absolute; inset: auto 0 0; height: 60px; z-index: 1; pointer-events: auto; color: inherit; text-decoration: none; font-weight: 700; transition: color 200ms var(--ease); }
+main[data-place="paris"] .stop { scroll-margin-top: 60px; }
+main[data-place="paris"] .plan a:active { color: var(--enamel); }
+@media (hover: hover) and (pointer: fine) { main[data-place="paris"] .plan a:hover { color: var(--enamel); text-decoration: underline 3px #FFBE00; text-underline-offset: 4px; } }
+
+/* ---- The ride: the map held on the screen while the stops go by beside it, the train on line 1. */
+main[data-place="paris"] .ride { background: #fff; padding: clamp(40px, 4vw, 72px) var(--gut) clamp(56px, 6vw, 100px); }
+main[data-place="paris"] .ride .pin { display: grid; grid-template-columns: minmax(0, 1fr) clamp(300px, 28vw, 440px); gap: clamp(24px, 3vw, 56px); align-items: start; }
+main[data-place="paris"] .ride .map { position: sticky; top: calc(10svh + var(--pbar, 0px)); }
+main[data-place="paris"] .net { display: block; width: 100%; height: auto; overflow: visible; }
+main[data-place="paris"] .net .seine { fill: #b8dcf2; }
+main[data-place="paris"] .net .track { fill: none; stroke: var(--l); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; opacity: 0.22; transition: opacity 400ms var(--ease), stroke-width 400ms var(--ease); }
+main[data-place="paris"] .net .track.rode { opacity: 0.55; }
+main[data-place="paris"] .net .track.lit { opacity: 1; stroke-width: 5; }
+main[data-place="paris"] .net .track.one { opacity: 1; stroke-width: 7; }
+main[data-place="paris"] .net .stn circle { fill: #fff; stroke: #111; stroke-width: 3.5; transition: transform 300ms var(--ease); transform-box: fill-box; transform-origin: center; }
+main[data-place="paris"] .net .stn text { font-family: var(--face); font-size: 15px; font-weight: 500; fill: #111; paint-order: stroke; stroke: #fff; stroke-width: 5px; stroke-linejoin: round; }
+main[data-place="paris"] .net .stn .arrow { fill: none; stroke: #111; stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; }
+main[data-place="paris"] .net .stn.on circle { fill: #111; transform: scale(1.5); }
+main[data-place="paris"] .net .stn.on text { font-weight: 700; font-size: 19px; }
+main[data-place="paris"] .net .stn:focus-visible { outline: none; }
+main[data-place="paris"] .net .stn:focus-visible circle { stroke: var(--enamel); stroke-width: 6; }
+@media (hover: hover) and (pointer: fine) { main[data-place="paris"] .net .stn:hover circle { transform: scale(1.5); } }
+main[data-place="paris"] .net .train rect { fill: #FFBE00; stroke: #111; stroke-width: 3.5; }
+main[data-place="paris"] .net .train text { font-family: var(--face); font-weight: 700; font-size: 17px; text-anchor: middle; fill: #111; }
+
+main[data-place="paris"] .ride-key { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+main[data-place="paris"] .ride-key li {
+  display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 2px 14px; align-items: center; padding: 10px 12px; border-radius: 10px;
+  font-size: var(--s-body); transition: background-color 300ms var(--ease), color 300ms var(--ease);
+}
+main[data-place="paris"] .ride-key .ln { grid-row: span 2; align-self: start; font-size: 18px; }
+main[data-place="paris"] .ride-key a { color: inherit; text-decoration: none; }
+main[data-place="paris"] .ride-key .nm { font-weight: 500; font-size: var(--s-lead); line-height: 1.15; }
+main[data-place="paris"] .ride-key .sub { color: var(--soft); }
+main[data-place="paris"] .ride-key .ds { grid-column: 2; font-size: var(--s-small); color: var(--soft); font-variant-numeric: tabular-nums; }
+main[data-place="paris"] .ride-key .pass .nm { color: var(--soft); font-weight: 400; }
+main[data-place="paris"] .ride-key li.on { background: var(--enamel); color: #fff; }
+main[data-place="paris"] .ride-key li.on :is(.sub, .ds), main[data-place="paris"] .ride-key li.on.pass .nm { color: #c9d1ee; }
+main[data-place="paris"] .ride-key a:active .nm { color: var(--enamel); }
+@media (hover: hover) and (pointer: fine) { main[data-place="paris"] .ride-key li:not(.on) a:hover .nm { text-decoration: underline 3px #FFBE00; text-underline-offset: 5px; } }
+main[data-place="paris"][data-js] .ride-key li { margin-bottom: 9svh; }
+
+/* ---- A stop: the tiled wall with the plate, then the plan of its line, then its days. */
+main[data-place="paris"] .stop .wall {
+  display: grid; justify-items: center; gap: clamp(20px, 2.4vw, 36px); padding: clamp(80px, 10vw, 168px) var(--gut) clamp(64px, 8vw, 128px);
+  background: #e4e1d9 var(--tile) center / 64px 32px; color: #111; overflow: hidden;
+}
+main[data-place="paris"] .stop .wall .plate { font-size: clamp(44px, 8.4vw, 148px); align-items: center; max-width: 100%; }
+main[data-place="paris"] .stop .wall .enamel .nm { white-space: nowrap; }
+main[data-place="paris"] .stop .wall .lines { justify-content: center; }
+main[data-place="paris"] .stop .dates { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; padding: 0; background: none; }
+main[data-place="paris"] .stop .dates a {
+  display: inline-block; padding: 10px 18px 11px; border-radius: 999px; background: #111; color: #fff; text-decoration: none;
+  font-family: var(--tight); font-weight: 500; font-size: var(--s-lead); line-height: 1; transition: background-color 200ms var(--ease), color 200ms var(--ease), transform 200ms var(--ease);
+}
+main[data-place="paris"] .stop .dates a:active { transform: scale(0.96); }
+@media (hover: hover) and (pointer: fine) { main[data-place="paris"] .stop .dates a:hover { background: var(--l); color: var(--li); } }
+main[data-place="paris"] .stop > .plan { padding-top: 12px; }
+
+main[data-place="paris"] .day { background: #fff; color: var(--ink); }
+main[data-place="paris"] .day.dark { background: #000; color: #fff; }
+main[data-place="paris"] .day .date { padding: clamp(56px, 6vw, 104px) var(--gut) 0; font-family: var(--tight); font-weight: 700; font-size: var(--s-head); line-height: 1.02; }
+main[data-place="paris"] .day .date a { color: inherit; text-decoration: none; transition: color 200ms var(--ease); }
+main[data-place="paris"] .day .date .wd { font-weight: 500; }
+main[data-place="paris"] .day .date .y { color: var(--soft); font-weight: 500; }
+main[data-place="paris"] .day.dark .date .y { color: #a9a9a9; }
+main[data-place="paris"] .day .date a:active { color: var(--enamel); }
+@media (hover: hover) and (pointer: fine) { main[data-place="paris"] .day .date a:hover { text-decoration: underline 0.08em var(--l); text-underline-offset: 0.14em; } }
+main[data-place="paris"] .day .span { padding: 8px var(--gut) 0; font-size: var(--s-lead); font-variant-numeric: tabular-nums; color: var(--soft); }
+main[data-place="paris"] .day.dark .span { color: #a9a9a9; }
+main[data-place="paris"] .day .run:first-of-type .rows { padding-top: clamp(28px, 3vw, 48px); }
+
+/* ---- Correspondance: a field in the colour of the other line, its number in a disc running off the edge. */
+main[data-place="paris"] .corr {
+  position: relative; display: grid; align-content: end; min-height: min(78svh, 760px); padding: clamp(48px, 6vw, 96px) var(--gut);
+  background: var(--l); color: var(--li); overflow: hidden;
+}
+main[data-place="paris"] .corr .big {
+  position: absolute; right: -7vw; top: 50%; translate: 0 -50%; display: grid; place-items: center; width: clamp(280px, 52vw, 860px); aspect-ratio: 1;
+  border-radius: 50%; background: var(--li); color: var(--l); font-family: var(--face); font-weight: 700; font-size: clamp(170px, 34vw, 560px); line-height: 1; letter-spacing: -0.04em;
+}
+main[data-place="paris"] .corr .say { position: relative; display: grid; justify-items: start; gap: 16px; font-size: var(--s-lead); }
+main[data-place="paris"] .corr .w { font-weight: 500; font-size: clamp(44px, 6.4vw, 112px); line-height: 1; letter-spacing: -0.01em; }
+main[data-place="paris"] .corr .say .ln { font-size: 30px; background: var(--li); color: var(--l); }
+main[data-place="paris"] .corr .dir { font-weight: 500; font-size: clamp(22px, 2.4vw, 40px); max-width: 15em; line-height: 1.15; }
+
+main[data-place="paris"] .terminus { display: grid; place-items: center; min-height: 64svh; padding: 64px var(--gut); background: #FFBE00; color: #111; }
+main[data-place="paris"] .terminus p { font-weight: 500; font-size: clamp(72px, 15vw, 260px); line-height: 1; letter-spacing: -0.02em; }
+
+/* ---- Motion. The plates come in like a station past the window and stop; the stop being ridden blinks on the plans;
+   the parts of each section rise once as they arrive. The page reads the same without any of it. */
+@media (prefers-reduced-motion: no-preference) {
+  main[data-place="paris"] .opening h1 .enamel { animation: pa-arrive 1500ms var(--heavy) 120ms both; }
+  main[data-place="paris"] .opening .lines .ln { animation: pa-pop 520ms cubic-bezier(.34, 1.56, .64, 1) both; animation-delay: calc(900ms + var(--i, 0) * 70ms); }
+  main[data-place="paris"] .opening .lines .ln:nth-child(2) { --i: 1; } main[data-place="paris"] .opening .lines .ln:nth-child(3) { --i: 2; }
+  main[data-place="paris"] .opening .lines .ln:nth-child(4) { --i: 3; } main[data-place="paris"] .opening .lines .ln:nth-child(5) { --i: 4; }
+  main[data-place="paris"] .opening .lines .ln:nth-child(6) { --i: 5; }
+  main[data-place="paris"] .plan li.here::after { animation: pa-blink 1200ms steps(1, end) infinite; }
+  main[data-place="paris"][data-js] .stop .wall .plate.rise { opacity: 1; transform: translateX(48vw); }
+  main[data-place="paris"][data-js] .stop .wall .plate.rise.in { transform: none; transition: transform 1400ms var(--heavy); }
+  main[data-place="paris"][data-js] .rise { opacity: 0; transform: translateY(24px); }
+  main[data-place="paris"][data-js] .rise.in { opacity: 1; transform: none; transition: opacity 700ms var(--ease) var(--d, 0ms), transform 900ms var(--ease) var(--d, 0ms); }
+  main[data-place="paris"][data-js] .corr .big.rise { transform: translateX(30%) rotate(-40deg); }
+  main[data-place="paris"][data-js] .corr .big.rise.in { transform: none; transition: opacity 700ms var(--ease), transform 1300ms var(--heavy); }
+  main[data-place="paris"][data-js] .plan li.rise { transform: translateY(10px); }
+  main[data-place="paris"] .net .train { transition: transform 160ms linear; }
+  @keyframes pa-arrive { from { transform: translateX(70vw); } to { transform: none; } }
+  @keyframes pa-pop { from { opacity: 0; transform: scale(0.4); } to { opacity: 1; transform: none; } }
+  @keyframes pa-blink { 0% { opacity: 1; } 50% { opacity: 0.25; } }
+}
+
+/* ---- A phone: the map held at the top, the stops going by under it; the plans scroll sideways. */
+@media (max-width: 899px) {
+  main[data-place="paris"] .opening h1 { font-size: clamp(96px, 30vw, 180px); }
+  main[data-place="paris"] .opening .facts { display: grid; }
+  main[data-place="paris"] .plan { grid-template-columns: repeat(var(--n), 44px); }
+  main[data-place="paris"] .plan li { height: 170px; }
+  main[data-place="paris"] .plan .nm { font-size: 14px; }
+  main[data-place="paris"] .plan .here .nm { font-size: 17px; }
+  main[data-place="paris"] .ride { padding: 0 0 56px; }
+  main[data-place="paris"] .ride .pin { display: block; }
+  main[data-place="paris"] .ride .map { top: var(--pbar, 0px); z-index: 1; background: #fff; padding: 8px 0; margin: 0 -2px; }
+  main[data-place="paris"] .net .stn text { font-size: 26px; stroke-width: 7px; }
+  main[data-place="paris"] .net .stn:not(.on) text { opacity: 0; }
+  main[data-place="paris"] .net .stn.on text { font-size: 30px; }
+  main[data-place="paris"] .ride-key { padding: 8px 12px 0; }
+  main[data-place="paris"][data-js] .ride-key li { margin-bottom: 7svh; }
+  main[data-place="paris"] .stop .wall { background-size: 40px 20px; padding-block: 72px 56px; }
+  main[data-place="paris"] .stop .wall .plate { font-size: 9.4vw; }
+  main[data-place="paris"] .stop .wall .enamel .nm { white-space: normal; }
+  main[data-place="paris"] .corr { min-height: 72svh; align-content: end; }
+  main[data-place="paris"] .corr .big { right: -24vw; top: 30%; width: 92vw; font-size: 60vw; }
+  main[data-place="paris"] .terminus { min-height: 48svh; }
+}
