@@ -12,6 +12,6 @@
   { "id": "ljubljana", "title": "Ljubljana", "dumps": ["ljubljana-2025-05", "ljubljana-2025-08"] },
   { "id": "belgrade", "title": "Belgrade", "dumps": ["belgrade-2020", "belgrade-2022", "belgrade-2025-06", "belgrade-2025-07", "belgrade-2025"] },
   { "id": "france", "title": "France", "dumps": ["paris-2023", "normandie-2023", "cold-sunny-day-2024", "la-defense-2024", "brocante-2024", "sunny-marais-2024", "versailles-2025", "petit-palais-2025", "ile-de-puteaux-2025", "paris-2025", "centre-pompidou-2025"] },
-  { "id": "france/paris", "title": "Paris", "in": "france" },
+  { "id": "france/paris", "title": "Paris", "in": "france", "next": "belgrade#bg-title" },
   { "id": "france/normandie", "title": "Normandie", "in": "france" }
 ]

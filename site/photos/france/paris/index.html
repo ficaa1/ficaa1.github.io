@@ -16,6 +16,7 @@
 <main data-country="france" data-place="paris">
 <link rel="stylesheet" href="../france.css">
 <link rel="stylesheet" href="paris.css">
+<link rel="stylesheet" href="flight.css">
 <!-- tabs:start -->
 <div class="tabs" role="navigation" aria-label="Photos">
 <p class="all"><a href="../../../photos.html">All photos</a></p>
@@ -55,7 +56,7 @@
 <li class="got"><a href="#s-chatelet"><span class="nm">Châtelet</span></a></li>
 <li class=""><span class="nm">Hôtel de Ville</span></li>
 <li class="got"><a href="#s-saint-paul"><span class="nm">Saint-Paul</span></a></li>
-<li class=""><span class="nm">Bastille</span></li>
+<li class="got"><a href="#s-bastille"><span class="nm">Bastille</span></a></li>
 <li class=""><span class="nm">Gare de Lyon</span></li>
 <li class=""><span class="nm">Reuilly–Diderot</span></li>
 <li class="got"><a href="#s-nation"><span class="nm">Nation</span></a></li>
@@ -96,13 +97,13 @@
 <a class="stn off" href="#s-versailles-chateau-rive-gauche" data-key="versailles-chateau-rive-gauche" data-line="C"><path class="arrow" d="M176 360 l-22 40 l-8 -16 m8 16 l16 -6"/><text x="186" y="364">Versailles</text></a>
 <a class="stn" href="#s-palais-royal-musee-du-louvre" data-key="palais-royal-musee-du-louvre" data-line="1"><circle cx="445.9" cy="219" r="7"/><text x="439.9" y="203" text-anchor="end">Palais Royal</text></a>
 <a class="stn" href="#s-pont-marie" data-key="pont-marie" data-line="7"><circle cx="525.346" cy="269.998" r="7"/><text x="535.346" y="291.998" text-anchor="start">Pont Marie</text></a>
-<a class="stn" href="#s-jussieu" data-key="jussieu" data-line="7"><circle cx="518.5" cy="315.7" r="7"/><text x="508.5" y="335.7" text-anchor="end">Jussieu</text></a>
 <a class="stn" href="#s-place-d-italie" data-key="place-d-italie" data-line="7"><circle cx="522.115" cy="402.923" r="7"/><text x="534.115" y="398.923" text-anchor="start">Place d'Italie</text></a>
 <a class="stn" href="#s-chatelet" data-key="chatelet" data-line="1"><circle cx="484.9" cy="238.4" r="7"/><text x="472.9" y="260.4" text-anchor="end">Châtelet</text></a>
 <a class="stn" href="#s-rambuteau" data-key="rambuteau" data-line="11"><circle cx="514.9" cy="223.1" r="7"/><text x="522.9" y="211.1" text-anchor="start">Rambuteau</text></a>
 <a class="stn" href="#s-porte-des-lilas" data-key="porte-des-lilas" data-line="11"><circle cx="717" cy="134.561" r="7"/><text x="707" y="156.561" text-anchor="end">Porte des Lilas</text></a>
 <a class="stn" href="#s-mairie-des-lilas" data-key="mairie-des-lilas" data-line="11"><circle cx="754.615" cy="116.857" r="7"/><text x="764.615" y="104.857" text-anchor="start">Mairie des Lilas</text></a>
 <a class="stn" href="#s-saint-paul" data-key="saint-paul" data-line="1"><circle cx="540.1" cy="260.6" r="7"/><text x="552.1" y="250.6" text-anchor="start">Saint-Paul</text></a>
+<a class="stn" href="#s-bastille" data-key="bastille" data-line="1"><circle cx="571.8" cy="280.5" r="7"/><text x="581.8" y="302.5" text-anchor="start">Bastille</text></a>
 <a class="stn" href="#s-nation" data-key="nation" data-line="1"><circle cx="677.3" cy="304.9" r="7"/><text x="677.3" y="288.9" text-anchor="middle">Nation</text></a>
 <a class="stn" href="#s-chateau-de-vincennes" data-key="chateau-de-vincennes" data-line="1"><circle cx="841.9" cy="323.9" r="7"/><text x="841.9" y="349.9" text-anchor="end">Château de Vincennes</text></a>
 <g class="train" aria-hidden="true"><rect x="-17" y="-11" width="34" height="22" rx="11"/><text y="6">1</text></g>
@@ -118,13 +119,13 @@
 <li data-key="versailles-chateau-rive-gauche" data-line="C" data-at="361.8,190"><span class="ln" style="--l:#FFCC30;--li:#111" aria-label="RER C">C</span><a href="#s-versailles-chateau-rive-gauche"><span class="nm">Versailles Château</span> <span class="sub">Rive Gauche</span></a><span class="ds">8 Feb 2025</span></li>
 <li data-key="palais-royal-musee-du-louvre" data-line="1" data-at="445.9,219"><span class="ln" style="--l:#FFBE00;--li:#111" aria-label="line 1">1</span><a href="#s-palais-royal-musee-du-louvre"><span class="nm">Palais Royal</span> <span class="sub">Musée du Louvre</span></a><span class="ds">16 Jun 2023</span></li>
 <li data-key="pont-marie" data-line="7" data-at="445.9,219"><span class="ln" style="--l:#FF82B4;--li:#111" aria-label="line 7">7</span><a href="#s-pont-marie"><span class="nm">Pont Marie</span></a><span class="ds">20 Jan 2024</span></li>
-<li data-key="jussieu" data-line="7" data-at="445.9,219"><span class="ln" style="--l:#FF82B4;--li:#111" aria-label="line 7">7</span><a href="#s-jussieu"><span class="nm">Jussieu</span></a><span class="ds">17 Feb 2024</span></li>
 <li data-key="place-d-italie" data-line="7" data-at="445.9,219"><span class="ln" style="--l:#FF82B4;--li:#111" aria-label="line 7">7</span><a href="#s-place-d-italie"><span class="nm">Place d'Italie</span> <span class="sub">13e arrondissement</span></a><span class="ds">6 Jul 2025</span></li>
-<li data-key="chatelet" data-line="1" data-at="484.9,238.4"><span class="ln" style="--l:#FFBE00;--li:#111" aria-label="line 1">1</span><a href="#s-chatelet"><span class="nm">Châtelet</span></a><span class="ds">20 Jan 2024</span></li>
+<li data-key="chatelet" data-line="1" data-at="484.9,238.4"><span class="ln" style="--l:#FFBE00;--li:#111" aria-label="line 1">1</span><a href="#s-chatelet"><span class="nm">Châtelet</span></a><span class="ds">20 Jan 2024, 21 Jun 2025</span></li>
 <li data-key="rambuteau" data-line="11" data-at="484.9,238.4"><span class="ln" style="--l:#6E491E;--li:#fff" aria-label="line 11">11</span><a href="#s-rambuteau"><span class="nm">Rambuteau</span> <span class="sub">Centre Pompidou</span></a><span class="ds">25 Oct 2025</span></li>
 <li data-key="porte-des-lilas" data-line="11" data-at="484.9,238.4"><span class="ln" style="--l:#6E491E;--li:#fff" aria-label="line 11">11</span><a href="#s-porte-des-lilas"><span class="nm">Porte des Lilas</span></a><span class="ds">20 Jun 2023</span></li>
 <li data-key="mairie-des-lilas" data-line="11" data-at="484.9,238.4"><span class="ln" style="--l:#6E491E;--li:#fff" aria-label="line 11">11</span><a href="#s-mairie-des-lilas"><span class="nm">Mairie des Lilas</span></a><span class="ds">16 Jun 2023, 25 Jun 2023, 11 Jan 2024, 18 Jan 2024, 5 Dec 2025</span></li>
 <li data-key="saint-paul" data-line="1" data-at="540.1,260.6"><span class="ln" style="--l:#FFBE00;--li:#111" aria-label="line 1">1</span><a href="#s-saint-paul"><span class="nm">Saint-Paul</span> <span class="sub">Le Marais</span></a><span class="ds">20 Jan 2024, 27 Jan 2024</span></li>
+<li data-key="bastille" data-line="1" data-at="571.8,280.5"><span class="ln" style="--l:#FFBE00;--li:#111" aria-label="line 1">1</span><a href="#s-bastille"><span class="nm">Bastille</span> <span class="sub">Port de l'Arsenal</span></a><span class="ds">17 Feb 2024</span></li>
 <li data-key="nation" data-line="1" data-at="677.3,304.9"><span class="ln" style="--l:#FFBE00;--li:#111" aria-label="line 1">1</span><a href="#s-nation"><span class="nm">Nation</span> <span class="sub">Faubourg Saint-Antoine</span></a><span class="ds">1 Jul 2023</span></li>
 <li data-key="chateau-de-vincennes" data-line="1" data-at="841.9,323.9"><span class="ln" style="--l:#FFBE00;--li:#111" aria-label="line 1">1</span><a href="#s-chateau-de-vincennes"><span class="nm">Château de Vincennes</span> <span class="sub">Bois de Vincennes</span></a><span class="ds">2 Jul 2023</span></li>
 </ol>
@@ -155,7 +156,7 @@
 <li class="got"><a href="#s-chatelet"><span class="nm">Châtelet</span></a></li>
 <li class=""><span class="nm">Hôtel de Ville</span></li>
 <li class="got"><a href="#s-saint-paul"><span class="nm">Saint-Paul</span></a></li>
-<li class=""><span class="nm">Bastille</span></li>
+<li class="got"><a href="#s-bastille"><span class="nm">Bastille</span></a></li>
 <li class=""><span class="nm">Gare de Lyon</span></li>
 <li class=""><span class="nm">Reuilly–Diderot</span></li>
 <li class="got"><a href="#s-nation"><span class="nm">Nation</span></a></li>
@@ -164,6 +165,7 @@
 <li class=""><span class="nm">Bérault</span></li>
 <li class="got"><a href="#s-chateau-de-vincennes"><span class="nm">Château de Vincennes</span></a></li>
 </ol>
+
 <div class="day light" id="d-2024-01-11-la-defense" data-sheet="Thursday 11 January 2024, La Défense" data-sheet-tab="11">
 <h3 class="date" id="h-2024-01-11-la-defense"><a href="#h-2024-01-11-la-defense" data-sheet-open="d-2024-01-11-la-defense"><span class="wd">Thursday</span> <span class="dm">11 January</span> <span class="y">2024</span></a></h3>
 <p class="span">13:43 – 14:07</p>
@@ -427,7 +429,7 @@
 <li class="got"><a href="#s-chatelet"><span class="nm">Châtelet</span></a></li>
 <li class=""><span class="nm">Hôtel de Ville</span></li>
 <li class="got"><a href="#s-saint-paul"><span class="nm">Saint-Paul</span></a></li>
-<li class=""><span class="nm">Bastille</span></li>
+<li class="got"><a href="#s-bastille"><span class="nm">Bastille</span></a></li>
 <li class=""><span class="nm">Gare de Lyon</span></li>
 <li class=""><span class="nm">Reuilly–Diderot</span></li>
 <li class="got"><a href="#s-nation"><span class="nm">Nation</span></a></li>
@@ -436,6 +438,7 @@
 <li class=""><span class="nm">Bérault</span></li>
 <li class="got"><a href="#s-chateau-de-vincennes"><span class="nm">Château de Vincennes</span></a></li>
 </ol>
+
 <div class="day light" id="d-2025-06-10-pont-de-neuilly" data-sheet="Tuesday 10 June 2025, Pont de Neuilly" data-sheet-tab="10">
 <h3 class="date" id="h-2025-06-10-pont-de-neuilly"><a href="#h-2025-06-10-pont-de-neuilly" data-sheet-open="d-2025-06-10-pont-de-neuilly"><span class="wd">Tuesday</span> <span class="dm">10 June</span> <span class="y">2025</span></a></h3>
 <p class="span">13:41 – 14:02</p>
@@ -562,7 +565,7 @@
 <li class="got"><a href="#s-chatelet"><span class="nm">Châtelet</span></a></li>
 <li class=""><span class="nm">Hôtel de Ville</span></li>
 <li class="got"><a href="#s-saint-paul"><span class="nm">Saint-Paul</span></a></li>
-<li class=""><span class="nm">Bastille</span></li>
+<li class="got"><a href="#s-bastille"><span class="nm">Bastille</span></a></li>
 <li class=""><span class="nm">Gare de Lyon</span></li>
 <li class=""><span class="nm">Reuilly–Diderot</span></li>
 <li class="got"><a href="#s-nation"><span class="nm">Nation</span></a></li>
@@ -591,6 +594,7 @@
 <li class="near gone"><span class="nm">Passy</span></li>
 <li class="here got near" aria-current="location"><span class="nm">Bir-Hakeim</span></li>
 </ol>
+
 <div class="day light" id="d-2024-01-06-bir-hakeim" data-sheet="Saturday 6 January 2024, Bir-Hakeim" data-sheet-tab="6">
 <h3 class="date" id="h-2024-01-06-bir-hakeim"><a href="#h-2024-01-06-bir-hakeim" data-sheet-open="d-2024-01-06-bir-hakeim"><span class="wd">Saturday</span> <span class="dm">6 January</span> <span class="y">2024</span></a></h3>
 <p class="span">17:22 – 19:51</p>
@@ -647,6 +651,7 @@
 <li class="near gone"><span class="nm">Pigalle</span></li>
 <li class="here got near" aria-current="location"><span class="nm">Anvers</span></li>
 </ol>
+
 <div class="day dark" id="d-2025-12-13-anvers" data-sheet="Saturday 13 December 2025, Anvers" data-sheet-tab="13">
 <h3 class="date" id="h-2025-12-13-anvers"><a href="#h-2025-12-13-anvers" data-sheet-open="d-2025-12-13-anvers"><span class="wd">Saturday</span> <span class="dm">13 December</span> <span class="y">2025</span></a></h3>
 <p class="span">17:58 – 19:53</p>
@@ -706,7 +711,7 @@
 <li class="got"><a href="#s-chatelet"><span class="nm">Châtelet</span></a></li>
 <li class=""><span class="nm">Hôtel de Ville</span></li>
 <li class="got"><a href="#s-saint-paul"><span class="nm">Saint-Paul</span></a></li>
-<li class=""><span class="nm">Bastille</span></li>
+<li class="got"><a href="#s-bastille"><span class="nm">Bastille</span></a></li>
 <li class=""><span class="nm">Gare de Lyon</span></li>
 <li class=""><span class="nm">Reuilly–Diderot</span></li>
 <li class="got"><a href="#s-nation"><span class="nm">Nation</span></a></li>
@@ -715,6 +720,7 @@
 <li class=""><span class="nm">Bérault</span></li>
 <li class="got"><a href="#s-chateau-de-vincennes"><span class="nm">Château de Vincennes</span></a></li>
 </ol>
+
 <div class="day light" id="d-2025-04-12-champs-elysees-clemenceau" data-sheet="Saturday 12 April 2025, Champs-Élysées Clemenceau" data-sheet-tab="12">
 <h3 class="date" id="h-2025-04-12-champs-elysees-clemenceau"><a href="#h-2025-04-12-champs-elysees-clemenceau" data-sheet-open="d-2025-04-12-champs-elysees-clemenceau"><span class="wd">Saturday</span> <span class="dm">12 April</span> <span class="y">2025</span></a></h3>
 <p class="span">12:42 – 13:51</p>
@@ -817,19 +823,29 @@
 </picture></a>
 <!-- picture:paris-2025/grand-palais-171116:end --><p class="meta">19:11 · f/5.6 · 1/1000 s · ISO 100</p></div>
 </div>
-<div class="row many" style="--sum:2.998">
-<div class="shot" style="--r:1.499"><!-- picture:paris-2025/grand-palais-171554 sizes="(min-width: 900px) 35vw, 100vw":start -->
+<div class="row one" style="--sum:1.499">
+<div class="shot" style="--r:1.499"><!-- picture:paris-2025/grand-palais-171554 sizes="(min-width: 900px) 64vw, 100vw":start -->
 <a class="open" id="grand-palais-171554" href="https://photos.filipbiljic.com/paris-2025/grand-palais-171554-2000.jpg" data-view data-dump="Paris, 2025" data-caption=" f/5.6, 1/250 s, ISO 125. 12 July, 19:15." data-bytes="{&quot;1000.jpg&quot;:164668,&quot;1000.jxl&quot;:142235,&quot;2000.jpg&quot;:485764,&quot;2000.jxl&quot;:381268}"><picture>
-<source type="image/jxl" srcset="https://photos.filipbiljic.com/paris-2025/grand-palais-171554-1000.jxl 1000w, https://photos.filipbiljic.com/paris-2025/grand-palais-171554-2000.jxl 2000w" sizes="(min-width: 900px) 35vw, 100vw">
-<img src="https://photos.filipbiljic.com/paris-2025/grand-palais-171554-1000.jpg" srcset="https://photos.filipbiljic.com/paris-2025/grand-palais-171554-1000.jpg 1000w, https://photos.filipbiljic.com/paris-2025/grand-palais-171554-2000.jpg 2000w" sizes="(min-width: 900px) 35vw, 100vw" width="1000" height="667" alt="A suspended silver sculpture hangs beneath the soaring glass-and-steel nave" loading="lazy">
+<source type="image/jxl" srcset="https://photos.filipbiljic.com/paris-2025/grand-palais-171554-1000.jxl 1000w, https://photos.filipbiljic.com/paris-2025/grand-palais-171554-2000.jxl 2000w" sizes="(min-width: 900px) 64vw, 100vw">
+<img src="https://photos.filipbiljic.com/paris-2025/grand-palais-171554-1000.jpg" srcset="https://photos.filipbiljic.com/paris-2025/grand-palais-171554-1000.jpg 1000w, https://photos.filipbiljic.com/paris-2025/grand-palais-171554-2000.jpg 2000w" sizes="(min-width: 900px) 64vw, 100vw" width="1000" height="667" alt="A suspended silver sculpture hangs beneath the soaring glass-and-steel nave" loading="lazy">
 </picture></a>
 <!-- picture:paris-2025/grand-palais-171554:end --><p class="meta">19:15 · f/5.6 · 1/250 s · ISO 125</p></div>
-<div class="shot" style="--r:1.499"><!-- picture:paris-2025/grand-palais-171739 sizes="(min-width: 900px) 35vw, 100vw":start -->
+</div>
+<div class="row one clip" style="--sum:1.778">
+<div class="shot clip" style="--r:1.778"><video class="loop" muted playsinline loop controls preload="none" width="1920" height="1080" poster="https://photos.filipbiljic.com/france/paris/broll-nave-poster-960.jpg" aria-label="Video: the glass roof of the Grand Palais, a red net sculpture hanging under it">
+<source src="https://photos.filipbiljic.com/france/paris/broll-nave-960.mp4" type="video/mp4" media="(max-width: 899px)"><source src="https://photos.filipbiljic.com/france/paris/broll-nave-1920.mp4" type="video/mp4"></video><p class="meta">19:16 · video</p></div>
+</div>
+<div class="row one" style="--sum:1.499">
+<div class="shot" style="--r:1.499"><!-- picture:paris-2025/grand-palais-171739 sizes="(min-width: 900px) 64vw, 100vw":start -->
 <a class="open" id="grand-palais-171739" href="https://photos.filipbiljic.com/paris-2025/grand-palais-171739-2000.jpg" data-view data-dump="Paris, 2025" data-caption=" f/18, 1/250 s, ISO 400. 12 July, 19:17." data-bytes="{&quot;1000.jpg&quot;:154372,&quot;1000.jxl&quot;:94460,&quot;2000.jpg&quot;:521488,&quot;2000.jxl&quot;:318248}"><picture>
-<source type="image/jxl" srcset="https://photos.filipbiljic.com/paris-2025/grand-palais-171739-1000.jxl 1000w, https://photos.filipbiljic.com/paris-2025/grand-palais-171739-2000.jxl 2000w" sizes="(min-width: 900px) 35vw, 100vw">
-<img src="https://photos.filipbiljic.com/paris-2025/grand-palais-171739-1000.jpg" srcset="https://photos.filipbiljic.com/paris-2025/grand-palais-171739-1000.jpg 1000w, https://photos.filipbiljic.com/paris-2025/grand-palais-171739-2000.jpg 2000w" sizes="(min-width: 900px) 35vw, 100vw" width="1000" height="667" alt="A sunlit iron colonnade leads past long blue and orange artworks" loading="lazy">
+<source type="image/jxl" srcset="https://photos.filipbiljic.com/paris-2025/grand-palais-171739-1000.jxl 1000w, https://photos.filipbiljic.com/paris-2025/grand-palais-171739-2000.jxl 2000w" sizes="(min-width: 900px) 64vw, 100vw">
+<img src="https://photos.filipbiljic.com/paris-2025/grand-palais-171739-1000.jpg" srcset="https://photos.filipbiljic.com/paris-2025/grand-palais-171739-1000.jpg 1000w, https://photos.filipbiljic.com/paris-2025/grand-palais-171739-2000.jpg 2000w" sizes="(min-width: 900px) 64vw, 100vw" width="1000" height="667" alt="A sunlit iron colonnade leads past long blue and orange artworks" loading="lazy">
 </picture></a>
 <!-- picture:paris-2025/grand-palais-171739:end --><p class="meta">19:17 · f/18 · 1/250 s · ISO 400</p></div>
+</div>
+<div class="row one clip" style="--sum:1.778">
+<div class="shot clip" style="--r:1.778"><video class="loop" muted playsinline loop controls preload="none" width="1920" height="1080" poster="https://photos.filipbiljic.com/france/paris/broll-crowd-poster-960.jpg" aria-label="Video: a crowd on the floor of the Grand Palais, seen from the balcony">
+<source src="https://photos.filipbiljic.com/france/paris/broll-crowd-960.mp4" type="video/mp4" media="(max-width: 899px)"><source src="https://photos.filipbiljic.com/france/paris/broll-crowd-1920.mp4" type="video/mp4"></video><p class="meta">19:29 · video</p></div>
 </div>
 <div class="row one" style="--sum:1.25">
 <div class="shot" style="--r:1.25"><!-- picture:paris-2025/grand-palais-181137 sizes="(min-width: 900px) 64vw, 100vw":start -->
@@ -868,6 +884,7 @@
 <li class="near gone"><span class="nm">Porchefontaine</span></li>
 <li class="here got near" aria-current="location"><span class="nm">Versailles Château Rive Gauche</span></li>
 </ol>
+
 <div class="day light" id="d-2025-02-08-versailles-chateau-rive-gauche" data-sheet="Saturday 8 February 2025, Versailles Château" data-sheet-tab="8">
 <h3 class="date" id="h-2025-02-08-versailles-chateau-rive-gauche"><a href="#h-2025-02-08-versailles-chateau-rive-gauche" data-sheet-open="d-2025-02-08-versailles-chateau-rive-gauche"><span class="wd">Saturday</span> <span class="dm">8 February</span> <span class="y">2025</span></a></h3>
 <p class="span">13:24 – 17:38</p>
@@ -967,7 +984,7 @@
 <li class="got near"><a href="#s-chatelet"><span class="nm">Châtelet</span></a></li>
 <li class=""><span class="nm">Hôtel de Ville</span></li>
 <li class="got"><a href="#s-saint-paul"><span class="nm">Saint-Paul</span></a></li>
-<li class=""><span class="nm">Bastille</span></li>
+<li class="got"><a href="#s-bastille"><span class="nm">Bastille</span></a></li>
 <li class=""><span class="nm">Gare de Lyon</span></li>
 <li class=""><span class="nm">Reuilly–Diderot</span></li>
 <li class="got"><a href="#s-nation"><span class="nm">Nation</span></a></li>
@@ -976,6 +993,7 @@
 <li class=""><span class="nm">Bérault</span></li>
 <li class="got"><a href="#s-chateau-de-vincennes"><span class="nm">Château de Vincennes</span></a></li>
 </ol>
+
 <div class="day light" id="d-2023-06-16-palais-royal-musee-du-louvre" data-sheet="Friday 16 June 2023, Palais Royal" data-sheet-tab="16">
 <h3 class="date" id="h-2023-06-16-palais-royal-musee-du-louvre"><a href="#h-2023-06-16-palais-royal-musee-du-louvre" data-sheet-open="d-2023-06-16-palais-royal-musee-du-louvre"><span class="wd">Friday</span> <span class="dm">16 June</span> <span class="y">2023</span></a></h3>
 <p class="span">21:02 – 21:54</p>
@@ -1059,12 +1077,13 @@
 <li class="near gone"><span class="nm">Châtelet</span></li>
 <li class="here got near" aria-current="location"><span class="nm">Pont Marie</span></li>
 <li class="near"><span class="nm">Sully–Morland</span></li>
-<li class="got near"><a href="#s-jussieu"><span class="nm">Jussieu</span></a></li>
+<li class="near"><span class="nm">Jussieu</span></li>
 <li class=""><span class="nm">Place Monge</span></li>
 <li class=""><span class="nm">Censier–Daubenton</span></li>
 <li class=""><span class="nm">Les Gobelins</span></li>
 <li class="got"><a href="#s-place-d-italie"><span class="nm">Place d'Italie</span></a></li>
 </ol>
+
 <div class="day light" id="d-2024-01-20-pont-marie" data-sheet="Saturday 20 January 2024, Pont Marie" data-sheet-tab="20">
 <h3 class="date" id="h-2024-01-20-pont-marie"><a href="#h-2024-01-20-pont-marie" data-sheet-open="d-2024-01-20-pont-marie"><span class="wd">Saturday</span> <span class="dm">20 January</span> <span class="y">2024</span></a></h3>
 <p class="span">14:47 – 15:46</p>
@@ -1191,40 +1210,6 @@
 </div>
 
 </section>
-<section class="stop" id="s-jussieu" aria-labelledby="p-jussieu" style="--l:#FF82B4;--li:#111" data-line="7">
-<header class="wall">
-<div class="lines"><span class="ln" style="--l:#FF82B4;--li:#111" aria-label="line 7">7</span></div>
-<h2 class="plate" id="p-jussieu"><span class="enamel"><span class="nm">Jussieu</span></span></h2>
-<nav class="dates" aria-label="Days at Jussieu"><a href="#h-2024-02-17-jussieu" data-sheet-open="d-2024-02-17-jussieu">17 February 2024</a></nav>
-</header>
-<ol class="plan" style="--l:#FF82B4;--n:10" aria-label="Line 7">
-<li class="gone"><span class="nm">Palais Royal–Musée du Louvre</span></li>
-<li class="gone"><span class="nm">Pont Neuf</span></li>
-<li class="gone"><span class="nm">Châtelet</span></li>
-<li class="got near gone"><a href="#s-pont-marie"><span class="nm">Pont Marie</span></a></li>
-<li class="near gone"><span class="nm">Sully–Morland</span></li>
-<li class="here got near" aria-current="location"><span class="nm">Jussieu</span></li>
-<li class="near"><span class="nm">Place Monge</span></li>
-<li class="near"><span class="nm">Censier–Daubenton</span></li>
-<li class=""><span class="nm">Les Gobelins</span></li>
-<li class="got"><a href="#s-place-d-italie"><span class="nm">Place d'Italie</span></a></li>
-</ol>
-<div class="day dark" id="d-2024-02-17-jussieu" data-sheet="Saturday 17 February 2024, Jussieu" data-sheet-tab="17">
-<h3 class="date" id="h-2024-02-17-jussieu"><a href="#h-2024-02-17-jussieu" data-sheet-open="d-2024-02-17-jussieu"><span class="wd">Saturday</span> <span class="dm">17 February</span> <span class="y">2024</span></a></h3>
-<p class="span">18:27</p>
-<div class="run dark"><div class="rows">
-<div class="row one" style="--sum:1.499">
-<div class="shot" style="--r:1.499"><!-- picture:sunny-marais-2024/dsc06931 sizes="(min-width: 900px) 64vw, 100vw":start -->
-<a class="open" id="dsc06931" href="https://photos.filipbiljic.com/sunny-marais-2024/dsc06931-2000.jpg" data-view data-dump="Paris, 2024" data-caption=" f/1.4, 1/60 s, ISO 500. 17 February, 18:27." data-bytes="{&quot;1000.jpg&quot;:131622,&quot;1000.jxl&quot;:96348,&quot;2000.jpg&quot;:464808,&quot;2000.jxl&quot;:332512}"><picture>
-<source type="image/jxl" srcset="https://photos.filipbiljic.com/sunny-marais-2024/dsc06931-1000.jxl 1000w, https://photos.filipbiljic.com/sunny-marais-2024/dsc06931-2000.jxl 2000w" sizes="(min-width: 900px) 64vw, 100vw">
-<img src="https://photos.filipbiljic.com/sunny-marais-2024/dsc06931-1000.jpg" srcset="https://photos.filipbiljic.com/sunny-marais-2024/dsc06931-1000.jpg 1000w, https://photos.filipbiljic.com/sunny-marais-2024/dsc06931-2000.jpg 2000w" sizes="(min-width: 900px) 64vw, 100vw" width="1000" height="667" alt="A lamp-lit moored barge sits below university and residential buildings across the Seine" loading="lazy">
-</picture></a>
-<!-- picture:sunny-marais-2024/dsc06931:end --><p class="meta">18:27 · f/1.4 · 1/60 s · ISO 500</p></div>
-</div>
-</div></div>
-</div>
-
-</section>
 <section class="stop" id="s-place-d-italie" aria-labelledby="p-place-d-italie" style="--l:#FF82B4;--li:#111" data-line="7">
 <header class="wall">
 <div class="lines"><span class="ln" style="--l:#FF82B4;--li:#111" aria-label="line 7">7</span><span class="ln" style="--l:#FF7E2E;--li:#111" aria-label="line 5">5</span><span class="ln" style="--l:#82DC73;--li:#111" aria-label="line 6">6</span></div>
@@ -1237,12 +1222,13 @@
 <li class="gone"><span class="nm">Châtelet</span></li>
 <li class="got gone"><a href="#s-pont-marie"><span class="nm">Pont Marie</span></a></li>
 <li class="gone"><span class="nm">Sully–Morland</span></li>
-<li class="got gone"><a href="#s-jussieu"><span class="nm">Jussieu</span></a></li>
+<li class="gone"><span class="nm">Jussieu</span></li>
 <li class="gone"><span class="nm">Place Monge</span></li>
 <li class="near gone"><span class="nm">Censier–Daubenton</span></li>
 <li class="near gone"><span class="nm">Les Gobelins</span></li>
 <li class="here got near" aria-current="location"><span class="nm">Place d'Italie</span></li>
 </ol>
+
 <div class="day light" id="d-2025-07-06-place-d-italie" data-sheet="Sunday 6 July 2025, Place d'Italie" data-sheet-tab="6">
 <h3 class="date" id="h-2025-07-06-place-d-italie"><a href="#h-2025-07-06-place-d-italie" data-sheet-open="d-2025-07-06-place-d-italie"><span class="wd">Sunday</span> <span class="dm">6 July</span> <span class="y">2025</span></a></h3>
 <p class="span">19:17</p>
@@ -1268,7 +1254,7 @@
 <header class="wall">
 <div class="lines"><span class="ln" style="--l:#FFBE00;--li:#111" aria-label="line 1">1</span><span class="ln" style="--l:#A0006E;--li:#fff" aria-label="line 4">4</span><span class="ln" style="--l:#FF82B4;--li:#111" aria-label="line 7">7</span><span class="ln" style="--l:#6E491E;--li:#fff" aria-label="line 11">11</span><span class="ln" style="--l:#640082;--li:#fff" aria-label="line 14">14</span></div>
 <h2 class="plate" id="p-chatelet"><span class="enamel"><span class="nm">Châtelet</span></span></h2>
-<nav class="dates" aria-label="Days at Châtelet"><a href="#h-2024-01-20-chatelet" data-sheet-open="d-2024-01-20-chatelet">20 January 2024</a></nav>
+<nav class="dates" aria-label="Days at Châtelet"><a href="#h-2024-01-20-chatelet" data-sheet-open="d-2024-01-20-chatelet">20 January 2024</a><a href="#h-2025-06-21-chatelet">21 June 2025</a></nav>
 </header>
 <ol class="plan" style="--l:#FFBE00;--n:25" aria-label="Line 1">
 <li class="got gone"><a href="#s-la-defense"><span class="nm">La Défense</span></a></li>
@@ -1288,7 +1274,7 @@
 <li class="here got near" aria-current="location"><span class="nm">Châtelet</span></li>
 <li class="near"><span class="nm">Hôtel de Ville</span></li>
 <li class="got near"><a href="#s-saint-paul"><span class="nm">Saint-Paul</span></a></li>
-<li class=""><span class="nm">Bastille</span></li>
+<li class="got"><a href="#s-bastille"><span class="nm">Bastille</span></a></li>
 <li class=""><span class="nm">Gare de Lyon</span></li>
 <li class=""><span class="nm">Reuilly–Diderot</span></li>
 <li class="got"><a href="#s-nation"><span class="nm">Nation</span></a></li>
@@ -1297,6 +1283,7 @@
 <li class=""><span class="nm">Bérault</span></li>
 <li class="got"><a href="#s-chateau-de-vincennes"><span class="nm">Château de Vincennes</span></a></li>
 </ol>
+
 <div class="day light" id="d-2024-01-20-chatelet" data-sheet="Saturday 20 January 2024, Châtelet" data-sheet-tab="20">
 <h3 class="date" id="h-2024-01-20-chatelet"><a href="#h-2024-01-20-chatelet" data-sheet-open="d-2024-01-20-chatelet"><span class="wd">Saturday</span> <span class="dm">20 January</span> <span class="y">2024</span></a></h3>
 <p class="span">16:19 – 17:50</p>
@@ -1345,6 +1332,26 @@
 </div>
 </div></div>
 </div>
+<div class="day light" id="d-2025-06-21-chatelet">
+<h3 class="date" id="h-2025-06-21-chatelet"><a href="#h-2025-06-21-chatelet"><span class="wd">Saturday</span> <span class="dm">21 June</span> <span class="y">2025</span></a></h3>
+<p class="span">20:50 – 23:57</p>
+<div class="run light"><div class="rows">
+<div class="row one clip" style="--sum:1.778">
+<div class="shot clip" style="--r:1.778"><video class="loop" muted playsinline loop controls preload="none" width="1920" height="1080" poster="https://photos.filipbiljic.com/france/paris/broll-fete-street-poster-960.jpg" aria-label="Video: a crowd dancing on the quay below the stone arches">
+<source src="https://photos.filipbiljic.com/france/paris/broll-fete-street-960.mp4" type="video/mp4" media="(max-width: 899px)"><source src="https://photos.filipbiljic.com/france/paris/broll-fete-street-1920.mp4" type="video/mp4"></video><p class="meta">20:50 · video</p></div>
+</div>
+<div class="row one clip" style="--sum:1.778">
+<div class="shot clip" style="--r:1.778"><video class="loop" muted playsinline loop controls preload="none" width="1920" height="1080" poster="https://photos.filipbiljic.com/france/paris/broll-fete-quay-poster-960.jpg" aria-label="Video: a crowd on the quay, people climbing a lamp post">
+<source src="https://photos.filipbiljic.com/france/paris/broll-fete-quay-960.mp4" type="video/mp4" media="(max-width: 899px)"><source src="https://photos.filipbiljic.com/france/paris/broll-fete-quay-1920.mp4" type="video/mp4"></video><p class="meta">21:11 · video</p></div>
+</div>
+</div></div>
+<div class="run dark"><div class="rows">
+<div class="row one clip" style="--sum:1.778">
+<div class="shot clip" style="--r:1.778"><video class="loop" muted playsinline loop controls preload="none" width="1920" height="1080" poster="https://photos.filipbiljic.com/france/paris/broll-fete-night-poster-960.jpg" aria-label="Video: a crowd at night outside a bar, hands in the air">
+<source src="https://photos.filipbiljic.com/france/paris/broll-fete-night-960.mp4" type="video/mp4" media="(max-width: 899px)"><source src="https://photos.filipbiljic.com/france/paris/broll-fete-night-1920.mp4" type="video/mp4"></video><p class="meta">23:57 · video</p></div>
+</div>
+</div></div>
+</div>
 
 </section>
 
@@ -1373,6 +1380,7 @@
 <li class="got"><a href="#s-porte-des-lilas"><span class="nm">Porte des Lilas</span></a></li>
 <li class="got"><a href="#s-mairie-des-lilas"><span class="nm">Mairie des Lilas</span></a></li>
 </ol>
+
 <div class="day light" id="d-2025-10-25-rambuteau" data-sheet="Saturday 25 October 2025, Rambuteau" data-sheet-tab="25">
 <h3 class="date" id="h-2025-10-25-rambuteau"><a href="#h-2025-10-25-rambuteau" data-sheet-open="d-2025-10-25-rambuteau"><span class="wd">Saturday</span> <span class="dm">25 October</span> <span class="y">2025</span></a></h3>
 <p class="span">15:34 – 17:39</p>
@@ -1407,27 +1415,51 @@
 </picture></a>
 <!-- picture:centre-pompidou-2025/pompidou-2:end --><p class="meta">16:17 · f/2.8 · 1/250 s · ISO 8000</p></div>
 </div>
+<div class="row one clip" style="--sum:1.778">
+<div class="shot clip" style="--r:1.778"><video class="loop" muted playsinline loop controls preload="none" width="1920" height="1080" poster="https://photos.filipbiljic.com/france/paris/broll-motorbike-poster-960.jpg" aria-label="Video: a motorbike standing on end in a dark room lit by strips of light">
+<source src="https://photos.filipbiljic.com/france/paris/broll-motorbike-960.mp4" type="video/mp4" media="(max-width: 899px)"><source src="https://photos.filipbiljic.com/france/paris/broll-motorbike-1920.mp4" type="video/mp4"></video><p class="meta">16:48 · video</p></div>
+</div>
+<div class="row one clip" style="--sum:1.778">
+<div class="shot clip" style="--r:1.778"><video class="loop" muted playsinline loop controls preload="none" width="1920" height="1080" poster="https://photos.filipbiljic.com/france/paris/broll-c0081-poster-960.jpg" aria-label="Video: an old computer and a small television on a desk in a blue room">
+<source src="https://photos.filipbiljic.com/france/paris/broll-c0081-960.mp4" type="video/mp4" media="(max-width: 899px)"><source src="https://photos.filipbiljic.com/france/paris/broll-c0081-1920.mp4" type="video/mp4"></video><p class="meta">16:51 · video</p></div>
+</div>
+<div class="row one clip" style="--sum:1.778">
+<div class="shot clip" style="--r:1.778"><video class="loop" muted playsinline loop controls preload="none" width="1920" height="1080" poster="https://photos.filipbiljic.com/france/paris/broll-performer-poster-960.jpg" aria-label="Video: a performer crouching under a robot arm in blue light">
+<source src="https://photos.filipbiljic.com/france/paris/broll-performer-960.mp4" type="video/mp4" media="(max-width: 899px)"><source src="https://photos.filipbiljic.com/france/paris/broll-performer-1920.mp4" type="video/mp4"></video><p class="meta">16:52 · video</p></div>
+</div>
+</div></div>
+<div class="run light"><div class="rows">
+<div class="row one" style="--sum:1.499">
+<div class="shot" style="--r:1.499"><!-- picture:centre-pompidou-2025/pompidou-3 sizes="(min-width: 900px) 64vw, 100vw":start -->
+<a class="open" id="pompidou-3" href="https://photos.filipbiljic.com/centre-pompidou-2025/pompidou-3-2000.jpg" data-view data-dump="Paris, 2025" data-caption=" f/8, 1/800 s, ISO 100. 25 October, 16:58." data-bytes="{&quot;1000.jpg&quot;:81346,&quot;1000.jxl&quot;:57399,&quot;2000.jpg&quot;:264448,&quot;2000.jxl&quot;:176809}"><picture>
+<source type="image/jxl" srcset="https://photos.filipbiljic.com/centre-pompidou-2025/pompidou-3-1000.jxl 1000w, https://photos.filipbiljic.com/centre-pompidou-2025/pompidou-3-2000.jxl 2000w" sizes="(min-width: 900px) 64vw, 100vw">
+<img src="https://photos.filipbiljic.com/centre-pompidou-2025/pompidou-3-1000.jpg" srcset="https://photos.filipbiljic.com/centre-pompidou-2025/pompidou-3-1000.jpg 1000w, https://photos.filipbiljic.com/centre-pompidou-2025/pompidou-3-2000.jpg 2000w" sizes="(min-width: 900px) 64vw, 100vw" width="1000" height="667" alt="Sun catches Paris rooftops beneath black storm clouds with Sacré-Cœur on the horizon" loading="lazy">
+</picture></a>
+<!-- picture:centre-pompidou-2025/pompidou-3:end --><p class="meta">16:58 · f/8 · 1/800 s · ISO 100</p></div>
+</div>
+<div class="row one clip" style="--sum:1.778">
+<div class="shot clip" style="--r:1.778"><video class="loop" muted playsinline loop controls preload="none" width="1920" height="1080" poster="https://photos.filipbiljic.com/france/paris/broll-tube-poster-960.jpg" aria-label="Video: people going up the escalator tube on the front of the Centre Pompidou">
+<source src="https://photos.filipbiljic.com/france/paris/broll-tube-960.mp4" type="video/mp4" media="(max-width: 899px)"><source src="https://photos.filipbiljic.com/france/paris/broll-tube-1920.mp4" type="video/mp4"></video><p class="meta">16:59 · video</p></div>
+</div>
+</div></div>
+<div class="run dark"><div class="rows">
+<div class="row one clip" style="--sum:1.778">
+<div class="shot clip" style="--r:1.778"><video class="loop" muted playsinline loop controls preload="none" width="1920" height="1080" poster="https://photos.filipbiljic.com/france/paris/broll-dance-poster-960.jpg" aria-label="Video: people dancing in a dark hall under a mirror ball, light on the floor">
+<source src="https://photos.filipbiljic.com/france/paris/broll-dance-960.mp4" type="video/mp4" media="(max-width: 899px)"><source src="https://photos.filipbiljic.com/france/paris/broll-dance-1920.mp4" type="video/mp4"></video><p class="meta">17:11 · video</p></div>
+</div>
 </div></div>
 <div class="run light"><div class="rows">
 <div class="row many" style="--sum:2.998">
-<div class="shot" style="--r:1.499"><!-- picture:centre-pompidou-2025/pompidou-3 sizes="(min-width: 900px) 35vw, 100vw":start -->
-<a class="open" id="pompidou-3" href="https://photos.filipbiljic.com/centre-pompidou-2025/pompidou-3-2000.jpg" data-view data-dump="Paris, 2025" data-caption=" f/8, 1/800 s, ISO 100. 25 October, 16:58." data-bytes="{&quot;1000.jpg&quot;:81346,&quot;1000.jxl&quot;:57399,&quot;2000.jpg&quot;:264448,&quot;2000.jxl&quot;:176809}"><picture>
-<source type="image/jxl" srcset="https://photos.filipbiljic.com/centre-pompidou-2025/pompidou-3-1000.jxl 1000w, https://photos.filipbiljic.com/centre-pompidou-2025/pompidou-3-2000.jxl 2000w" sizes="(min-width: 900px) 35vw, 100vw">
-<img src="https://photos.filipbiljic.com/centre-pompidou-2025/pompidou-3-1000.jpg" srcset="https://photos.filipbiljic.com/centre-pompidou-2025/pompidou-3-1000.jpg 1000w, https://photos.filipbiljic.com/centre-pompidou-2025/pompidou-3-2000.jpg 2000w" sizes="(min-width: 900px) 35vw, 100vw" width="1000" height="667" alt="Sun catches Paris rooftops beneath black storm clouds with Sacré-Cœur on the horizon" loading="lazy">
-</picture></a>
-<!-- picture:centre-pompidou-2025/pompidou-3:end --><p class="meta">16:58 · f/8 · 1/800 s · ISO 100</p></div>
 <div class="shot" style="--r:1.499"><!-- picture:centre-pompidou-2025/pompidou-4 sizes="(min-width: 900px) 35vw, 100vw":start -->
 <a class="open" id="pompidou-4" href="https://photos.filipbiljic.com/centre-pompidou-2025/pompidou-4-2000.jpg" data-view data-dump="Paris, 2025" data-caption=" f/4, 1/250 s, ISO 1250. 25 October, 17:36." data-bytes="{&quot;1000.jpg&quot;:57728,&quot;1000.jxl&quot;:39447,&quot;2000.jpg&quot;:189809,&quot;2000.jxl&quot;:126964}"><picture>
 <source type="image/jxl" srcset="https://photos.filipbiljic.com/centre-pompidou-2025/pompidou-4-1000.jxl 1000w, https://photos.filipbiljic.com/centre-pompidou-2025/pompidou-4-2000.jxl 2000w" sizes="(min-width: 900px) 35vw, 100vw">
 <img src="https://photos.filipbiljic.com/centre-pompidou-2025/pompidou-4-1000.jpg" srcset="https://photos.filipbiljic.com/centre-pompidou-2025/pompidou-4-1000.jpg 1000w, https://photos.filipbiljic.com/centre-pompidou-2025/pompidou-4-2000.jpg 2000w" sizes="(min-width: 900px) 35vw, 100vw" width="1000" height="667" alt="Visitors stand around a large oval opening in a curved sculptural interior" loading="lazy">
 </picture></a>
 <!-- picture:centre-pompidou-2025/pompidou-4:end --><p class="meta">17:36 · f/4 · 1/250 s · ISO 1250</p></div>
-</div>
-<div class="row one" style="--sum:1.499">
-<div class="shot" style="--r:1.499"><!-- picture:centre-pompidou-2025/pompidou-5 sizes="(min-width: 900px) 64vw, 100vw":start -->
+<div class="shot" style="--r:1.499"><!-- picture:centre-pompidou-2025/pompidou-5 sizes="(min-width: 900px) 35vw, 100vw":start -->
 <a class="open" id="pompidou-5" href="https://photos.filipbiljic.com/centre-pompidou-2025/pompidou-5-2000.jpg" data-view data-dump="Paris, 2025" data-caption=" f/7.1, 1/250 s, ISO 125. 25 October, 17:39." data-bytes="{&quot;1000.jpg&quot;:57305,&quot;1000.jxl&quot;:39095,&quot;2000.jpg&quot;:162551,&quot;2000.jxl&quot;:105241}"><picture>
-<source type="image/jxl" srcset="https://photos.filipbiljic.com/centre-pompidou-2025/pompidou-5-1000.jxl 1000w, https://photos.filipbiljic.com/centre-pompidou-2025/pompidou-5-2000.jxl 2000w" sizes="(min-width: 900px) 64vw, 100vw">
-<img src="https://photos.filipbiljic.com/centre-pompidou-2025/pompidou-5-1000.jpg" srcset="https://photos.filipbiljic.com/centre-pompidou-2025/pompidou-5-1000.jpg 1000w, https://photos.filipbiljic.com/centre-pompidou-2025/pompidou-5-2000.jpg 2000w" sizes="(min-width: 900px) 64vw, 100vw" width="1000" height="667" alt="Two people sit behind sound equipment beside tall industrial museum windows" loading="lazy">
+<source type="image/jxl" srcset="https://photos.filipbiljic.com/centre-pompidou-2025/pompidou-5-1000.jxl 1000w, https://photos.filipbiljic.com/centre-pompidou-2025/pompidou-5-2000.jxl 2000w" sizes="(min-width: 900px) 35vw, 100vw">
+<img src="https://photos.filipbiljic.com/centre-pompidou-2025/pompidou-5-1000.jpg" srcset="https://photos.filipbiljic.com/centre-pompidou-2025/pompidou-5-1000.jpg 1000w, https://photos.filipbiljic.com/centre-pompidou-2025/pompidou-5-2000.jpg 2000w" sizes="(min-width: 900px) 35vw, 100vw" width="1000" height="667" alt="Two people sit behind sound equipment beside tall industrial museum windows" loading="lazy">
 </picture></a>
 <!-- picture:centre-pompidou-2025/pompidou-5:end --><p class="meta">17:39 · f/7.1 · 1/250 s · ISO 125</p></div>
 </div>
@@ -1456,6 +1488,7 @@
 <li class="here got near" aria-current="location"><span class="nm">Porte des Lilas</span></li>
 <li class="got near"><a href="#s-mairie-des-lilas"><span class="nm">Mairie des Lilas</span></a></li>
 </ol>
+
 <div class="day light" id="d-2023-06-20-porte-des-lilas" data-sheet="Tuesday 20 June 2023, Porte des Lilas" data-sheet-tab="20">
 <h3 class="date" id="h-2023-06-20-porte-des-lilas"><a href="#h-2023-06-20-porte-des-lilas" data-sheet-open="d-2023-06-20-porte-des-lilas"><span class="wd">Tuesday</span> <span class="dm">20 June</span> <span class="y">2023</span></a></h3>
 <p class="span">19:50 – 20:26</p>
@@ -1573,6 +1606,7 @@
 <li class="got near gone"><a href="#s-porte-des-lilas"><span class="nm">Porte des Lilas</span></a></li>
 <li class="here got near" aria-current="location"><span class="nm">Mairie des Lilas</span></li>
 </ol>
+
 <div class="day light" id="d-2023-06-16-mairie-des-lilas" data-sheet="Friday 16 June 2023, Mairie des Lilas" data-sheet-tab="16">
 <h3 class="date" id="h-2023-06-16-mairie-des-lilas"><a href="#h-2023-06-16-mairie-des-lilas" data-sheet-open="d-2023-06-16-mairie-des-lilas"><span class="wd">Friday</span> <span class="dm">16 June</span> <span class="y">2023</span></a></h3>
 <p class="span">18:59 – 19:00</p>
@@ -1834,7 +1868,7 @@
 <li class="got near gone"><a href="#s-chatelet"><span class="nm">Châtelet</span></a></li>
 <li class="near gone"><span class="nm">Hôtel de Ville</span></li>
 <li class="here got near" aria-current="location"><span class="nm">Saint-Paul</span></li>
-<li class="near"><span class="nm">Bastille</span></li>
+<li class="got near"><a href="#s-bastille"><span class="nm">Bastille</span></a></li>
 <li class="near"><span class="nm">Gare de Lyon</span></li>
 <li class=""><span class="nm">Reuilly–Diderot</span></li>
 <li class="got"><a href="#s-nation"><span class="nm">Nation</span></a></li>
@@ -1843,6 +1877,7 @@
 <li class=""><span class="nm">Bérault</span></li>
 <li class="got"><a href="#s-chateau-de-vincennes"><span class="nm">Château de Vincennes</span></a></li>
 </ol>
+
 <div class="day light" id="d-2024-01-20-saint-paul" data-sheet="Saturday 20 January 2024, Saint-Paul" data-sheet-tab="20">
 <h3 class="date" id="h-2024-01-20-saint-paul"><a href="#h-2024-01-20-saint-paul" data-sheet-open="d-2024-01-20-saint-paul"><span class="wd">Saturday</span> <span class="dm">20 January</span> <span class="y">2024</span></a></h3>
 <p class="span">14:20 – 14:44</p>
@@ -1955,19 +1990,109 @@
 </picture></a>
 <!-- picture:sunny-marais-2024/dsc06329:end --><p class="meta">15:30 · f/1.4 · 1/125 s · ISO 100</p></div>
 </div>
-<div class="row many" style="--sum:2.299">
-<div class="shot" style="--r:0.8"><!-- picture:sunny-marais-2024/dsc06332 sizes="(min-width: 900px) 24vw, 100vw":start -->
+<div class="row one" style="--sum:0.8">
+<div class="shot" style="--r:0.8"><!-- picture:sunny-marais-2024/dsc06332 sizes="(min-width: 900px) 64vw, 100vw":start -->
 <a class="open" id="dsc06332" href="https://photos.filipbiljic.com/sunny-marais-2024/dsc06332-2000.jpg" data-view data-dump="Paris, 2024" data-caption=" f/1.4, 1/160 s, ISO 100. 27 January, 15:31." data-bytes="{&quot;1000.jpg&quot;:158892,&quot;1000.jxl&quot;:104532,&quot;2000.jpg&quot;:682476,&quot;2000.jxl&quot;:478740}"><picture>
-<source type="image/jxl" srcset="https://photos.filipbiljic.com/sunny-marais-2024/dsc06332-1000.jxl 1000w, https://photos.filipbiljic.com/sunny-marais-2024/dsc06332-2000.jxl 2000w" sizes="(min-width: 900px) 24vw, 100vw">
-<img src="https://photos.filipbiljic.com/sunny-marais-2024/dsc06332-1000.jpg" srcset="https://photos.filipbiljic.com/sunny-marais-2024/dsc06332-1000.jpg 1000w, https://photos.filipbiljic.com/sunny-marais-2024/dsc06332-2000.jpg 2000w" sizes="(min-width: 900px) 24vw, 100vw" width="1000" height="1250" alt="A low view follows a narrow market aisle under a glazed pitched roof" loading="lazy">
+<source type="image/jxl" srcset="https://photos.filipbiljic.com/sunny-marais-2024/dsc06332-1000.jxl 1000w, https://photos.filipbiljic.com/sunny-marais-2024/dsc06332-2000.jxl 2000w" sizes="(min-width: 900px) 64vw, 100vw">
+<img src="https://photos.filipbiljic.com/sunny-marais-2024/dsc06332-1000.jpg" srcset="https://photos.filipbiljic.com/sunny-marais-2024/dsc06332-1000.jpg 1000w, https://photos.filipbiljic.com/sunny-marais-2024/dsc06332-2000.jpg 2000w" sizes="(min-width: 900px) 64vw, 100vw" width="1000" height="1250" alt="A low view follows a narrow market aisle under a glazed pitched roof" loading="lazy">
 </picture></a>
 <!-- picture:sunny-marais-2024/dsc06332:end --><p class="meta">15:31 · f/1.4 · 1/160 s · ISO 100</p></div>
-<div class="shot" style="--r:1.499"><!-- picture:sunny-marais-2024/dsc06392 sizes="(min-width: 900px) 46vw, 100vw":start -->
+</div>
+<div class="row one clip" style="--sum:1.778">
+<div class="shot clip" style="--r:1.778"><video class="loop" muted playsinline loop controls preload="none" width="1920" height="1080" poster="https://photos.filipbiljic.com/france/paris/broll-market-poster-960.jpg" aria-label="Video: a market stall under a red awning, people going past">
+<source src="https://photos.filipbiljic.com/france/paris/broll-market-960.mp4" type="video/mp4" media="(max-width: 899px)"><source src="https://photos.filipbiljic.com/france/paris/broll-market-1920.mp4" type="video/mp4"></video><p class="meta">17:32 · video</p></div>
+</div>
+<div class="row one" style="--sum:1.499">
+<div class="shot" style="--r:1.499"><!-- picture:sunny-marais-2024/dsc06392 sizes="(min-width: 900px) 64vw, 100vw":start -->
 <a class="open" id="dsc06392" href="https://photos.filipbiljic.com/sunny-marais-2024/dsc06392-2000.jpg" data-view data-dump="Paris, 2024" data-caption=" f/1.4, 1/80 s, ISO 100. 27 January, 17:34." data-bytes="{&quot;1000.jpg&quot;:88881,&quot;1000.jxl&quot;:64807,&quot;2000.jpg&quot;:324720,&quot;2000.jxl&quot;:237855}"><picture>
-<source type="image/jxl" srcset="https://photos.filipbiljic.com/sunny-marais-2024/dsc06392-1000.jxl 1000w, https://photos.filipbiljic.com/sunny-marais-2024/dsc06392-2000.jxl 2000w" sizes="(min-width: 900px) 46vw, 100vw">
-<img src="https://photos.filipbiljic.com/sunny-marais-2024/dsc06392-1000.jpg" srcset="https://photos.filipbiljic.com/sunny-marais-2024/dsc06392-1000.jpg 1000w, https://photos.filipbiljic.com/sunny-marais-2024/dsc06392-2000.jpg 2000w" sizes="(min-width: 900px) 46vw, 100vw" width="1000" height="667" alt="Visitors pass outdoor market tents beside old Paris façades" loading="lazy">
+<source type="image/jxl" srcset="https://photos.filipbiljic.com/sunny-marais-2024/dsc06392-1000.jxl 1000w, https://photos.filipbiljic.com/sunny-marais-2024/dsc06392-2000.jxl 2000w" sizes="(min-width: 900px) 64vw, 100vw">
+<img src="https://photos.filipbiljic.com/sunny-marais-2024/dsc06392-1000.jpg" srcset="https://photos.filipbiljic.com/sunny-marais-2024/dsc06392-1000.jpg 1000w, https://photos.filipbiljic.com/sunny-marais-2024/dsc06392-2000.jpg 2000w" sizes="(min-width: 900px) 64vw, 100vw" width="1000" height="667" alt="Visitors pass outdoor market tents beside old Paris façades" loading="lazy">
 </picture></a>
 <!-- picture:sunny-marais-2024/dsc06392:end --><p class="meta">17:34 · f/1.4 · 1/80 s · ISO 100</p></div>
+</div>
+</div></div>
+</div>
+
+</section>
+
+<section class="stop" id="s-bastille" aria-labelledby="p-bastille" style="--l:#FFBE00;--li:#111" data-line="1">
+<header class="wall">
+<div class="lines"><span class="ln" style="--l:#FFBE00;--li:#111" aria-label="line 1">1</span><span class="ln" style="--l:#FF7E2E;--li:#111" aria-label="line 5">5</span><span class="ln" style="--l:#E19BDF;--li:#111" aria-label="line 8">8</span></div>
+<h2 class="plate" id="p-bastille"><span class="enamel"><span class="nm">Bastille</span></span><span class="enamel sub"><span class="nm">Port de l'Arsenal</span></span></h2>
+<nav class="dates" aria-label="Days at Bastille"><a href="#h-2024-02-17-bastille" data-sheet-open="d-2024-02-17-bastille">17 February 2024</a></nav>
+</header>
+<ol class="plan" style="--l:#FFBE00;--n:25" aria-label="Line 1">
+<li class="got gone"><a href="#s-la-defense"><span class="nm">La Défense</span></a></li>
+<li class="gone"><span class="nm">Esplanade de La Défense</span></li>
+<li class="got gone"><a href="#s-pont-de-neuilly"><span class="nm">Pont de Neuilly</span></a></li>
+<li class="gone"><span class="nm">Les Sablons</span></li>
+<li class="gone"><span class="nm">Porte Maillot</span></li>
+<li class="gone"><span class="nm">Argentine</span></li>
+<li class="gone"><span class="nm">Charles de Gaulle–Étoile</span></li>
+<li class="gone"><span class="nm">George V</span></li>
+<li class="gone"><span class="nm">Franklin D. Roosevelt</span></li>
+<li class="got gone"><a href="#s-champs-elysees-clemenceau"><span class="nm">Champs-Élysées–Clemenceau</span></a></li>
+<li class="gone"><span class="nm">Concorde</span></li>
+<li class="gone"><span class="nm">Tuileries</span></li>
+<li class="got gone"><a href="#s-palais-royal-musee-du-louvre"><span class="nm">Palais Royal–Musée du Louvre</span></a></li>
+<li class="gone"><span class="nm">Louvre–Rivoli</span></li>
+<li class="got gone"><a href="#s-chatelet"><span class="nm">Châtelet</span></a></li>
+<li class="near gone"><span class="nm">Hôtel de Ville</span></li>
+<li class="got near gone"><a href="#s-saint-paul"><span class="nm">Saint-Paul</span></a></li>
+<li class="here got near" aria-current="location"><span class="nm">Bastille</span></li>
+<li class="near"><span class="nm">Gare de Lyon</span></li>
+<li class="near"><span class="nm">Reuilly–Diderot</span></li>
+<li class="got"><a href="#s-nation"><span class="nm">Nation</span></a></li>
+<li class=""><span class="nm">Porte de Vincennes</span></li>
+<li class=""><span class="nm">Saint-Mandé</span></li>
+<li class=""><span class="nm">Bérault</span></li>
+<li class="got"><a href="#s-chateau-de-vincennes"><span class="nm">Château de Vincennes</span></a></li>
+</ol>
+<div class="run light opens"><div class="rows">
+<div class="row one clip" style="--sum:1.778">
+<div class="shot clip" style="--r:1.778"><video class="loop" muted playsinline loop controls preload="none" width="1920" height="1080" poster="https://photos.filipbiljic.com/france/paris/broll-bastille-sign-poster-960.jpg" aria-label="Video: the Bastille sign on the line 5 platform, the Arsenal marina behind it">
+<source src="https://photos.filipbiljic.com/france/paris/broll-bastille-sign-960.mp4" type="video/mp4" media="(max-width: 899px)"><source src="https://photos.filipbiljic.com/france/paris/broll-bastille-sign-1920.mp4" type="video/mp4"></video><p class="meta">6 June 2025 · 21:26 · video</p></div>
+</div>
+</div></div>
+<div class="day light" id="d-2024-02-17-bastille" data-sheet="Saturday 17 February 2024, Bastille" data-sheet-tab="17">
+<h3 class="date" id="h-2024-02-17-bastille"><a href="#h-2024-02-17-bastille" data-sheet-open="d-2024-02-17-bastille"><span class="wd">Saturday</span> <span class="dm">17 February</span> <span class="y">2024</span></a></h3>
+<p class="span">16:49 – 18:30</p>
+<div class="run light"><div class="rows">
+<div class="row one clip" style="--sum:1.778">
+<div class="shot clip" style="--r:1.778"><video class="loop" muted playsinline loop controls preload="none" width="1920" height="1080" poster="https://photos.filipbiljic.com/france/paris/broll-broc-table-poster-960.jpg" aria-label="Video: a brocante table of steins, vases and a brass horn by the road">
+<source src="https://photos.filipbiljic.com/france/paris/broll-broc-table-960.mp4" type="video/mp4" media="(max-width: 899px)"><source src="https://photos.filipbiljic.com/france/paris/broll-broc-table-1920.mp4" type="video/mp4"></video><p class="meta">16:49 · video</p></div>
+</div>
+<div class="row one clip" style="--sum:1.778">
+<div class="shot clip" style="--r:1.778"><video class="loop" muted playsinline loop controls preload="none" width="1920" height="1080" poster="https://photos.filipbiljic.com/france/paris/broll-broc-frames-poster-960.jpg" aria-label="Video: people looking through a brocante along a street of shops">
+<source src="https://photos.filipbiljic.com/france/paris/broll-broc-frames-960.mp4" type="video/mp4" media="(max-width: 899px)"><source src="https://photos.filipbiljic.com/france/paris/broll-broc-frames-1920.mp4" type="video/mp4"></video><p class="meta">16:50 · video</p></div>
+</div>
+<div class="row one clip" style="--sum:1.778">
+<div class="shot clip" style="--r:1.778"><video class="loop" muted playsinline loop controls preload="none" width="1920" height="1080" poster="https://photos.filipbiljic.com/france/paris/broll-broc-stalls-poster-960.jpg" aria-label="Video: carved wooden figures and masks on a brocante table">
+<source src="https://photos.filipbiljic.com/france/paris/broll-broc-stalls-960.mp4" type="video/mp4" media="(max-width: 899px)"><source src="https://photos.filipbiljic.com/france/paris/broll-broc-stalls-1920.mp4" type="video/mp4"></video><p class="meta">16:52 · video</p></div>
+</div>
+<div class="row many clips" style="--sum:3.556">
+<div class="shot clip" style="--r:1.778"><video class="loop" muted playsinline loop controls preload="none" width="1920" height="1080" poster="https://photos.filipbiljic.com/france/paris/broll-marina-a-poster-960.jpg" aria-label="Video: boats moored along a pontoon in the Arsenal marina, seen from above">
+<source src="https://photos.filipbiljic.com/france/paris/broll-marina-a-960.mp4" type="video/mp4" media="(max-width: 899px)"><source src="https://photos.filipbiljic.com/france/paris/broll-marina-a-1920.mp4" type="video/mp4"></video><p class="meta">17:05 · video</p></div>
+<div class="shot clip" style="--r:1.778"><video class="loop" muted playsinline loop controls preload="none" width="1920" height="1080" poster="https://photos.filipbiljic.com/france/paris/broll-marina-b-poster-960.jpg" aria-label="Video: a man walking along a pontoon past moored boats, seen from above">
+<source src="https://photos.filipbiljic.com/france/paris/broll-marina-b-960.mp4" type="video/mp4" media="(max-width: 899px)"><source src="https://photos.filipbiljic.com/france/paris/broll-marina-b-1920.mp4" type="video/mp4"></video><p class="meta">17:05 · video</p></div>
+</div>
+</div></div>
+<div class="run dark"><div class="rows">
+<div class="row one" style="--sum:1.499">
+<div class="shot" style="--r:1.499"><!-- picture:sunny-marais-2024/dsc06931 sizes="(min-width: 900px) 64vw, 100vw":start -->
+<a class="open" id="dsc06931" href="https://photos.filipbiljic.com/sunny-marais-2024/dsc06931-2000.jpg" data-view data-dump="Paris, 2024" data-caption=" f/1.4, 1/60 s, ISO 500. 17 February, 18:27." data-bytes="{&quot;1000.jpg&quot;:131622,&quot;1000.jxl&quot;:96348,&quot;2000.jpg&quot;:464808,&quot;2000.jxl&quot;:332512}"><picture>
+<source type="image/jxl" srcset="https://photos.filipbiljic.com/sunny-marais-2024/dsc06931-1000.jxl 1000w, https://photos.filipbiljic.com/sunny-marais-2024/dsc06931-2000.jxl 2000w" sizes="(min-width: 900px) 64vw, 100vw">
+<img src="https://photos.filipbiljic.com/sunny-marais-2024/dsc06931-1000.jpg" srcset="https://photos.filipbiljic.com/sunny-marais-2024/dsc06931-1000.jpg 1000w, https://photos.filipbiljic.com/sunny-marais-2024/dsc06931-2000.jpg 2000w" sizes="(min-width: 900px) 64vw, 100vw" width="1000" height="667" alt="A lamp-lit moored barge sits below university and residential buildings across the Seine" loading="lazy">
+</picture></a>
+<!-- picture:sunny-marais-2024/dsc06931:end --><p class="meta">18:27 · f/1.4 · 1/60 s · ISO 500</p></div>
+</div>
+<div class="row one clip" style="--sum:1.778">
+<div class="shot clip" style="--r:1.778"><video class="loop" muted playsinline loop controls preload="none" width="1920" height="1080" poster="https://photos.filipbiljic.com/france/paris/broll-marina-dusk-poster-960.jpg" aria-label="Video: the Arsenal marina at dusk, the July Column and the Opéra Bastille behind it">
+<source src="https://photos.filipbiljic.com/france/paris/broll-marina-dusk-960.mp4" type="video/mp4" media="(max-width: 899px)"><source src="https://photos.filipbiljic.com/france/paris/broll-marina-dusk-1920.mp4" type="video/mp4"></video><p class="meta">18:28 · video</p></div>
+</div>
+<div class="row one clip" style="--sum:1.778">
+<div class="shot clip" style="--r:1.778"><video class="loop" muted playsinline loop controls preload="none" width="1920" height="1080" poster="https://photos.filipbiljic.com/france/paris/broll-quay-dusk-poster-960.jpg" aria-label="Video: people walking along the quay by the marina at dusk, streetlights coming on">
+<source src="https://photos.filipbiljic.com/france/paris/broll-quay-dusk-960.mp4" type="video/mp4" media="(max-width: 899px)"><source src="https://photos.filipbiljic.com/france/paris/broll-quay-dusk-1920.mp4" type="video/mp4"></video><p class="meta">18:30 · video</p></div>
 </div>
 </div></div>
 </div>
@@ -1998,7 +2123,7 @@
 <li class="got gone"><a href="#s-chatelet"><span class="nm">Châtelet</span></a></li>
 <li class="gone"><span class="nm">Hôtel de Ville</span></li>
 <li class="got gone"><a href="#s-saint-paul"><span class="nm">Saint-Paul</span></a></li>
-<li class="gone"><span class="nm">Bastille</span></li>
+<li class="got gone"><a href="#s-bastille"><span class="nm">Bastille</span></a></li>
 <li class="near gone"><span class="nm">Gare de Lyon</span></li>
 <li class="near gone"><span class="nm">Reuilly–Diderot</span></li>
 <li class="here got near" aria-current="location"><span class="nm">Nation</span></li>
@@ -2007,6 +2132,7 @@
 <li class=""><span class="nm">Bérault</span></li>
 <li class="got"><a href="#s-chateau-de-vincennes"><span class="nm">Château de Vincennes</span></a></li>
 </ol>
+
 <div class="day light" id="d-2023-07-01-nation" data-sheet="Saturday 1 July 2023, Nation" data-sheet-tab="1">
 <h3 class="date" id="h-2023-07-01-nation"><a href="#h-2023-07-01-nation" data-sheet-open="d-2023-07-01-nation"><span class="wd">Saturday</span> <span class="dm">1 July</span> <span class="y">2023</span></a></h3>
 <p class="span">19:33 – 21:04</p>
@@ -2054,7 +2180,7 @@
 <li class="got gone"><a href="#s-chatelet"><span class="nm">Châtelet</span></a></li>
 <li class="gone"><span class="nm">Hôtel de Ville</span></li>
 <li class="got gone"><a href="#s-saint-paul"><span class="nm">Saint-Paul</span></a></li>
-<li class="gone"><span class="nm">Bastille</span></li>
+<li class="got gone"><a href="#s-bastille"><span class="nm">Bastille</span></a></li>
 <li class="gone"><span class="nm">Gare de Lyon</span></li>
 <li class="gone"><span class="nm">Reuilly–Diderot</span></li>
 <li class="got gone"><a href="#s-nation"><span class="nm">Nation</span></a></li>
@@ -2063,9 +2189,10 @@
 <li class="near gone"><span class="nm">Bérault</span></li>
 <li class="here got near" aria-current="location"><span class="nm">Château de Vincennes</span></li>
 </ol>
+
 <div class="day light" id="d-2023-07-02-chateau-de-vincennes" data-sheet="Sunday 2 July 2023, Château de Vincennes" data-sheet-tab="2">
 <h3 class="date" id="h-2023-07-02-chateau-de-vincennes"><a href="#h-2023-07-02-chateau-de-vincennes" data-sheet-open="d-2023-07-02-chateau-de-vincennes"><span class="wd">Sunday</span> <span class="dm">2 July</span> <span class="y">2023</span></a></h3>
-<p class="span">17:33 – 18:13</p>
+<p class="span">17:33 – 20:09</p>
 <div class="run light"><div class="rows">
 <div class="row keep" style="--sum:2.4">
 <div class="shot" style="--r:0.8"><!-- picture:paris-2023/jul02-1 sizes="(min-width: 900px) 23vw, 100vw":start -->
@@ -2087,27 +2214,31 @@
 </picture></a>
 <!-- picture:paris-2023/jul02-b-2:end --><p class="meta">17:41 · f/5.6 · 1/125 s · ISO 100</p></div>
 </div>
-<div class="row keep" style="--sum:3.168">
-<div class="shot" style="--r:0.668"><!-- picture:paris-2023/jul02-5 sizes="(min-width: 900px) 15vw, 100vw":start -->
+<div class="row keep" style="--sum:1.918">
+<div class="shot" style="--r:0.668"><!-- picture:paris-2023/jul02-5 sizes="(min-width: 900px) 24vw, 100vw":start -->
 <a class="open" id="jul02-5" href="https://photos.filipbiljic.com/paris-2023/jul02-5-2000.jpg" data-view data-dump="Paris, 2023" data-caption=" f/4, 1/320 s, ISO 125. 2 July, 17:43." data-bytes="{&quot;1000.jpg&quot;:218039,&quot;1000.jxl&quot;:144704,&quot;2000.jpg&quot;:659462,&quot;2000.jxl&quot;:400255}"><picture>
-<source type="image/jxl" srcset="https://photos.filipbiljic.com/paris-2023/jul02-5-1000.jxl 1000w, https://photos.filipbiljic.com/paris-2023/jul02-5-2000.jxl 2000w" sizes="(min-width: 900px) 15vw, 100vw">
-<img src="https://photos.filipbiljic.com/paris-2023/jul02-5-1000.jpg" srcset="https://photos.filipbiljic.com/paris-2023/jul02-5-1000.jpg 1000w, https://photos.filipbiljic.com/paris-2023/jul02-5-2000.jpg 2000w" sizes="(min-width: 900px) 15vw, 100vw" width="1000" height="1497" alt="A moss-covered rock stands before a dark still pond" loading="lazy">
+<source type="image/jxl" srcset="https://photos.filipbiljic.com/paris-2023/jul02-5-1000.jxl 1000w, https://photos.filipbiljic.com/paris-2023/jul02-5-2000.jxl 2000w" sizes="(min-width: 900px) 24vw, 100vw">
+<img src="https://photos.filipbiljic.com/paris-2023/jul02-5-1000.jpg" srcset="https://photos.filipbiljic.com/paris-2023/jul02-5-1000.jpg 1000w, https://photos.filipbiljic.com/paris-2023/jul02-5-2000.jpg 2000w" sizes="(min-width: 900px) 24vw, 100vw" width="1000" height="1497" alt="A moss-covered rock stands before a dark still pond" loading="lazy">
 </picture></a>
 <!-- picture:paris-2023/jul02-5:end --><p class="meta">17:43 · f/4 · 1/320 s · ISO 125</p></div>
-<div class="shot" style="--r:1.25"><!-- picture:paris-2023/jul02-8 sizes="(min-width: 900px) 28vw, 100vw":start -->
+<div class="shot" style="--r:1.25"><!-- picture:paris-2023/jul02-8 sizes="(min-width: 900px) 46vw, 100vw":start -->
 <a class="open" id="jul02-8" href="https://photos.filipbiljic.com/paris-2023/jul02-8-2000.jpg" data-view data-dump="Paris, 2023" data-caption=" f/6.3, 1/50 s, ISO 100. 2 July, 17:46." data-bytes="{&quot;1000.jpg&quot;:212525,&quot;1000.jxl&quot;:164821,&quot;2000.jpg&quot;:679552,&quot;2000.jxl&quot;:505383}"><picture>
-<source type="image/jxl" srcset="https://photos.filipbiljic.com/paris-2023/jul02-8-1000.jxl 1000w, https://photos.filipbiljic.com/paris-2023/jul02-8-2000.jxl 2000w" sizes="(min-width: 900px) 28vw, 100vw">
-<img src="https://photos.filipbiljic.com/paris-2023/jul02-8-1000.jpg" srcset="https://photos.filipbiljic.com/paris-2023/jul02-8-1000.jpg 1000w, https://photos.filipbiljic.com/paris-2023/jul02-8-2000.jpg 2000w" sizes="(min-width: 900px) 28vw, 100vw" width="1000" height="800" alt="A bright green leaf lies in shallow clear water over pebbles" loading="lazy">
+<source type="image/jxl" srcset="https://photos.filipbiljic.com/paris-2023/jul02-8-1000.jxl 1000w, https://photos.filipbiljic.com/paris-2023/jul02-8-2000.jxl 2000w" sizes="(min-width: 900px) 46vw, 100vw">
+<img src="https://photos.filipbiljic.com/paris-2023/jul02-8-1000.jpg" srcset="https://photos.filipbiljic.com/paris-2023/jul02-8-1000.jpg 1000w, https://photos.filipbiljic.com/paris-2023/jul02-8-2000.jpg 2000w" sizes="(min-width: 900px) 46vw, 100vw" width="1000" height="800" alt="A bright green leaf lies in shallow clear water over pebbles" loading="lazy">
 </picture></a>
 <!-- picture:paris-2023/jul02-8:end --><p class="meta">17:46 · f/6.3 · 1/50 s · ISO 100</p></div>
-<div class="shot" style="--r:1.25"><!-- picture:paris-2023/jul02-2 sizes="(min-width: 900px) 28vw, 100vw":start -->
-<a class="open" id="jul02-2" href="https://photos.filipbiljic.com/paris-2023/jul02-2-2000.jpg" data-view data-dump="Paris, 2023" data-caption=" f/1.8, 1/800 s, ISO 125. 2 July, 17:56." data-bytes="{&quot;1000.jpg&quot;:149920,&quot;1000.jxl&quot;:111898,&quot;2000.jpg&quot;:485111,&quot;2000.jxl&quot;:338076}"><picture>
-<source type="image/jxl" srcset="https://photos.filipbiljic.com/paris-2023/jul02-2-1000.jxl 1000w, https://photos.filipbiljic.com/paris-2023/jul02-2-2000.jxl 2000w" sizes="(min-width: 900px) 28vw, 100vw">
-<img src="https://photos.filipbiljic.com/paris-2023/jul02-2-1000.jpg" srcset="https://photos.filipbiljic.com/paris-2023/jul02-2-1000.jpg 1000w, https://photos.filipbiljic.com/paris-2023/jul02-2-2000.jpg 2000w" sizes="(min-width: 900px) 28vw, 100vw" width="1000" height="800" alt="Soft patches of sunlight break across a dark gravel path" loading="lazy">
-</picture></a>
-<!-- picture:paris-2023/jul02-2:end --><p class="meta">17:56 · f/1.8 · 1/800 s · ISO 125</p></div>
+</div>
+<div class="row one clip" style="--sum:1.778">
+<div class="shot clip" style="--r:1.778"><video class="loop" muted playsinline loop controls preload="none" width="1920" height="1080" poster="https://photos.filipbiljic.com/france/paris/broll-geese-poster-960.jpg" aria-label="Video: a Canada goose standing in the water by a rock">
+<source src="https://photos.filipbiljic.com/france/paris/broll-geese-960.mp4" type="video/mp4" media="(max-width: 899px)"><source src="https://photos.filipbiljic.com/france/paris/broll-geese-1920.mp4" type="video/mp4"></video><p class="meta">17:47 · video</p></div>
 </div>
 <div class="row keep" style="--sum:3.3">
+<div class="shot" style="--r:1.25"><!-- picture:paris-2023/jul02-2 sizes="(min-width: 900px) 27vw, 100vw":start -->
+<a class="open" id="jul02-2" href="https://photos.filipbiljic.com/paris-2023/jul02-2-2000.jpg" data-view data-dump="Paris, 2023" data-caption=" f/1.8, 1/800 s, ISO 125. 2 July, 17:56." data-bytes="{&quot;1000.jpg&quot;:149920,&quot;1000.jxl&quot;:111898,&quot;2000.jpg&quot;:485111,&quot;2000.jxl&quot;:338076}"><picture>
+<source type="image/jxl" srcset="https://photos.filipbiljic.com/paris-2023/jul02-2-1000.jxl 1000w, https://photos.filipbiljic.com/paris-2023/jul02-2-2000.jxl 2000w" sizes="(min-width: 900px) 27vw, 100vw">
+<img src="https://photos.filipbiljic.com/paris-2023/jul02-2-1000.jpg" srcset="https://photos.filipbiljic.com/paris-2023/jul02-2-1000.jpg 1000w, https://photos.filipbiljic.com/paris-2023/jul02-2-2000.jpg 2000w" sizes="(min-width: 900px) 27vw, 100vw" width="1000" height="800" alt="Soft patches of sunlight break across a dark gravel path" loading="lazy">
+</picture></a>
+<!-- picture:paris-2023/jul02-2:end --><p class="meta">17:56 · f/1.8 · 1/800 s · ISO 125</p></div>
 <div class="shot" style="--r:0.8"><!-- picture:paris-2023/jul02-b-1 sizes="(min-width: 900px) 17vw, 100vw":start -->
 <a class="open" id="jul02-b-1" href="https://photos.filipbiljic.com/paris-2023/jul02-b-1-2000.jpg" data-view data-dump="Paris, 2023" data-caption=" f/11, 1/80 s, ISO 160. 2 July, 18:00." data-bytes="{&quot;1000.jpg&quot;:303345,&quot;1000.jxl&quot;:234089,&quot;2000.jpg&quot;:1156239,&quot;2000.jxl&quot;:842975}"><picture>
 <source type="image/jxl" srcset="https://photos.filipbiljic.com/paris-2023/jul02-b-1-1000.jxl 1000w, https://photos.filipbiljic.com/paris-2023/jul02-b-1-2000.jxl 2000w" sizes="(min-width: 900px) 17vw, 100vw">
@@ -2120,37 +2251,67 @@
 <img src="https://photos.filipbiljic.com/paris-2023/jul02-7-1000.jpg" srcset="https://photos.filipbiljic.com/paris-2023/jul02-7-1000.jpg 1000w, https://photos.filipbiljic.com/paris-2023/jul02-7-2000.jpg 2000w" sizes="(min-width: 900px) 27vw, 100vw" width="1000" height="800" alt="Warm brown wood chips carry a diagonal shadow" loading="lazy">
 </picture></a>
 <!-- picture:paris-2023/jul02-7:end --><p class="meta">18:10 · f/11 · 1/100 s · ISO 125</p></div>
-<div class="shot" style="--r:1.25"><!-- picture:paris-2023/abstractpainting sizes="(min-width: 900px) 27vw, 100vw":start -->
+</div>
+<div class="row keep" style="--sum:2.05">
+<div class="shot" style="--r:1.25"><!-- picture:paris-2023/abstractpainting sizes="(min-width: 900px) 43vw, 100vw":start -->
 <a class="open" id="abstractpainting" href="https://photos.filipbiljic.com/paris-2023/abstractpainting-2000.jpg" data-view data-dump="Paris, 2023" data-caption=" f/18, 1/20 s, ISO 100. 2 July, 18:11." data-bytes="{&quot;1000.jpg&quot;:142079,&quot;1000.jxl&quot;:101464,&quot;2000.jpg&quot;:655429,&quot;2000.jxl&quot;:454199}"><picture>
-<source type="image/jxl" srcset="https://photos.filipbiljic.com/paris-2023/abstractpainting-1000.jxl 1000w, https://photos.filipbiljic.com/paris-2023/abstractpainting-2000.jxl 2000w" sizes="(min-width: 900px) 27vw, 100vw">
-<img src="https://photos.filipbiljic.com/paris-2023/abstractpainting-1000.jpg" srcset="https://photos.filipbiljic.com/paris-2023/abstractpainting-1000.jpg 1000w, https://photos.filipbiljic.com/paris-2023/abstractpainting-2000.jpg 2000w" sizes="(min-width: 900px) 27vw, 100vw" width="1000" height="800" alt="Blurred trees and water form vertical turquoise and dark bands" loading="lazy">
+<source type="image/jxl" srcset="https://photos.filipbiljic.com/paris-2023/abstractpainting-1000.jxl 1000w, https://photos.filipbiljic.com/paris-2023/abstractpainting-2000.jxl 2000w" sizes="(min-width: 900px) 43vw, 100vw">
+<img src="https://photos.filipbiljic.com/paris-2023/abstractpainting-1000.jpg" srcset="https://photos.filipbiljic.com/paris-2023/abstractpainting-1000.jpg 1000w, https://photos.filipbiljic.com/paris-2023/abstractpainting-2000.jpg 2000w" sizes="(min-width: 900px) 43vw, 100vw" width="1000" height="800" alt="Blurred trees and water form vertical turquoise and dark bands" loading="lazy">
 </picture></a>
 <!-- picture:paris-2023/abstractpainting:end --><p class="meta">18:11 · f/18 · 1/20 s · ISO 100</p></div>
-</div>
-<div class="row one" style="--sum:0.8">
-<div class="shot" style="--r:0.8"><!-- picture:paris-2023/jul02-4 sizes="(min-width: 900px) 64vw, 100vw":start -->
+<div class="shot" style="--r:0.8"><!-- picture:paris-2023/jul02-4 sizes="(min-width: 900px) 27vw, 100vw":start -->
 <a class="open" id="jul02-4" href="https://photos.filipbiljic.com/paris-2023/jul02-4-2000.jpg" data-view data-dump="Paris, 2023" data-caption=" f/8, 1/80 s, ISO 640. 2 July, 18:13." data-bytes="{&quot;1000.jpg&quot;:279996,&quot;1000.jxl&quot;:191263,&quot;2000.jpg&quot;:969161,&quot;2000.jxl&quot;:618314}"><picture>
-<source type="image/jxl" srcset="https://photos.filipbiljic.com/paris-2023/jul02-4-1000.jxl 1000w, https://photos.filipbiljic.com/paris-2023/jul02-4-2000.jxl 2000w" sizes="(min-width: 900px) 64vw, 100vw">
-<img src="https://photos.filipbiljic.com/paris-2023/jul02-4-1000.jpg" srcset="https://photos.filipbiljic.com/paris-2023/jul02-4-1000.jpg 1000w, https://photos.filipbiljic.com/paris-2023/jul02-4-2000.jpg 2000w" sizes="(min-width: 900px) 64vw, 100vw" width="1000" height="1250" alt="A fallen log catches a narrow stripe of light among ivy leaves" loading="lazy">
+<source type="image/jxl" srcset="https://photos.filipbiljic.com/paris-2023/jul02-4-1000.jxl 1000w, https://photos.filipbiljic.com/paris-2023/jul02-4-2000.jxl 2000w" sizes="(min-width: 900px) 27vw, 100vw">
+<img src="https://photos.filipbiljic.com/paris-2023/jul02-4-1000.jpg" srcset="https://photos.filipbiljic.com/paris-2023/jul02-4-1000.jpg 1000w, https://photos.filipbiljic.com/paris-2023/jul02-4-2000.jpg 2000w" sizes="(min-width: 900px) 27vw, 100vw" width="1000" height="1250" alt="A fallen log catches a narrow stripe of light among ivy leaves" loading="lazy">
 </picture></a>
 <!-- picture:paris-2023/jul02-4:end --><p class="meta">18:13 · f/8 · 1/80 s · ISO 640</p></div>
+</div>
+<div class="row one clip" style="--sum:1.778">
+<div class="shot clip" style="--r:1.778"><video class="loop" muted playsinline loop controls preload="none" width="1920" height="1080" poster="https://photos.filipbiljic.com/france/paris/broll-geese-lake-poster-960.jpg" aria-label="Video: geese swimming on the lake in the evening">
+<source src="https://photos.filipbiljic.com/france/paris/broll-geese-lake-960.mp4" type="video/mp4" media="(max-width: 899px)"><source src="https://photos.filipbiljic.com/france/paris/broll-geese-lake-1920.mp4" type="video/mp4"></video><p class="meta">20:09 · video</p></div>
 </div>
 </div></div>
 </div>
 <div class="terminus" style="--l:#FFBE00"><p>Terminus</p></div>
 </section>
 
-<aside class="stub" aria-label="More photos">
+<section class="flight" id="flight" aria-label="JU 243, Paris to Belgrade, 23 February 2024">
+  <div class="fz cdg" data-at="1"><div class="pin">
+  <video class="film room" muted playsinline loop controls preload="none" width="1920" height="1080" poster="https://photos.filipbiljic.com/france/paris/broll-flight-depart-poster-960.jpg" aria-label="Video: Charles de Gaulle at night from the plane window after take-off, the round terminal lit below.">
+  <source src="https://photos.filipbiljic.com/france/paris/broll-flight-depart-960.mp4" type="video/mp4" media="(max-width: 899px)"><source src="https://photos.filipbiljic.com/france/paris/broll-flight-depart-1920.mp4" type="video/mp4">
+  <img src="https://photos.filipbiljic.com/france/paris/broll-flight-depart-poster-1920.jpg" width="1920" height="1080" alt="Charles de Gaulle at night from the plane window, the round terminal lit below."></video>
+  <h2 class="code"><span class="lock"><span class="wbox"><svg class="word" viewBox="0 -698 1972 718" style="width:1.9720em;height:0.7180em" aria-hidden="true" focusable="false"><g fill="currentColor"><path data-i="0" d="M563-645L563-645L563-497Q488-543 396-543L396-543Q315-543 260-486.5Q205-430 205-335L205-335Q205-242 260-187.5Q315-133 402-133L402-133Q496-133 563-181L563-181L563-30Q502 8 387 8L387 8Q239 8 139.5-87.5Q40-183 40-335L40-335Q40-489 136.5-586Q233-683 388-683L388-683Q502-683 563-645Z"/><path data-i="1" d="M821-547L821-126L891-126Q984-126 1034.5-184Q1085-242 1085-348L1085-348Q1085-438 1034-492.5Q983-547 890-547L890-547L821-547ZM663 0L663-674L895-674Q1047-674 1144-580.5Q1241-487 1241-348L1241-348Q1241-186 1145.5-93Q1050 0 893 0L893 0L663 0Z"/><path data-i="2" d="M1653-402L1912-402L1912-62Q1816 8 1670 8L1670 8Q1508 8 1407-85Q1306-178 1306-338L1306-338Q1306-496 1411.5-591Q1517-686 1679-686L1679-686Q1793-686 1876-644L1876-644L1876-490Q1780-545 1679-545L1679-545Q1584-545 1528-488.5Q1472-432 1472-338L1472-338Q1472-243 1527-187Q1582-131 1677-131L1677-131Q1720-131 1762-144L1762-144L1762-271L1653-271L1653-402Z"/></g></svg><span class="cross" aria-hidden="true"><span class="rail"><svg class="jet" viewBox="0 0 40 12" aria-hidden="true"><path fill="currentColor" d="M0 6.5 17 5.3h6L40 6.5 23 7.5h-6z"/><circle cx="20" cy="6.4" r="2.7" fill="currentColor"/><rect x="19.35" y=".4" width="1.3" height="4.6" rx=".5" fill="currentColor"/><path fill="currentColor" d="M16.4 2.6h7.2l-.2.9h-6.8z"/><circle cx="12.6" cy="8.1" r="1.35" fill="currentColor"/><circle cx="27.4" cy="8.1" r="1.35" fill="currentColor"/></svg></span></span></span><svg class="mk disc" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M0 12a12 12 0 1 0 24 0a12 12 0 1 0-24 0zM5 11h10.6l-4.3-4.3 1.4-1.4 6.7 6.7-6.7 6.7-1.4-1.4 4.3-4.3H5z"/></svg></span><span class="vh">Paris-Charles de Gaulle</span></h2>
+  <p class="cap"><svg class="pict dep" viewBox="0 0 24 24" aria-hidden="true"><g transform="translate(12 10.6) scale(.78) rotate(45) translate(-12 -12)"><path d="M12 1.6c.9 0 1.5 1 1.5 2.2v5.3l8 4.8v2.2l-8-2.5v5l2.4 1.8v1.7L12 21.2l-3.9.9v-1.7l2.4-1.8v-5l-8 2.5v-2.2l8-4.8V3.8c0-1.2.6-2.2 1.5-2.2z" fill="currentColor"/></g><rect x="2" y="21" width="20" height="1.6" fill="currentColor"/></svg><b>JU 243</b> Paris-Charles de Gaulle → Beograd <span class="t">Friday 23 February 2024, 20:56</span></p>
+  </div></div>
+
+  <div class="fz air"><div class="pin">
+  <video class="film room" muted playsinline loop controls preload="none" width="960" height="540" poster="https://photos.filipbiljic.com/france/paris/broll-flight-cabin-poster-960.jpg" aria-label="Video: the dark cabin, a reading lamp on above the seats.">
+  <source src="https://photos.filipbiljic.com/france/paris/broll-flight-cabin-960.mp4" type="video/mp4">
+  <img src="https://photos.filipbiljic.com/france/paris/broll-flight-cabin-poster-960.jpg" width="960" height="540" alt="The dark cabin, a reading lamp on above the seats."></video>
+  <p class="code" role="img" aria-label="Flight to Belgrade"><svg class="word" data-rot="90" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6c.9 0 1.5 1 1.5 2.2v5.3l8 4.8v2.2l-8-2.5v5l2.4 1.8v1.7L12 21.2l-3.9.9v-1.7l2.4-1.8v-5l-8 2.5v-2.2l8-4.8V3.8c0-1.2.6-2.2 1.5-2.2z" fill="currentColor"/></svg></p>
+  <p class="cap"><b>JU 243</b> <span class="t">20:57</span></p>
+  </div></div>
+
+  <div class="fz beg" data-dir="out" data-at="1"><div class="pin">
+  <video class="film room" muted playsinline controls preload="none" width="1920" height="1080" poster="https://photos.filipbiljic.com/france/paris/broll-flight-arrival-poster-960.jpg" aria-label="Video: coming down over orange street lights, then the runway lights, touchdown and the green line of the taxiway.">
+  <source src="https://photos.filipbiljic.com/france/paris/broll-flight-arrival-960.mp4" type="video/mp4" media="(max-width: 899px)"><source src="https://photos.filipbiljic.com/france/paris/broll-flight-arrival-1920.mp4" type="video/mp4">
+  <img src="https://photos.filipbiljic.com/france/paris/broll-flight-arrival-end-1920.jpg" width="1920" height="1080" alt="The green line of the taxiway at night after landing."></video>
+  <h2 class="code"><a href="../../belgrade/#bg-title"><span class="lock"><svg class="jat" aria-hidden="true" focusable="false" viewBox="0 0 1069.136 597.952"><path fill="currentColor" d="M534.568,568.74c279.104,0,505.359-120.776,505.359-269.764c0-148.988-226.256-269.764-505.359-269.764 c-279.1,0-505.359,120.776-505.359,269.764C29.209,447.963,255.468,568.74,534.568,568.74 M534.568,597.952 c-139.698,0-271.49-29.284-371.098-82.454c-49.969-26.676-89.482-58.091-117.44-93.377C15.487,383.573,0,342.142,0,298.976 c0-43.167,15.487-84.597,46.03-123.145c27.958-35.286,67.471-66.701,117.44-93.377C263.078,29.284,394.87,0,534.568,0 c139.701,0,271.49,29.284,371.098,82.454c49.969,26.676,89.482,58.091,117.439,93.377c30.543,38.548,46.031,79.979,46.031,123.145 c0,43.166-15.488,84.597-46.031,123.145c-27.957,35.286-67.471,66.701-117.439,93.377 C806.058,568.667,674.269,597.952,534.568,597.952L534.568,597.952L534.568,597.952z"/><path fill="currentColor" d="M328.069,374.976c-13.75,19.001-44.348,52.779-93,54.999c-45.134,2.062-84.001-11.749-91.001-64.998 c-2.52-14.771-0.828-25.06-0.828-25.06l27.83,0.059c0,0,0.135,16.053,7.999,29c5.812,9.566,17.7,14.348,26.699,14.324 c11.393-0.027,25.375-5.768,36.301-20.324s91.001-159.001,91.001-159.001H225.067l18-29.998h201.001 C444.069,173.977,341.818,355.975,328.069,374.976L328.069,374.976z M558.068,429.975h-84.999l16-49.999h-81l-45,49.999h-42 l232-256.999h85L558.068,429.975L558.068,429.975z M435.067,349.975h63l36-110L435.067,349.975L435.067,349.975z M886.068,203.975 h-56l-130.002,226h-93.998l129-226h-69l18-30.999h219L886.068,203.975L886.068,203.975z"/></svg><span class="wbox"><svg class="word" viewBox="0 -698 1825 718" style="width:1.8250em;height:0.7180em" aria-hidden="true" focusable="false"><g fill="currentColor"><path data-i="0" d="M219-279L219-123L300-123Q414-123 414-201Q414-279 301-279L301-279L219-279ZM301-551L219-551L219-400L276-400Q336-400 366.5-422Q397-444 397-480L397-480Q397-551 301-551L301-551ZM65 0L65-674L327-674Q438-674 496-621.5Q554-569 554-488L554-488Q554-435 526-395Q498-355 453-341L453-341Q570-306 570-183L570-183Q570-103 512.5-51.5Q455 0 356 0L356 0L65 0Z"/><path data-i="1" d="M810-276L810-123L1074-123L1074 0L655 0L655-674L1070-674L1070-551L810-551L810-398L1042-398L1042-276L810-276Z"/><path data-i="2" d="M1506-402L1765-402L1765-62Q1669 8 1523 8L1523 8Q1361 8 1260-85Q1159-178 1159-338L1159-338Q1159-496 1264.5-591Q1370-686 1532-686L1532-686Q1646-686 1729-644L1729-644L1729-490Q1633-545 1532-545L1532-545Q1437-545 1381-488.5Q1325-432 1325-338L1325-338Q1325-243 1380-187Q1435-131 1530-131L1530-131Q1573-131 1615-144L1615-144L1615-271L1506-271L1506-402Z"/></g></svg><span class="cross" aria-hidden="true"><span class="rail"><svg class="jet" viewBox="0 0 40 12" aria-hidden="true"><path fill="currentColor" d="M0 6.5 17 5.3h6L40 6.5 23 7.5h-6z"/><circle cx="20" cy="6.4" r="2.7" fill="currentColor"/><rect x="19.35" y=".4" width="1.3" height="4.6" rx=".5" fill="currentColor"/><path fill="currentColor" d="M16.4 2.6h7.2l-.2.9h-6.8z"/><circle cx="12.6" cy="8.1" r="1.35" fill="currentColor"/><circle cx="27.4" cy="8.1" r="1.35" fill="currentColor"/></svg></span></span></span></span><span class="vh">JAT, Belgrade</span></a></h2>
+  <p class="cap"><svg class="pict arr" viewBox="0 0 24 24" aria-hidden="true"><g transform="translate(12 10.6) scale(.78) rotate(135) translate(-12 -12)"><path d="M12 1.6c.9 0 1.5 1 1.5 2.2v5.3l8 4.8v2.2l-8-2.5v5l2.4 1.8v1.7L12 21.2l-3.9.9v-1.7l2.4-1.8v-5l-8 2.5v-2.2l8-4.8V3.8c0-1.2.6-2.2 1.5-2.2z" fill="currentColor"/></g><rect x="2" y="21" width="20" height="1.6" fill="currentColor"/></svg><b>JU 243</b> Beograd <span class="t">22:53</span></p>
+  </div></div>
+  </section>
+<aside class="stub fl-next" aria-label="More photos">
 <!-- next:start -->
-<p class="next">Next: <a href="../../france/normandie/">Normandie</a></p>
+<p class="next">Next: <a href="../../belgrade/#bg-title">Belgrade</a></p>
 <p><a href="../../france/">France</a></p>
 <p><a href="../../../photos.html">All photos</a></p>
 <!-- next:end -->
-</aside>
 <p class="credit">Map data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>. Line colours: Île-de-France Mobilités.</p>
+</aside>
 <script src="paris.js" defer></script>
+<script src="flight.js" defer></script>
 </main>
-</main>
+
 <footer>
 <div class="back">
 <div class="note">

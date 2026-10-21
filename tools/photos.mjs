@@ -369,13 +369,16 @@ ${items}
 </ol>
 </div>`;
 }
-// A place's way on is the next place in its country (the last goes round to the first), and the country itself.
+// A place's way on is the next place in its country (the last goes round to the first), and the country itself. A place
+// can name its own way on instead ("next": "belgrade#bg-title"): Paris ends on the flight to Belgrade.
 function next(e, depth) {
   const country = e.in && countries.find(c => c.id === e.in);
   const row = country ? places.filter(x => x.in === e.in && hasPage(x)) : open;
-  const i = row.indexOf(e), n = row[(i + 1) % row.length];
-  const name = x => x.in ? esc(x.title) : `${esc(x.title)}, ${esc(when(x))}`;
-  return `${n && n !== e ? `<p class="next">Next: <a href="${href(n, depth)}">${name(n)}</a></p>\n` : ''}${country && hasPage(country) ? `<p><a href="${href(country, depth)}">${esc(country.title)}</a></p>\n` : ''}<p><a href="${home(depth)}">All photos</a></p>`;
+  const [to, at] = (e.next || '').split('#');
+  const named = to && places.find(x => x.id === to && hasPage(x));
+  const i = row.indexOf(e), n = named || row[(i + 1) % row.length];
+  const name = x => x.in || named ? esc(x.title) : `${esc(x.title)}, ${esc(when(x))}`;
+  return `${n && n !== e ? `<p class="next">Next: <a href="${href(n, depth)}${named && at ? '#' + at : ''}">${name(n)}</a></p>\n` : ''}${country && hasPage(country) ? `<p><a href="${href(country, depth)}">${esc(country.title)}</a></p>\n` : ''}<p><a href="${home(depth)}">All photos</a></p>`;
 }
 // The places of a country, the one shown marked: <!-- places:start --> on the country's page and on each place's.
 function placeList(e, depth) {

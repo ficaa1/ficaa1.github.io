@@ -131,6 +131,8 @@ main[data-place="paris"] .day .date a:active { color: var(--enamel); }
 main[data-place="paris"] .day .span { padding: 8px var(--gut) 0; font-size: var(--s-lead); font-variant-numeric: tabular-nums; color: var(--soft); }
 main[data-place="paris"] .day.dark .span { color: #a9a9a9; }
 main[data-place="paris"] .day .run:first-of-type .rows { padding-top: clamp(28px, 3vw, 48px); }
+main[data-place="paris"] .shot.clip video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: #000; }
+main[data-place="paris"] .run.opens .rows { padding-top: clamp(28px, 3vw, 48px); }
 
 /* ---- Correspondance: a field in the colour of the other line, its number in a disc running off the edge. */
 main[data-place="paris"] .corr {
@@ -181,7 +183,7 @@ main[data-place="paris"] .terminus p { font-weight: 500; font-size: clamp(72px, 
   main[data-place="paris"] .plan .here .nm { font-size: 17px; }
   main[data-place="paris"] .ride { padding: 0 0 56px; }
   main[data-place="paris"] .ride .pin { display: block; }
-  main[data-place="paris"] .ride .map { top: var(--pbar, 0px); z-index: 1; background: #fff; padding: 8px 0; margin: 0 -2px; }
+  main[data-place="paris"] .ride .map { top: var(--pbar, 0px); z-index: 1; background: #fff; padding: 8px 0; }
   main[data-place="paris"] .net .stn text { font-size: 26px; stroke-width: 7px; }
   main[data-place="paris"] .net .stn:not(.on) text { opacity: 0; }
   main[data-place="paris"] .net .stn.on text { font-size: 30px; }
