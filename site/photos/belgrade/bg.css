@@ -267,6 +267,12 @@ main[data-country="belgrade"] .vidovdan .deadline .pin { min-height: 70svh; alig
 main[data-country="belgrade"] .vidovdan .deadline .t { font: 900 clamp(88px, 11vw, 180px)/0.9 var(--strike); font-variant-numeric: tabular-nums; color: #fff; }
 main[data-country="belgrade"] .vidovdan .deadline .say { max-width: 34ch; font-size: var(--s-lead); line-height: 1.35; opacity: 0.85; }
 
+/* Filip's two films: trifecta under the name, on the red; drumz to close, on the night. */
+main[data-country="belgrade"] .vidovdan .film { padding: 0 var(--gut) clamp(40px, 5vw, 88px); }
+main[data-country="belgrade"] .vidovdan .film.ends { padding-top: clamp(40px, 5vw, 88px); background: #000; }
+main[data-country="belgrade"] .vidovdan .film video { --fp: clamp(8px, 1vw, 16px); box-sizing: content-box; display: block; width: calc(100% - 2 * var(--fp)); height: auto; aspect-ratio: 16 / 9; background: #000; padding: var(--fp); }
+main[data-country="belgrade"] .vidovdan .film .meta { margin-top: 10px; color: #fff; opacity: 0.8; }
+
 /* The hours. */
 main[data-country="belgrade"] .vidovdan .hour { position: relative; isolation: isolate; display: grid; grid-template-columns: var(--rim) minmax(0, 1fr); padding: var(--rim-r) var(--rim-r) var(--rim-r) 0; }
 main[data-country="belgrade"] .vidovdan .hour + .hour { padding-top: 0; }
@@ -410,6 +416,9 @@ main[data-country="belgrade"] .vidovdan .night::before { content: ""; position: 
   main[data-country="belgrade"] .vidovdan .deadline .say { font-size: 18px; }
   main[data-country="belgrade"] .vidovdan .hour, main[data-country="belgrade"] .vidovdan .hour + .hour { grid-template-columns: minmax(0, 1fr); padding: 8px 8px 0; }
   main[data-country="belgrade"] .vidovdan .hour:last-child { padding-bottom: 8px; }
+  main[data-country="belgrade"] .vidovdan .film { padding: 0 8px 40px; }
+  main[data-country="belgrade"] .vidovdan .film.ends { padding: 40px 8px; }
+  main[data-country="belgrade"] .vidovdan .film .meta { margin-left: 8px; }
   main[data-country="belgrade"] .vidovdan .clock { position: static; padding: 20px 8px 12px; text-align: left; font-size: 64px; }
   main[data-country="belgrade"] .vidovdan .rows { padding: 24px 12px 96px; }
   main[data-country="belgrade"][data-js] .vidovdan .shot.rise { transform: translateY(24px) scale(0.98); }
