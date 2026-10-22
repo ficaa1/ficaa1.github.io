@@ -2,7 +2,7 @@
 
 Each dump has its own page that you design by hand, at `site/photos/<id>/index.html`, with its own `dump.css` beside it.
 Some parts are shared:
-- the switcher: `photos.html` lists every dump, and each page has tabs and a "next" stub;
+- the switcher: `photos.html` has a square for each country with its places in it (a city with no country page is a square of its own), and each page has tabs and a "next" stub;
 - the nav, the player, the footer, the viewer and the day grid.
 
 The build never rewrites a dump page. It only fills the markers the page contains.
@@ -165,6 +165,7 @@ Some dumps are shelved under a country, whose pages gather the frames of every y
 
 - A country page is `site/photos/<country>/index.html`; a place page is `site/photos/<country>/<place>/index.html`.
 - In the switcher and in `photos.html`, the country stands in for its dumps.
+- On `photos.html` each country is a square in its page's colours and type, with a sign for each place drawn the way that place's page draws its name, and a city with no country page (Belgrade, Ljubljana, Istanbul) is a square of its own; the styles are in `site/photos/lands.css`, one block per country or city, keyed by `data-land` and `data-town`. A new country or place needs its block there. `"sign"` gives the name as the page writes it (`"Roma"`).
 - Both are made by hand like a dump's page. A picture on them names its dump: `<!-- picture:montenegro-2025/dsc06009:start -->`. A frame's link and its label in the viewer go to the deepest page that shows it.
 - The `places` marker lists the country's places. Order them in `places.json` as they should appear.
 - Scope their CSS to `main[data-country="<country>"]`, in one stylesheet beside the country page.
@@ -182,6 +183,8 @@ Open `http://127.0.0.1:8790/photos/montenegro-2024/` and check the page:
 - after clicking between tabs, which swap pages in place;
 - with the back button;
 - by opening a picture.
+
+Draw arms, emblems and other SVGs as plain shapes. Don't put a `<mask>` or `<filter>` inside the file: Safari on an iPhone draws those at low resolution, and the picture comes out blurry however it is placed on the page.
 
 Then run the gate:
 
@@ -222,7 +225,7 @@ git commit -m "Photos: add the Montenegro 2024 dump"
 
 Run this build without an id, so every page and `photos.html` point to R2.
 
-The live site is `main`. On every push to `main`, `.github/workflows/pages.yml` runs the same build with `PHOTOS_DONE=1`, which leaves the dumps without a page out of the switcher and the archive box, removes `photos.json` and `rack.html`, and publishes `site/`. To see that build before merging, export the commit and build it there: `git archive redesign | tar -x -C <empty dir>`, then in that dir `PHOTOS_BASE=https://photos.filipbiljic.com PHOTOS_DONE=1 node tools/photos.mjs` and serve its `site/`. To preview with your local copies again, rebuild without `PHOTOS_BASE`, but don't commit that build.
+The live site is `main`. On every push to `main`, `.github/workflows/pages.yml` runs the same build with `PHOTOS_DONE=1`, which leaves the dumps without a page out of the switcher and `photos.html`, removes `photos.json` and `rack.html`, and publishes `site/`. To see that build before merging, export the commit and build it there: `git archive redesign | tar -x -C <empty dir>`, then in that dir `PHOTOS_BASE=https://photos.filipbiljic.com PHOTOS_DONE=1 node tools/photos.mjs` and serve its `site/`. To preview with your local copies again, rebuild without `PHOTOS_BASE`, but don't commit that build.
 
 Add specific paths only; never `git add -A`. Don't commit:
 - `photos-src`;

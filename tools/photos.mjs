@@ -1,7 +1,7 @@
 // The Photos pages. Each photo dump is its own hand-designed page, site/photos/<dump-id>/index.html, with its own
 // dump.css and its pictures beside it. This tool never writes a dump page whole: it only fills the markers a page
 // chooses to include, and leaves everything outside them alone. The one standardised piece is the switcher:
-// photos.html (the archive box) and the tabs and "next" stub on each dump page.
+// photos.html (a square for each country) and the tabs and "next" stub on each dump page.
 //
 //   node tools/photos.mjs <id> --new[=kit|blank]   start a dump page (from the contact-sheet kit, or nearly empty)
 //   node tools/photos.mjs <id> [--fetch]           convert that dump's missing pictures, fill its markers,
@@ -24,7 +24,7 @@
 //   picture:<file>    one bare picture (JXL + JPEG), opening the viewer; options: sizes=60vw link=no
 //                     (a value with spaces goes in double quotes: sizes="(min-width: 900px) 50vw, 100vw")
 //   days              one tile per day the dump was shot, each frame a mark; day:<YYYY-MM-DD> for one tile
-//   archive           (photos.html only) the box itself
+//   lands             (photos.html only) the squares
 //
 // Pictures: each printed frame gets a JXL and a JPEG at 1000 and 2000 px plus a 400 px JPEG, in site/photos/<id>/.
 // Those copies are gitignored: they are for previewing here and for uploading. Their sizes are kept in photos.json
@@ -73,7 +73,7 @@ const pagePath = id => join(dir(id), 'index.html');
 const listPath = join(site, 'photos.json');
 const dumps = JSON.parse(readFileSync(listPath, 'utf8'));
 // Countries and places (site/places.json): pages that gather the frames of several dumps. A country names the dumps it
-// shelves ("dumps": ["montenegro-2024", "montenegro-2025"]) and stands in for them in the switcher and the archive box;
+// shelves ("dumps": ["montenegro-2024", "montenegro-2025"]) and stands in for them in the switcher and on photos.html;
 // a place sits in a country ("in": "montenegro") and shows the days spent there, from any of its dumps. Both pages are
 // made by hand like a dump's; a picture on them names its dump: <!-- picture:montenegro-2025/dsc06009:start -->.
 const placesPath = join(site, 'places.json');
@@ -251,12 +251,12 @@ for (const c of places) {
   Object.assign(c, { shelved, from: dates[0], to: dates.at(-1), frames: c.in ? (shows.get(c.id) || []).length : shelved.reduce((n, d) => n + (d.frames || 0), 0),
     years: list([...new Set(c.in ? (shows.get(c.id) || []).map(x => taken(x.p).slice(0, 4)).filter(Boolean) : shelved.map(year))].sort()) });
 }
-// The switcher lists dumps and countries; a country takes the place of the dumps it shelves. The archive box still has every dump.
+// The switcher lists dumps and countries; a country takes the place of the dumps it shelves.
 // PHOTOS_DONE=1, for the published site: a dump with no page, neither its own nor its country's, is left out as if hidden.
 const DONE = !!process.env.PHOTOS_DONE;
 const up = d => !d.hidden && (!DONE || hasPage(d) || !!(countryOf(d) && hasPage(countryOf(d))));
 const visible = [...dumps.filter(d => up(d) && !countryOf(d)), ...countries.filter(c => !DONE || hasPage(c))].sort(newest);
-const sleeves = dumps.filter(up).sort(newest);
+const listed = dumps.filter(up).sort(newest);
 const open = visible.filter(hasPage);
 const href = (e, depth) => depth ? `${'../'.repeat(depth - 1)}${e.id}/` : `photos/${e.id}/`;
 // Where a frame is shown: the deepest page whose markers name it, else its dump's own page.
@@ -403,33 +403,29 @@ function meta(e) {
 }
 const stamp = (e, depth) => { const x = e && first(e); return x ? `<img class="stamp" src="${media(depth, x.dump.id, `${x.p.file}-${THUMB}.jpg`)}" width="400" height="${sized(x.p, THUMB).height}" alt="" loading="lazy">` : ''; };
 
-// ---- Standard: the archive box (photos.html). Every dump as a sleeve, grouped by year; a shelved one opens its country.
-// A dump with a page shows and counts only its printed frames; a sealed one keeps its whole roll.
-function sleeve(dump) {
-  const to = homeOf(dump);
-  const place = `<span class="place">${esc(dump.title)}</span> <span class="when">${esc(months(dump.from, dump.to))}</span> <span class="count">${esc(to ? plural(printed(dump).length, 'frame') : counted(dump))}</span>`;
-  const strips = dump.rolls.map((roll, r) => [roll, strip(dump, roll, r, 0, Boolean(to), Boolean(to))]).filter(([, cells]) => cells)
-    .map(([roll, cells]) => `<div class="strip"><ol aria-label="${esc(roll.name || dump.title)}">${cells}</ol></div>`).join('');
-  return `<li class="sleeve${to ? '' : ' sealed'}">${to ? `<a class="label" href="${href(to, 0)}">${place}</a>` : `<p class="label">${place}</p>`}<div class="strips">${strips}</div></li>`;
-}
-function archive() {
-  const years = [...new Set(sleeves.map(d => (d.to || d.from || '').slice(0, 4)))];
-  const leads = open.map(e => [e, first(e)]).filter(([, x]) => x).slice(0, 4);
-  return `<section class="set archive" id="dumps">
-<div class="field">
-<article class="contact box" aria-label="Photos">
-<h1 class="title"><span>Photos,</span> <span>?? to today</span></h1>
-${years.map(y => `<section class="shelf" aria-label="${y}">
-<h2 class="year">${y}</h2>
-<ol class="sleeves">
-${sleeves.filter(d => (d.to || d.from || '').startsWith(y)).map(sleeve).join('\n')}
+// ---- Standard: the front of Photos (photos.html). A square for each country with a page, in that country's colours and
+// type, and in it a sign for each of its places in theirs; a city with no country page is a square of its own, in its
+// colours (site/photos/lands.css). A "sign" is the name as the page's own sign writes it ("Roma").
+const cyrillic = s => /[\u0400-\u04FF]/.test(s) ? ' lang="sr-Cyrl"' : '';
+const signOf = x => {
+  const s = x.sign || x.title;
+  return `<span class="nm"${cyrillic(s)}${x.sign ? ' aria-hidden="true"' : ''}>${s.split(' ').map(w => `<span>${esc(w)}</span>`).join(' ')}</span>${x.sign ? `<span class="vh">${esc(x.title)}</span>` : ''}`;
+};
+function lands() {
+  return `<section class="set lands" aria-labelledby="ph-title">
+<link rel="stylesheet" href="photos/lands.css">
+<h1 class="title" id="ph-title">Photos</h1>
+<ol class="squares">
+${open.map(e => {
+    const towns = places.filter(x => x.in === e.id && hasPage(x));
+    return `<li class="land${towns.length ? '' : ' city'}" data-land="${esc(e.id)}">
+<h2 class="name"><a href="${href(e, 0)}">${signOf(e)}</a></h2>${towns.length ? `
+<ol class="towns">
+${towns.map(x => `<li class="town" data-town="${esc(x.id)}"><a href="${href(x, 0)}">${signOf(x)}</a></li>`).join('\n')}
+</ol>` : ''}
+</li>`;
+  }).join('\n')}
 </ol>
-</section>`).join('\n')}
-</article>
-</div>
-<div class="prints">
-${leads.map(([e, x], n) => print(x.dump, x.p, 0, { lazy: n > 0, lead: e })).join('\n')}
-</div>
 </section>`;
 }
 
@@ -500,7 +496,7 @@ if (NEW) {
   const fromKit = f => readFileSync(new URL(`kit/${f}`, import.meta.url), 'utf8').replaceAll('{{id}}', dump.id).replaceAll('{{title}}', esc(dump.title)).replaceAll('{{year}}', esc(year(dump))).replaceAll('{{note}}', esc(dump.note || ''));
   const chrome = readFileSync(indexPath, 'utf8')
     .replace(/<title>[^<]*<\/title>/, '<!-- meta:start -->\n<!-- meta:end -->')
-    .replace(/<!-- archive:start -->[\s\S]*<!-- archive:end -->/, '')
+    .replace(/<!-- lands:start -->[\s\S]*<!-- lands:end -->/, '')
     .replace(/\s(href|src)="(?![a-z]+:|#|\/)([^"]*)"/gi, (m, a, u) => ` ${a}="${'../'.repeat(DEPTH)}${u}"`)
     .replace('<b>Photos</b>', `<a href="${home(DEPTH)}">Photos</a>`)
     .replace(/<main>[\s\S]*<\/main>/, () => `<main data-dump="${dump.id}">\n<link rel="stylesheet" href="dump.css">\n${fromKit(`${kit}.html`).trim()}\n</main>`);
@@ -511,7 +507,7 @@ if (NEW) {
   console.log(`started ${pagePath(dump.id)} and dump.css from the ${kit}`);
 }
 
-// ---- 3. Fill: this dump's page in full, the switcher on every page, and the archive box. A country's and its places'
+// ---- 3. Fill: this dump's page in full, the switcher on every page, and the squares on photos.html. A country's and its places'
 // pages are filled in full when one of their dumps (or the country itself) is named, or when none is.
 for (const dump of dumps.filter(hasPage)) {
   const path = pagePath(dump.id);
@@ -522,6 +518,6 @@ for (const e of places.filter(hasPage)) {
   const full = !ONLY || ONLY === country.id || ONLY === e.id || (country.dumps || []).includes(ONLY);
   writeFileSync(path, fillPage(readFileSync(path, 'utf8'), placeParts(e, full), path));
 }
-writeFileSync(indexPath, fill(readFileSync(indexPath, 'utf8'), name => name === 'archive' ? archive() : name === 'stamp' ? stamp(open.find(first), 0) : null, indexPath));
-for (const dump of sleeves) if (printed(dump).length && !homeOf(dump)) console.log(`${dump.id}: has prints but no page; start one with node tools/photos.mjs ${dump.id} --new${countryOf(dump) ? `, or show them on ${countryOf(dump).id}'s pages` : ''}`);
-console.log(`photos.html: ${sleeves.length} dumps, ${open.length} pages in the switcher${places.filter(hasPage).length ? `, ${places.filter(hasPage).length} country and place pages` : ''}${ONLY ? `; filled ${ONLY}` : ''}; pictures from ${absolute ? MEDIA : `site/${MEDIA} (local preview; set PHOTOS_BASE before committing)`}`);
+writeFileSync(indexPath, fill(readFileSync(indexPath, 'utf8'), name => name === 'lands' ? lands() : name === 'stamp' ? stamp(open.find(first), 0) : null, indexPath));
+for (const dump of listed) if (printed(dump).length && !homeOf(dump)) console.log(`${dump.id}: has prints but no page; start one with node tools/photos.mjs ${dump.id} --new${countryOf(dump) ? `, or show them on ${countryOf(dump).id}'s pages` : ''}`);
+console.log(`photos.html: ${listed.length} dumps, ${open.length} pages in the switcher${places.filter(hasPage).length ? `, ${places.filter(hasPage).length} country and place pages` : ''}${ONLY ? `; filled ${ONLY}` : ''}; pictures from ${absolute ? MEDIA : `site/${MEDIA} (local preview; set PHOTOS_BASE before committing)`}`);
