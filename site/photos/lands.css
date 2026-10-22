@@ -1,9 +1,9 @@
-/* Photos, the front page: a square for each country, in the colours and the type of the country's own page, and in it a
-   sign for each of its places, drawn the way the place's page draws its name; a city with no country page is a square of
-   its own, in its page's colours, the whole square its link. Loaded by a <link> inside <main>, so it
-   arrives and leaves with the page when the site swaps pages in place. Scoped to .lands.
+/* Photos, the front page: a square of clear glass for each country and for each city with no country page, its name in
+   the face of the place's own page and its arms or emblem under it, the whole square its link. Loaded by a <link> inside
+   <main>, so it arrives and leaves with the page when the site swaps pages in place. Scoped to .lands.
    The faces are the pages' own (each under the SIL Open Font Licence), from their folders; a browser fetches only the
-   ones a square on the page uses. */
+   ones a square on the page uses. The Paris arms are after Thom.lanaud's on Wikimedia Commons (CC BY-SA 3.0), credited
+   under the squares; see france/paris-arms.SOURCES.md. */
 @font-face { font-family: "Fira Sans"; src: url("france/fira-sans-700-latin.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
 @font-face { font-family: "Fira Sans"; src: url("france/fira-sans-500-latin.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
 @font-face { font-family: "Fira Sans Condensed"; src: url("france/fira-sans-condensed-700-latin.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
@@ -42,15 +42,12 @@ body:has(.lands .reel) > footer { position: relative; z-index: 1; background: tr
 }
 @media (max-width: 899px) { .lands .squares { --cols: 2; } }
 
-/* ---- A square: a pane of glass over the film, tinted in the place's colour, the name on it at the top in the place's
-   face, one motif from its page in a shade of the tint, and the places at the foot as bars of coloured glass, each in its
-   own colour and face. The film shows through blurred and with its colour pushed up, so a burst of colour in it floods
-   the pane; the lit top lip, the darker foot and a glow of the place's second colour along the lower edge make it read
-   as a thick piece of glass. Sizes are in parts of the square (cqw). Where the places take more room than the square
-   has, as on a phone, it grows taller, and the others in its row with it. The motifs are coloured copies of the pages'
-   drawings, set as pictures. */
+/* ---- A square: a pane of clear glass over the film, the name on it at the top in the place's own face, white, and the
+   place's arms or emblem below it, faint white. The whole square is the link. The film shows through blurred; the lit top
+   lip, the darker foot and a thin red and blue fringe on the rim make it read as a thick piece of glass. Sizes are in
+   parts of the square (cqw). */
 .lands .land {
-  --tint: rgb(20 20 20 / .18); --edge: rgb(255 255 255 / .4); --light: saturate(1.1) brightness(.9); --blur: 9px; --r: clamp(14px, 2vw, 30px);
+  --tint: rgb(255 255 255 / .06); --edge: rgb(255 255 255 / .35); --light: saturate(1.05) brightness(.95); --blur: 9px; --r: clamp(14px, 2vw, 30px);
   container-type: inline-size; min-height: calc((100cqw - (var(--cols) - 1) * var(--gap)) / var(--cols)); margin: 0; position: relative;
   display: flex; flex-direction: column; isolation: isolate; overflow: clip; font-style: normal; border-radius: var(--r);
   background: linear-gradient(150deg, rgb(255 255 255 / .2), rgb(255 255 255 / .04) 34%, rgb(255 255 255 / 0) 60%), var(--tint);
@@ -66,112 +63,59 @@ body:has(.lands .reel) > footer { position: relative; z-index: 1; background: tr
 }
 @media (min-width: 900px) { .lands .land { --blur: 13px; } }
 .lands .land > * { position: relative; }
-.lands .land::before { content: ""; position: absolute; pointer-events: none; }
+.lands .land::before { content: ""; position: absolute; pointer-events: none; filter: brightness(0) invert(1); opacity: .3; }
 /* A streak of light across the pane, which travels over it as the square goes up the screen. The streak is drawn once
    on a sheet three panes wide and the sheet is slid, so the scroll moves it without repainting the pane. */
 .lands .land::after {
   content: ""; position: absolute; inset: 0 auto 0 0; width: 300%; z-index: -1; pointer-events: none; translate: -33.333% 0;
   background: linear-gradient(112deg, rgb(255 255 255 / 0) 30%, rgb(255 255 255 / .13) 42%, rgb(255 255 255 / .03) 47%, rgb(255 255 255 / .1) 52%, rgb(255 255 255 / 0) 60%) no-repeat;
 }
-.lands .land .name { margin: 0; padding: 6cqw 6cqw 4cqw; font-size: 15cqw; line-height: 0.95; font-weight: 400; font-style: normal; letter-spacing: 0; text-shadow: 0 1px 2px rgb(0 0 0 / .22); }
+.lands .land .name { margin: 0; padding: 6cqw 6cqw 4cqw; font-size: 15cqw; line-height: 0.95; font-weight: 400; font-style: normal; letter-spacing: 0; text-shadow: 0 1px 3px rgb(0 0 0 / .3); }
 .lands .land .name a { color: inherit; text-decoration: none; }
-.lands .land .name a:focus-visible { outline: 3px solid currentColor; outline-offset: 3px; }
-.lands .town a:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
-.lands .towns { list-style: none; margin: auto 0 0; padding: 0 6cqw 6cqw; display: grid; gap: 2cqw; }
-.lands .town { margin: 0; }
-/* A bar: a strip of coloured glass laid on the pane, lit on its top edge. It lies on the pane's own frosted film rather
-   than frosting it again: a second blur under each bar was all but invisible and made the browser read the screen back
-   once more for every bar, every frame. A faint white over it stands in for the brightening that blur carried. */
-.lands .town a {
-  position: relative; display: flex; align-items: center; min-height: max(44px, 12.5cqw); padding: 0 4cqw; color: inherit; text-decoration: none;
-  font-size: max(15px, 6.6cqw); line-height: 1; border-radius: max(6px, 2.4cqw);
-  box-shadow: inset 0 1px 0 rgb(255 255 255 / .55), inset 0 -1px 0 rgb(0 0 0 / .14), 0 6px 14px -8px rgb(0 0 0 / .5), inset 0 0 0 100vmax rgb(255 255 255 / .03);
-}
 .lands .nm { white-space: nowrap; }
-.lands .land .name a .nm { display: inline-flex; align-items: center; gap: 0.18em; }
-.lands .land .name a .nm, .lands .town a { transition: translate 260ms cubic-bezier(.22, 1, .36, 1), filter 200ms ease; }
-/* A city: its link covers the square. */
-.lands .city .name { position: static; }
-.lands .city .name a { display: block; }
-.lands .city .name a::after { content: ""; position: absolute; inset: 0; z-index: 1; }
-.lands .city .name a:focus-visible { outline: none; }
-.lands .city:has(.name a:focus-visible) { outline: 3px solid #fff; outline-offset: 4px; overflow: visible; }
+.lands .land .name a .nm { display: inline-flex; align-items: center; gap: 0.18em; transition: translate 260ms cubic-bezier(.22, 1, .36, 1); }
+.lands .land .name { position: static; }
+.lands .land .name a { display: block; }
+.lands .land .name a::after { content: ""; position: absolute; inset: 0; z-index: 1; }
+.lands .land .name a:focus-visible { outline: none; }
+.lands .land:has(.name a:focus-visible) { outline: 3px solid #fff; outline-offset: 4px; overflow: visible; }
 @media (hover: hover) and (pointer: fine) {
   .lands .land .name a:hover .nm { translate: 0 -0.04em; }
-  .lands .town a:hover { translate: 0.6cqw 0; filter: brightness(1.08); }
 }
-.lands .town a:active { translate: 0 1px; filter: brightness(0.94); }
 
-/* ---- France: glass in the blue of the opening with the red of the flag along its foot, and the Seine across it, the
-   name in Fira Sans as on its page. Paris on line 1's yellow in the navy of the métro plates; Normandie, gold on the red
-   of its flag. */
-.lands [data-land="france"] { --tint: rgb(0 35 149 / .16); --edge: rgb(239 65 53 / .6); color: #fff; }
+/* ---- Each place in the face of its page. */
+.lands .land { color: #fff; }
 .lands [data-land="france"]::before {
-  left: 6cqw; right: 6cqw; top: 26cqw; height: 34cqw; background: url("france/seine.svg") center / contain no-repeat;
+  left: 6cqw; right: 6cqw; top: 34cqw; bottom: 6cqw; background: url("france/paris-arms.svg") center bottom / contain no-repeat; filter: none; opacity: .5;
 }
 .lands [data-land="france"] .name { font-family: "Fira Sans", "Segoe UI", Arial, sans-serif; font-weight: 700; font-size: 17cqw; letter-spacing: -0.01em; }
-.lands [data-land="france"] .town a { font-family: "Fira Sans", "Segoe UI", Arial, sans-serif; font-weight: 500; }
-.lands [data-town="france/paris"] a { background: rgb(255 190 0 / .5); color: #14286b; }
-.lands [data-town="france/normandie"] a { background: rgb(217 13 22 / .46); color: #fcd41c; font-family: "Fira Sans Condensed", "Arial Narrow", sans-serif; font-weight: 700; }
 
-/* ---- Italy: glass in the green of the tricolore with its red along the foot, the name in the capitals of its road
-   signs. Rome on the ochre of its walls in the letters of its inscriptions; Puglia on the Adriatic, Sicily on the red
-   of its flag; the statues in marble. */
-.lands [data-land="italy"] { --tint: rgb(15 92 58 / .16); --edge: rgb(206 43 55 / .55); color: #fff; }
-.lands [data-land="italy"] :is(.name, [data-town="italy/puglia"], [data-town="italy/sicily"]) .nm {
-  font-family: "Barlow Semi Condensed", "Arial Narrow", Arial, sans-serif; font-weight: 600; text-transform: uppercase; letter-spacing: 0.02em;
+.lands [data-land="italy"]::before { left: 6cqw; right: 6cqw; top: 30cqw; bottom: 6cqw; background: url("italy/emblem.svg") right bottom / contain no-repeat; }
+.lands [data-land="italy"] .name .nm { font-family: "Barlow Semi Condensed", "Arial Narrow", Arial, sans-serif; font-weight: 600; text-transform: uppercase; letter-spacing: 0.02em; }
+
+/* Montenegro: the arms of its towns in a row at the foot. */
+.lands [data-land="montenegro"]::before {
+  left: 6cqw; right: 6cqw; bottom: 6cqw; height: 34cqw;
+  background: url("montenegro/dubrovnik/emblem.svg") left bottom / auto 100% no-repeat, url("montenegro/herceg-novi/emblem.svg") center bottom / auto 100% no-repeat, url("montenegro/budva/emblem.svg") right bottom / auto 100% no-repeat;
 }
-.lands [data-land="italy"] .name { font-size: 15cqw; }
-.lands [data-town="italy/rome"] a, .lands [data-town="italy/statues"] a { font-family: "Cinzel", "Trajan Pro", var(--serif); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
-.lands [data-town="italy/rome"] a { background: rgb(210 145 74 / .5); color: #241a10; }
-.lands [data-town="italy/puglia"] a { background: rgb(27 108 168 / .46); color: #fff; }
-.lands [data-town="italy/sicily"] a { background: rgb(212 42 30 / .46); color: #fff; }
-.lands [data-town="italy/statues"] a { background: rgb(236 235 231 / .5); color: #1d1a17; }
+.lands [data-land="montenegro"] .name .nm { font-family: var(--serif); font-weight: bold; text-transform: uppercase; letter-spacing: -0.035em; }
+.lands [data-land="montenegro"] .name { font-size: 12cqw; }
 
-/* ---- Montenegro: sea glass, lit along its foot in the limestone, the name in the bold capitals of its waterline in the
-   limestone's colour; each place on the limestone, with its arms in the sea's ink. */
-.lands [data-land="montenegro"] { --stone: #e6dfd0; --sea: #0d5f68; --deep: #073a40; --tint: rgb(13 95 104 / .17); --edge: rgb(230 223 208 / .5); color: var(--stone); }
-.lands [data-land="montenegro"] :is(.name, .town) .nm { font-family: var(--serif); font-weight: bold; text-transform: uppercase; letter-spacing: -0.02em; }
-.lands [data-land="montenegro"] .name { font-size: 12cqw; letter-spacing: -0.035em; }
-.lands [data-land="montenegro"] .town a { background: rgb(230 223 208 / .5); color: var(--deep); }
-.lands [data-land="montenegro"] .town a::after {
-  content: ""; position: absolute; right: 4cqw; top: 18%; bottom: 18%; aspect-ratio: var(--ar, 1); background: var(--deep);
-  -webkit-mask: var(--arms) center / contain no-repeat; mask: var(--arms) center / contain no-repeat;
-}
-.lands [data-town="montenegro/budva"] a { --ar: 2300 / 2650; --arms: url("montenegro/budva/emblem.svg"); }
-.lands [data-town="montenegro/dubrovnik"] a { --ar: 400 / 514; --arms: url("montenegro/dubrovnik/emblem.svg"); }
-.lands [data-town="montenegro/herceg-novi"] a { --ar: 1494.53 / 1932.48; --arms: url("montenegro/herceg-novi/emblem.svg"); }
-.lands [data-land="montenegro"] [data-town="montenegro/kolasin"] a::after { content: none; }
-
-/* ---- Istanbul: its white page as milk glass, the name in Archivo in the navy of its street plates, over the city's
-   emblem, and the navy again along the foot. */
-.lands [data-land="istanbul-2025"] { --tint: rgb(255 255 255 / .34); --edge: rgb(28 59 140 / .4); --light: saturate(1) brightness(1.1); color: #1c3b8c; }
-.lands [data-land="istanbul-2025"] .name { text-shadow: none; }
 .lands [data-land="istanbul-2025"]::before {
   left: 6cqw; right: 6cqw; top: 30cqw; bottom: 6cqw; background: url("istanbul-2025/emblem-navy.svg") right bottom / contain no-repeat;
 }
-.lands [data-land="istanbul-2025"] .name { font-family: "Archivo", "Helvetica Neue", Arial, sans-serif; font-weight: 600; font-size: 15cqw; letter-spacing: -0.02em; }
+.lands [data-land="istanbul-2025"] .name { font-family: "Archivo", "Helvetica Neue", Arial, sans-serif; font-weight: 600; letter-spacing: -0.02em; }
 
-/* ---- Ljubljana: its opening, night on the left and day on the right, as smoked glass beside milk glass, the name across
-   the cut in its Secession letters and the arms below it, in one ink that turns white on the night and black on the day. */
-.lands [data-land="ljubljana"] {
-  --tint: linear-gradient(90deg, rgb(0 0 0 / .4) 50%, rgb(255 255 255 / .64) 0); --edge: rgb(255 255 255 / .3); color: #fff;
-  background: linear-gradient(150deg, rgb(255 255 255 / .16), rgb(255 255 255 / 0) 40%), var(--tint);
-}
+/* Ljubljana: the arms in their own black and white, lightened. */
 .lands [data-land="ljubljana"]::before {
   left: 0; right: 0; bottom: 6cqw; height: 48cqw; margin: 0 auto; aspect-ratio: 648 / 800;
-  background: url("ljubljana/arms-mono.svg") center / contain no-repeat; mix-blend-mode: difference;
+  background: url("ljubljana/arms-mono.svg") center / contain no-repeat; filter: invert(1); opacity: .45; mix-blend-mode: screen;
 }
-.lands [data-land="ljubljana"] .name {
-  font-family: "Federant", "Didot", Georgia, serif; font-size: 17cqw; text-shadow: none;
-  background: linear-gradient(90deg, #fff 50%, #111 0); -webkit-background-clip: text; background-clip: text; color: transparent;
-}
+.lands [data-land="ljubljana"] .name { font-family: "Federant", "Didot", Georgia, serif; font-size: 17cqw; }
 
-/* ---- Belgrade: glass in the protest's red of its page, the name in PT Sans Narrow split by the arms, and the Sava
-   meeting the Danube below it in a deeper red. */
-.lands [data-land="belgrade"] { --tint: rgb(212 10 30 / .2); --edge: rgb(255 214 214 / .4); color: #fff; }
+/* Belgrade: the name in PT Sans Narrow split by the arms, and the Sava meeting the Danube below it. */
 .lands [data-land="belgrade"]::before {
-  left: 0; right: 0; bottom: 0; aspect-ratio: 768 / 552; background: url("belgrade/water.svg") center bottom / 100% auto no-repeat; opacity: .8;
+  left: 0; right: 0; bottom: 0; aspect-ratio: 768 / 552; background: url("belgrade/water.svg") center bottom / 100% auto no-repeat;
 }
 .lands [data-land="belgrade"] .name { font-family: "PT Sans Narrow", "Arial Narrow", sans-serif; font-weight: 700; text-transform: uppercase; font-size: 18cqw; line-height: 0.85; }
 .lands [data-land="belgrade"] .name a .nm { gap: 0.14em; }
@@ -180,24 +124,19 @@ body:has(.lands .reel) > footer { position: relative; z-index: 1; background: tr
 }
 .lands [data-land="belgrade"] .name .nm > span:last-child { order: 2; }
 
-/* ---- Amsterdam: glass in the grey sky of the afternoon, the name in Young Serif beside its three crosses, and the
-   crosses again, large, in the grey of the canal houses. */
-.lands [data-land="amsterdam-2023"] { --tint: rgb(183 183 183 / .4); --edge: rgb(208 16 43 / .5); color: #121314; }
-.lands [data-land="amsterdam-2023"] .name { text-shadow: none; }
-.lands [data-land="amsterdam-2023"]::before { right: 8cqw; top: 30cqw; bottom: -6cqw; aspect-ratio: 40 / 132; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -2 40 132' width='400' height='1320'%3E%3Cpath fill='%23a6a6a6' d='M4 4l6-6 10 10 10-10 6 6-10 10 10 10-6 6-10-10-10 10-6-6 10-10zM4 48l6-6 10 10 10-10 6 6-10 10 10 10-6 6-10-10-10 10-6-6 10-10zM4 92l6-6 10 10 10-10 6 6-10 10 10 10-6 6-10-10-10 10-6-6 10-10z'/%3E%3C/svg%3E") center / contain no-repeat; }
+/* Amsterdam: the name in Young Serif beside its three crosses, and the crosses again, large. */
+.lands [data-land="amsterdam-2023"]::before { right: 8cqw; top: 30cqw; bottom: -6cqw; aspect-ratio: 40 / 132; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -2 40 132' width='400' height='1320'%3E%3Cpath fill='%23fff' d='M4 4l6-6 10 10 10-10 6 6-10 10 10 10-6 6-10-10-10 10-6-6 10-10zM4 48l6-6 10 10 10-10 6 6-10 10 10 10-6 6-10-10-10 10-6-6 10-10zM4 92l6-6 10 10 10-10 6 6-10 10 10 10-6 6-10-10-10 10-6-6 10-10z'/%3E%3C/svg%3E") center / contain no-repeat; }
 .lands [data-land="amsterdam-2023"] .name { font-family: "Young Serif", Georgia, serif; font-size: 13cqw; letter-spacing: -0.02em; }
 .lands [data-land="amsterdam-2023"] .name a .nm { gap: 0.3em; }
-.lands [data-land="amsterdam-2023"] .name .nm::before { content: ""; flex: none; width: 0.3em; aspect-ratio: 40 / 132; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -2 40 132' width='400' height='1320'%3E%3Cpath fill='%23d0102b' d='M4 4l6-6 10 10 10-10 6 6-10 10 10 10-6 6-10-10-10 10-6-6 10-10zM4 48l6-6 10 10 10-10 6 6-10 10 10 10-6 6-10-10-10 10-6-6 10-10zM4 92l6-6 10 10 10-10 6 6-10 10 10 10-6 6-10-10-10 10-6-6 10-10z'/%3E%3C/svg%3E") center / contain no-repeat; }
+.lands [data-land="amsterdam-2023"] .name .nm::before { content: ""; flex: none; width: 0.3em; aspect-ratio: 40 / 132; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -2 40 132' width='400' height='1320'%3E%3Cpath fill='%23fff' d='M4 4l6-6 10 10 10-10 6 6-10 10 10 10-6 6-10-10-10 10-6-6 10-10zM4 48l6-6 10 10 10-10 6 6-10 10 10 10-6 6-10-10-10 10-6-6 10-10zM4 92l6-6 10 10 10-10 6 6-10 10 10 10-6 6-10-10-10 10-6-6 10-10z'/%3E%3C/svg%3E") center / contain no-repeat; }
 
-/* ---- The glass does not bend the film. The filter #ld-lens in photos.html did, in Chromium only, but it had to be
-   drawn again for every frame of the film, so the page could not start a scroll without stalling. The rim keeps a hint
-   of it: a thin red fringe on the left and a blue one on the right, drawn once with the pane. */
-.lands .lens { position: absolute; width: 0; height: 0; overflow: hidden; }
+/* The credit for the Paris arms. */
+.lands .credit { position: relative; margin: clamp(28px, 4vw, 48px) auto 0; max-width: 1440px; font-size: 0.8rem; color: rgb(255 255 255 / .6); text-align: right; }
+.lands .credit a { color: inherit; }
 
-/* ---- The squares come up one after another as the page opens; their places follow. */
+/* ---- The squares come up one after another as the page opens. */
 @media (prefers-reduced-motion: no-preference) {
   .lands .land { animation: ld-rise 700ms cubic-bezier(.22, 1, .36, 1) backwards; animation-delay: calc(var(--i, 0) * 70ms); }
-  .lands .town { animation: ld-rise 600ms cubic-bezier(.22, 1, .36, 1) backwards; animation-delay: calc(var(--i, 0) * 70ms + 220ms); }
   .lands .land:nth-child(2) { --i: 1; } .lands .land:nth-child(3) { --i: 2; } .lands .land:nth-child(4) { --i: 3; }
   .lands .land:nth-child(5) { --i: 4; } .lands .land:nth-child(6) { --i: 5; } .lands .land:nth-child(n+7) { --i: 6; }
   @keyframes ld-rise { from { opacity: 0; translate: 0 24px; } }
@@ -209,12 +148,6 @@ body:has(.lands .reel) > footer { position: relative; z-index: 1; background: tr
   }
 }
 
-/* In a small square the arms on the places' bars would run into their names, and the Seine is too thin to draw. */
-@container (max-width: 300px) {
-  .lands [data-land="montenegro"] .town a::after { content: none; }
-  .lands [data-land="france"]::before { content: none; }
-  .lands [data-land="italy"] .town a, .lands [data-land="montenegro"] .town a { letter-spacing: 0.01em; }
-}
 
 @media (max-width: 599px) {
   .lands .squares { gap: 10px; }
