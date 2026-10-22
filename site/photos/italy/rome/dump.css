@@ -152,6 +152,12 @@ main[data-dump="rome-2025"] .duo.tt .f:first-child { grid-column: 2 / span 4; }
 main[data-dump="rome-2025"] .duo.tt .f + .f { grid-column: 8 / span 4; }
 main[data-dump="rome-2025"] .duo.tt { align-items: start; }
 main[data-dump="rome-2025"] .duo.tt .f + .f { margin-top: clamp(96px, 14vw, 240px); }
+/* The films: two side by side; a frame split from its step keeps its place. */
+main[data-dump="rome-2025"] .films .f:first-child { grid-column: 1 / span 6; }
+main[data-dump="rome-2025"] .films .f + .f { grid-column: 7 / span 6; }
+main[data-dump="rome-2025"] .split.r .f.big { grid-column: 6 / span 7; }
+main[data-dump="rome-2025"] .split.l .f.small { grid-column: 1 / span 5; }
+main[data-dump="rome-2025"] .film video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: #000; }
 main[data-dump="rome-2025"] .meta { margin-top: 10px; font-size: var(--s-small); color: var(--soft); font-variant-numeric: tabular-nums; }
 main[data-dump="rome-2025"] .f a { display: block; }
 main[data-dump="rome-2025"] .f img { transition: opacity 300ms var(--ease); }
@@ -206,6 +212,7 @@ main[data-dump="rome-2025"] > .stub .next { font-family: var(--cut); font-weight
   main[data-dump="rome-2025"] .f.small, main[data-dump="rome-2025"] .f.tall { width: 78%; }
   /* the smaller frame of a beat leans to the side the beat leans away from */
   main[data-dump="rome-2025"] .l .f:not(.big) { margin-left: auto; }
+  main[data-dump="rome-2025"] .split.l .f.small { margin-left: 0; }
   main[data-dump="rome-2025"] .meta { padding: 0 var(--gut); }
   main[data-dump="rome-2025"] > .stub .next { font-size: 26px; }
 }
