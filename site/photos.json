@@ -4052,8 +4052,1001 @@
     "id": "amsterdam-2023",
     "title": "Amsterdam",
     "folder": "Amsterdam",
-    "note": "",
-    "photos": [],
+    "note": "Two days in December.",
+    "photos": [
+      {
+        "file": "dsc03738",
+        "original": "DSC03738.jpg",
+        "caption": "",
+        "alt": "Black and white view down a narrow canal between tall brick apartment buildings with balconies, a white houseboat on the right and bare trees under a cloudy sky.",
+        "provisional": true,
+        "settings": {
+          "aperture": "f/7.1",
+          "shutter": "1/125 s",
+          "iso": "ISO 320",
+          "focal": "50 mm",
+          "camera": "Sony ILCE-7SM2",
+          "lens": "FE 50mm F1.8",
+          "taken": "2023-12-23 13:46"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            668
+          ],
+          "bytes": {
+            "1000.jpg": 97778,
+            "1000.jxl": 78639,
+            "2000.jpg": 271631,
+            "2000.jxl": 197497
+          }
+        }
+      },
+      {
+        "file": "dsc03742",
+        "original": "DSC03742.jpg",
+        "caption": "",
+        "alt": "Black and white street with brick buildings, a man in a knitted hat holding a bicycle, two people talking and star-shaped lights hanging on the left.",
+        "provisional": true,
+        "settings": {
+          "aperture": "f/7.1",
+          "shutter": "1/125 s",
+          "iso": "ISO 500",
+          "focal": "50 mm",
+          "camera": "Sony ILCE-7SM2",
+          "lens": "FE 50mm F1.8",
+          "taken": "2023-12-23 13:50"
+        },
+        "web": {
+          "400": [
+            400,
+            500
+          ],
+          "1000": [
+            1000,
+            1250
+          ],
+          "bytes": {
+            "1000.jpg": 147233,
+            "1000.jxl": 118416,
+            "2000.jpg": 410204,
+            "2000.jxl": 304224
+          }
+        }
+      },
+      {
+        "file": "dsc03755",
+        "original": "DSC03755.jpg",
+        "caption": "",
+        "alt": "Black and white arched brick bridge with a railing and a street lamp, people standing on it, bare trees and brick houses behind under a cloudy sky.",
+        "provisional": true,
+        "settings": {
+          "aperture": "f/7.1",
+          "shutter": "1/125 s",
+          "iso": "ISO 500",
+          "focal": "50 mm",
+          "camera": "Sony ILCE-7SM2",
+          "lens": "FE 50mm F1.8",
+          "taken": "2023-12-23 15:51"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            668
+          ],
+          "bytes": {
+            "1000.jpg": 120352,
+            "1000.jxl": 104397,
+            "2000.jpg": 427374,
+            "2000.jxl": 351635
+          }
+        }
+      },
+      {
+        "file": "dsc03756",
+        "original": "DSC03756.jpg",
+        "caption": "",
+        "alt": "Black and white upward view of two dark gabled canal houses with white window frames and ornaments, seen through bare branches against a pale sky.",
+        "provisional": true,
+        "settings": {
+          "aperture": "f/7.1",
+          "shutter": "1/125 s",
+          "iso": "ISO 320",
+          "focal": "50 mm",
+          "camera": "Sony ILCE-7SM2",
+          "lens": "FE 50mm F1.8",
+          "taken": "2023-12-23 15:51"
+        },
+        "web": {
+          "400": [
+            400,
+            599
+          ],
+          "1000": [
+            1000,
+            1497
+          ],
+          "bytes": {
+            "1000.jpg": 267121,
+            "1000.jxl": 233127,
+            "2000.jpg": 723312,
+            "2000.jxl": 580502
+          }
+        }
+      },
+      {
+        "file": "dsc03785",
+        "original": "DSC03785.jpg",
+        "caption": "",
+        "alt": "A cyclist carrying a child rides blurred across brick paving in front of canal houses, with a poster of a girl in a blue headscarf on a parking sign.",
+        "provisional": true,
+        "settings": {
+          "aperture": "f/3.2",
+          "shutter": "1/125 s",
+          "iso": "ISO 250",
+          "focal": "50 mm",
+          "camera": "Sony ILCE-7SM2",
+          "lens": "FE 50mm F1.8",
+          "taken": "2023-12-23 16:07"
+        },
+        "web": {
+          "400": [
+            400,
+            599
+          ],
+          "1000": [
+            1000,
+            1497
+          ],
+          "bytes": {
+            "1000.jpg": 186007,
+            "1000.jxl": 132769,
+            "2000.jpg": 570646,
+            "2000.jxl": 362131
+          }
+        }
+      },
+      {
+        "file": "dsc03788",
+        "original": "DSC03788.jpg",
+        "caption": "",
+        "alt": "Moored boats on a canal with a rainbow flag on a pole, brick houses and parked bicycles beyond, framed by a blurred bicycle part in the foreground.",
+        "provisional": true,
+        "settings": {
+          "aperture": "f/5",
+          "shutter": "1/125 s",
+          "iso": "ISO 1000",
+          "focal": "50 mm",
+          "camera": "Sony ILCE-7SM2",
+          "lens": "FE 50mm F1.8",
+          "taken": "2023-12-23 16:09"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            668
+          ],
+          "bytes": {
+            "1000.jpg": 133570,
+            "1000.jxl": 93053,
+            "2000.jpg": 460707,
+            "2000.jxl": 300644
+          }
+        }
+      },
+      {
+        "file": "dsc03792",
+        "original": "DSC03792.jpg",
+        "caption": "",
+        "alt": "An orange canal boat passes under a bridge between rows of brick houses, with a domed church tower behind and bare branches across the top.",
+        "provisional": true,
+        "settings": {
+          "aperture": "f/5",
+          "shutter": "1/100 s",
+          "iso": "ISO 1600",
+          "focal": "50 mm",
+          "camera": "Sony ILCE-7SM2",
+          "lens": "FE 50mm F1.8",
+          "taken": "2023-12-23 16:22"
+        },
+        "web": {
+          "400": [
+            400,
+            500
+          ],
+          "1000": [
+            1000,
+            1250
+          ],
+          "bytes": {
+            "1000.jpg": 348552,
+            "1000.jxl": 270131,
+            "2000.jpg": 1073359,
+            "2000.jxl": 724435
+          }
+        }
+      },
+      {
+        "file": "dsc03794",
+        "original": "DSC03794.jpg",
+        "caption": "",
+        "alt": "Row of narrow, colourful canal houses along a canal, with bicycles and small boats at the water's edge and bare branches overhead.",
+        "provisional": true,
+        "settings": {
+          "aperture": "f/5",
+          "shutter": "1/100 s",
+          "iso": "ISO 3200",
+          "focal": "50 mm",
+          "camera": "Sony ILCE-7SM2",
+          "lens": "FE 50mm F1.8",
+          "taken": "2023-12-23 16:22"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            668
+          ],
+          "bytes": {
+            "1000.jpg": 226809,
+            "1000.jxl": 170049,
+            "2000.jpg": 777634,
+            "2000.jxl": 540040
+          }
+        }
+      },
+      {
+        "file": "dsc03803",
+        "original": "DSC03803.jpg",
+        "caption": "",
+        "alt": "A person on a scooter, blurred by motion, in front of a bridge railing with parked bicycles and canal houses under a pink dusk sky.",
+        "provisional": true,
+        "settings": {
+          "aperture": "f/5",
+          "shutter": "1/100 s",
+          "iso": "ISO 3200",
+          "focal": "50 mm",
+          "camera": "Sony ILCE-7SM2",
+          "lens": "FE 50mm F1.8",
+          "taken": "2023-12-23 16:23"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            668
+          ],
+          "bytes": {
+            "1000.jpg": 162852,
+            "1000.jxl": 118796,
+            "2000.jpg": 513632,
+            "2000.jxl": 348044
+          }
+        }
+      },
+      {
+        "file": "dsc03840",
+        "original": "DSC03840.jpg",
+        "caption": "",
+        "alt": "A tall bare tree silhouetted against an orange and pink sunset sky, with a tower and buildings behind and a few people and bicycles below.",
+        "provisional": true,
+        "settings": {
+          "aperture": "f/5",
+          "shutter": "1/100 s",
+          "iso": "ISO 640",
+          "focal": "50 mm",
+          "camera": "Sony ILCE-7SM2",
+          "lens": "FE 50mm F1.8",
+          "taken": "2023-12-23 16:28"
+        },
+        "web": {
+          "400": [
+            400,
+            599
+          ],
+          "1000": [
+            1000,
+            1497
+          ],
+          "bytes": {
+            "1000.jpg": 221741,
+            "1000.jxl": 153510,
+            "2000.jpg": 778903,
+            "2000.jxl": 473511
+          }
+        }
+      },
+      {
+        "file": "dsc03841",
+        "original": "DSC03841.jpg",
+        "caption": "",
+        "alt": "Two men walk a bicycle along a cobbled street towards the camera, silhouetted against a pink sunset sky and a large bare tree.",
+        "provisional": true,
+        "settings": {
+          "aperture": "f/5",
+          "shutter": "1/100 s",
+          "iso": "ISO 1250",
+          "focal": "50 mm",
+          "camera": "Sony ILCE-7SM2",
+          "lens": "FE 50mm F1.8",
+          "taken": "2023-12-23 16:28"
+        },
+        "web": {
+          "400": [
+            400,
+            599
+          ],
+          "1000": [
+            1000,
+            1497
+          ],
+          "bytes": {
+            "1000.jpg": 316866,
+            "1000.jxl": 216404,
+            "2000.jpg": 1069997,
+            "2000.jxl": 668465
+          }
+        }
+      },
+      {
+        "file": "dsc03855",
+        "original": "DSC03855.jpg",
+        "caption": "",
+        "alt": "A row of brick canal houses with lit orange windows along a canal, under a cloudy sky with pink light at the right.",
+        "provisional": true,
+        "settings": {
+          "aperture": "f/3.2",
+          "shutter": "1/80 s",
+          "iso": "ISO 500",
+          "focal": "50 mm",
+          "camera": "Sony ILCE-7SM2",
+          "lens": "FE 50mm F1.8",
+          "taken": "2023-12-23 16:33"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            668
+          ],
+          "bytes": {
+            "1000.jpg": 117569,
+            "1000.jxl": 73646,
+            "2000.jpg": 402307,
+            "2000.jxl": 221666
+          }
+        }
+      },
+      {
+        "file": "dsc03857-2",
+        "original": "DSC03857-2.jpg",
+        "caption": "",
+        "alt": "Close view of the tops of brick gabled houses with ornate details and orange glowing windows, against a pink and purple sky.",
+        "provisional": true,
+        "settings": {
+          "aperture": "f/3.2",
+          "shutter": "1/80 s",
+          "iso": "ISO 400",
+          "focal": "50 mm",
+          "camera": "Sony ILCE-7SM2",
+          "lens": "FE 50mm F1.8",
+          "taken": "2023-12-23 16:33"
+        },
+        "web": {
+          "400": [
+            400,
+            500
+          ],
+          "1000": [
+            1000,
+            1251
+          ],
+          "bytes": {
+            "1000.jpg": 177023,
+            "1000.jxl": 93705,
+            "2000.jpg": 235632,
+            "2000.jxl": 122217
+          }
+        }
+      },
+      {
+        "file": "dsc03859",
+        "original": "DSC03859.jpg",
+        "caption": "",
+        "alt": "A canal at dusk with moored boats and parked cars on the left, bare trees on both sides and pink clouds in the sky.",
+        "provisional": true,
+        "settings": {
+          "aperture": "f/3.2",
+          "shutter": "1/80 s",
+          "iso": "ISO 500",
+          "focal": "50 mm",
+          "camera": "Sony ILCE-7SM2",
+          "lens": "FE 50mm F1.8",
+          "taken": "2023-12-23 16:33"
+        },
+        "web": {
+          "400": [
+            400,
+            500
+          ],
+          "1000": [
+            1000,
+            1250
+          ],
+          "bytes": {
+            "1000.jpg": 144471,
+            "1000.jxl": 88906,
+            "2000.jpg": 502681,
+            "2000.jxl": 275099
+          }
+        }
+      },
+      {
+        "file": "dsc03887",
+        "original": "DSC03887.jpg",
+        "caption": "",
+        "alt": "Glowing lanterns mounted on the dark brick front of a canal house, with ivy below and a street leading away to more houses in the dusk.",
+        "provisional": true,
+        "settings": {
+          "aperture": "f/2.5",
+          "shutter": "1/30 s",
+          "iso": "ISO 250",
+          "focal": "50 mm",
+          "camera": "Sony ILCE-7SM2",
+          "lens": "FE 50mm F1.8",
+          "taken": "2023-12-23 16:37"
+        },
+        "web": {
+          "400": [
+            400,
+            599
+          ],
+          "1000": [
+            1000,
+            1497
+          ],
+          "bytes": {
+            "1000.jpg": 172915,
+            "1000.jxl": 102192,
+            "2000.jpg": 494740,
+            "2000.jxl": 264528
+          }
+        }
+      },
+      {
+        "file": "dsc03897",
+        "original": "DSC03897.jpg",
+        "caption": "",
+        "alt": "A blurred cyclist passes in front of a dark door numbered 43 with a lit Christmas wreath, a window with white curtains to the left.",
+        "provisional": true,
+        "settings": {
+          "aperture": "f/2.8",
+          "shutter": "1/15 s",
+          "iso": "ISO 500",
+          "focal": "50 mm",
+          "camera": "Sony ILCE-7SM2",
+          "lens": "FE 50mm F1.8",
+          "taken": "2023-12-23 16:40"
+        },
+        "web": {
+          "400": [
+            400,
+            599
+          ],
+          "1000": [
+            1000,
+            1497
+          ],
+          "bytes": {
+            "1000.jpg": 158158,
+            "1000.jxl": 94653,
+            "2000.jpg": 567765,
+            "2000.jxl": 333397
+          }
+        }
+      },
+      {
+        "file": "dsc03900",
+        "original": "DSC03900.jpg",
+        "caption": "",
+        "alt": "A lit shop window at night with a red LED sign reading FAST FOOD, drinks fridges and food posters inside, and a dark blurred figure at right.",
+        "provisional": true,
+        "settings": {
+          "aperture": "f/2.8",
+          "shutter": "1/15 s",
+          "iso": "ISO 100",
+          "focal": "50 mm",
+          "camera": "Sony ILCE-7SM2",
+          "lens": "FE 50mm F1.8",
+          "taken": "2023-12-23 16:57"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            668
+          ],
+          "bytes": {
+            "1000.jpg": 93390,
+            "1000.jxl": 58732,
+            "2000.jpg": 254517,
+            "2000.jxl": 144988
+          }
+        }
+      },
+      {
+        "file": "dsc03904",
+        "original": "DSC03904.jpg",
+        "caption": "",
+        "alt": "The same lit shop window at night with a red LED sign reading FAST FOOD, food pictures inside, and a dark silhouette at the left.",
+        "provisional": true,
+        "settings": {
+          "aperture": "f/2.8",
+          "shutter": "1/30 s",
+          "iso": "ISO 160",
+          "focal": "50 mm",
+          "camera": "Sony ILCE-7SM2",
+          "lens": "FE 50mm F1.8",
+          "taken": "2023-12-23 16:57"
+        },
+        "web": {
+          "400": [
+            400,
+            599
+          ],
+          "1000": [
+            1000,
+            1497
+          ],
+          "bytes": {
+            "1000.jpg": 125664,
+            "1000.jxl": 79173,
+            "2000.jpg": 344688,
+            "2000.jxl": 197513
+          }
+        }
+      },
+      {
+        "file": "dsc03905",
+        "original": "DSC03905.jpg",
+        "caption": "",
+        "alt": "A corner building at night with a lit cafe on the ground floor, string lights, a small Christmas tree and warm lit windows above a dark blue sky.",
+        "provisional": true,
+        "settings": {
+          "aperture": "f/1.8",
+          "shutter": "1/30 s",
+          "iso": "ISO 800",
+          "focal": "50 mm",
+          "camera": "Sony ILCE-7SM2",
+          "lens": "FE 50mm F1.8",
+          "taken": "2023-12-23 16:59"
+        },
+        "web": {
+          "400": [
+            400,
+            320
+          ],
+          "1000": [
+            1000,
+            800
+          ],
+          "bytes": {
+            "1000.jpg": 113232,
+            "1000.jxl": 64747,
+            "2000.jpg": 324798,
+            "2000.jxl": 172453
+          }
+        }
+      },
+      {
+        "file": "dsc03915",
+        "original": "DSC03915.jpg",
+        "caption": "",
+        "alt": "A canal at dusk lined with bare trees, street lamps and moored boats, with lamp reflections on the water and a purple and pink sky.",
+        "provisional": true,
+        "settings": {
+          "aperture": "f/1.8",
+          "shutter": "1/40 s",
+          "iso": "ISO 2000",
+          "focal": "50 mm",
+          "camera": "Sony ILCE-7SM2",
+          "lens": "FE 50mm F1.8",
+          "taken": "2023-12-23 17:11"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            668
+          ],
+          "bytes": {
+            "1000.jpg": 141566,
+            "1000.jxl": 87639,
+            "2000.jpg": 447250,
+            "2000.jxl": 252313
+          }
+        }
+      },
+      {
+        "file": "dsc03918",
+        "original": "DSC03918.jpg",
+        "caption": "",
+        "alt": "A tree-lined canal at night with glowing street lamps reflected in the water, parked boats and cars, and a deep pink and purple sky.",
+        "provisional": true,
+        "settings": {
+          "aperture": "f/1.8",
+          "shutter": "1/40 s",
+          "iso": "ISO 2000",
+          "focal": "50 mm",
+          "camera": "Sony ILCE-7SM2",
+          "lens": "FE 50mm F1.8",
+          "taken": "2023-12-23 17:11"
+        },
+        "web": {
+          "400": [
+            400,
+            500
+          ],
+          "1000": [
+            1000,
+            1250
+          ],
+          "bytes": {
+            "1000.jpg": 224392,
+            "1000.jxl": 153186,
+            "2000.jpg": 771334,
+            "2000.jxl": 491524
+          }
+        }
+      },
+      {
+        "file": "dsc03921",
+        "original": "DSC03921.jpg",
+        "caption": "",
+        "alt": "A dark corner building at night with a lit cafe at street level, string lights along the front, a Heineken sign and bicycles behind a railing.",
+        "provisional": true,
+        "settings": {
+          "aperture": "f/1.8",
+          "shutter": "1/40 s",
+          "iso": "ISO 500",
+          "focal": "50 mm",
+          "camera": "Sony ILCE-7SM2",
+          "lens": "FE 50mm F1.8",
+          "taken": "2023-12-23 17:12"
+        },
+        "web": {
+          "400": [
+            400,
+            500
+          ],
+          "1000": [
+            1000,
+            1250
+          ],
+          "bytes": {
+            "1000.jpg": 136794,
+            "1000.jxl": 78318,
+            "2000.jpg": 406269,
+            "2000.jxl": 214083
+          }
+        }
+      },
+      {
+        "file": "dsc03928",
+        "original": "DSC03928.jpg",
+        "caption": "",
+        "alt": "A narrow canal-side street at night with lit street lamps, a red car and a no-entry sign, under a dark purple sky.",
+        "provisional": true,
+        "settings": {
+          "aperture": "f/1.8",
+          "shutter": "1/40 s",
+          "iso": "ISO 2000",
+          "focal": "50 mm",
+          "camera": "Sony ILCE-7SM2",
+          "lens": "FE 50mm F1.8",
+          "taken": "2023-12-23 17:13"
+        },
+        "web": {
+          "400": [
+            400,
+            599
+          ],
+          "1000": [
+            1000,
+            1497
+          ],
+          "bytes": {
+            "1000.jpg": 199974,
+            "1000.jxl": 121151,
+            "2000.jpg": 639698,
+            "2000.jxl": 373052
+          }
+        }
+      },
+      {
+        "file": "dsc03933",
+        "original": "DSC03933.jpg",
+        "caption": "",
+        "alt": "A wall covered with many framed photographs of different sizes and a metal pipe above, inside a dimly lit warm-toned room.",
+        "provisional": true,
+        "settings": {
+          "aperture": "f/1.8",
+          "shutter": "1/40 s",
+          "iso": "ISO 800",
+          "focal": "50 mm",
+          "camera": "Sony ILCE-7SM2",
+          "lens": "FE 50mm F1.8",
+          "taken": "2023-12-23 17:48"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            668
+          ],
+          "bytes": {
+            "1000.jpg": 120518,
+            "1000.jxl": 73346,
+            "2000.jpg": 356749,
+            "2000.jxl": 211416
+          }
+        }
+      },
+      {
+        "file": "dsc03934",
+        "original": "DSC03934.jpg",
+        "caption": "",
+        "alt": "Part of a dim cafe interior with patterned wallpaper, framed pictures, a red-shaded wall lamp, a window and a lit star decoration.",
+        "provisional": true,
+        "settings": {
+          "aperture": "f/1.8",
+          "shutter": "1/40 s",
+          "iso": "ISO 250",
+          "focal": "50 mm",
+          "camera": "Sony ILCE-7SM2",
+          "lens": "FE 50mm F1.8",
+          "taken": "2023-12-23 17:48"
+        },
+        "web": {
+          "400": [
+            400,
+            599
+          ],
+          "1000": [
+            1000,
+            1497
+          ],
+          "bytes": {
+            "1000.jpg": 163009,
+            "1000.jxl": 96799,
+            "2000.jpg": 478081,
+            "2000.jxl": 262775
+          }
+        }
+      },
+      {
+        "file": "dsc03948",
+        "original": "DSC03948.jpg",
+        "caption": "",
+        "alt": "Lit buildings across dark water at night, including a white angular building on the left and a tall tower with a pink-lit top at the right.",
+        "provisional": true,
+        "settings": {
+          "aperture": "f/1.8",
+          "shutter": "1/40 s",
+          "iso": "ISO 1000",
+          "focal": "50 mm",
+          "camera": "Sony ILCE-7SM2",
+          "lens": "FE 50mm F1.8",
+          "taken": "2023-12-23 21:08"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            668
+          ],
+          "bytes": {
+            "1000.jpg": 68913,
+            "1000.jxl": 45368,
+            "2000.jpg": 234849,
+            "2000.jxl": 130464
+          }
+        }
+      },
+      {
+        "file": "dsc03950",
+        "original": "DSC03950.jpg",
+        "caption": "",
+        "alt": "A ring of blue lights around a pole in front of a dark building with a few orange-lit windows, water below.",
+        "provisional": true,
+        "settings": {
+          "aperture": "f/1.8",
+          "shutter": "1/40 s",
+          "iso": "ISO 125",
+          "focal": "50 mm",
+          "camera": "Sony ILCE-7SM2",
+          "lens": "FE 50mm F1.8",
+          "taken": "2023-12-23 21:09"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            668
+          ],
+          "bytes": {
+            "1000.jpg": 65290,
+            "1000.jxl": 39551,
+            "2000.jpg": 188990,
+            "2000.jxl": 105490
+          }
+        }
+      },
+      {
+        "file": "dsc03970",
+        "original": "DSC03970.jpg",
+        "caption": "",
+        "alt": "Brick gabled canal houses seen from the water at night, with a bright street lamp on the right and bicycles along a railing in front.",
+        "provisional": true,
+        "settings": {
+          "aperture": "f/1.8",
+          "shutter": "1/50 s",
+          "iso": "ISO 4000",
+          "focal": "50 mm",
+          "camera": "Sony ILCE-7SM2",
+          "lens": "FE 50mm F1.8",
+          "taken": "2023-12-23 21:16"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            668
+          ],
+          "bytes": {
+            "1000.jpg": 88866,
+            "1000.jxl": 57600,
+            "2000.jpg": 270292,
+            "2000.jxl": 162692
+          }
+        }
+      },
+      {
+        "file": "dsc03974",
+        "original": "DSC03974.jpg",
+        "caption": "",
+        "alt": "A glowing white human figure at a lectern behind a dark window, with strings of small warm lights around it and a dark head in the foreground.",
+        "provisional": true,
+        "settings": {
+          "aperture": "f/3.2",
+          "shutter": "1/125 s",
+          "iso": "ISO 4000",
+          "focal": "50 mm",
+          "camera": "Sony ILCE-7SM2",
+          "lens": "FE 50mm F1.8",
+          "taken": "2023-12-23 21:22"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            668
+          ],
+          "bytes": {
+            "1000.jpg": 42967,
+            "1000.jxl": 24225,
+            "2000.jpg": 118895,
+            "2000.jxl": 62746
+          }
+        }
+      },
+      {
+        "file": "dsc03976",
+        "original": "DSC03976.jpg",
+        "caption": "",
+        "alt": "A glowing white standing figure in a small lit opening, with its light reflected on water, and dark silhouettes of heads in the foreground.",
+        "provisional": true,
+        "settings": {
+          "aperture": "f/3.2",
+          "shutter": "1/125 s",
+          "iso": "ISO 12800",
+          "focal": "50 mm",
+          "camera": "Sony ILCE-7SM2",
+          "lens": "FE 50mm F1.8",
+          "taken": "2023-12-23 21:32"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            668
+          ],
+          "bytes": {
+            "1000.jpg": 28013,
+            "1000.jxl": 16556,
+            "2000.jpg": 98740,
+            "2000.jxl": 56999
+          }
+        }
+      },
+      {
+        "file": "dsc04170",
+        "original": "DSC04170.jpg",
+        "caption": "",
+        "alt": "Out-of-focus teal and orange round lights seen in a mirrored ceiling, with a few octagonal lantern shapes hanging in the foreground.",
+        "provisional": true,
+        "settings": {
+          "aperture": "f/3.2",
+          "shutter": "1/125 s",
+          "iso": "ISO 100",
+          "focal": "50 mm",
+          "camera": "Sony ILCE-7SM2",
+          "lens": "FE 50mm F1.8",
+          "taken": "2023-12-24 19:36"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            668
+          ],
+          "bytes": {
+            "1000.jpg": 83173,
+            "1000.jxl": 41886,
+            "2000.jpg": 348129,
+            "2000.jxl": 230264
+          }
+        }
+      }
+    ],
     "rolls": [
       {
         "key": "",
