@@ -574,7 +574,7 @@
     place();
   })();
 
-  // ---- On to the next day: on a photo page with days, a button over the back-to-top one that brings the next day's
+  // ---- On to the next day: on a photo page with days, a button under the back-to-top one that brings the next day's
   // heading up under the bar. It is there while a day is still below, and gone on the last.
   const nextDay = (() => {
     const b = document.createElement('button');
