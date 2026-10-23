@@ -150,6 +150,27 @@ body:has(.lands .reel) > footer { position: relative; z-index: 1; background: tr
   .lands .squares { gap: 10px; }
 }
 
+/* ---- The title, a quiet label in thin wide capitals so the film stays the loud thing; and the squares sized so both rows
+   sit on one screen. */
+.lands { padding-top: clamp(28px, 4vh, 56px); }
+.lands .title { font-family: "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif; font-weight: 250; font-size: clamp(26px, 3.4vw, 52px); line-height: 1; text-transform: uppercase; letter-spacing: 0.42em; margin-right: -0.42em; margin-bottom: clamp(24px, 3.4vh, 44px); text-shadow: 0 1px 12px rgb(0 0 0 / .35); }
+@media (min-width: 900px) {
+  .lands .squares { max-width: min(1440px, calc((100svh - 230px) * 1.5 + 2 * var(--gap))); }
+}
+
+/* ---- The foot of the page as one more pane of glass over the film, in place of the paper card the other photo pages have. */
+body:has(.lands) footer { padding: clamp(64px, 10vh, 120px) var(--gut, 20px) 32px; color: #fff; }
+body:has(.lands) footer .back {
+  -webkit-mask: none; mask: none; color: #fff; max-width: min(1440px, calc((100svh - 230px) * 1.5 + 2 * clamp(12px, 1.8vw, 28px)), 100%); border-radius: clamp(14px, 2vw, 30px); padding: 32px 40px 24px; gap: 16px 40px;
+  background: rgb(255 255 255 / .06); -webkit-backdrop-filter: blur(13px) brightness(.85); backdrop-filter: blur(13px) brightness(.85);
+  box-shadow: inset 0 1.5px 0 rgb(255 255 255 / .5), inset 0 -1px 0 rgb(255 255 255 / .14), 0 28px 56px -22px rgb(0 0 0 / .6);
+}
+body:has(.lands) footer .back a, body:has(.lands) footer .back a:visited, body:has(.lands) footer .imprint { color: #fff; }
+body:has(.lands) footer .address { padding-top: 0; padding-right: 96px; font-size: 16px; line-height: 1.6; }
+body:has(.lands) footer .stamp { width: 72px; height: 54px; border-width: 4px; border-color: transparent; outline-color: rgb(255 255 255 / .5); }
+body:has(.lands) footer .imprint { padding-top: 8px; font-size: 14px; }
+@media (max-width: 599px) { body:has(.lands) footer .back { padding: 28px 22px 20px; } }
+
 /* The credit for the Paris arms, small, under the imprint at the foot of the page. */
 body:has(.lands) footer .credit { margin-top: 12px; font-size: 13px; opacity: 0.7; }
 body:has(.lands) footer .credit a { color: inherit; }
