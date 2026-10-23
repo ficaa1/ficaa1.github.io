@@ -581,34 +581,21 @@
     const b = document.createElement('button');
     b.id = 'next'; b.type = 'button'; b.title = 'Next day'; b.setAttribute('aria-label', 'Next day');
     b.innerHTML = '<svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M10 17 L3 9 H7.5 V3 H12.5 V9 H17 Z"/></svg>';
+    // Where a part sits on the page, without the lift of its entrance (.rise), which would otherwise send the scroll past it.
+    const y = el => { let t = 0; for (; el; el = el.offsetParent) t += el.offsetTop; return t; };
     const below = () => {
       const days = [...document.querySelectorAll('main [data-sheet][id]')];
       for (const d of days) {
         const part = d.parentElement.closest('main section'), margin = parseFloat(getComputedStyle(d).scrollMarginTop) || 0;
         const opens = part && part.querySelector('[data-sheet][id]') === d && part.querySelectorAll('[data-sheet][id]').length < days.length;
         const at = opens ? part : d;
-        if (at.getBoundingClientRect().top > margin + 4) return { at, d, margin };
+        if (y(at) - scrollY > margin + 4) return { at, margin };
       }
     };
     b.addEventListener('click', () => {
       const n = below();
       if (!n) return;
-      scrollTo({ top: n.at.getBoundingClientRect().top + scrollY - n.margin, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
-      // Pictures loading on the way in can move the day after the scroll set off; once it comes to rest it is put right,
-      // unless a hand has taken the page meanwhile.
-      let last = -1, still = 0, fixes = 0, gone = false;
-      const off = () => { gone = true; };
-      addEventListener('wheel', off, { once: true, passive: true });
-      addEventListener('touchstart', off, { once: true, passive: true });
-      const settle = setInterval(() => {
-        if (gone || fixes > 4) return clearInterval(settle);
-        if (Math.abs(scrollY - last) > 0.5) { last = scrollY; still = 0; return; }
-        if (++still < 2) return;
-        const by = n.at.getBoundingClientRect().top - n.margin;
-        if (Math.abs(by) <= 2) return clearInterval(settle);
-        fixes++; still = 0;
-        scrollTo({ top: scrollY + by, behavior: 'instant' });
-      }, 120);
+      scrollTo({ top: y(n.at) - n.margin, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
       const h = n.at.querySelector('h2, h3');
       if (h) { h.tabIndex = -1; h.focus({ preventScroll: true }); }
     });
