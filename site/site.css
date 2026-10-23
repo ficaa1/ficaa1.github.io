@@ -568,6 +568,21 @@ html:has(.daygrid[open]) { overflow: hidden; }
 #top:hover { background: var(--link); opacity: 0.85; }
 #top:active { translate: 0 1px; }
 @media (prefers-reduced-motion: reduce) { #top, #top.on { translate: none; transition: none; } }
+/* ---- Next day: the same square with the arrow down, in the corner while the page is at its top and over the
+   back-to-top square once that shows. */
+#next {
+  position: fixed; z-index: 6; right: calc(16px + env(safe-area-inset-right)); bottom: calc(16px + env(safe-area-inset-bottom));
+  width: 44px; height: 44px; padding: 0; display: grid; place-items: center;
+  background: var(--link); color: var(--bg); border: 2px solid var(--bg);
+  opacity: 0; visibility: hidden;
+  transition: opacity 200ms ease, bottom 200ms ease, visibility 0s linear 200ms;
+}
+#top.on ~ #next { bottom: calc(68px + env(safe-area-inset-bottom)); }
+#next svg { fill: currentColor; }
+#next.on { opacity: 1; visibility: visible; transition: opacity 200ms ease, bottom 200ms ease; }
+#next:hover { opacity: 0.85; }
+#next:active { translate: 0 1px; }
+@media (prefers-reduced-motion: reduce) { #next, #next.on { transition: none; } }
 
 @media (max-width: 900px) {
   #player { position: static; max-width: none; margin: 0; padding: 12px 20px 0; }

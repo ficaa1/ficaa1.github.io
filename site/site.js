@@ -574,6 +574,28 @@
     place();
   })();
 
+  // ---- On to the next day: on a photo page with days, a button over the back-to-top one that brings the next day's
+  // heading up under the bar. It is there while a day is still below, and gone on the last.
+  const nextDay = (() => {
+    const b = document.createElement('button');
+    b.id = 'next'; b.type = 'button'; b.title = 'Next day'; b.setAttribute('aria-label', 'Next day');
+    b.innerHTML = '<svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M10 17 L3 9 H7.5 V3 H12.5 V9 H17 Z"/></svg>';
+    const below = () => [...document.querySelectorAll('main [data-sheet][id]')]
+      .find(d => d.getBoundingClientRect().top > (parseFloat(getComputedStyle(d).scrollMarginTop) || 0) + 4);
+    b.addEventListener('click', () => {
+      const d = below();
+      if (!d) return;
+      d.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+      const h = d.querySelector('h2, h3');
+      if (h) { h.tabIndex = -1; h.focus({ preventScroll: true }); }
+    });
+    let queued = false;
+    const place = () => { queued = false; b.classList.toggle('on', !!below()); };
+    addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(place); } }, { passive: true });
+    document.body.append(b);
+    return place;
+  })();
+
   // ---- The photo bar. On a photo page, once its own switcher has gone by, a thin bar keeps the way round in view: the
   // dumps, the places of the country, and the days of this page with the one in view marked. It is made from what the
   // page already has (.tabs, .places, [data-sheet]) and takes the page's look: the type of its day numbers, and the
@@ -698,6 +720,7 @@
     photos();
     sheets();
     photoBar();
+    nextDay();
     player.tracklist();
   }
 
