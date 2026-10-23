@@ -165,8 +165,10 @@
     sheet.part = part;
     grid.replaceChildren(...figs.map(f => {
       const li = document.createElement('li'), a = document.createElement('a'), pic = f.querySelector('picture').cloneNode(true);
+      // The copy leaves behind the page's reveal (.load), whose curtain would stay drawn over the grid.
+      pic.querySelectorAll('.load').forEach(w => w.replaceWith(...w.childNodes));
       const img = pic.querySelector('img');
-      li.style.setProperty('--r', (img.width / img.height || 1.5).toFixed(3));
+      li.style.setProperty('--r', (+img.getAttribute('width') / +img.getAttribute('height') || 1.5).toFixed(3));
       pic.querySelectorAll('source, img').forEach(x => x.sizes = '(max-width: 640px) 50vw, 30vw');
       a.href = '#' + f.id;
       a.append(pic);

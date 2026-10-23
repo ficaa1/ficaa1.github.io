@@ -2,9 +2,9 @@
    when the site swaps pages in place. Scope every rule to this dump:
      main[data-dump="amsterdam-2023"] ...                   anything inside the page
      body:has(main[data-dump="amsterdam-2023"]) ...         the page's colours, the nav, the footer and the player
-   Saturday 23 December is a split: on the left a stage, the row of canal houses traced from DSC03855, whose sky and
+   Friday 22 and Saturday 23 December are each a split: on the left a stage, the row of canal houses traced from DSC03855, whose sky and
    clock keep the time of the frame in view (dump.js); on the right the frames, on white through the afternoon and on
-   black from the lamps. The boat ride runs sideways; Sunday 24 is entered through its numerals.
+   black from the lamps. The boat ride runs down the page; Sunday 24 is entered through its numerals.
    Two faces under the SIL Open Font Licence, served from this folder: Young Serif for the large type, Source Serif 4
    for the rest. Colours from his frames: the sunset (DSC03841), the lamps, the café ceiling (DSC03933), the ring (DSC03950). */
 @font-face {
@@ -69,12 +69,13 @@ main[data-dump="amsterdam-2023"] .stage {
   --sky: rgb(185 185 185);
   position: sticky; top: var(--pbar, 0px); height: calc(100svh - var(--pbar, 0px));
   display: flex; flex-direction: column; justify-content: space-between; overflow: hidden;
-  background: var(--sky); color: var(--house); transition: background-color .9s;
+  background: var(--sky); color: var(--house);
 }
+/* The clock's ink is whichever of these reads best on the sky: the house, the lamp, or white for the mid-tones of dusk. */
 main[data-dump="amsterdam-2023"] .stage.dark { color: var(--lamp); }
+main[data-dump="amsterdam-2023"] .stage.dim { color: #fff; }
 main[data-dump="amsterdam-2023"] .stage .clock {
   margin: 0; padding: 28px 32px 0; font: 400 var(--xl)/0.9 var(--display); letter-spacing: -0.035em;
-  transition: color .9s;
 }
 main[data-dump="amsterdam-2023"] .town { display: block; width: 100%; height: auto; max-height: 72%; }
 main[data-dump="amsterdam-2023"] .town path { fill: var(--house); }
@@ -96,6 +97,7 @@ main[data-dump="amsterdam-2023"] .opening { display: grid; grid-template-columns
 main[data-dump="amsterdam-2023"] .xxx { grid-row: 1 / 3; width: clamp(28px, 2.8vw, 48px); height: auto; fill: var(--mark); align-self: stretch; }
 main[data-dump="amsterdam-2023"] .opening h1 { font-size: min(var(--xl), 8.2vw); line-height: .9; letter-spacing: -0.04em; }
 main[data-dump="amsterdam-2023"] .when { margin: 18px 0 0; font: 400 var(--m)/1.1 var(--display); letter-spacing: -0.02em; }
+main[data-dump="amsterdam-2023"] .daymark { margin: 0; }
 main[data-dump="amsterdam-2023"] .opening .gear { grid-column: 2; margin: 14px 0 0; font-size: 16px; }
 main[data-dump="amsterdam-2023"] [data-sheet-open] { color: inherit; text-decoration: none; }
 main[data-dump="amsterdam-2023"] .when a span, main[data-dump="amsterdam-2023"] .days a span {
@@ -161,7 +163,7 @@ main[data-dump="amsterdam-2023"] .zoom.through .knock a { pointer-events: none; 
 main[data-dump="amsterdam-2023"] .close { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; padding: 120px 32px 40px; }
 main[data-dump="amsterdam-2023"] .close .moco { width: 100%; }
 main[data-dump="amsterdam-2023"] .menu .sun { margin: 0 0 40px; font: 400 var(--m)/1.05 var(--display); letter-spacing: -0.025em; }
-main[data-dump="amsterdam-2023"] .days { list-style: none; margin: 0; padding: 0; display: flex; gap: 40px; }
+main[data-dump="amsterdam-2023"] .days { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 24px 40px; }
 main[data-dump="amsterdam-2023"] .days li { display: flex; flex-direction: column; gap: 6px; }
 main[data-dump="amsterdam-2023"] .days a { font: 400 var(--xl)/1 var(--display); letter-spacing: -0.045em; }
 main[data-dump="amsterdam-2023"] .days a span { background: var(--moon); color: var(--night); }
@@ -211,7 +213,7 @@ main[data-dump="amsterdam-2023"].moving .opening.in .when { animation: amsterdam
   main[data-dump="amsterdam-2023"] .knock { font-size: min(62svh, 74vw); }
   main[data-dump="amsterdam-2023"] .close { grid-template-columns: 1fr; padding: 72px 16px 24px; gap: 48px; }
   main[data-dump="amsterdam-2023"] .close .menu { order: -1; }
-  main[data-dump="amsterdam-2023"] .days { gap: 28px; }
+  main[data-dump="amsterdam-2023"] .days { gap: 20px 28px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -219,5 +221,5 @@ main[data-dump="amsterdam-2023"].moving .opening.in .when { animation: amsterdam
   main[data-dump="amsterdam-2023"] .xfade .f { flex: 1; }
   main[data-dump="amsterdam-2023"] .xfade .b { position: static; animation: none; }
   main[data-dump="amsterdam-2023"] .xfade .cap { display: none; }
-  main[data-dump="amsterdam-2023"] .stage, main[data-dump="amsterdam-2023"] .stage .clock, main[data-dump="amsterdam-2023"] .town rect { transition: none; }
+  main[data-dump="amsterdam-2023"] .town rect { transition: none; }
 }

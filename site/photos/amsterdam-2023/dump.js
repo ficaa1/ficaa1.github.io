@@ -38,7 +38,7 @@
   } else ins.forEach(el => el.classList.add('in'));
 
   // ---- The stage. The sky by the hour, the share of windows lit, sampled from his frames and the sun on 23 December
-  // 2023 (down at 16:30, civil dusk over at 17:11).
+  // 2023 (also used for the 22nd) (down at 16:30, civil dusk over at 17:11).
   const SKY = [
     ['13:46', [185, 185, 185], 0], ['16:06', [185, 185, 185], 0], ['16:07', [226, 202, 189], 0],
     ['16:22', [226, 202, 189], 0.03], ['16:28', [233, 174, 138], 0.12], ['16:33', [233, 174, 138], 0.35],
@@ -46,7 +46,7 @@
     ['17:13', [29, 51, 82], 0.92], ['17:48', [14, 17, 18], 1],
   ].map(([t, c, l]) => [MIN(t), c, l]);
   const sky = m => {
-    const i = clamp(SKY.findIndex(([k]) => k >= m), 1, SKY.length - 1);
+    const j = SKY.findIndex(([k]) => k >= m), i = clamp(j < 0 ? SKY.length - 1 : j, 1, SKY.length - 1);
     const [k0, c0, l0] = SKY[i - 1], [k1, c1, l1] = SKY[i], f = clamp((m - k0) / Math.max(1, k1 - k0));
     return { c: c0.map((v, j) => Math.round(v + (c1[j] - v) * f)), lit: l0 + (l1 - l0) * f };
   };
@@ -66,6 +66,12 @@
     return { split, st, clock: st.querySelector('.clock'), wins: [...st.querySelectorAll('.wins rect')].map(r => [r, +r.style.getPropertyValue('--k')]),
       els: [...split.querySelectorAll('.col [data-t]')], lit: -1, from: MIN(st.dataset.from) };
   });
+  // The clock's ink on a sky: the house's dark while it holds 3:1, else the lamp while that does, else white.
+  const lum = c => c.map(v => { v /= 255; return v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; })
+    .reduce((a, v, j) => a + v * [0.2126, 0.7152, 0.0722][j], 0);
+  const HOUSE = lum([18, 19, 20]), LAMP = lum([223, 164, 84]);
+  const ratio = (a, b) => (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05);
+  const ink = c => { const L = lum(c); return ratio(L, HOUSE) >= 3 ? 'house' : ratio(L, LAMP) >= 3 ? 'dark' : 'dim'; };
   const paintStage = s => {
     const r = s.split.getBoundingClientRect();
     if (r.bottom < 0 || r.top > innerHeight) return;
@@ -73,7 +79,8 @@
     const line = innerWidth < 900 ? s.st.getBoundingClientRect().bottom + innerHeight * 0.25 : innerHeight * 0.5;
     const m = timeAt(s.els, line) ?? s.from, { c, lit } = sky(m);
     s.st.style.setProperty('--sky', `rgb(${c.join(' ')})`);
-    s.st.classList.toggle('dark', 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2] < 110);
+    const k = ink(c);
+    s.st.classList.toggle('dark', k === 'dark'); s.st.classList.toggle('dim', k === 'dim');
     set(s.clock, fmt(m));
     const L = Math.round(lit * 40) / 40;
     if (L !== s.lit) { s.lit = L; s.wins.forEach(([w, k]) => w.classList.toggle('on', k < L)); }

@@ -5045,9 +5045,124 @@
             "2000.jxl": 230264
           }
         }
+      },
+      {
+        "file": "amsterdam-3yrslater-1",
+        "original": "amsterdam-3yrslater (1 of 3).jxl",
+        "caption": "",
+        "alt": "A wooden table and chairs beneath red-framed windows, with small pots on the table and a skull on a wall shelf.",
+        "provisional": true,
+        "settings": {
+          "aperture": "f/1.8",
+          "shutter": "1/50 s",
+          "iso": "ISO 640",
+          "focal": "50 mm",
+          "camera": "Sony ILCE-7SM2",
+          "lens": "FE 50mm F1.8",
+          "taken": "2023-12-22 16:36"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            668
+          ],
+          "bytes": {
+            "1000.jpg": 78909,
+            "1000.jxl": 49644,
+            "2000.jpg": 328142,
+            "2000.jxl": 214942
+          }
+        }
+      },
+      {
+        "file": "amsterdam-3yrslater-2",
+        "original": "amsterdam-3yrslater (2 of 3).jxl",
+        "caption": "",
+        "alt": "A pale folded sheet draped across the wooden bed of a large roller press.",
+        "provisional": true,
+        "settings": {
+          "aperture": "f/1.8",
+          "shutter": "1/50 s",
+          "iso": "ISO 100",
+          "focal": "50 mm",
+          "camera": "Sony ILCE-7SM2",
+          "lens": "FE 50mm F1.8",
+          "taken": "2023-12-22 16:40"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            668
+          ],
+          "bytes": {
+            "1000.jpg": 59496,
+            "1000.jxl": 40660,
+            "2000.jpg": 277268,
+            "2000.jxl": 188381
+          }
+        }
+      },
+      {
+        "file": "amsterdam-3yrslater-3",
+        "original": "amsterdam-3yrslater (3 of 3).jxl",
+        "caption": "",
+        "alt": "An old television with two round tuning dials, its dark screen reflecting clothes and lights in a crowded interior.",
+        "provisional": true,
+        "settings": {
+          "aperture": "f/1.8",
+          "shutter": "1/125 s",
+          "iso": "ISO 1250",
+          "focal": "50 mm",
+          "camera": "Sony ILCE-7SM2",
+          "lens": "FE 50mm F1.8",
+          "taken": "2023-12-22 17:55"
+        },
+        "web": {
+          "400": [
+            400,
+            267
+          ],
+          "1000": [
+            1000,
+            668
+          ],
+          "bytes": {
+            "1000.jpg": 69984,
+            "1000.jxl": 43101,
+            "2000.jpg": 304586,
+            "2000.jxl": 193641
+          }
+        }
       }
     ],
     "rolls": [
+      {
+        "key": "amsterdam-3yrslater",
+        "name": "3yrslater",
+        "files": [
+          "amsterdam-3yrslater (1 of 3).jxl",
+          "amsterdam-3yrslater (2 of 3).jxl",
+          "amsterdam-3yrslater (3 of 3).jxl"
+        ],
+        "labels": [
+          "1",
+          "2",
+          "3"
+        ],
+        "taken": [
+          "2023-12-22 16:36",
+          "2023-12-22 16:40",
+          "2023-12-22 17:55"
+        ]
+      },
       {
         "key": "",
         "name": "",
@@ -5182,8 +5297,8 @@
         ]
       }
     ],
-    "frames": 41,
-    "from": "2023-12-23",
+    "frames": 44,
+    "from": "2023-12-22",
     "to": "2023-12-25"
   },
   {
