@@ -594,6 +594,21 @@
       const n = below();
       if (!n) return;
       scrollTo({ top: n.at.getBoundingClientRect().top + scrollY - n.margin, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+      // Pictures loading on the way in can move the day after the scroll set off; once it comes to rest it is put right,
+      // unless a hand has taken the page meanwhile.
+      let last = -1, still = 0, fixes = 0, gone = false;
+      const off = () => { gone = true; };
+      addEventListener('wheel', off, { once: true, passive: true });
+      addEventListener('touchstart', off, { once: true, passive: true });
+      const settle = setInterval(() => {
+        if (gone || fixes > 4) return clearInterval(settle);
+        if (Math.abs(scrollY - last) > 0.5) { last = scrollY; still = 0; return; }
+        if (++still < 2) return;
+        const by = n.at.getBoundingClientRect().top - n.margin;
+        if (Math.abs(by) <= 2) return clearInterval(settle);
+        fixes++; still = 0;
+        scrollTo({ top: scrollY + by, behavior: 'instant' });
+      }, 120);
       const h = n.at.querySelector('h2, h3');
       if (h) { h.tabIndex = -1; h.focus({ preventScroll: true }); }
     });
