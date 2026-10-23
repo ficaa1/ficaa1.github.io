@@ -575,18 +575,26 @@
   })();
 
   // ---- On to the next day: on a photo page with days, a button under the back-to-top one that brings the next day's
-  // heading up under the bar. It is there while a day is still below, and gone on the last.
+  // heading up under the bar. Where a day opens a part of the page with its own opening above it (Paris's stations), the
+  // button stops at that opening instead. It is there while a day is still below, and gone on the last.
   const nextDay = (() => {
     const b = document.createElement('button');
     b.id = 'next'; b.type = 'button'; b.title = 'Next day'; b.setAttribute('aria-label', 'Next day');
     b.innerHTML = '<svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M10 17 L3 9 H7.5 V3 H12.5 V9 H17 Z"/></svg>';
-    const below = () => [...document.querySelectorAll('main [data-sheet][id]')]
-      .find(d => d.getBoundingClientRect().top > (parseFloat(getComputedStyle(d).scrollMarginTop) || 0) + 4);
+    const below = () => {
+      const days = [...document.querySelectorAll('main [data-sheet][id]')];
+      for (const d of days) {
+        const part = d.parentElement.closest('main section'), margin = parseFloat(getComputedStyle(d).scrollMarginTop) || 0;
+        const opens = part && part.querySelector('[data-sheet][id]') === d && part.querySelectorAll('[data-sheet][id]').length < days.length;
+        const at = opens ? part : d;
+        if (at.getBoundingClientRect().top > margin + 4) return { at, d, margin };
+      }
+    };
     b.addEventListener('click', () => {
-      const d = below();
-      if (!d) return;
-      d.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
-      const h = d.querySelector('h2, h3');
+      const n = below();
+      if (!n) return;
+      scrollTo({ top: n.at.getBoundingClientRect().top + scrollY - n.margin, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+      const h = n.at.querySelector('h2, h3');
       if (h) { h.tabIndex = -1; h.focus({ preventScroll: true }); }
     });
     let queued = false;
