@@ -152,9 +152,11 @@ main[data-dump="rome-2025"] .duo.tt .f:first-child { grid-column: 2 / span 4; }
 main[data-dump="rome-2025"] .duo.tt .f + .f { grid-column: 8 / span 4; }
 main[data-dump="rome-2025"] .duo.tt { align-items: start; }
 main[data-dump="rome-2025"] .duo.tt .f + .f { margin-top: clamp(96px, 14vw, 240px); }
-/* The films: two side by side; a frame split from its step keeps its place. */
-main[data-dump="rome-2025"] .films .f:first-child { grid-column: 1 / span 6; }
-main[data-dump="rome-2025"] .films .f + .f { grid-column: 7 / span 6; }
+/* The films: each as wide as a frame on its own, the first to the left and the next lower to the right; a frame split
+   from its step keeps its place. */
+main[data-dump="rome-2025"] .films { row-gap: clamp(72px, 9vw, 160px); }
+main[data-dump="rome-2025"] .films .f:first-child { grid-column: 1 / span 9; }
+main[data-dump="rome-2025"] .films .f + .f { grid-column: 4 / span 9; grid-row: 2; }
 main[data-dump="rome-2025"] .split.r .f.big { grid-column: 6 / span 7; }
 main[data-dump="rome-2025"] .split.l .f.small { grid-column: 1 / span 5; }
 main[data-dump="rome-2025"] .film video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: #000; }

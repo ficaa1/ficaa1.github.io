@@ -3,7 +3,7 @@
    <main>, so it arrives and leaves with the page when the site swaps pages in place. Scoped to .lands.
    The faces are the pages' own (each under the SIL Open Font Licence), from their folders; a browser fetches only the
    ones a square on the page uses. The Paris arms are after Thom.lanaud's on Wikimedia Commons (CC BY-SA 3.0), credited
-   under the squares; see france/paris-arms.SOURCES.md. */
+   at the foot of the page; see france/paris-arms.SOURCES.md. */
 @font-face { font-family: "Fira Sans"; src: url("france/fira-sans-700-latin.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
 @font-face { font-family: "Fira Sans"; src: url("france/fira-sans-500-latin.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
 @font-face { font-family: "Fira Sans Condensed"; src: url("france/fira-sans-condensed-700-latin.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
@@ -130,9 +130,6 @@ body:has(.lands .reel) > footer { position: relative; z-index: 1; background: tr
 .lands [data-land="amsterdam-2023"] .name a .nm { gap: 0.3em; }
 .lands [data-land="amsterdam-2023"] .name .nm::before { content: ""; flex: none; width: 0.3em; aspect-ratio: 40 / 132; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -2 40 132' width='400' height='1320'%3E%3Cpath fill='%23fff' d='M4 4l6-6 10 10 10-10 6 6-10 10 10 10-6 6-10-10-10 10-6-6 10-10zM4 48l6-6 10 10 10-10 6 6-10 10 10 10-6 6-10-10-10 10-6-6 10-10zM4 92l6-6 10 10 10-10 6 6-10 10 10 10-6 6-10-10-10 10-6-6 10-10z'/%3E%3C/svg%3E") center / contain no-repeat; }
 
-/* The credit for the Paris arms. */
-.lands .credit { position: relative; margin: clamp(28px, 4vw, 48px) auto 0; max-width: 1440px; font-size: 0.8rem; color: rgb(255 255 255 / .6); text-align: right; }
-.lands .credit a { color: inherit; }
 
 /* ---- The squares come up one after another as the page opens. */
 @media (prefers-reduced-motion: no-preference) {
@@ -152,3 +149,7 @@ body:has(.lands .reel) > footer { position: relative; z-index: 1; background: tr
 @media (max-width: 599px) {
   .lands .squares { gap: 10px; }
 }
+
+/* The credit for the Paris arms, small, under the imprint at the foot of the page. */
+body:has(.lands) footer .credit { margin-top: 12px; font-size: 13px; opacity: 0.7; }
+body:has(.lands) footer .credit a { color: inherit; }

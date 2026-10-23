@@ -416,6 +416,8 @@ const signOf = x => {
 // git, beside the pictures). lands.css and lands.js carry a hash of their contents, so no browser pairs the page with an
 // old copy.
 const ver = f => createHash('sha1').update(readFileSync(join(site, 'photos', f))).digest('hex').slice(0, 8);
+// The credit the Paris arms on the squares ask for, at the foot of photos.html, inside the back of the print.
+const landsCredit = () => `<p class="credit">Arms of Paris after <a href="https://commons.wikimedia.org/wiki/File:Blason_paris_75.svg">Thom.lanaud</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a></p>`;
 function lands() {
   return `<section class="set lands" aria-labelledby="ph-title">
 <link rel="stylesheet" href="photos/lands.css?v=${ver('lands.css')}">
@@ -429,7 +431,6 @@ ${open.map(e => `<li class="land" data-land="${esc(e.id)}">
 <h2 class="name"><a href="${href(e, 0)}">${signOf(e)}</a></h2>
 </li>`).join('\n')}
 </ol>
-<p class="credit">Arms of Paris after <a href="https://commons.wikimedia.org/wiki/File:Blason_paris_75.svg">Thom.lanaud</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a></p>
 <script src="photos/lands.js?v=${ver('lands.js')}" defer></script>
 </section>`;
 }
@@ -502,6 +503,7 @@ if (NEW) {
   const chrome = readFileSync(indexPath, 'utf8')
     .replace(/<title>[^<]*<\/title>/, '<!-- meta:start -->\n<!-- meta:end -->')
     .replace(/<!-- lands:start -->[\s\S]*<!-- lands:end -->/, '')
+    .replace(/\n?<!-- credit:start -->[\s\S]*<!-- credit:end -->/, '')
     .replace(/\s(href|src)="(?![a-z]+:|#|\/)([^"]*)"/gi, (m, a, u) => ` ${a}="${'../'.repeat(DEPTH)}${u}"`)
     .replace('<b>Photos</b>', `<a href="${home(DEPTH)}">Photos</a>`)
     .replace(/<main>[\s\S]*<\/main>/, () => `<main data-dump="${dump.id}">\n<link rel="stylesheet" href="dump.css">\n${fromKit(`${kit}.html`).trim()}\n</main>`);
@@ -523,6 +525,6 @@ for (const e of places.filter(hasPage)) {
   const full = !ONLY || ONLY === country.id || ONLY === e.id || (country.dumps || []).includes(ONLY);
   writeFileSync(path, fillPage(readFileSync(path, 'utf8'), placeParts(e, full), path));
 }
-writeFileSync(indexPath, fill(readFileSync(indexPath, 'utf8'), name => name === 'lands' ? lands() : name === 'stamp' ? stamp(open.find(first), 0) : null, indexPath));
+writeFileSync(indexPath, fill(readFileSync(indexPath, 'utf8'), name => name === 'lands' ? lands() : name === 'credit' ? landsCredit() : name === 'stamp' ? stamp(open.find(first), 0) : null, indexPath));
 for (const dump of listed) if (printed(dump).length && !homeOf(dump)) console.log(`${dump.id}: has prints but no page; start one with node tools/photos.mjs ${dump.id} --new${countryOf(dump) ? `, or show them on ${countryOf(dump).id}'s pages` : ''}`);
 console.log(`photos.html: ${listed.length} dumps, ${open.length} pages in the switcher${places.filter(hasPage).length ? `, ${places.filter(hasPage).length} country and place pages` : ''}${ONLY ? `; filled ${ONLY}` : ''}; pictures from ${absolute ? MEDIA : `site/${MEDIA} (local preview; set PHOTOS_BASE before committing)`}`);
