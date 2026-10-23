@@ -4,8 +4,6 @@
   const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
   const json = name => fetch(new URL(name, ROOT)).then(r => (r.ok ? r.json() : [])).catch(() => []);
 
-  let clockTimer = 0;
-
   // ---- Focus rings are for the keyboard. A control clicked or tapped stays quiet ([data-quiet]) until it loses focus, even
   // when a key is pressed afterwards (Esc to leave full screen, an arrow in the viewer), which would otherwise ring it in
   // Chrome. Focus put back by script (closing the viewer or the day grid) is quiet too when that was opened with a pointer,
@@ -75,24 +73,8 @@
     else if (e.key === 'k') { e.preventDefault(); links[Math.max(0, i - 1)]?.focus(); }
   });
 
-  // ---- Contact: Filip's clock, and a letter that opens in the visitor's own mail program.
+  // ---- Contact: a letter that opens in the visitor's own mail program.
   function contact() {
-    clearInterval(clockTimer);
-    const clock = document.getElementById('clock');
-    if (clock) {
-      const tick = () => {
-        const now = new Date();
-        const t = now.toLocaleTimeString('en-GB', { timeZone: 'Europe/Paris', hour: '2-digit', minute: '2-digit' });
-        const h = +now.toLocaleString('en-GB', { timeZone: 'Europe/Paris', hour: '2-digit', hour12: false });
-        const state = h < 7 ? 'I am asleep, so expect an answer in the morning'
-          : h < 9 ? 'I am probably on my first coffee'
-          : h < 19 ? 'I am at work, and I read mail in the evening'
-          : h < 23 ? 'this is when I read mail'
-          : 'I should be asleep';
-        clock.textContent = `It is ${t} in Paris right now; ${state}.`;
-      };
-      tick(); clockTimer = setInterval(tick, 20000);
-    }
     const letter = document.getElementById('letter');
     if (letter) letter.addEventListener('submit', e => {
       e.preventDefault();

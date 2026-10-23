@@ -398,8 +398,8 @@ function meta(e) {
   const title = country ? `${e.title}, ${country.title}` : `${e.title}, ${e.shelved ? e.years : year(e)}`;
   const x = first(e);
   const image = x ? (absolute ? '' : ORIGIN) + media(0, x.dump.id, `${x.p.file}-1000.jpg`) : '';
-  return `<title>${esc(title)} - Photos - Filip Biljic</title>
-<meta name="description" content="${esc(`${title}. Photos by Filip Biljic.`)}">
+  return `<title>${esc(title)} - Photos - Filip Biljić</title>
+<meta name="description" content="${esc(`${title}. Photos by Filip Biljić.`)}">
 <meta property="og:title" content="${esc(title)}">${image ? `\n<meta property="og:image" content="${esc(image)}">` : ''}`;
 }
 const stamp = (e, depth) => { const x = e && first(e); return x ? `<img class="stamp" src="${media(depth, x.dump.id, `${x.p.file}-${THUMB}.jpg`)}" width="400" height="${sized(x.p, THUMB).height}" alt="" loading="lazy">` : ''; };

@@ -6,7 +6,7 @@ Licence checked through the Wikimedia Commons imageinfo API on 17 October 2026: 
 
 `arms-mono.svg` adapts the original paths to one ink: the fortress and ship print; the field and dark details are transparent knockouts. The enclosing shield remains outlined. The page uses this SVG as a CSS mask over currentColor. The source and adaptation are credited at the foot of the page.
 
-Photos: Filip Biljic. Captions remain empty in photos.json.
+Photos: Filip Biljić. Captions remain empty in photos.json.
 
 # Map
 
