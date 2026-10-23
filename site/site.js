@@ -584,9 +584,10 @@
     // Where a part sits on the page, without the lift of its entrance (.rise), which would otherwise send the scroll past it.
     const y = el => { let t = 0; for (; el; el = el.offsetParent) t += el.offsetTop; return t; };
     const below = () => {
-      const days = [...document.querySelectorAll('main [data-sheet][id]')];
+      const days = [...document.querySelectorAll('main [data-sheet][id]')], bar = document.querySelector('body > .pbar');
       for (const d of days) {
-        const part = d.parentElement.closest('main section'), margin = parseFloat(getComputedStyle(d).scrollMarginTop) || 0;
+        // Right under the bar of days, which is fixed over the top.
+        const part = d.parentElement.closest('main section'), margin = bar ? bar.offsetHeight : parseFloat(getComputedStyle(d).scrollMarginTop) || 0;
         const opens = part && part.querySelector('[data-sheet][id]') === d && part.querySelectorAll('[data-sheet][id]').length < days.length;
         const at = opens ? part : d;
         if (y(at) - scrollY > margin + 4) return { at, margin };
