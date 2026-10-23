@@ -38,7 +38,7 @@ main[data-place="paris"] .plan {
   list-style: none; background: #fff; color: #111; overflow-x: auto; scrollbar-width: none;
 }
 main[data-place="paris"] .plan::-webkit-scrollbar { display: none; }
-main[data-place="paris"] .plan li { position: relative; height: clamp(190px, 15vw, 250px); }
+main[data-place="paris"] .plan li { position: relative; height: 284px; }
 main[data-place="paris"] .plan li::before { content: ""; position: absolute; left: 0; right: 0; bottom: 34px; height: 12px; background: var(--l); }
 main[data-place="paris"] .plan li:first-child::before { left: 50%; }
 main[data-place="paris"] .plan li:last-child::before { right: 50%; }
@@ -55,7 +55,7 @@ main[data-place="paris"] .plan .nm {
 main[data-place="paris"] .plan .gone .nm { color: #8a8a8a; }
 main[data-place="paris"] .plan .here .nm { font-weight: 700; font-size: 19px; }
 main[data-place="paris"] .plan.car { padding-block: 8px 0; }
-main[data-place="paris"] .plan.car li { height: clamp(200px, 15vw, 260px); }
+main[data-place="paris"] .plan.car li { height: 240px; }
 /* A stop of the ride: the link takes its name and the foot of its column, so the dot takes a thumb too. It stops short
    of the slanted names, which run over the next columns. */
 main[data-place="paris"] .plan li { pointer-events: none; }
@@ -107,7 +107,12 @@ main[data-place="paris"] .stop .wall {
   display: grid; justify-items: center; gap: clamp(20px, 2.4vw, 36px); padding: clamp(80px, 10vw, 168px) var(--gut) clamp(64px, 8vw, 128px);
   background: #e4e1d9 var(--tile) center / 64px 32px; color: #111; overflow: hidden;
 }
-main[data-place="paris"] .stop .wall .plate { font-size: clamp(44px, 8.4vw, 148px); align-items: center; max-width: 100%; }
+main[data-place="paris"] .stop .wall { container-type: inline-size; }
+/* --em is the plate's width in ems, for names too long to stay on one line at the full size. */
+main[data-place="paris"] .stop .wall .plate { font-size: clamp(44px, min(8.4vw, 100cqi / var(--em, 1)), 148px); align-items: center; max-width: 100%; }
+main[data-place="paris"] #s-champs-elysees-clemenceau { --em: 14.5; }
+main[data-place="paris"] #s-charles-de-gaulle-etoile { --em: 12.2; }
+main[data-place="paris"] #s-chateau-de-vincennes { --em: 11.4; }
 main[data-place="paris"] .stop .wall .enamel .nm { white-space: nowrap; }
 main[data-place="paris"] .stop .wall .lines { justify-content: center; }
 main[data-place="paris"] .stop .dates { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; padding: 0; background: none; }
@@ -178,7 +183,7 @@ main[data-place="paris"] .terminus p { font-weight: 500; font-size: clamp(72px, 
   main[data-place="paris"] .opening h1 { font-size: clamp(96px, 30vw, 180px); }
   main[data-place="paris"] .opening .facts { display: grid; }
   main[data-place="paris"] .plan { grid-template-columns: repeat(var(--n), 44px); }
-  main[data-place="paris"] .plan li { height: 170px; }
+  main[data-place="paris"] .plan li { height: 256px; }
   main[data-place="paris"] .plan .nm { font-size: 14px; }
   main[data-place="paris"] .plan .here .nm { font-size: 17px; }
   main[data-place="paris"] .ride { padding: 0 0 56px; }
