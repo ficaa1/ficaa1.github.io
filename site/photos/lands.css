@@ -15,15 +15,20 @@
 @font-face { font-family: "Hanken Grotesk"; src: url("ljubljana/hanken.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: swap; }
 @font-face { font-family: "Archivo"; src: url("istanbul-2025/archivo-ext.woff2") format("woff2"); font-weight: 400 600; font-style: normal; font-display: swap; unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1E00-1E9F; }
 @font-face { font-family: "Archivo"; src: url("istanbul-2025/archivo.woff2") format("woff2"); font-weight: 400 600; font-style: normal; font-display: swap; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F; }
+@font-face { font-family: "JetBrains Mono"; src: url("jetbrains-mono.woff2") format("woff2"); font-weight: 300; font-style: normal; font-display: swap; }
 @font-face { font-family: "Young Serif"; src: url("amsterdam-2023/young-serif-latin.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
 
-/* ---- The page: light, as the places' own pages are, so the squares stand on it the way their pictures stand on those. */
+/* ---- The page: the film runs under everything, the nav and the player too, which sit on it in white over a dark fall
+   at the top of the screen. */
 body:has(.lands) {
-  --bg: #efede8; --surface: #e3e0d9; --ink: #141414; --soft: #5c5c5c; --panel: #e3e0d9;
-  --paper: #fff; --paper-ink: #141414; --link: #141414; --visited: #141414;
-  background: var(--bg); color: var(--ink);
+  --bg: transparent; --surface: rgb(255 255 255 / .1); --ink: #fff; --soft: rgb(255 255 255 / .7); --panel: rgb(255 255 255 / .16);
+  --paper: transparent; --paper-ink: #fff; --link: #fff; --visited: #fff;
+  background: #111; color: var(--ink);
 }
-body:has(.lands) nav, body:has(.lands) #player { background: var(--bg); }
+body:has(.lands) nav, body:has(.lands) #player { background: transparent; text-shadow: 0 1px 6px rgb(0 0 0 / .5); }
+/* On phones the player sits in the flow, where the film (fixed, inside main) would otherwise cover it. */
+@media (max-width: 900px) { body:has(.lands) #player { position: relative; inset: auto; } }
+body:has(.lands) #player.open { background: rgb(20 20 20 / .7); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); }
 
 .lands { --gut: clamp(16px, 2.4vw, 40px); --serif: "Times New Roman", Times, "Liberation Serif", "Nimbus Roman", serif; padding: clamp(40px, 6vw, 96px) var(--gut) 0; }
 .lands .title { position: relative; margin: 0 0 clamp(28px, 4vw, 64px); text-align: center; font-style: normal; color: #fff; }
@@ -34,7 +39,7 @@ body:has(.lands) nav, body:has(.lands) #player { background: var(--bg); }
 body:has(.lands .reel) { background: #111; }
 .lands .reel { position: fixed; inset: 0; z-index: 0; background: #111 url(https://photos.filipbiljic.com/broll-pixelsort-poster-960.jpg) center / cover; pointer-events: none; }
 .lands .reel video { display: block; width: 100%; height: 100%; object-fit: cover; }
-.lands .reel::after { content: ""; position: absolute; inset: 0; background: rgb(0 0 0 / 0.38); }
+.lands .reel::after { content: ""; position: absolute; inset: 0; background: linear-gradient(rgb(0 0 0 / .45), rgb(0 0 0 / 0) 180px), rgb(0 0 0 / 0.38); }
 body:has(.lands .reel) > footer { position: relative; z-index: 1; background: transparent; }
 .lands .squares {
   --gap: clamp(12px, 1.8vw, 28px); --cols: 3; container-type: inline-size; list-style: none; margin: 0 auto; padding: 0; max-width: 1440px;
@@ -150,10 +155,10 @@ body:has(.lands .reel) > footer { position: relative; z-index: 1; background: tr
   .lands .squares { gap: 10px; }
 }
 
-/* ---- The title, a quiet label in thin wide capitals so the film stays the loud thing; and the squares sized so both rows
+/* ---- The title, a quiet label in thin spaced monospace capitals so the film stays the loud thing; and the squares sized so both rows
    sit on one screen. */
 .lands { padding-top: clamp(28px, 4vh, 56px); }
-.lands .title { font-family: "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif; font-weight: 250; font-size: clamp(26px, 3.4vw, 52px); line-height: 1; text-transform: uppercase; letter-spacing: 0.42em; margin-right: -0.42em; margin-bottom: clamp(24px, 3.4vh, 44px); text-shadow: 0 1px 12px rgb(0 0 0 / .35); }
+.lands .title { font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; font-weight: 300; font-size: clamp(24px, 3vw, 46px); line-height: 1; text-transform: uppercase; letter-spacing: 0.3em; margin-right: -0.3em; margin-bottom: clamp(24px, 3.4vh, 44px); text-shadow: 0 1px 12px rgb(0 0 0 / .35); }
 @media (min-width: 900px) {
   .lands .squares { max-width: min(1440px, calc((100svh - 230px) * 1.5 + 2 * var(--gap))); }
 }
@@ -166,8 +171,8 @@ body:has(.lands) footer .back {
   box-shadow: inset 0 1.5px 0 rgb(255 255 255 / .5), inset 0 -1px 0 rgb(255 255 255 / .14), 0 28px 56px -22px rgb(0 0 0 / .6);
 }
 body:has(.lands) footer .back a, body:has(.lands) footer .back a:visited, body:has(.lands) footer .imprint { color: #fff; }
-body:has(.lands) footer .address { padding-top: 0; padding-right: 96px; font-size: 16px; line-height: 1.6; }
-body:has(.lands) footer .stamp { width: 72px; height: 54px; border-width: 4px; border-color: transparent; outline-color: rgb(255 255 255 / .5); }
+body:has(.lands) footer .address { padding-top: 0; font-size: 16px; line-height: 1.6; }
+body:has(.lands) footer .stamp { display: none; }
 body:has(.lands) footer .imprint { padding-top: 8px; font-size: 14px; }
 @media (max-width: 599px) { body:has(.lands) footer .back { padding: 28px 22px 20px; } }
 
