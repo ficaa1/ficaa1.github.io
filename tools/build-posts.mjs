@@ -70,7 +70,7 @@ const page = p => `<!DOCTYPE html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${esc(p.title)} - Filip Biljic</title>
+<title>${esc(p.title)} - Filip Biljić</title>
 <link rel="stylesheet" href="../site.css">
 </head>
 <body data-page="post">
@@ -81,7 +81,7 @@ const page = p => `<!DOCTYPE html>
 ${p.html}
 <p><a href="../blog.html">Back to the list of posts</a></p>
 </main>
-<footer><div id="trace"><p>Filip Biljic, Paris.</p></div></footer>
+<footer><div id="trace"><p>Filip Biljić, Paris.</p></div></footer>
 <script src="../site.js"></script>
 </body>
 </html>

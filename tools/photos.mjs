@@ -43,6 +43,7 @@ import { join, dirname } from 'node:path';
 import { homedir, tmpdir } from 'node:os';
 import { execFileSync } from 'node:child_process';
 import { createRequire } from 'node:module';
+import { createHash } from 'node:crypto';
 import { exif, settings } from './exif.mjs';
 
 const args = process.argv.slice(2);
@@ -397,35 +398,40 @@ function meta(e) {
   const title = country ? `${e.title}, ${country.title}` : `${e.title}, ${e.shelved ? e.years : year(e)}`;
   const x = first(e);
   const image = x ? (absolute ? '' : ORIGIN) + media(0, x.dump.id, `${x.p.file}-1000.jpg`) : '';
-  return `<title>${esc(title)} - Photos - Filip Biljic</title>
-<meta name="description" content="${esc(`${title}. Photos by Filip Biljic.`)}">
+  return `<title>${esc(title)} - Photos - Filip Biljić</title>
+<meta name="description" content="${esc(`${title}. Photos by Filip Biljić.`)}">
 <meta property="og:title" content="${esc(title)}">${image ? `\n<meta property="og:image" content="${esc(image)}">` : ''}`;
 }
 const stamp = (e, depth) => { const x = e && first(e); return x ? `<img class="stamp" src="${media(depth, x.dump.id, `${x.p.file}-${THUMB}.jpg`)}" width="400" height="${sized(x.p, THUMB).height}" alt="" loading="lazy">` : ''; };
 
-// ---- Standard: the front of Photos (photos.html). A square for each country with a page, in that country's colours and
-// type, and in it a sign for each of its places in theirs; a city with no country page is a square of its own, in its
-// colours (site/photos/lands.css). A "sign" is the name as the page's own sign writes it ("Roma").
+// ---- Standard: the front of Photos (photos.html). A square of clear glass for each country with a page and for each city
+// with no country page, its name as its sign writes it, the whole square its link (site/photos/lands.css); the places of a
+// country are reached from the country's page. A "sign" is the name as the page's own sign writes it ("Roma").
 const cyrillic = s => /[\u0400-\u04FF]/.test(s) ? ' lang="sr-Cyrl"' : '';
 const signOf = x => {
   const s = x.sign || x.title;
   return `<span class="nm"${cyrillic(s)}${x.sign ? ' aria-hidden="true"' : ''}>${s.split(' ').map(w => `<span>${esc(w)}</span>`).join(' ')}</span>${x.sign ? `<span class="vh">${esc(x.title)}</span>` : ''}`;
 };
+// Behind the squares, Filip's pixel-sorted film, from the Colosseum round to the Colosseum (the loop files are kept off
+// git, beside the pictures). lands.css and lands.js carry a hash of their contents, so no browser pairs the page with an
+// old copy.
+const ver = f => createHash('sha1').update(readFileSync(join(site, 'photos', f))).digest('hex').slice(0, 8);
+// The credit the Paris arms on the squares ask for, at the foot of photos.html, inside the back of the print.
+const landsCredit = () => `<p class="credit">Arms of Paris after <a href="https://commons.wikimedia.org/wiki/File:Blason_paris_75.svg">Thom.lanaud</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a></p>`;
 function lands() {
   return `<section class="set lands" aria-labelledby="ph-title">
-<link rel="stylesheet" href="photos/lands.css">
+<link rel="stylesheet" href="photos/lands.css?v=${ver('lands.css')}">
+<div class="reel" aria-hidden="true"><video muted playsinline loop preload="none" width="1920" height="1080" poster="${media(0, 'broll-pixelsort-poster-960.jpg')}">
+<source src="${media(0, 'broll-pixelsort-960.mp4')}" type="video/mp4" media="(max-width: 899px)">
+<source src="${media(0, 'broll-pixelsort-1920.mp4')}" type="video/mp4">
+</video></div>
 <h1 class="title" id="ph-title">Photos</h1>
 <ol class="squares">
-${open.map(e => {
-    const towns = places.filter(x => x.in === e.id && hasPage(x));
-    return `<li class="land${towns.length ? '' : ' city'}" data-land="${esc(e.id)}">
-<h2 class="name"><a href="${href(e, 0)}">${signOf(e)}</a></h2>${towns.length ? `
-<ol class="towns">
-${towns.map(x => `<li class="town" data-town="${esc(x.id)}"><a href="${href(x, 0)}">${signOf(x)}</a></li>`).join('\n')}
-</ol>` : ''}
-</li>`;
-  }).join('\n')}
+${open.map(e => `<li class="land" data-land="${esc(e.id)}">
+<h2 class="name"><a href="${href(e, 0)}">${signOf(e)}</a></h2>
+</li>`).join('\n')}
 </ol>
+<script src="photos/lands.js?v=${ver('lands.js')}" defer></script>
 </section>`;
 }
 
@@ -497,6 +503,7 @@ if (NEW) {
   const chrome = readFileSync(indexPath, 'utf8')
     .replace(/<title>[^<]*<\/title>/, '<!-- meta:start -->\n<!-- meta:end -->')
     .replace(/<!-- lands:start -->[\s\S]*<!-- lands:end -->/, '')
+    .replace(/\n?<!-- credit:start -->[\s\S]*<!-- credit:end -->/, '')
     .replace(/\s(href|src)="(?![a-z]+:|#|\/)([^"]*)"/gi, (m, a, u) => ` ${a}="${'../'.repeat(DEPTH)}${u}"`)
     .replace('<b>Photos</b>', `<a href="${home(DEPTH)}">Photos</a>`)
     .replace(/<main>[\s\S]*<\/main>/, () => `<main data-dump="${dump.id}">\n<link rel="stylesheet" href="dump.css">\n${fromKit(`${kit}.html`).trim()}\n</main>`);
@@ -518,6 +525,6 @@ for (const e of places.filter(hasPage)) {
   const full = !ONLY || ONLY === country.id || ONLY === e.id || (country.dumps || []).includes(ONLY);
   writeFileSync(path, fillPage(readFileSync(path, 'utf8'), placeParts(e, full), path));
 }
-writeFileSync(indexPath, fill(readFileSync(indexPath, 'utf8'), name => name === 'lands' ? lands() : name === 'stamp' ? stamp(open.find(first), 0) : null, indexPath));
+writeFileSync(indexPath, fill(readFileSync(indexPath, 'utf8'), name => name === 'lands' ? lands() : name === 'credit' ? landsCredit() : name === 'stamp' ? stamp(open.find(first), 0) : null, indexPath));
 for (const dump of listed) if (printed(dump).length && !homeOf(dump)) console.log(`${dump.id}: has prints but no page; start one with node tools/photos.mjs ${dump.id} --new${countryOf(dump) ? `, or show them on ${countryOf(dump).id}'s pages` : ''}`);
 console.log(`photos.html: ${listed.length} dumps, ${open.length} pages in the switcher${places.filter(hasPage).length ? `, ${places.filter(hasPage).length} country and place pages` : ''}${ONLY ? `; filled ${ONLY}` : ''}; pictures from ${absolute ? MEDIA : `site/${MEDIA} (local preview; set PHOTOS_BASE before committing)`}`);

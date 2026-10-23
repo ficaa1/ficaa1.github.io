@@ -82,7 +82,6 @@ footer p { margin-bottom: 10px; }
 kbd { font-family: var(--face); font-size: 16px; background: var(--panel); padding: 1px 6px; }
 
 /* ---- Contact ---- */
-.clock { font-size: 26px; line-height: 1.35; }
 form.letter { margin: 40px 0; background: var(--panel); padding: 28px; }
 form.letter label { display: block; font-size: 18px; margin: 0 0 4px; }
 form.letter select, form.letter textarea { font: inherit; font-size: 18px; width: 100%; margin-bottom: 20px; padding: 6px; }
@@ -131,7 +130,7 @@ body.cv main > .sheet { max-width: 820px; }
 .skills dt { font-weight: bold; }
 .skills dd { margin: 0; }
 .sample { background: #ffff66; padding: 0 3px; }
-.print { margin: 32px 0 0; }
+.pdf { margin: 32px 0 0; }
 
 /* ---- Rack ---- */
 .stack { list-style: none; padding: 0; }
@@ -143,7 +142,7 @@ body.cv main > .sheet { max-width: 820px; }
   body { font-size: 18px; }
   h1 { margin-top: 12vh; }
   h2 { margin-top: 88px; }
-  .lead, .clock { font-size: 22px; }
+  .lead { font-size: 22px; }
   .sheet { padding: 32px 20px 48px; margin-top: 24px; }
   body.cv main { padding-left: 0; padding-right: 0; }
   .uptime { column-gap: 1px; }
@@ -568,6 +567,21 @@ html:has(.daygrid[open]) { overflow: hidden; }
 #top:hover { background: var(--link); opacity: 0.85; }
 #top:active { translate: 0 1px; }
 @media (prefers-reduced-motion: reduce) { #top, #top.on { translate: none; transition: none; } }
+/* ---- Next day: the same square with the arrow down, in the corner, with the back-to-top square over it while there is
+   a day still to go. */
+#next {
+  position: fixed; z-index: 6; right: calc(16px + env(safe-area-inset-right)); bottom: calc(16px + env(safe-area-inset-bottom));
+  width: 44px; height: 44px; padding: 0; display: grid; place-items: center;
+  background: var(--link); color: var(--bg); border: 2px solid var(--bg);
+  opacity: 0; visibility: hidden;
+  transition: opacity 200ms ease, visibility 0s linear 200ms;
+}
+body:has(#next.on) #top { bottom: calc(68px + env(safe-area-inset-bottom)); }
+#next svg { fill: currentColor; }
+#next.on { opacity: 1; visibility: visible; transition: opacity 200ms ease; }
+#next:hover { opacity: 0.85; }
+#next:active { translate: 0 1px; }
+@media (prefers-reduced-motion: reduce) { #next, #next.on { transition: none; } }
 
 @media (max-width: 900px) {
   #player { position: static; max-width: none; margin: 0; padding: 12px 20px 0; }

@@ -4,8 +4,6 @@
   const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
   const json = name => fetch(new URL(name, ROOT)).then(r => (r.ok ? r.json() : [])).catch(() => []);
 
-  let clockTimer = 0;
-
   // ---- Focus rings are for the keyboard. A control clicked or tapped stays quiet ([data-quiet]) until it loses focus, even
   // when a key is pressed afterwards (Esc to leave full screen, an arrow in the viewer), which would otherwise ring it in
   // Chrome. Focus put back by script (closing the viewer or the day grid) is quiet too when that was opened with a pointer,
@@ -75,24 +73,8 @@
     else if (e.key === 'k') { e.preventDefault(); links[Math.max(0, i - 1)]?.focus(); }
   });
 
-  // ---- Contact: Filip's clock, and a letter that opens in the visitor's own mail program.
+  // ---- Contact: a letter that opens in the visitor's own mail program.
   function contact() {
-    clearInterval(clockTimer);
-    const clock = document.getElementById('clock');
-    if (clock) {
-      const tick = () => {
-        const now = new Date();
-        const t = now.toLocaleTimeString('en-GB', { timeZone: 'Europe/Paris', hour: '2-digit', minute: '2-digit' });
-        const h = +now.toLocaleString('en-GB', { timeZone: 'Europe/Paris', hour: '2-digit', hour12: false });
-        const state = h < 7 ? 'I am asleep, so expect an answer in the morning'
-          : h < 9 ? 'I am probably on my first coffee'
-          : h < 19 ? 'I am at work, and I read mail in the evening'
-          : h < 23 ? 'this is when I read mail'
-          : 'I should be asleep';
-        clock.textContent = `It is ${t} in Paris right now; ${state}.`;
-      };
-      tick(); clockTimer = setInterval(tick, 20000);
-    }
     const letter = document.getElementById('letter');
     if (letter) letter.addEventListener('submit', e => {
       e.preventDefault();
@@ -576,6 +558,39 @@
     place();
   })();
 
+  // ---- On to the next day: on a photo page with days, a button under the back-to-top one that brings the next day's
+  // heading up under the bar. Where a day opens a part of the page with its own opening above it (Paris's stations), the
+  // button stops at that opening instead. It is there while a day is still below, and gone on the last.
+  const nextDay = (() => {
+    const b = document.createElement('button');
+    b.id = 'next'; b.type = 'button'; b.title = 'Next day'; b.setAttribute('aria-label', 'Next day');
+    b.innerHTML = '<svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M10 17 L3 9 H7.5 V3 H12.5 V9 H17 Z"/></svg>';
+    // Where a part sits on the page, without the lift of its entrance (.rise), which would otherwise send the scroll past it.
+    const y = el => { let t = 0; for (; el; el = el.offsetParent) t += el.offsetTop; return t; };
+    const below = () => {
+      const days = [...document.querySelectorAll('main [data-sheet][id]')], bar = document.querySelector('body > .pbar');
+      for (const d of days) {
+        // Right under the bar of days, which is fixed over the top.
+        const part = d.parentElement.closest('main section'), margin = bar ? bar.offsetHeight : parseFloat(getComputedStyle(d).scrollMarginTop) || 0;
+        const opens = part && part.querySelector('[data-sheet][id]') === d && part.querySelectorAll('[data-sheet][id]').length < days.length;
+        const at = opens ? part : d;
+        if (y(at) - scrollY > margin + 4) return { at, margin };
+      }
+    };
+    b.addEventListener('click', () => {
+      const n = below();
+      if (!n) return;
+      scrollTo({ top: y(n.at) - n.margin, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+      const h = n.at.querySelector('h2, h3');
+      if (h) { h.tabIndex = -1; h.focus({ preventScroll: true }); }
+    });
+    let queued = false;
+    const place = () => { queued = false; b.classList.toggle('on', !!below()); };
+    addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(place); } }, { passive: true });
+    document.body.append(b);
+    return place;
+  })();
+
   // ---- The photo bar. On a photo page, once its own switcher has gone by, a thin bar keeps the way round in view: the
   // dumps, the places of the country, and the days of this page with the one in view marked. It is made from what the
   // page already has (.tabs, .places, [data-sheet]) and takes the page's look: the type of its day numbers, and the
@@ -700,6 +715,7 @@
     photos();
     sheets();
     photoBar();
+    nextDay();
     player.tracklist();
   }
 

@@ -1,10 +1,20 @@
-// Rome, 2025: the entrances. The page works without this. Runs on the first load and again after the site swaps
-// pages in place.
+// Rome, 2025: the films and the entrances. The page works without this. Runs on the first load and again after the
+// site swaps pages in place.
 (() => {
   const main = document.querySelector('main[data-dump="rome-2025"]');
   if (!main || main.hasAttribute('data-js')) return;
   main.setAttribute('data-js', '');
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // The films: no controls with script; each plays while it is on screen, and never with reduced motion.
+  const loops = [...main.querySelectorAll('video.loop')];
+  loops.forEach(v => { v.controls = still; });
+  if (still || !('IntersectionObserver' in window)) return;
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) e.target.play().catch(() => { e.target.controls = true; });
+    else e.target.pause();
+  }), { rootMargin: '10% 0px' });
+  loops.forEach(v => io.observe(v));
 
   // Each part rises once as it arrives, a few at a time; the second frame of a step a little after the first.
   const parts = [...main.querySelectorAll('.index li, .facts p, .cover, .head h2, .where, .f')];

@@ -1,9 +1,9 @@
-/* Photos, the front page: a square for each country, in the colours and the type of the country's own page, and in it a
-   sign for each of its places, drawn the way the place's page draws its name; a city with no country page is a square of
-   its own, in its page's colours, the whole square its link. Loaded by a <link> inside <main>, so it
-   arrives and leaves with the page when the site swaps pages in place. Scoped to .lands.
+/* Photos, the front page: a square of clear glass for each country and for each city with no country page, its name in
+   the face of the place's own page and its arms or emblem under it, the whole square its link. Loaded by a <link> inside
+   <main>, so it arrives and leaves with the page when the site swaps pages in place. Scoped to .lands.
    The faces are the pages' own (each under the SIL Open Font Licence), from their folders; a browser fetches only the
-   ones a square on the page uses. */
+   ones a square on the page uses. The Paris arms are after Thom.lanaud's on Wikimedia Commons (CC BY-SA 3.0), credited
+   at the foot of the page; see france/paris-arms.SOURCES.md. */
 @font-face { font-family: "Fira Sans"; src: url("france/fira-sans-700-latin.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
 @font-face { font-family: "Fira Sans"; src: url("france/fira-sans-500-latin.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
 @font-face { font-family: "Fira Sans Condensed"; src: url("france/fira-sans-condensed-700-latin.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
@@ -15,111 +15,110 @@
 @font-face { font-family: "Hanken Grotesk"; src: url("ljubljana/hanken.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: swap; }
 @font-face { font-family: "Archivo"; src: url("istanbul-2025/archivo-ext.woff2") format("woff2"); font-weight: 400 600; font-style: normal; font-display: swap; unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1E00-1E9F; }
 @font-face { font-family: "Archivo"; src: url("istanbul-2025/archivo.woff2") format("woff2"); font-weight: 400 600; font-style: normal; font-display: swap; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F; }
+@font-face { font-family: "JetBrains Mono"; src: url("jetbrains-mono.woff2") format("woff2"); font-weight: 300; font-style: normal; font-display: swap; }
 @font-face { font-family: "Young Serif"; src: url("amsterdam-2023/young-serif-latin.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
 
-/* ---- The page: light, as the places' own pages are, so the squares stand on it the way their pictures stand on those. */
+/* ---- The page: the film runs under everything, the nav and the player too, which sit on it in white over a dark fall
+   at the top of the screen. */
 body:has(.lands) {
-  --bg: #efede8; --surface: #e3e0d9; --ink: #141414; --soft: #5c5c5c; --panel: #e3e0d9;
-  --paper: #fff; --paper-ink: #141414; --link: #141414; --visited: #141414;
-  background: var(--bg); color: var(--ink);
+  --bg: transparent; --surface: rgb(255 255 255 / .1); --ink: #fff; --soft: rgb(255 255 255 / .7); --panel: rgb(255 255 255 / .16);
+  --paper: transparent; --paper-ink: #fff; --link: #fff; --visited: #fff;
+  background: #111; color: var(--ink);
 }
-body:has(.lands) nav, body:has(.lands) #player { background: var(--bg); }
+body:has(.lands) nav, body:has(.lands) #player { background: transparent; text-shadow: 0 1px 6px rgb(0 0 0 / .5); }
+/* On phones the player sits in the flow, where the film (fixed, inside main) would otherwise cover it. */
+@media (max-width: 900px) { body:has(.lands) #player { position: relative; inset: auto; } }
+body:has(.lands) #player.open { background: rgb(20 20 20 / .7); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); }
 
 .lands { --gut: clamp(16px, 2.4vw, 40px); --serif: "Times New Roman", Times, "Liberation Serif", "Nimbus Roman", serif; padding: clamp(40px, 6vw, 96px) var(--gut) 0; }
-.lands .title { margin: 0 0 clamp(28px, 4vw, 64px); text-align: center; font-style: italic; font-weight: bold; font-size: clamp(56px, 7vw, 112px); line-height: 0.95; letter-spacing: -0.03em; }
+.lands .title { position: relative; margin: 0 0 clamp(28px, 4vw, 64px); text-align: center; font-style: normal; color: #fff; }
+.lands .squares { position: relative; }
+
+/* ---- Behind it all, Filip's pixel-sorted film, held still to the screen while the squares go over it, and dimmed so
+   the title reads on it. */
+body:has(.lands .reel) { background: #111; }
+.lands .reel { position: fixed; inset: 0; z-index: 0; background: #111 url(https://photos.filipbiljic.com/broll-pixelsort-poster-960.jpg) center / cover; pointer-events: none; }
+.lands .reel video { display: block; width: 100%; height: 100%; object-fit: cover; }
+.lands .reel::after { content: ""; position: absolute; inset: 0; background: linear-gradient(rgb(0 0 0 / .45), rgb(0 0 0 / 0) 180px), rgb(0 0 0 / 0.38); }
+body:has(.lands .reel) > footer { position: relative; z-index: 1; background: transparent; }
 .lands .squares {
   --gap: clamp(12px, 1.8vw, 28px); --cols: 3; container-type: inline-size; list-style: none; margin: 0 auto; padding: 0; max-width: 1440px;
   display: grid; grid-template-columns: repeat(var(--cols), minmax(0, 1fr)); gap: var(--gap);
 }
 @media (max-width: 899px) { .lands .squares { --cols: 2; } }
 
-/* ---- A square: one field of the place's colour, the name on it at the top in the place's face, one motif from its page
-   in a shade of the field, and the places at the foot as bars of the same height, each in its own colour and face. Sizes
-   are in parts of the square (cqw). Where the places take more room than the square has, as on a phone, it grows taller,
-   and the others in its row with it. The motifs are coloured copies of the pages' drawings, set as pictures. */
-.lands .land { container-type: inline-size; min-height: calc((100cqw - (var(--cols) - 1) * var(--gap)) / var(--cols)); margin: 0; position: relative; display: flex; flex-direction: column; isolation: isolate; overflow: clip; font-style: normal; }
+/* ---- A square: a pane of clear glass over the film, the name on it at the top in the place's own face, white, and the
+   place's arms or emblem below it, faint white. The whole square is the link. The film shows through blurred; the lit top
+   lip, the darker foot and a thin red and blue fringe on the rim make it read as a thick piece of glass. Sizes are in
+   parts of the square (cqw). */
+.lands .land {
+  --tint: rgb(255 255 255 / .06); --edge: rgb(255 255 255 / .35); --light: saturate(1.05) brightness(.95); --blur: 9px; --r: clamp(14px, 2vw, 30px);
+  container-type: inline-size; min-height: calc((100cqw - (var(--cols) - 1) * var(--gap)) / var(--cols)); margin: 0; position: relative;
+  display: flex; flex-direction: column; isolation: isolate; overflow: clip; font-style: normal; border-radius: var(--r);
+  background: linear-gradient(150deg, rgb(255 255 255 / .2), rgb(255 255 255 / .04) 34%, rgb(255 255 255 / 0) 60%), var(--tint);
+  -webkit-backdrop-filter: blur(var(--blur)) var(--light);
+  backdrop-filter: blur(var(--blur)) var(--light);
+  box-shadow:
+    inset 0 1.5px 0 rgb(255 255 255 / .62), inset 1.5px 0 0 rgb(255 255 255 / .26),
+    inset 0 -1px 0 rgb(255 255 255 / .16), inset -1px 0 0 rgb(255 255 255 / .12),
+    inset 3px 0 4px -2px rgb(255 70 70 / .22), inset -3px 0 4px -2px rgb(70 130 255 / .22),
+    inset 0 10px 22px -14px rgb(255 255 255 / .55), inset 4px 5px 7px -5px rgb(255 255 255 / .55), inset -4px -5px 8px -5px rgb(255 255 255 / .3),
+    inset -14px -22px 40px -26px var(--edge),
+    0 28px 56px -22px rgb(0 0 0 / .6);
+}
+@media (min-width: 900px) { .lands .land { --blur: 13px; } }
 .lands .land > * { position: relative; }
-.lands .land::before { content: ""; position: absolute; pointer-events: none; }
-.lands .land .name { margin: 0; padding: 6cqw 6cqw 4cqw; font-size: 15cqw; line-height: 0.95; font-weight: 400; font-style: normal; letter-spacing: 0; }
+.lands .land::before { content: ""; position: absolute; pointer-events: none; filter: brightness(0) invert(1); opacity: .3; }
+/* A streak of light across the pane, which travels over it as the square goes up the screen. The streak is drawn once
+   on a sheet three panes wide and the sheet is slid, so the scroll moves it without repainting the pane. */
+.lands .land::after {
+  content: ""; position: absolute; inset: 0 auto 0 0; width: 300%; z-index: -1; pointer-events: none; translate: -33.333% 0;
+  background: linear-gradient(112deg, rgb(255 255 255 / 0) 30%, rgb(255 255 255 / .13) 42%, rgb(255 255 255 / .03) 47%, rgb(255 255 255 / .1) 52%, rgb(255 255 255 / 0) 60%) no-repeat;
+}
+.lands .land .name { margin: 0; padding: 6cqw 6cqw 4cqw; font-size: 15cqw; line-height: 0.95; font-weight: 400; font-style: normal; letter-spacing: 0; text-shadow: 0 1px 3px rgb(0 0 0 / .3); }
 .lands .land .name a { color: inherit; text-decoration: none; }
-.lands .land .name a:focus-visible, .lands .town a:focus-visible { outline: 3px solid currentColor; outline-offset: 3px; }
-.lands .towns { list-style: none; margin: auto 0 0; padding: 0 6cqw 6cqw; display: grid; gap: 2cqw; }
-.lands .town { margin: 0; }
-.lands .town a { position: relative; display: flex; align-items: center; min-height: max(44px, 12.5cqw); padding: 0 4cqw; color: inherit; text-decoration: none; font-size: max(15px, 6.6cqw); line-height: 1; }
 .lands .nm { white-space: nowrap; }
-.lands .land .name a .nm { display: inline-flex; align-items: center; gap: 0.18em; }
-.lands .land .name a .nm, .lands .town a { transition: translate 260ms cubic-bezier(.22, 1, .36, 1), filter 200ms ease; }
-/* A city: its link covers the square. */
-.lands .city .name { position: static; }
-.lands .city .name a { display: block; }
-.lands .city .name a::after { content: ""; position: absolute; inset: 0; z-index: 1; }
-.lands .city .name a:focus-visible { outline: none; }
-.lands .city:has(.name a:focus-visible) { outline: 3px solid var(--ink); outline-offset: 3px; overflow: visible; }
+.lands .land .name a .nm { display: inline-flex; align-items: center; gap: 0.18em; transition: translate 260ms cubic-bezier(.22, 1, .36, 1); }
+.lands .land .name { position: static; }
+.lands .land .name a { display: block; }
+.lands .land .name a::after { content: ""; position: absolute; inset: 0; z-index: 1; }
+.lands .land .name a:focus-visible { outline: none; }
+.lands .land:has(.name a:focus-visible) { outline: 3px solid #fff; outline-offset: 4px; overflow: visible; }
 @media (hover: hover) and (pointer: fine) {
   .lands .land .name a:hover .nm { translate: 0 -0.04em; }
-  .lands .town a:hover { translate: 0.6cqw 0; filter: brightness(1.06); }
 }
-.lands .town a:active { translate: 0 1px; filter: brightness(0.94); }
 
-/* ---- France: the blue of the opening and the Seine across it, the name in Fira Sans as on its page. Paris on line 1's
-   yellow in the navy of the métro plates; Normandie, gold on the red of its flag. */
-.lands [data-land="france"] { background: #002395; color: #fff; }
+/* ---- Each place in the face of its page. */
+.lands .land { color: #fff; }
 .lands [data-land="france"]::before {
-  left: 6cqw; right: 6cqw; top: 26cqw; height: 34cqw; background: url("france/seine.svg") center / contain no-repeat;
+  left: 6cqw; right: 6cqw; top: 34cqw; bottom: 6cqw; background: url("france/paris-arms.svg") center bottom / contain no-repeat; filter: none; opacity: .5;
 }
 .lands [data-land="france"] .name { font-family: "Fira Sans", "Segoe UI", Arial, sans-serif; font-weight: 700; font-size: 17cqw; letter-spacing: -0.01em; }
-.lands [data-land="france"] .town a { font-family: "Fira Sans", "Segoe UI", Arial, sans-serif; font-weight: 500; }
-.lands [data-town="france/paris"] a { background: #ffbe00; color: #14286b; }
-.lands [data-town="france/normandie"] a { background: #d90d16; color: #fcd41c; font-family: "Fira Sans Condensed", "Arial Narrow", sans-serif; font-weight: 700; }
 
-/* ---- Italy: the green of the tricolore, the name in the capitals of its road signs. Rome on the ochre of its walls in
-   the letters of its inscriptions; Puglia on the Adriatic, Sicily on the red of its flag; the statues in marble. */
-.lands [data-land="italy"] { background: #0f5c3a; color: #fff; }
-.lands [data-land="italy"] :is(.name, [data-town="italy/puglia"], [data-town="italy/sicily"]) .nm {
-  font-family: "Barlow Semi Condensed", "Arial Narrow", Arial, sans-serif; font-weight: 600; text-transform: uppercase; letter-spacing: 0.02em;
+.lands [data-land="italy"]::before { left: 6cqw; right: 6cqw; top: 30cqw; bottom: 6cqw; background: url("italy/emblem.svg") right bottom / contain no-repeat; }
+.lands [data-land="italy"] .name .nm { font-family: "Barlow Semi Condensed", "Arial Narrow", Arial, sans-serif; font-weight: 600; text-transform: uppercase; letter-spacing: 0.02em; }
+
+/* Montenegro: the arms of its towns in a row at the foot. */
+.lands [data-land="montenegro"]::before {
+  left: 6cqw; right: 6cqw; bottom: 6cqw; height: 34cqw;
+  background: url("montenegro/dubrovnik/emblem.svg") left bottom / auto 100% no-repeat, url("montenegro/herceg-novi/emblem.svg") center bottom / auto 100% no-repeat, url("montenegro/budva/emblem.svg") right bottom / auto 100% no-repeat;
 }
-.lands [data-land="italy"] .name { font-size: 15cqw; }
-.lands [data-town="italy/rome"] a, .lands [data-town="italy/statues"] a { font-family: "Cinzel", "Trajan Pro", var(--serif); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
-.lands [data-town="italy/rome"] a { background: #d2914a; color: #241a10; }
-.lands [data-town="italy/puglia"] a { background: #1b6ca8; color: #fff; }
-.lands [data-town="italy/sicily"] a { background: #d42a1e; color: #fff; }
-.lands [data-town="italy/statues"] a { background: #ecebe7; color: #1d1a17; }
+.lands [data-land="montenegro"] .name .nm { font-family: var(--serif); font-weight: bold; text-transform: uppercase; letter-spacing: -0.035em; }
+.lands [data-land="montenegro"] .name { font-size: 12cqw; }
 
-/* ---- Montenegro: the sea, the name in the bold capitals of its waterline in the limestone's colour; each place on the
-   limestone, with its arms in the sea's ink. */
-.lands [data-land="montenegro"] { --stone: #e6dfd0; --sea: #0d5f68; --deep: #073a40; background: var(--sea); color: var(--stone); }
-.lands [data-land="montenegro"] :is(.name, .town) .nm { font-family: var(--serif); font-weight: bold; text-transform: uppercase; letter-spacing: -0.02em; }
-.lands [data-land="montenegro"] .name { font-size: 12cqw; letter-spacing: -0.035em; }
-.lands [data-land="montenegro"] .town a { background: var(--stone); color: var(--deep); }
-.lands [data-land="montenegro"] .town a::after {
-  content: ""; position: absolute; right: 4cqw; top: 18%; bottom: 18%; aspect-ratio: var(--ar, 1); background: var(--deep);
-  -webkit-mask: var(--arms) center / contain no-repeat; mask: var(--arms) center / contain no-repeat;
-}
-.lands [data-town="montenegro/budva"] a { --ar: 2300 / 2650; --arms: url("montenegro/budva/emblem.svg"); }
-.lands [data-town="montenegro/dubrovnik"] a { --ar: 400 / 514; --arms: url("montenegro/dubrovnik/emblem.svg"); }
-.lands [data-town="montenegro/herceg-novi"] a { --ar: 1494.53 / 1932.48; --arms: url("montenegro/herceg-novi/emblem.svg"); }
-.lands [data-land="montenegro"] [data-town="montenegro/kolasin"] a::after { content: none; }
-
-/* ---- Istanbul: its white page, the name in Archivo in the navy of its street plates, over the city's emblem. */
-.lands [data-land="istanbul-2025"] { background: #fff; color: #1c3b8c; }
 .lands [data-land="istanbul-2025"]::before {
   left: 6cqw; right: 6cqw; top: 30cqw; bottom: 6cqw; background: url("istanbul-2025/emblem-navy.svg") right bottom / contain no-repeat;
 }
-.lands [data-land="istanbul-2025"] .name { font-family: "Archivo", "Helvetica Neue", Arial, sans-serif; font-weight: 600; font-size: 15cqw; letter-spacing: -0.02em; }
+.lands [data-land="istanbul-2025"] .name { font-family: "Archivo", "Helvetica Neue", Arial, sans-serif; font-weight: 600; letter-spacing: -0.02em; }
 
-/* ---- Ljubljana: its opening, night on the left and day on the right, the name across the cut in its Secession letters
-   and the arms below it, in one ink that turns white on the night and black on the day. */
-.lands [data-land="ljubljana"] { background: linear-gradient(90deg, #000 50%, #fff 0); color: #fff; }
-.lands [data-land="ljubljana"]::after {
-  content: ""; position: absolute; left: 0; right: 0; bottom: 6cqw; height: 48cqw; margin: 0 auto; aspect-ratio: 648 / 800; pointer-events: none;
-  background: url("ljubljana/arms-mono.svg") center / contain no-repeat; mix-blend-mode: difference;
+/* Ljubljana: the arms in their own black and white, lightened. */
+.lands [data-land="ljubljana"]::before {
+  left: 0; right: 0; bottom: 6cqw; height: 48cqw; margin: 0 auto; aspect-ratio: 648 / 800;
+  background: url("ljubljana/arms-mono.svg") center / contain no-repeat; filter: invert(1); opacity: .45; mix-blend-mode: screen;
 }
 .lands [data-land="ljubljana"] .name { font-family: "Federant", "Didot", Georgia, serif; font-size: 17cqw; }
-.lands [data-land="ljubljana"] .name a .nm { mix-blend-mode: difference; }
 
-/* ---- Belgrade: the protest's red of its page, the name in PT Sans Narrow split by the arms, and the Sava meeting the
-   Danube below it in a deeper red. */
-.lands [data-land="belgrade"] { background: #d40a1e; color: #fff; }
+/* Belgrade: the name in PT Sans Narrow split by the arms, and the Sava meeting the Danube below it. */
 .lands [data-land="belgrade"]::before {
   left: 0; right: 0; bottom: 0; aspect-ratio: 768 / 552; background: url("belgrade/water.svg") center bottom / 100% auto no-repeat;
 }
@@ -130,30 +129,53 @@ body:has(.lands) nav, body:has(.lands) #player { background: var(--bg); }
 }
 .lands [data-land="belgrade"] .name .nm > span:last-child { order: 2; }
 
-/* ---- Amsterdam: the grey sky of the afternoon, the name in Young Serif beside its three crosses, and the crosses again,
-   large, in the grey of the canal houses. */
-.lands [data-land="amsterdam-2023"] { background: #b7b7b7; color: #121314; }
-.lands [data-land="amsterdam-2023"]::before { right: 8cqw; top: 30cqw; bottom: -6cqw; aspect-ratio: 40 / 132; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -2 40 132' width='400' height='1320'%3E%3Cpath fill='%23a6a6a6' d='M4 4l6-6 10 10 10-10 6 6-10 10 10 10-6 6-10-10-10 10-6-6 10-10zM4 48l6-6 10 10 10-10 6 6-10 10 10 10-6 6-10-10-10 10-6-6 10-10zM4 92l6-6 10 10 10-10 6 6-10 10 10 10-6 6-10-10-10 10-6-6 10-10z'/%3E%3C/svg%3E") center / contain no-repeat; }
+/* Amsterdam: the name in Young Serif beside its three crosses, and the crosses again, large. */
+.lands [data-land="amsterdam-2023"]::before { right: 8cqw; top: 30cqw; bottom: -6cqw; aspect-ratio: 40 / 132; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -2 40 132' width='400' height='1320'%3E%3Cpath fill='%23fff' d='M4 4l6-6 10 10 10-10 6 6-10 10 10 10-6 6-10-10-10 10-6-6 10-10zM4 48l6-6 10 10 10-10 6 6-10 10 10 10-6 6-10-10-10 10-6-6 10-10zM4 92l6-6 10 10 10-10 6 6-10 10 10 10-6 6-10-10-10 10-6-6 10-10z'/%3E%3C/svg%3E") center / contain no-repeat; }
 .lands [data-land="amsterdam-2023"] .name { font-family: "Young Serif", Georgia, serif; font-size: 13cqw; letter-spacing: -0.02em; }
 .lands [data-land="amsterdam-2023"] .name a .nm { gap: 0.3em; }
-.lands [data-land="amsterdam-2023"] .name .nm::before { content: ""; flex: none; width: 0.3em; aspect-ratio: 40 / 132; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -2 40 132' width='400' height='1320'%3E%3Cpath fill='%23d0102b' d='M4 4l6-6 10 10 10-10 6 6-10 10 10 10-6 6-10-10-10 10-6-6 10-10zM4 48l6-6 10 10 10-10 6 6-10 10 10 10-6 6-10-10-10 10-6-6 10-10zM4 92l6-6 10 10 10-10 6 6-10 10 10 10-6 6-10-10-10 10-6-6 10-10z'/%3E%3C/svg%3E") center / contain no-repeat; }
+.lands [data-land="amsterdam-2023"] .name .nm::before { content: ""; flex: none; width: 0.3em; aspect-ratio: 40 / 132; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -2 40 132' width='400' height='1320'%3E%3Cpath fill='%23fff' d='M4 4l6-6 10 10 10-10 6 6-10 10 10 10-6 6-10-10-10 10-6-6 10-10zM4 48l6-6 10 10 10-10 6 6-10 10 10 10-6 6-10-10-10 10-6-6 10-10zM4 92l6-6 10 10 10-10 6 6-10 10 10 10-6 6-10-10-10 10-6-6 10-10z'/%3E%3C/svg%3E") center / contain no-repeat; }
 
-/* ---- The squares come up one after another as the page opens; their places follow. */
+
+/* ---- The squares come up one after another as the page opens. */
 @media (prefers-reduced-motion: no-preference) {
   .lands .land { animation: ld-rise 700ms cubic-bezier(.22, 1, .36, 1) backwards; animation-delay: calc(var(--i, 0) * 70ms); }
-  .lands .town { animation: ld-rise 600ms cubic-bezier(.22, 1, .36, 1) backwards; animation-delay: calc(var(--i, 0) * 70ms + 220ms); }
   .lands .land:nth-child(2) { --i: 1; } .lands .land:nth-child(3) { --i: 2; } .lands .land:nth-child(4) { --i: 3; }
   .lands .land:nth-child(5) { --i: 4; } .lands .land:nth-child(6) { --i: 5; } .lands .land:nth-child(n+7) { --i: 6; }
   @keyframes ld-rise { from { opacity: 0; translate: 0 24px; } }
 }
-
-/* In a small square the arms on the places' bars would run into their names, and the Seine is too thin to draw. */
-@container (max-width: 300px) {
-  .lands [data-land="montenegro"] .town a::after { content: none; }
-  .lands [data-land="france"]::before { content: none; }
-  .lands [data-land="italy"] .town a, .lands [data-land="montenegro"] .town a { letter-spacing: 0.01em; }
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .lands .land::after { animation: ld-glint linear both; animation-timeline: view(); }
+    @keyframes ld-glint { from { translate: -66.667% 0; } to { translate: 0 0; } }
+  }
 }
+
 
 @media (max-width: 599px) {
   .lands .squares { gap: 10px; }
 }
+
+/* ---- The title, a quiet label in thin spaced monospace capitals so the film stays the loud thing; and the squares sized so both rows
+   sit on one screen. */
+.lands { padding-top: clamp(28px, 4vh, 56px); }
+.lands .title { font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; font-weight: 300; font-size: clamp(24px, 3vw, 46px); line-height: 1; text-transform: uppercase; letter-spacing: 0.3em; margin-right: -0.3em; margin-bottom: clamp(24px, 3.4vh, 44px); text-shadow: 0 1px 12px rgb(0 0 0 / .35); }
+@media (min-width: 900px) {
+  .lands .squares { max-width: min(1440px, calc((100svh - 230px) * 1.5 + 2 * var(--gap))); }
+}
+
+/* ---- The foot of the page as one more pane of glass over the film, in place of the paper card the other photo pages have. */
+body:has(.lands) footer { padding: clamp(64px, 10vh, 120px) var(--gut, 20px) 32px; color: #fff; }
+body:has(.lands) footer .back {
+  -webkit-mask: none; mask: none; color: #fff; max-width: min(1440px, calc((100svh - 230px) * 1.5 + 2 * clamp(12px, 1.8vw, 28px)), 100%); border-radius: clamp(14px, 2vw, 30px); padding: 32px 40px 24px; gap: 16px 40px;
+  background: rgb(255 255 255 / .06); -webkit-backdrop-filter: blur(13px) brightness(.85); backdrop-filter: blur(13px) brightness(.85);
+  box-shadow: inset 0 1.5px 0 rgb(255 255 255 / .5), inset 0 -1px 0 rgb(255 255 255 / .14), 0 28px 56px -22px rgb(0 0 0 / .6);
+}
+body:has(.lands) footer .back a, body:has(.lands) footer .back a:visited, body:has(.lands) footer .imprint { color: #fff; }
+body:has(.lands) footer .address { padding-top: 0; font-size: 16px; line-height: 1.6; }
+body:has(.lands) footer .stamp { display: none; }
+body:has(.lands) footer .imprint { padding-top: 8px; font-size: 14px; }
+@media (max-width: 599px) { body:has(.lands) footer .back { padding: 28px 22px 20px; } }
+
+/* The credit for the Paris arms, small, under the imprint at the foot of the page. */
+body:has(.lands) footer .credit { margin-top: 12px; font-size: 13px; opacity: 0.7; }
+body:has(.lands) footer .credit a { color: inherit; }

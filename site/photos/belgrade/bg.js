@@ -122,6 +122,17 @@
     });
   });
 
+  // ---- The films: no controls with script; each plays while it is on screen, and never with reduced motion.
+  const loops = [...main.querySelectorAll('video.loop')];
+  loops.forEach(v => { v.controls = still; });
+  if (!still && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) e.target.play().catch(() => { e.target.controls = true; });
+      else e.target.pause();
+    }), { rootMargin: '10% 0px' });
+    loops.forEach(v => io.observe(v));
+  }
+
   let queued = false;
   const frame = () => { queued = false; jobs.forEach(j => j()); };
   // The site swaps pages in place: once this page has gone, stop listening.
