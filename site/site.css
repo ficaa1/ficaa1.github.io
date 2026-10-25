@@ -273,11 +273,6 @@ body.cv #player .cover { background-color: #fff; }
 }
 
 /* ---- Music and photos ---- */
-.tracklist { padding-left: 32px; margin: 40px 0; }
-.tracklist li { margin: 0 0 6px; }
-.tracklist button { font: inherit; background: none; border: 0; padding: 4px 0; color: var(--link); text-decoration: underline; cursor: pointer; text-align: left; }
-.tracklist li.now button { color: var(--ink); font-weight: bold; text-decoration: none; }
-.tracklist li.now.playing::after { content: " (playing)"; color: var(--soft); font-size: 16px; }
 /* ---- Photos: a darkroom page. The set is its contact sheet, the chosen frames come out as full-screen prints,
    and the footer is the back of a print. Colours come from the pictures: film black, paper white, the ferry's fire-box red. */
 body.photos {

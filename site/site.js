@@ -271,7 +271,7 @@
   // "cover" is the square thumbnail and "coverFull" the uncropped picture shown when the player opens; both are optional.
   // Without art, the cover is drawn from the song itself, its waveform set in lines like a page of text.
   // Lines not heard yet are link blue, heard ones are visited purple, and the bar playing now is the red of a link being clicked.
-  const player = (() => {
+  (() => {
     const el = document.createElement('div');
     el.id = 'player';
     el.setAttribute('role', 'region');
@@ -312,13 +312,12 @@
       cover.style.backgroundImage = s && s.cover ? `url("${new URL(s.cover, ROOT).href}")` : '';
       cover.classList.toggle('art', !!(s && s.cover));
       if (open()) art(s);
-      document.querySelectorAll('.tracklist li').forEach((li, n) => { li.classList.toggle('now', n === i && !!s); li.classList.toggle('playing', n === i && !!s && !audio.paused); });
       wave(s, !audio.paused || open()); tick(); draw(); emit();
     }
     // Any page can drive the player: a button with data-song="<n>" plays that song, or pauses it when it is the one playing.
     // Each change is announced as a "player" event on document, detail { i, playing, t, d }; a page that arrives later asks
     // for the current one with a "player-ask" event.
-    const emit = () => document.dispatchEvent(new CustomEvent('player', { detail: { i, playing: !audio.paused, t: audio.currentTime || 0, d: audio.duration || list[i]?.wave?.d || 0 } }));
+    const emit = () => document.dispatchEvent(new CustomEvent('player', { detail: { i, playing: !audio.paused, t: audio.currentTime || 0, d: audio.duration || list[i]?.d || list[i]?.wave?.d || 0 } }));
     document.addEventListener('player-ask', emit);
     document.addEventListener('click', e => {
       const b = e.target.closest('[data-song]');
@@ -504,11 +503,11 @@
       e.preventDefault();
       $('.play').click();
     });
-    // A click anywhere else closes it, except on a song in a page's list, which drives the same player.
+    // A click anywhere else closes it, except on a song in the music page, which drives the same player.
     document.addEventListener('click', e => {
       if (el.contains(e.target)) return;
       vol.classList.remove('open');
-      if (open() && !e.target.closest('#tracklist, [data-song]')) expand(false);
+      if (open() && !e.target.closest('[data-song]')) expand(false);
     });
 
     // ---- Volume, remembered across visits. iOS keeps the volume on the hardware buttons, so there only mute is offered.
@@ -540,18 +539,8 @@
     json('music.json').then(songs => {
       list = Array.isArray(songs) ? songs.filter(s => s && s.src && s.title) : [];
       try { const st = JSON.parse(sessionStorage.getItem('fb-player') || 'null'); if (st && list[st.i]) { i = st.i; audio.src = new URL(list[i].src, ROOT).href; audio.currentTime = st.t; } } catch {}
-      show(); tracklist();
+      show();
     });
-
-    // The music page lists the same songs; clicking one plays it.
-    function tracklist() {
-      const ol = document.getElementById('tracklist');
-      if (!ol) return show();
-      ol.innerHTML = list.map((s, n) => `<li><button type="button" data-n="${n}">${esc(s.title)}</button>${s.artist ? ` <span class="soft">${esc(s.artist)}</span>` : ''}</li>`).join('');
-      ol.onclick = e => { const b = e.target.closest('button[data-n]'); if (b) load(+b.dataset.n, true); };
-      show(); entrances();
-    }
-    return { tracklist, el };
   })();
 
   // ---- Back to the top: a small button in the bottom right corner, there once the page has been scrolled most of a screen down.
@@ -730,7 +719,6 @@
     sheets();
     photoBar();
     nextDay();
-    player.tracklist();
   }
 
   // ---- Links load the next page in place, so the player is not interrupted. Anything unusual falls back to a normal load.
