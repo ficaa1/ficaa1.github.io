@@ -732,6 +732,7 @@
     if (!parts.every(p => doc.querySelector(p))) { location.assign(url); return; }
 
     if (push) history.pushState({}, '', url);
+    page = location.pathname + location.search;
     document.title = doc.title;
     document.body.className = doc.body.className;
     parts.forEach(p => document.querySelector(p).replaceWith(document.adoptNode(doc.querySelector(p))));
@@ -757,7 +758,9 @@
     e.preventDefault();
     go(url.href, true);
   });
-  addEventListener('popstate', () => go(location.href, false));
+  // A link within the page (#s-bir-hakeim) also fires popstate; the browser has already scrolled, so only a change of page loads.
+  let page = location.pathname + location.search;
+  addEventListener('popstate', () => { if (location.pathname + location.search !== page) go(location.href, false); });
 
   if (document.readyState === 'complete') init();
   else addEventListener('load', () => setTimeout(init, 0));
