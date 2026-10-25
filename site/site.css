@@ -220,6 +220,10 @@ body.photos #player { --now: var(--mark); }
 #player .cover:hover { background-color: var(--panel); }
 #player .cover:active:not(:disabled) { transform: none; }
 #player .cover canvas { display: block; width: 100%; height: 100%; }
+#player .cover { position: relative; overflow: hidden; }
+#player .cover video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 300ms ease; pointer-events: none; }
+#player .cover video.on { opacity: 1; }
+#player.open .cover video { object-fit: contain; }
 body.cv #player .cover { background-color: #fff; }
 
 /* Open: the cover at full size, the seek bar under it, the controls under that, on a step of tone. */

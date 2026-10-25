@@ -277,7 +277,7 @@
     el.setAttribute('role', 'region');
     el.setAttribute('aria-label', 'Music player');
     el.innerHTML = `
-      <button class="cover" type="button" aria-expanded="false" aria-controls="player-seek" aria-label="Cover and seek bar"><canvas aria-hidden="true"></canvas><img alt="" aria-hidden="true"></button>
+      <button class="cover" type="button" aria-expanded="false" aria-controls="player-seek" aria-label="Cover and seek bar"><canvas aria-hidden="true"></canvas><img alt="" aria-hidden="true"><video muted playsinline loop preload="none" disablepictureinpicture aria-hidden="true"></video></button>
       <div class="seek" id="player-seek" hidden>
         <span class="bar" aria-hidden="true"><span class="fill"></span></span>
         <input type="range" min="0" max="0" step="1" value="0" aria-label="Seek">
@@ -297,7 +297,7 @@
     const audio = new Audio();
     audio.preload = 'none';
     const $ = s => el.querySelector(s);
-    const cover = $('.cover'), canvas = $('canvas'), pic = $('.cover img'), seek = $('.seek input'), vol = $('.vol'), level = $('.level');
+    const cover = $('.cover'), canvas = $('canvas'), pic = $('.cover img'), clip = $('.cover video'), seek = $('.seek input'), vol = $('.vol'), level = $('.level');
     const still = matchMedia('(prefers-reduced-motion: reduce)'), touch = matchMedia('(hover: none)');
     const mmss = t => (t > 0 && isFinite(t) ? `${Math.floor(t / 60)}:${String(Math.floor(t % 60)).padStart(2, '0')}` : '0:00');
     let list = [], i = 0;
@@ -312,13 +312,26 @@
       cover.style.backgroundImage = s && s.cover ? `url("${new URL(s.cover, ROOT).href}")` : '';
       cover.classList.toggle('art', !!(s && s.cover));
       if (open()) art(s);
-      wave(s, !audio.paused || open()); tick(); draw(); emit();
+      wave(s, !audio.paused || open()); tick(); draw(); motion(); emit();
     }
+    // A song whose cover is a video loop ("loopFull", the whole clip, or "loop", its square) plays it in the cover while the
+    // song plays, and holds its frame when paused. The picture stays under it until the video is running.
+    function motion() {
+      const s = list[i], src = s && !still.matches && (s.loopFull || s.loop) ? new URL(s.loopFull || s.loop, ROOT).href : '';
+      if (clip.src !== src) { clip.classList.remove('on'); if (src) clip.src = src; else clip.removeAttribute('src'); }
+      if (src && !audio.paused) clip.play().catch(() => {}); else clip.pause();
+    }
+    clip.addEventListener('playing', () => clip.classList.add('on'));
+    clip.addEventListener('emptied', () => clip.classList.remove('on'));
+    still.addEventListener('change', motion);
+
     // Any page can drive the player: a button with data-song="<n>" plays that song, or pauses it when it is the one playing.
+    // A page can also move the song along with a "player-seek" event, detail { t } in seconds.
     // Each change is announced as a "player" event on document, detail { i, playing, t, d }; a page that arrives later asks
     // for the current one with a "player-ask" event.
     const emit = () => document.dispatchEvent(new CustomEvent('player', { detail: { i, playing: !audio.paused, t: audio.currentTime || 0, d: audio.duration || list[i]?.d || list[i]?.wave?.d || 0 } }));
     document.addEventListener('player-ask', emit);
+    document.addEventListener('player-seek', e => { if (audio.src && isFinite(e.detail?.t)) { audio.currentTime = Math.max(0, e.detail.t); tick(); draw(); emit(); save(); } });
     document.addEventListener('click', e => {
       const b = e.target.closest('[data-song]');
       if (!b || el.contains(b)) return;

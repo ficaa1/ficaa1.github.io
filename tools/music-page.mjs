@@ -93,17 +93,21 @@ songs.forEach((s, n) => {
 });
 
 function sleeve({ s, n, colour, ink, d, after }, k) {
-  const vars = `--c:${colour};--k:${ink};--w:${ems(s.title)}`;
+  const vars = `--c:${colour};--k:${ink};--w:${ems(s.title)}${s.ar ? `;--ar:${s.ar}` : ''}`;
   const facts = `<span class="meta"><span class="state">${esc(s.year || '')}</span><span class="time" data-d="${Math.round(d * 100) / 100}">${mmss(d)}</span></span>`;
   const credit = after ? `<span class="after">${esc(after)}</span>` : '';
   let face;
   if (s.cover) {
     const lazy = k > 7 ? ' loading="lazy"' : '';
-    // The part heard is selected over the picture in the same ten lines, the way a browser tints a selected image.
     const srcset = s.thumb ? ` srcset="${esc(s.thumb)} 640w, ${esc(s.cover)} 1000w" sizes="(max-width: 700px) 46vw, (max-width: 1100px) 31vw, 23vw"` : '';
-    // A loop is only fetched once its song plays (music.js); until then the sleeve is its first frame, the cover.
-    const loop = s.loop ? `<video class="loop" data-src="${esc(s.loop)}" muted playsinline loop preload="none" aria-hidden="true"></video>` : '';
-    face = `<span class="face art"><img src="${esc(s.cover)}"${srcset} width="1000" height="1000" alt=""${lazy} decoding="async">${loop}<svg class="sel" viewBox="0 0 ${SL.size} ${SL.size}" preserveAspectRatio="none" data-geo="0 ${Math.round((SL.size / SL.cols) * 1e4) / 1e4} ${SL.size / SL.rows} ${SL.cols}" aria-hidden="true" focusable="false"><path class="band" d=""/><path class="cursor" d=""/></svg></span>`;
+    // A loop is only fetched once its song plays (music.js); until then the sleeve is its first frame, the cover. While the
+    // song is on, the sleeve opens out to the picture's whole shape (coverFull) and the whole clip (loopFull).
+    const full = s.coverFull ? ` data-full="${esc(s.coverFull)}"` : '';
+    const clip = s.loopFull || s.loop;
+    const loop = clip ? `<video class="loop" data-src="${esc(clip)}" muted playsinline loop preload="none" disablepictureinpicture aria-hidden="true"></video>` : '';
+    // The part heard, on a strip of glass over the picture; pressing or dragging on it moves the song along.
+    const glass = `<span class="glass" aria-hidden="true"><span class="fill"></span><span class="knob"></span></span>`;
+    face = `<span class="face art"><img src="${esc(s.cover)}"${srcset}${full} width="1000" height="1000" alt=""${lazy} decoding="async">${loop}${glass}</span>`;
   } else if (s.wave && s.wave.p) {
     face = `<span class="face drawn"><svg viewBox="0 0 ${SL.size} ${SL.size}" aria-hidden="true" focusable="false"><path class="band" d=""/><path class="ink" d="${sleevePath(s.wave.p)}"/><path class="heard" d=""/><path class="at" d=""/></svg></span>`;
   } else {
