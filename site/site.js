@@ -312,9 +312,23 @@
       cover.style.backgroundImage = s && s.cover ? `url("${new URL(s.cover, ROOT).href}")` : '';
       cover.classList.toggle('art', !!(s && s.cover));
       if (open()) art(s);
-      document.querySelectorAll('.tracklist li').forEach((li, n) => li.classList.toggle('now', n === i && !!s));
-      wave(s, !audio.paused || open()); tick(); draw();
+      document.querySelectorAll('.tracklist li').forEach((li, n) => { li.classList.toggle('now', n === i && !!s); li.classList.toggle('playing', n === i && !!s && !audio.paused); });
+      wave(s, !audio.paused || open()); tick(); draw(); emit();
     }
+    // Any page can drive the player: a button with data-song="<n>" plays that song, or pauses it when it is the one playing.
+    // Each change is announced as a "player" event on document, detail { i, playing, t, d }; a page that arrives later asks
+    // for the current one with a "player-ask" event.
+    const emit = () => document.dispatchEvent(new CustomEvent('player', { detail: { i, playing: !audio.paused, t: audio.currentTime || 0, d: audio.duration || list[i]?.wave?.d || 0 } }));
+    document.addEventListener('player-ask', emit);
+    document.addEventListener('click', e => {
+      const b = e.target.closest('[data-song]');
+      if (!b || el.contains(b)) return;
+      e.preventDefault();
+      const n = +b.dataset.song;
+      if (n === i && audio.src && !audio.paused) audio.pause();
+      else if (n === i && audio.src) audio.play().catch(() => {});
+      else load(n, true);
+    });
     function load(n, play) {
       if (!list.length) return;
       i = (n + list.length) % list.length;
@@ -331,7 +345,7 @@
     audio.addEventListener('ended', () => load(i + 1, true));
     ['play', 'pause'].forEach(ev => audio.addEventListener(ev, show));
     ['durationchange', 'seeked'].forEach(ev => audio.addEventListener(ev, () => { tick(); draw(); }));
-    audio.addEventListener('timeupdate', () => { tick(); draw(); if (Math.round(audio.currentTime) % 5 === 0) save(); });
+    audio.addEventListener('timeupdate', () => { tick(); draw(); emit(); if (Math.round(audio.currentTime) % 5 === 0) save(); });
     audio.addEventListener('error', () => { $('.name').textContent = `Could not load ${list[i]?.title || 'this song'}`; });
 
     // ---- The waveform: decoded once at a low sample rate, and the loudness of each bar kept in localStorage for next time.
@@ -490,11 +504,11 @@
       e.preventDefault();
       $('.play').click();
     });
-    // A click anywhere else closes it, except on the music page's tracklist, which drives the same player.
+    // A click anywhere else closes it, except on a song in a page's list, which drives the same player.
     document.addEventListener('click', e => {
       if (el.contains(e.target)) return;
       vol.classList.remove('open');
-      if (open() && !e.target.closest('#tracklist')) expand(false);
+      if (open() && !e.target.closest('#tracklist, [data-song]')) expand(false);
     });
 
     // ---- Volume, remembered across visits. iOS keeps the volume on the hardware buttons, so there only mute is offered.
