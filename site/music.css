@@ -64,6 +64,8 @@ ol.wall a:focus-visible { outline: 4px solid var(--sel); outline-offset: 4px; }
 .face .at { stroke: var(--red); stroke-width: 6; fill: none; }
 .face .band { fill: var(--sel); }
 .face .sel { position: absolute; inset: 0; }
+.face video.loop { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 300ms ease; }
+.face video.loop.on { opacity: 1; }
 .face .sel .band { fill: var(--sel); fill-opacity: 0.55; }
 .face .sel .cursor { fill: var(--red); }
 

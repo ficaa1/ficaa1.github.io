@@ -101,7 +101,9 @@ function sleeve({ s, n, colour, ink, d, after }, k) {
     const lazy = k > 7 ? ' loading="lazy"' : '';
     // The part heard is selected over the picture in the same ten lines, the way a browser tints a selected image.
     const srcset = s.thumb ? ` srcset="${esc(s.thumb)} 640w, ${esc(s.cover)} 1000w" sizes="(max-width: 700px) 46vw, (max-width: 1100px) 31vw, 23vw"` : '';
-    face = `<span class="face art"><img src="${esc(s.cover)}"${srcset} width="1000" height="1000" alt=""${lazy} decoding="async"><svg class="sel" viewBox="0 0 ${SL.size} ${SL.size}" preserveAspectRatio="none" data-geo="0 ${Math.round((SL.size / SL.cols) * 1e4) / 1e4} ${SL.size / SL.rows} ${SL.cols}" aria-hidden="true" focusable="false"><path class="band" d=""/><path class="cursor" d=""/></svg></span>`;
+    // A loop is only fetched once its song plays (music.js); until then the sleeve is its first frame, the cover.
+    const loop = s.loop ? `<video class="loop" data-src="${esc(s.loop)}" muted playsinline loop preload="none" aria-hidden="true"></video>` : '';
+    face = `<span class="face art"><img src="${esc(s.cover)}"${srcset} width="1000" height="1000" alt=""${lazy} decoding="async">${loop}<svg class="sel" viewBox="0 0 ${SL.size} ${SL.size}" preserveAspectRatio="none" data-geo="0 ${Math.round((SL.size / SL.cols) * 1e4) / 1e4} ${SL.size / SL.rows} ${SL.cols}" aria-hidden="true" focusable="false"><path class="band" d=""/><path class="cursor" d=""/></svg></span>`;
   } else if (s.wave && s.wave.p) {
     face = `<span class="face drawn"><svg viewBox="0 0 ${SL.size} ${SL.size}" aria-hidden="true" focusable="false"><path class="band" d=""/><path class="ink" d="${sleevePath(s.wave.p)}"/><path class="heard" d=""/><path class="at" d=""/></svg></span>`;
   } else {

@@ -1,5 +1,5 @@
 // The music page follows the shared player (site.js): the song that is on gets the part already heard marked on its sleeve,
-// like text selected on a page, and its record turns while it plays. Runs again on every visit to the page.
+// like text selected on a page, its record turns and its loop runs while it plays. Runs again on every visit to the page.
 (() => {
   const mmss = t => `${Math.floor(t / 60)}:${String(Math.floor(t % 60)).padStart(2, '0')}`;
   const items = [...document.querySelectorAll('main [data-song]')].map(a => ({ a, li: a.closest('li'), n: +a.dataset.song }));
@@ -11,7 +11,19 @@
   // Each drawn bar is its own "M…" in the path, so the first k of them are the part heard.
   const parts = el => el._parts || (el._parts = (el.getAttribute('d') || '').split('M').slice(1).map(p => 'M' + p));
 
+  // A sleeve's video loop runs while its song plays and holds its frame when paused; still pictures for reduced motion.
+  const still = matchMedia('(prefers-reduced-motion: reduce)');
+  function loop(it, playing) {
+    const v = it.li.querySelector('video.loop');
+    if (!v) return;
+    if (!playing || still.matches) { v.pause(); return; }
+    if (!v.src) { v.src = v.dataset.src; v.addEventListener('playing', () => v.classList.add('on'), { once: true }); }
+    v.play().catch(() => {});
+  }
+
   function reset(it) {
+    loop(it, false);
+    it.li.querySelector('video.loop')?.classList.remove('on');
     it.li.classList.remove('is-on', 'is-playing');
     it.li.querySelectorAll('.heard, .at, .cursor').forEach(p => p.setAttribute('d', ''));
     it.li.querySelectorAll('.band').forEach(b => (b.tagName === 'g' ? (b.innerHTML = '') : b.setAttribute('d', '')));
@@ -73,6 +85,7 @@
     const len = d > 0 ? d : +tm.dataset.d || 0;
     it.li.classList.add('is-on');
     it.li.classList.toggle('is-playing', !!playing);
+    loop(it, playing);
     if (st.dataset.year === undefined) st.dataset.year = st.textContent;
     st.textContent = playing ? 'Playing' : 'Paused';
     tm.textContent = len ? `${mmss(t)} / ${mmss(len)}` : mmss(t);
