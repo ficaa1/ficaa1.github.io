@@ -124,6 +124,17 @@ ol.records a:focus-visible { outline: 4px solid #fff; outline-offset: 4px; }
   font: 700 min(7vw, calc((100cqi - var(--disc) - 2 * var(--gap) - 190px) / var(--w))) / 0.9 var(--display);
   letter-spacing: -0.04em; padding-top: 0.08em;
 }
+/* A record with a loop: while it plays, the clip shows through its name and the letters themselves go clear. */
+.records .name { position: relative; z-index: 0; }
+.records .name video.loop {
+  position: absolute; z-index: -1; left: 0; top: 0; width: 0; height: 0; object-fit: cover; opacity: 0; pointer-events: none;
+  filter: brightness(1.35) saturate(1.2);
+  -webkit-mask-size: 100% 100%; mask-size: 100% 100%; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+  transition: opacity 400ms ease;
+}
+.records .name video.loop.on.cut { opacity: 1; }
+/* A rim in the record's colour keeps the word readable where the clip is dark. */
+.records .name:has(> video.loop.on.cut) { color: transparent; -webkit-text-stroke: 0.025em var(--c); transition: color 400ms ease; }
 .records .meta { gap: 28px; font-size: 20px; margin: 0; justify-content: flex-end; color: #fff; }
 .records .time { min-width: 4.5ch; text-align: right; }
 .disc { display: block; width: var(--disc); height: var(--disc); }

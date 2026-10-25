@@ -18,11 +18,54 @@
   function loop(it, playing) {
     const v = it.li.querySelector('video.loop');
     if (!v) return;
-    if (!playing || still.matches) { v.pause(); return; }
+    if (it.li.classList.contains('record')) knock(it.li);
+    if (!playing || still.matches) {
+      v.pause();
+      if (playing && v.dataset.still) { v.poster = v.dataset.still; v.classList.add('on'); }
+      return;
+    }
     // It shows from each start, not only the first: coming back to a song plays the loop again from where it held.
     if (!v.src) { v.src = v.dataset.src; v.addEventListener('playing', () => v.classList.add('on')); }
     v.play().catch(() => {});
   }
+
+  // A record's loop shows only through the letters of its name. The mask is the name drawn again on a canvas at the
+  // screen's own pixels, each letter where the page set it, so it lines up with the text and stays sharp.
+  function knock(li) {
+    const name = li.querySelector('.name'), v = name && name.querySelector('video.loop'), text = name && name.firstChild;
+    if (!v || !text || text.nodeType !== 3) return;
+    const cs = getComputedStyle(name), dpr = Math.min(3, devicePixelRatio || 1), box = name.getBoundingClientRect();
+    const key = `${cs.fontSize} ${box.width} ${dpr} ${document.fonts?.status}`;
+    if (v.dataset.mask === key) return;
+    v.dataset.mask = key;
+    const range = document.createRange(), glyphs = [];
+    let o = 0;
+    for (const ch of text.data) {
+      range.setStart(text, o); range.setEnd(text, (o += ch.length));
+      const r = range.getClientRects()[0];
+      if (r && ch.trim()) glyphs.push([ch, r]);
+    }
+    if (!glyphs.length) return;
+    const em = parseFloat(cs.fontSize), pad = 0.15 * em;
+    const x0 = Math.min(...glyphs.map(g => g[1].left)) - pad, y0 = Math.min(...glyphs.map(g => g[1].top)) - pad;
+    const w = Math.max(...glyphs.map(g => g[1].right)) + pad - x0, h = Math.max(...glyphs.map(g => g[1].bottom)) + pad - y0;
+    const c = document.createElement('canvas'), ctx = c.getContext('2d');
+    c.width = Math.ceil(w * dpr); c.height = Math.ceil(h * dpr);
+    ctx.scale(dpr, dpr);
+    ctx.font = `${cs.fontStyle} ${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
+    ctx.textBaseline = 'alphabetic';
+    const ascent = ctx.measureText(text.data).fontBoundingBoxAscent || 0.8 * em;
+    glyphs.forEach(([ch, r]) => ctx.fillText(ch, r.left - x0, r.top - y0 + ascent));
+    Object.assign(v.style, { left: `${x0 - box.left}px`, top: `${y0 - box.top}px`, width: `${w}px`, height: `${h}px` });
+    c.toBlob(b => {
+      if (!b || v.dataset.mask !== key) return;
+      if (v._mask) URL.revokeObjectURL(v._mask);
+      v._mask = URL.createObjectURL(b);
+      v.style.webkitMaskImage = v.style.maskImage = `url(${v._mask})`;
+      v.classList.add('cut');
+    });
+  }
+  document.fonts?.ready.then(() => on && on.li.classList.contains('record') && knock(on.li));
 
   // ---- The song that is on opens out: two columns wide, the picture whole in its own shape, and the sleeves around make
   // room. It keeps its row; at the end of a row it takes the column before. A tall or square picture takes two rows.
@@ -157,7 +200,7 @@
 
   // One listener for the whole visit; each run of this script points it at the page now showing.
   window.musicUpdate = update;
-  window.musicPlace = place;
+  window.musicPlace = () => { place(); if (on && on.li.classList.contains('record')) knock(on.li); };
   if (!window.musicListening) {
     window.musicListening = true;
     document.addEventListener('player', e => window.musicUpdate && window.musicUpdate(e.detail));

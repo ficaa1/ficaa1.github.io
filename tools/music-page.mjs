@@ -127,7 +127,11 @@ function record({ s, n, colour, ink, d }) {
       `<path class="at" d=""/>`;
   }
   const disc = `<svg class="disc" viewBox="0 0 ${RC.size} ${RC.size}" aria-hidden="true" focusable="false"><circle class="vinyl" cx="${RC.c}" cy="${RC.c}" r="296"/>${grooves}<circle class="label" cx="${RC.c}" cy="${RC.c}" r="${RC.label}"/><circle class="hole" cx="${RC.c}" cy="${RC.c}" r="9"/></svg>`;
-  return `<li class="record" style="${vars}"><a href="${esc(s.src)}" data-song="${n}">${disc}<span class="name">${esc(s.title)}</span><span class="meta"><span class="state">${esc(s.year || '')}</span><span class="time" data-d="${Math.round(d * 100) / 100}">${mmss(d)}</span></span></a></li>`;
+  // A record with a loop plays it inside the letters of its name while the song plays (music.js cuts them out); for
+  // reduced motion the letters hold its still.
+  const clip = s.loopFull || s.loop;
+  const loop = clip ? `<video class="loop" data-src="${esc(clip)}"${s.coverFull || s.cover ? ` data-still="${esc(s.coverFull || s.cover)}"` : ''} muted playsinline loop preload="none" disablepictureinpicture aria-hidden="true"></video>` : '';
+  return `<li class="record" style="${vars}"><a href="${esc(s.src)}" data-song="${n}">${disc}<span class="name">${esc(s.title)}${loop}</span><span class="meta"><span class="state">${esc(s.year || '')}</span><span class="time" data-d="${Math.round(d * 100) / 100}">${mmss(d)}</span></span></a></li>`;
 }
 
 const html = `<!DOCTYPE html>
