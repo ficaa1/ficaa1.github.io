@@ -578,6 +578,27 @@ body:has(#next.on) #top { bottom: calc(68px + env(safe-area-inset-bottom)); }
 #next:active { translate: 0 1px; }
 @media (prefers-reduced-motion: reduce) { #next, #next.on { transition: none; } }
 
+/* ---- The player following the page (site.js): held in the bottom left corner while a song plays, a bar along the
+   bottom on a phone, with the corner buttons lifted over it. */
+#player.docked {
+  position: fixed; top: auto; right: auto; left: 0; bottom: 0; margin: 0;
+  padding: 8px 16px calc(8px + env(safe-area-inset-bottom)) calc(16px + env(safe-area-inset-left));
+  background: var(--pl-ground);
+  border: solid color-mix(in srgb, var(--ink) 14%, transparent); border-width: 1px 1px 0 0;
+  animation: dock 200ms cubic-bezier(.2,.7,.2,1);
+}
+#player.docked.open { top: auto; right: auto; padding-bottom: calc(10px + env(safe-area-inset-bottom)); }
+/* Room under the page, so its last lines can still be scrolled out from under the player. */
+body:has(#player.docked) { padding-bottom: calc(64px + env(safe-area-inset-bottom)); }
+@keyframes dock { from { translate: 0 100%; } }
+@media (prefers-reduced-motion: reduce) { #player.docked { animation: none; } }
+
+@media (max-width: 900px) {
+  #player.docked { right: 0; border-right: 0; padding-left: calc(20px + env(safe-area-inset-left)); padding-right: 20px; }
+  body:has(#player.docked) #top, body:has(#player.docked) #next { bottom: calc(76px + env(safe-area-inset-bottom)); }
+  body:has(#player.docked):has(#next.on) #top { bottom: calc(128px + env(safe-area-inset-bottom)); }
+}
+
 @media (max-width: 900px) {
   #player { position: static; max-width: none; margin: 0; padding: 12px 20px 0; }
   #player.open { width: auto; padding: 12px 20px 8px; --big: min(calc(100vw - 40px), 520px, calc(100svh - 220px)); }

@@ -535,6 +535,29 @@
       else loud(level0.v, true);
     });
 
+    // ---- While a song plays the player follows the page down: once its own place has scrolled by, it holds on at the
+    // bottom of the window. Paused, it stays until the page has moved on half a screen, so it can be started again.
+    // Where it sits in the flow of the page (phones), a spot of its height keeps the page from jumping up.
+    const spot = document.createElement('div');
+    let docked = false, held = null, limit = 0, queued = false;
+    function follow() {
+      queued = false;
+      if (!docked) limit = el.getBoundingClientRect().bottom + scrollY;
+      const want = scrollY > limit && (!audio.paused || open() || (held !== null && Math.abs(scrollY - held) < innerHeight / 2));
+      if (want === docked) return;
+      docked = want;
+      if (want) {
+        spot.style.height = /^(static|relative)$/.test(getComputedStyle(el).position) ? `${el.offsetHeight}px` : '0';
+        el.before(spot);
+      } else spot.remove();
+      el.classList.toggle('docked', want);
+    }
+    const later = () => { if (!queued) { queued = true; requestAnimationFrame(follow); } };
+    addEventListener('scroll', later, { passive: true });
+    addEventListener('resize', () => { if (docked) { docked = false; spot.remove(); el.classList.remove('docked'); } later(); });
+    audio.addEventListener('play', () => { held = null; later(); });
+    audio.addEventListener('pause', () => { held = scrollY; later(); });
+
     document.body.prepend(el);
     json('music.json').then(songs => {
       list = Array.isArray(songs) ? songs.filter(s => s && s.src && s.title) : [];
