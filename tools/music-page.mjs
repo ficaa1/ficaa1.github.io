@@ -10,15 +10,15 @@ import { fileURLToPath } from 'node:url';
 const site = join(dirname(fileURLToPath(import.meta.url)), '../site');
 const songs = JSON.parse(readFileSync(join(site, 'music.json'), 'utf8'));
 
-// Sleeve and strip colours, from Ableton Live's clip colours. Songs with art take the colour nearest their picture.
+// Sleeve and strip colours, from Ableton Live's clip colours, by audio file. Songs with art take the colour nearest their picture.
 const COLOUR = {
-  'Babel': '#ff94a6', 'Obaveze': '#cc9927', 'Consent': '#bad074', 'house': '#ffa529', 'Blowback': '#85a5c2',
-  'tech2': '#5480e4', 'Reggae': '#f7f47c', 'zumzumzum': '#3c3c3c', "I'm on Fire (cover)": '#236384', 'jam': '#e2675a',
-  'Jpp': '#d3ad71', 'swarm3': '#25ffa8', 'Gotovo': '#3dc300', 'predugerecenice': '#8bc5ff', 'utrnulaminoga': '#ff3636',
-  'The Firm': '#a9a9a9', 'creativeshit': '#00bfaf', 'choir3': '#cdf1f8', 'Sivo Sunce': '#99836a', 'Phrygysynth': '#d0d0d0',
-  'shesopretty': '#e553a0', 'Untitledmiddleguitar': '#a6be00', 'levoUVO3': '#af3333', 'pocetak': '#10a4ee',
+  'babel-320.mp3': '#ff94a6', 'obaveze.flac': '#cc9927', 'consent.flac': '#bad074', 'house.mp3': '#ffa529', 'blowback.flac': '#85a5c2',
+  'tech2.mp3': '#5480e4', 'reggae-320.mp3': '#f7f47c', 'zumzumzum.flac': '#3c3c3c', 'im-on-fire-320.mp3': '#236384', 'jam.mp3': '#e2675a',
+  'jpp.flac': '#d3ad71', 'swarm3.mp3': '#25ffa8', 'gotovo.flac': '#3dc300', 'predugerecenice.mp3': '#8bc5ff', 'utrnulaminoga.mp3': '#ff3636',
+  'the-firm.mp3': '#a9a9a9', 'creativeshit.flac': '#00bfaf', 'choir3.flac': '#cdf1f8', 'sivo-sunce.flac': '#99836a', 'phrygysynth.flac': '#d0d0d0',
+  'shesopretty.flac': '#e553a0', 'untitledmiddleguitar.flac': '#a6be00', 'levouvo3.flac': '#af3333', 'pocetak.mp3': '#10a4ee',
   // The back room: coloured vinyl.
-  'SIDJINPIN': '#bffb00', 'drugs': '#ff39d4', 'nextstempjungle': '#ffa529', 'spooky': '#19e9ff', 'oke4': '#fff034',
+  'sidjinpin.mp3': '#bffb00', 'drugs.mp3': '#ff39d4', 'nextstempjungle.mp3': '#ffa529', 'spooky.mp3': '#19e9ff', 'oke4.mp3': '#fff034',
 };
 // A song added later without a colour above takes the next one from this list.
 const SPARE = ['#ff94a6', '#ffa529', '#f7f47c', '#25ffa8', '#8bc5ff', '#e2675a', '#bad074', '#10a4ee', '#ffa374', '#00bfaf'];
@@ -85,7 +85,7 @@ function recordPaths(p) {
 const main = [], cursed = [];
 let spare = 0;
 songs.forEach((s, n) => {
-  const colour = COLOUR[s.title] || SPARE[spare++ % SPARE.length];
+  const colour = COLOUR[s.src.split('/').pop()] || SPARE[spare++ % SPARE.length];
   const d = (s.wave && s.wave.d) || s.d || 0;
   const after = s.artist && s.artist !== 'Filip Biljić' ? s.artist.replace(/^Filip Biljić,\s*/, '') : '';
   const item = { s, n, colour, ink: inkFor(colour), d, after };
