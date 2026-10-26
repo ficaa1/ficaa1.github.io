@@ -590,11 +590,13 @@ body:has(#next.on) #top { bottom: calc(68px + env(safe-area-inset-bottom)); }
   background: var(--pl-ground);
   border: solid color-mix(in srgb, var(--ink) 14%, transparent); border-width: 1px 1px 0 0;
   animation: dock 200ms cubic-bezier(.2,.7,.2,1);
+  /* Its own layer: iOS Safari otherwise drops a fixed bar for a few frames in a fast fling or as its toolbar moves. */
+  transform: translate3d(0, 0, 0); -webkit-backface-visibility: hidden; backface-visibility: hidden;
 }
 #player.docked.open { top: auto; right: auto; padding-bottom: calc(10px + env(safe-area-inset-bottom)); }
 /* Room under the page, so its last lines can still be scrolled out from under the player. */
 body:has(#player.docked) { padding-bottom: calc(64px + env(safe-area-inset-bottom)); }
-@keyframes dock { from { translate: 0 100%; } }
+@keyframes dock { from { transform: translate3d(0, 100%, 0); } to { transform: translate3d(0, 0, 0); } }
 @media (prefers-reduced-motion: reduce) { #player.docked { animation: none; } }
 
 @media (max-width: 900px) {

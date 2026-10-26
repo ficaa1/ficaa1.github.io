@@ -72,7 +72,6 @@ ol.wall > li.big .face { aspect-ratio: var(--ar, 1); }
 ol.wall > li.big.tall .face { aspect-ratio: auto; flex: 1 0 auto; min-height: min(100cqi, 72svh); }
 ol.wall > li.big.tall .tag { flex: none; }
 ol.wall > li.big .face img, ol.wall > li.big .face video.loop { position: absolute; inset: 0; object-fit: contain; }
-::view-transition-group(*) { animation-duration: 460ms; animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); }
 
 /* The part heard, on a strip of clear glass over the picture: the picture shows through it blurred, the part heard is
    frosted white, and the red mark is where the song is now (the player's own). Press or drag on it to move the song. */
@@ -147,6 +146,9 @@ ol.records a:focus-visible { outline: 4px solid #fff; outline-offset: 4px; }
 .disc .hole { fill: var(--back); }
 
 body.music footer { margin: 0; padding: 0 var(--m) 64px; background: var(--back); color: #fff; }
+/* The room left under the page for the docked player is the back room's, not a strip of the front's blue. */
+body.music:has(#player.docked) { padding-bottom: 0; }
+body.music:has(#player.docked) footer { padding-bottom: calc(128px + env(safe-area-inset-bottom)); }
 
 /* ---- Feedback under the hand ---- */
 @media (hover: hover) and (pointer: fine) {

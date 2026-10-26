@@ -79,15 +79,39 @@
   function swap(it, whole) {
     const img = it.li.querySelector('.face img');
     if (!img || !img.dataset.full) return;
-    if (whole) { img.dataset.srcset = img.getAttribute('srcset') || ''; img.dataset.cover = img.getAttribute('src'); img.removeAttribute('srcset'); img.src = img.dataset.full; }
+    if (whole) { if (img.dataset.cover) return; img.dataset.srcset = img.getAttribute('srcset') || ''; img.dataset.cover = img.getAttribute('src'); img.removeAttribute('srcset'); img.src = img.dataset.full; }
     else if (img.dataset.cover) { img.src = img.dataset.cover; if (img.dataset.srcset) img.setAttribute('srcset', img.dataset.srcset); delete img.dataset.cover; }
   }
-  // The sleeves glide to their new places (a view transition), except for reduced motion.
+  // The sleeves glide to their new places: each is measured where it shows now, moved, then animated back from there
+  // (only transform, so a click in the middle of a glide starts the next one from wherever the sleeves are).
   function flow(change) {
-    if (still.matches || !document.startViewTransition) return change();
-    const lis = [...wall.children];
-    lis.forEach((li, k) => (li.style.viewTransitionName = `sleeve-${k}`));
-    document.startViewTransition(change).finished.finally(() => lis.forEach(li => (li.style.viewTransitionName = '')));
+    const lis = [...wall.children], quiet = still.matches || !Element.prototype.animate;
+    const was = quiet ? null : lis.map(li => li.getBoundingClientRect());
+    lis.forEach(li => li.getAnimations?.().forEach(a => a.cancel()));
+    change();
+    if (quiet) return;
+    lis.forEach((li, k) => {
+      const a = was[k], z = li.getBoundingClientRect();
+      if (!z.width || (Math.abs(a.left - z.left) < 1 && Math.abs(a.top - z.top) < 1 && Math.abs(a.width - z.width) < 1)) return;
+      const s = a.width / z.width;
+      li.animate([{ transformOrigin: '0 0', transform: `translate(${a.left - z.left}px, ${a.top - z.top}px) scale(${s})` }, { transformOrigin: '0 0', transform: 'none' }],
+        { duration: 460, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' });
+    });
+  }
+  // The wall is put right from scratch each time, to the song wanted now, so quick clicks can never leave two open.
+  function open(target) {
+    for (const li of wall.querySelectorAll('li.big')) {
+      if (target && li === target.li) continue;
+      const it = items.find(x => x.li === li);
+      if (it) swap(it, false);
+      li.classList.remove('big', 'tall'); li.style.gridColumn = li.style.gridRow = '';
+    }
+    big = target;
+    if (!big) return;
+    big.li.classList.add('big');
+    big.li.classList.toggle('tall', (+getComputedStyle(big.li).getPropertyValue('--ar') || 1) < 1.3);
+    swap(big, true);
+    place();
   }
   function grow(it) {
     const target = it && it.li.classList.contains('sleeve') ? it : null;
@@ -97,16 +121,8 @@
     const img = target && target.li.querySelector('.face img'), full = img && img.dataset.full;
     const ready = full ? new Promise(r => { const p = new Image(); p.src = full; p.decode().then(r, r); setTimeout(r, 800); }) : Promise.resolve();
     ready.then(() => {
-      if (want !== target || (target && !target.li.isConnected)) return;
-      flow(() => {
-        if (big) { swap(big, false); big.li.classList.remove('big', 'tall'); big.li.style.gridColumn = big.li.style.gridRow = ''; }
-        big = target;
-        if (!big) return;
-        big.li.classList.add('big');
-        big.li.classList.toggle('tall', (+getComputedStyle(big.li).getPropertyValue('--ar') || 1) < 1.3);
-        swap(big, true);
-        place();
-      });
+      if (want !== target || (target && !target.li.isConnected) || big === target) return;
+      flow(() => open(want));
     });
   }
 
