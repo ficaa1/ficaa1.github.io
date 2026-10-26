@@ -443,7 +443,7 @@ const landsCredit = () => `<p class="credit">Arms of Paris after <a href="https:
 // A glimpse of each place on its square: the first picture its page opens with, faint under the glass until the square is
 // pointed at, or on a phone until it comes near the middle of the screen (lands.js).
 // Filip's picks stand in for the page's first picture where he chose one.
-const GLIMPSE = { france: 'paris-2025/jan18-3', ljubljana: 'ljubljana-2025-08/hdr-18', italy: 'rome-2025/last-day-2' };
+const GLIMPSE = { france: 'centre-pompidou-2025/pompidou-3', ljubljana: 'ljubljana-2025-08/hdr-18', italy: 'rome-2025/last-day-2', 'amsterdam-2023': 'amsterdam-2023/dsc03794' };
 const glimpse = e => {
   const f = join(site, href(e, 0), 'index.html');
   const m = GLIMPSE[e.id] ? [, media(0, `${GLIMPSE[e.id]}-1000.jpg`)] : existsSync(f) && readFileSync(f, 'utf8').match(/<img[^>]*src="([^"]+-1000\.jpg)"/);
