@@ -273,19 +273,21 @@
     }
     viewer.figs = figs;
     viewer.back = back || null;
-    viewer.step = d => show((viewer.n + d + figs.length) % figs.length);
+    viewer.step = d => { viewer.dir = d; show((viewer.n + d + figs.length) % figs.length); };
     const show = i => {
       viewer.n = i;
       const f = viewer.figs[i], src = f.querySelector('img');
       const big = viewer.querySelector('img');
       big.src = (src.currentSrc || src.src).replace(/-\d+\.(jpg|jxl)$/, '-2000.$1');
       big.alt = src.alt;
-      // Then the 4000 px copy takes its place once it is ready, and the pictures either side start loading theirs.
+      // Then the 4000 px copy takes its place once it is ready, and the next three pictures the way the viewer is going
+      // load theirs, then the one behind: one at a time, stopping as soon as the viewer moves on.
       const ready = enlarge(f);
       if (ready) ready.then(url => {
         if (viewer.n !== i) return;
         if (url) big.src = url;
-        [1, -1].forEach(d => enlarge(viewer.figs[(i + d + viewer.figs.length) % viewer.figs.length]));
+        const d = viewer.dir || 1, len = viewer.figs.length;
+        [d, 2 * d, 3 * d, -d].reduce((before, k) => before.then(() => viewer.n === i && enlarge(viewer.figs[(i + k + 4 * len) % len])), Promise.resolve());
       });
       const set = f.dataset.dump || (f.closest('.set') && f.closest('.set').querySelector('.title') || document.querySelector('main h1') || {}).textContent || '';
       const fc = f.querySelector('figcaption'), label = f.querySelector('figcaption .frame');
