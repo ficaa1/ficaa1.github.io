@@ -5,7 +5,7 @@
 // song.css and song.js in site/songs/ are written by hand, not here.
 import { readFileSync, writeFileSync, readdirSync, unlinkSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
-import { site, load, esc, mmss, ems, heights, rimFor, SL, sleevePath } from './songs.mjs';
+import { site, load, esc, mmss, ems, heights, SL, sleevePath } from './songs.mjs';
 
 const out = join(site, 'songs');
 const ORIGIN = 'https://www.filipbiljic.com/songs/';
@@ -30,7 +30,6 @@ const info = it => {
   return {
     ...it, ar, w: widths[s.title]?.w || ems(s.title), w2: widths[s.title]?.w2 || twoLines(s.title),
     pic: s.coverFull || s.cover || '', clip: s.loopFull || s.loop || '', h: Math.round(1000 / ar),
-    rim: rimFor(it.colour, light[s.coverFull || s.cover]),
     // The waveform as 480 bar heights of two digits each, for the letters of a song without a picture.
     bars: s.wave && s.wave.p ? heights(s.wave.p).map(v => String(Math.min(99, Math.round(v * 99))).padStart(2, '0')).join('') : '',
   };
@@ -55,7 +54,7 @@ function strips(n) {
     const y = info(songs[(n + k) % songs.length]), s = y.s, len = mmss(y.d);
     const vars = `--c:${y.c};--k:${y.k};--w:${y.w};--w2:${y.w2};--ar:${y.ar}`;
     if (k === 1) {
-      rows.push(`<li class="first" style="${vars}"><a href="${y.slug}.html"><span class="x">Next</span><span class="y">${esc(s.year || '')}</span><span class="l">${len}</span><span class="word${y.rim ? ' rim' : ''}">${letters(y, false, true)}</span></a></li>`);
+      rows.push(`<li class="first" style="${vars}"><a href="${y.slug}.html"><span class="x">Next</span><span class="y">${esc(s.year || '')}</span><span class="l">${len}</span><span class="word">${letters(y, false, true)}</span></a></li>`);
       continue;
     }
     const thumb = s.thumb || s.cover;
@@ -110,7 +109,7 @@ ${image}<meta property="og:audio" content="${esc(s.src)}">
 <link rel="stylesheet" href="song.css">
 <style>body.song{--c:${x.colour};--k:${x.ink}}</style>
 <header class="front" data-song-page="${n}" style="${fit}">
-<h1 class="songname${x.rim ? ' rim' : ''}">${letters(x, true)}</h1>
+<h1 class="songname">${letters(x, true)}</h1>
 <p class="songfacts"><a data-up class="play" href="${esc(s.src)}" data-song="${n}">${PLAY}<span class="lbl">Play</span></a><span data-up class="who">${esc(by)}</span><span data-up class="year">${esc(s.year || '')}</span><span data-up class="time" data-d="${Math.round(x.d * 100) / 100}">${mmss(x.d)}</span></p>
 </header>
 <section class="whole${face ? '' : ' bare'}" style="${fit}">

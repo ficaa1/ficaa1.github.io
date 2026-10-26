@@ -21,6 +21,8 @@ body.song main { padding: 0; }
 body.song main > * { max-width: none; }
 body.song ::selection { background: var(--k); color: var(--c); }
 body.song :focus-visible { outline: 3px solid var(--k); outline-offset: 3px; }
+/* After a page swap site.js focuses the title for screen readers; like everywhere else on the site, it shows no ring. */
+body.song h1[tabindex="-1"]:focus { outline: none; }
 
 body.song nav { color: var(--k); position: relative; z-index: 1; }
 body.song nav a, body.song nav a:visited { color: var(--k); }
@@ -47,8 +49,6 @@ body.song #player:not(.open) .mute:hover { background: color-mix(in srgb, var(--
 .songname .t, .word .t { transition: color 450ms ease; }
 .one > .t { white-space: nowrap; }
 .cut > .t { color: transparent; }
-/* A picture about as light as the song's colour (tools/song-measures.json) gets a rim in the song's ink. */
-.rim.cut > .t { -webkit-text-stroke: 0.02em var(--k); }
 .inside {
   position: absolute; z-index: -1; left: 0; top: 0; width: 0; height: 0; overflow: hidden; display: none; pointer-events: none;
   -webkit-mask-size: 100% 100%; mask-size: 100% 100%; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;

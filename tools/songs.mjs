@@ -28,10 +28,6 @@ const lum = hex => {
 };
 const contrast = (a, b) => { const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p); return (x + 0.05) / (y + 0.05); };
 const inkFor = c => (contrast(c, '#0a0a0a') >= contrast(c, '#ffffff') ? '#0a0a0a' : '#ffffff');
-// Letters with a picture inside that is on average about as light as the song's colour get a rim in its ink
-// (song-cards.mjs measures how light each picture is, into tools/song-measures.json).
-export const RIM = 1.6;
-export const rimFor = (colour, light) => light != null && (Math.max(lum(colour), light) + 0.05) / (Math.min(lum(colour), light) + 0.05) < RIM;
 
 // A song's address under songs/: its title in lowercase ASCII with hyphens. tools/music.mjs keeps it in music.json as
 // "slug" once given, so a renamed song keeps its address.

@@ -3,8 +3,7 @@
 // Each is saved as site/music/cards/<slug>-<hash8>.jpg (git-ignored; the hash is of the JPEG's bytes, so a changed banner
 // gets a new name), uploaded once to R2 under music/cards/, and recorded in tools/song-cards.json, which song-pages.mjs
 // reads for og:image. A banner is only drawn again when what goes into it changes. The same browser measures, for the
-// pages too (tools/song-measures.json), each title's width in League Spartan and how light each picture is on average,
-// so letters whose picture is about as light as their colour get a rim in the song's ink.
+// pages too (tools/song-measures.json), each title's width in League Spartan and how light each picture is on average.
 // tools/music.mjs runs this. On its own (heavy: a browser, then uploads one at a time):
 //   nice -n 19 ionice -c3 node tools/song-cards.mjs [--no-upload] [--force] [slug ...]
 // Needs Playwright: `playwright` from node_modules, or PLAYWRIGHT=/path/to/node_modules/playwright.
@@ -15,7 +14,7 @@ import { createRequire } from 'node:module';
 import { setPriority } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { site, load, esc, mmss, heights, rimFor } from './songs.mjs';
+import { site, load, esc, mmss, heights } from './songs.mjs';
 
 const MANIFEST = fileURLToPath(new URL('./song-cards.json', import.meta.url));
 const DIR = join(site, 'music/cards');
@@ -57,7 +56,7 @@ body {
   background: ${x.c}; color: ${x.k};
 }
 .name { margin: 0; white-space: nowrap; font: 700 ${fs}px / 0.8 "League Spartan", sans-serif; letter-spacing: -0.045em; }
-.name span { display: inline-block; padding: 0.04em 0 0.1em; color: ${x.pic || x.bars ? 'transparent' : x.k}; background: ${fill}; -webkit-background-clip: text; background-clip: text;${x.rim ? ` -webkit-text-stroke: 0.02em ${x.k};` : ''} }
+.name span { display: inline-block; padding: 0.04em 0 0.1em; color: ${x.pic || x.bars ? 'transparent' : x.k}; background: ${fill}; -webkit-background-clip: text; background-clip: text; }
 .facts { margin: ${40 - drop * fs}px 0 0 0.06em; font: 48px/1 "Times New Roman", Times, "Liberation Serif", serif; font-variant-numeric: tabular-nums; }
 </style></head><body><h1 class="name"><span>${esc(x.title)}</span></h1><p class="facts">${esc(x.facts)}</p></body></html>`;
 }
@@ -123,7 +122,6 @@ export async function cards({ upload = true, force = false, only = [] } = {}) {
     mkdirSync(DIR, { recursive: true });
     for (const x of todo) {
       x.w = widths[x.title].w;
-      x.rim = !!x.pic && rimFor(x.c, light[x.pic]);
       await page.setContent(card(x, font), { waitUntil: 'load' });
       await page.evaluate(src => Promise.all([document.fonts.ready, src && Object.assign(new Image(), { src }).decode()]), x.pic);
       const jpg = await page.screenshot({ type: 'jpeg', quality: 88 });
