@@ -27,26 +27,29 @@
 //   lands             (photos.html only) the squares
 //
 // Pictures: each printed frame gets a JXL and a JPEG at 1000 and 2000 px plus a 400 px JPEG, in site/photos/<id>/,
-// and the original at full size for the viewer (<file>-full.jxl and <file>-full.jpg; only the .jpg for a JPEG original).
+// and a copy capped at 4000 px on the long edge for the viewer (<file>-4000.jxl/.jpg; only .jpg for a JPEG original).
+// The 4000 px JXL keeps the source's HDR colour encoding and metadata; its JPEG fallback is tone mapped at quality 90.
+// JPEG originals keep their metadata and any HDR gain map, with the map resized to half the primary's new dimensions.
 // Those copies are gitignored: they are for previewing here and for uploading. Their sizes are kept in photos.json
 // ("web"), so pages can be rebuilt on a machine that does not have them.
 // Originals can be JPEG XL or JPEG, found in photos-src-local/<id>/ (fetched with --fetch, gitignored) or photos-src/.
 // A frame filed in another dump's folder names that folder itself: {"file", "original", "folder": "Rim edited 2025"}.
 // --fetch reads each missing original from plex: a JPEG is scaled to 2000 px there with ffmpeg and streamed back
-// (and fetched whole as well, for the full size),
+// (and fetched whole as well, for the 4000 px copy),
 // a JPEG XL comes whole (nothing on plex decodes it). Camera settings come from the original's first 256 KB and are
 // kept in photos.json, so pages rebuild without the originals. A 7000 px JPEG XL takes about 1 GB to decode;
 // files are done one at a time.
 // A JPEG XL is decoded with libjxl's djxl when it is installed (DJXL, or ~/.local/opt/libjxl/usr/bin/djxl): it reads
 // every colour encoding, and tone maps Lightroom's HDR edits to an ordinary screen. The wasm decoder used otherwise
 // leaves those nearly black.
-import { readFileSync, writeFileSync, mkdirSync, existsSync, statSync, mkdtempSync, rmSync, copyFileSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, existsSync, statSync, mkdtempSync, rmSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { homedir, tmpdir } from 'node:os';
 import { execFileSync } from 'node:child_process';
 import { createRequire } from 'node:module';
 import { createHash } from 'node:crypto';
 import { exif, settings } from './exif.mjs';
+import { largeJpeg, largeJxl } from './large-photo.mjs';
 
 const args = process.argv.slice(2);
 const FETCH = args.includes('--fetch');
@@ -142,19 +145,13 @@ if (FETCH) {
     const folder = p.folder || dump.folder; // a frame filed in another dump's folder names it: "folder": "Rim edited 2025"
     if (!p.original || !folder) continue;
     if (!p.settings) p.settings = settings(exif(plex.head(folder, p.original)));
-    // A JPEG original's full size is the file itself, so it comes whole as well, straight to the web copies. One over
-    // 12 MB (saved at quality 100) is saved again at quality 90; one with an HDR gain map keeps it (tools/gainmap.mjs).
-    const full = join(dir(dump.id), `${p.file}-full.jpg`);
-    if (/\.jpe?g$/i.test(p.original) && !existsSync(full)) {
+    // Fetch a JPEG whole before making its 4000 px copy. Gain maps are resized with their own metadata and MPF index.
+    const large = join(dir(dump.id), `${p.file}-4000.jpg`);
+    if (/\.jpe?g$/i.test(p.original) && !existsSync(large)) {
       mkdirSync(dir(dump.id), { recursive: true });
-      let data = plex.whole(folder, p.original);
-      if (data.length > 12e6 && data.includes('hdrgm')) data = await (await import('./gainmap.mjs')).requantize(data, 90);
-      else if (data.length > 12e6) {
-        const { decodeJpeg, encodeJpeg } = await codecs();
-        data = Buffer.from(await encodeJpeg(await decodeJpeg(data.buffer.slice(data.byteOffset, data.byteOffset + data.length)), { quality: 90, progressive: true }));
-      }
-      writeFileSync(full, data);
-      console.log(`fetched ${folder}/${p.original} whole (${(data.length / 1048576).toFixed(1)} MB)`);
+      const data = await largeJpeg(plex.whole(folder, p.original));
+      writeFileSync(large, data);
+      console.log(`fetched ${folder}/${p.original} at 4000 px (${(data.length / 1048576).toFixed(1)} MB)`);
     }
     if (original(dump, p)) continue;
     const to = join(SOURCES[0], dump.id);
@@ -184,14 +181,10 @@ for (const dump of dumps.filter(mine)) for (const p of dump.photos) {
     }
     console.log(`${dump.id}/${p.file}: ${full.width}x${full.height}`);
   }
-  // The full size, which the viewer swaps in once the 2000 px copy shows. A JPEG XL original goes up untouched, with a
-  // JPEG at quality 90 for everything else, tone mapped like the copies above. A JPEG original goes up untouched alone
-  // (fetched whole), so an HDR gain map in it stays.
-  const fullJxl = join(out, `${p.file}-full.jxl`), fullJpg = join(out, `${p.file}-full.jpg`);
-  if (src && /\.jxl$/i.test(src)) {
-    if (!existsSync(fullJxl)) copyFileSync(src, fullJxl);
-    if (!existsSync(fullJpg)) libjxl('djxl', [src, fullJpg, ...toScreen(src), '--jpeg_quality=90']);
-  }
+  // The viewer swaps in the 4000 px copy after the 2000 px one. JXL keeps its original HDR colour encoding;
+  // its JPEG fallback is tone mapped. JPEG originals come whole with --fetch so their gain maps and metadata stay.
+  if (src && /\.jxl$/i.test(src))
+    await largeJxl(src, join(out, `${p.file}-4000.jxl`), join(out, `${p.file}-4000.jpg`));
   if (!existsSync(join(out, `${p.file}-${WIDTHS[0]}.jpg`))) continue;
   if (!existsSync(join(out, `${p.file}-${THUMB}.jpg`))) {
     const { encodeJpeg } = await codecs();
@@ -201,7 +194,7 @@ for (const dump of dumps.filter(mine)) for (const p of dump.photos) {
   // What the pages need to know about the copies, kept so they can be built without them.
   const size = f => { const { width, height } = jpegSize(join(out, f)); return [width, height]; };
   p.web = { [WIDTHS[0]]: size(`${p.file}-${WIDTHS[0]}.jpg`), [THUMB]: size(`${p.file}-${THUMB}.jpg`),
-    bytes: Object.fromEntries([...WIDTHS, 'full'].flatMap(w => ['jpg', 'jxl'].map(e => [`${w}.${e}`, join(out, `${p.file}-${w}.${e}`)]))
+    bytes: Object.fromEntries([...WIDTHS, 4000].flatMap(w => ['jpg', 'jxl'].map(e => [`${w}.${e}`, join(out, `${p.file}-${w}.${e}`)]))
       .filter(([, f]) => existsSync(f)).map(([k, f]) => [k, statSync(f).size])) };
 }
 writeFileSync(listPath, JSON.stringify(dumps, null, 2) + '\n');

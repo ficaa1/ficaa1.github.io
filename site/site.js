@@ -89,15 +89,40 @@
   // With script, any .print or [data-view] opens large in a viewer you can step through, and the box of dumps
   // (the sleeves on photos.html, the tabs on a dump's page) arrives in order.
   let viewer;
+  // A picture's 4000 px copy, which the viewer shows in place of the 2000 px one: the JXL on an HDR screen that reads
+  // JXL, a JPEG anywhere else or when there is no JXL (a JPEG original has none). Each is fetched and decoded once, from
+  // the moment a finger touches the picture; the promise gives its address, or null when there is no such copy.
+  const large = new Map();
+  let jxl = false;
+  function enlarge(f) {
+    const img = f && f.querySelector('img'), src = img && (img.currentSrc || img.src);
+    if (!src || !/-\d+\.(jpg|jxl)$/.test(src)) return null;
+    if (/\.jxl$/.test(src)) jxl = true;
+    const base = src.replace(/-\d+\.(jpg|jxl)$/, '-4000.');
+    if (!large.has(base)) {
+      const exts = jxl && matchMedia('(dynamic-range: high)').matches ? ['jxl', 'jpg'] : ['jpg'];
+      const load = ([ext, ...rest]) => {
+        if (!ext) return Promise.resolve(null);
+        const pre = new Image();
+        pre.src = base + ext;
+        return pre.decode().then(() => pre.src, () => load(rest));
+      };
+      large.set(base, load(exts));
+    }
+    return large.get(base);
+  }
   function photos() {
     dumps();
     const figs = [...document.querySelectorAll('main .print, main [data-view]')];
     if (!figs.length) return;
     const trigger = f => f.querySelector('.open') || f;
-    figs.forEach((fig, n) => trigger(fig).addEventListener('click', e => {
-      if (e.metaKey || e.ctrlKey || e.shiftKey || e.button) return;
-      e.preventDefault(); view(figs, n);
-    }));
+    figs.forEach((fig, n) => {
+      trigger(fig).addEventListener('pointerdown', () => enlarge(fig));
+      trigger(fig).addEventListener('click', e => {
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.button) return;
+        e.preventDefault(); view(figs, n);
+      });
+    });
     const target = figs.find(f => location.hash === '#' + f.id);
     if (target) view(figs, figs.indexOf(target));
   }
@@ -154,6 +179,7 @@
       pic.querySelectorAll('source, img').forEach(x => x.sizes = '(max-width: 640px) 50vw, 30vw');
       a.href = '#' + f.id;
       a.append(pic);
+      a.addEventListener('pointerdown', () => enlarge(f));
       a.addEventListener('click', e => {
         if (e.metaKey || e.ctrlKey || e.shiftKey || e.button) return;
         e.preventDefault(); view(all, all.indexOf(f), cellFor);
@@ -254,18 +280,13 @@
       const big = viewer.querySelector('img');
       big.src = (src.currentSrc || src.src).replace(/-\d+\.(jpg|jxl)$/, '-2000.$1');
       big.alt = src.alt;
-      // Then the original at full size takes the 2000 px copy's place once it has loaded: the JXL itself on an HDR
-      // screen that reads JXL, a JPEG anywhere else or when there is no JXL (a JPEG original has none).
-      // A frame without either keeps the 2000 px copy.
-      const exts = /\.jxl$/.test(big.src) && matchMedia('(dynamic-range: high)').matches ? ['jxl', 'jpg'] : ['jpg'];
-      const base = big.src.replace(/-2000\.(jpg|jxl)$/, '-full.');
-      const full = ([ext, ...rest]) => {
-        if (!ext || viewer.n !== i) return;
-        const url = base + ext, pre = new Image();
-        pre.src = url;
-        pre.decode().then(() => { if (viewer.n === i) big.src = url; }, () => full(rest));
-      };
-      full(exts);
+      // Then the 4000 px copy takes its place once it is ready, and the pictures either side start loading theirs.
+      const ready = enlarge(f);
+      if (ready) ready.then(url => {
+        if (viewer.n !== i) return;
+        if (url) big.src = url;
+        [1, -1].forEach(d => enlarge(viewer.figs[(i + d + viewer.figs.length) % viewer.figs.length]));
+      });
       const set = f.dataset.dump || (f.closest('.set') && f.closest('.set').querySelector('.title') || document.querySelector('main h1') || {}).textContent || '';
       const fc = f.querySelector('figcaption'), label = f.querySelector('figcaption .frame');
       const cap = f.dataset.caption || (fc ? fc.textContent.slice(label ? label.textContent.length : 0) : src.alt);
