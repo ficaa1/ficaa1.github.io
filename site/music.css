@@ -50,13 +50,15 @@ ol.wall {
   list-style: none; margin: 0; padding: 40px var(--m) 120px; background: #fff;
   --cols: 4; display: grid; grid-template-columns: repeat(var(--cols), minmax(0, 1fr)); gap: 44px 18px;
 }
-ol.wall > li { margin: 0; container-type: inline-size; display: flex; }
+/* The sleeve itself is not a size container: Safari can leave a container stuck at its old width after it changes
+   columns in the grid. The face and the tag, which never do, carry the container units instead. */
+ol.wall > li { margin: 0; display: flex; min-width: 0; }
 ol.wall a {
   display: flex; flex-direction: column; flex: 1; color: var(--k); text-decoration: none;
   -webkit-tap-highlight-color: transparent;
 }
 ol.wall a:focus-visible { outline: 4px solid var(--sel); outline-offset: 4px; }
-.face { display: block; position: relative; aspect-ratio: 1; background: var(--c); overflow: hidden; }
+.face { display: block; position: relative; aspect-ratio: 1; background: var(--c); overflow: hidden; container-type: inline-size; }
 .face img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .face svg { display: block; width: 100%; height: 100%; }
 .face .ink { stroke: var(--k); stroke-width: 6; fill: none; }
@@ -69,7 +71,7 @@ ol.wall a:focus-visible { outline: 4px solid var(--sel); outline-offset: 4px; }
 /* The song that is on: two columns wide (placed by music.js), the picture and its loop whole on the sleeve's colour.
    A wide picture keeps its shape; a tall or square one gets two rows and sits in the middle of them. */
 ol.wall > li.big .face { aspect-ratio: var(--ar, 1); }
-ol.wall > li.big.tall .face { aspect-ratio: auto; flex: 1 0 auto; min-height: min(100cqi, 72svh); }
+ol.wall > li.big.tall .face { aspect-ratio: 1; max-height: 72svh; flex: 1 0 auto; }
 ol.wall > li.big.tall .tag { flex: none; }
 ol.wall > li.big .face img, ol.wall > li.big .face video.loop { position: absolute; inset: 0; object-fit: contain; }
 
@@ -96,9 +98,9 @@ li.is-on .face .glass { opacity: 1; visibility: visible; translate: none; transi
 }
 @media (prefers-reduced-motion: reduce) { .face .glass, li.is-on .face .glass { translate: none; } }
 
-.tag { display: flex; flex-direction: column; gap: 8px; flex: 1; background: var(--c); padding: 14px 14px 12px; margin-top: 6px; }
+.tag { display: flex; flex-direction: column; gap: 8px; flex: 1; background: var(--c); padding: 14px 14px 12px; margin-top: 6px; container-type: inline-size; }
 .tag .title {
-  font: 700 min(var(--tmax, 34px), calc((100cqi - 30px) / var(--w))) / 0.95 var(--display); letter-spacing: -0.02em;
+  font: 700 min(var(--tmax, 34px), calc((100cqi - 2px) / var(--w))) / 0.95 var(--display); letter-spacing: -0.02em;
 }
 .tag .after { font-size: 16px; line-height: 1.25; }
 .meta { display: flex; justify-content: space-between; gap: 12px; margin-top: auto; font-size: 16px; line-height: 1.2; font-variant-numeric: tabular-nums; }
@@ -187,7 +189,7 @@ ol.wall a:active .face { transform: translateY(-2px); transition-duration: 100ms
   ol.wall { --cols: 2; gap: 28px 10px; padding: 24px var(--m) 80px; }
   .tag { padding: 10px 10px 9px; gap: 6px; }
   .tag { --tmax: 22px; }
-  .tag .title { font-size: min(var(--tmax), calc((100cqi - 20px) / var(--w))); }
+  .tag .title { font-size: min(var(--tmax), calc(100cqi / var(--w))); }
   .meta { font-size: 15px; gap: 6px; }
   .tag .after { font-size: 14px; }
   h2.backroom { padding-top: 88px; font-size: 13.5vw; }

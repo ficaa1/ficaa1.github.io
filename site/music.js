@@ -100,18 +100,25 @@
   }
   // The wall is put right from scratch each time, to the song wanted now, so quick clicks can never leave two open.
   function open(target) {
+    const moved = [];
     for (const li of wall.querySelectorAll('li.big')) {
       if (target && li === target.li) continue;
       const it = items.find(x => x.li === li);
       if (it) swap(it, false);
       li.classList.remove('big', 'tall'); li.style.gridColumn = li.style.gridRow = '';
+      moved.push(li);
     }
     big = target;
-    if (!big) return;
-    big.li.classList.add('big');
-    big.li.classList.toggle('tall', (+getComputedStyle(big.li).getPropertyValue('--ar') || 1) < 1.3);
-    swap(big, true);
-    place();
+    if (big) {
+      big.li.classList.add('big');
+      big.li.classList.toggle('tall', (+getComputedStyle(big.li).getPropertyValue('--ar') || 1) < 1.3);
+      swap(big, true);
+      place();
+      moved.push(big.li);
+    }
+    // Safari can keep a sleeve at the size it had before it changed columns; taking it out of the layout for a moment
+    // makes it measure itself again.
+    for (const li of moved) { li.style.display = 'none'; void li.offsetWidth; li.style.display = ''; }
   }
   function grow(it) {
     const target = it && it.li.classList.contains('sleeve') ? it : null;
