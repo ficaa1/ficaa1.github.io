@@ -21,13 +21,13 @@ body.song {
   --m: max(16px, 3vw);
   --left: var(--m);
   --display: "League Spartan", "Arial Narrow", Arial, sans-serif;
-  /* League Spartan for everything here, the nav and the player too, not only the names. */
-  --face: var(--display);
   --front: #0000ee;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   background: var(--c);
   color: var(--k);
 }
+/* League Spartan for everything on the page itself; the nav and the player keep the site's Times. */
+body.song main, body.song footer { font-family: var(--display); }
 body.song main { padding: 0; }
 body.song main > * { max-width: none; }
 body.song ::selection { background: var(--k); color: var(--c); }
@@ -107,7 +107,7 @@ a.play .i-pause, .is-playing a.play .i-play { display: none; }
 .tag .acts { margin-top: auto; display: flex; flex-direction: column; gap: 6px; }
 .tag .share {
   min-height: 52px; width: 100%; border: 0; border-radius: 0; background: var(--c); color: var(--k);
-  font: 700 20px/1 var(--face); cursor: pointer;
+  font: 700 20px/1 var(--display); cursor: pointer;
 }
 .tag .share[hidden] { display: none; }
 .tag .tomusic { align-self: flex-start; display: inline-flex; align-items: center; min-height: 44px; color: var(--c); }

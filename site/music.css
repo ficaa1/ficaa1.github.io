@@ -20,8 +20,6 @@ body.music {
   --m: max(16px, 3vw);
   --left: var(--m);
   --display: "League Spartan", "Arial Narrow", Arial, sans-serif;
-  /* League Spartan for everything here, the nav and the player too, not only the names. */
-  --face: var(--display);
   --front: #0000ee;
   --back: #050a5c;
   --hot: #ff3b1f;
@@ -30,6 +28,8 @@ body.music {
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   background: var(--front);
 }
+/* League Spartan for everything on the page itself; the nav and the player keep the site's Times. */
+body.music main, body.music footer { font-family: var(--display); }
 body.music main { padding: 0; }
 body.music main > * { max-width: none; }
 
