@@ -15,7 +15,10 @@
   const times = [...main.querySelectorAll('.time')], state = main.querySelector('.tag .state'), lbl = front.querySelector('.play .lbl');
   const year = state ? state.textContent : '', len0 = +times[0].dataset.d || 0;
   const face = main.querySelector('.face');
-  let len = len0, playing = false, lastK = -1, seen = { name: true, face: false };
+  let len = len0, playing = false, lastK = -1, seen = { name: true, face: false }, prog = 0;
+  // The part heard on the glass only moves while the picture is in view: off screen there is nothing to see, and an
+  // iPhone scrolling below it jumped back on every move.
+  const glide = () => { if (face && (seen.face || !('IntersectionObserver' in window))) face.style.setProperty('--p', prog); };
 
   const loaded = () => !document.fonts || [...document.fonts].some(f => f.family.replace(/"/g, '') === 'League Spartan' && f.status === 'loaded');
 
@@ -167,7 +170,8 @@
     lbl.textContent = playing ? 'Pause' : 'Play';
     times.forEach(tm => (tm.textContent = on ? `${mmss(t)} / ${mmss(len)}` : mmss(len0)));
     if (state) state.textContent = on ? (playing ? 'Playing' : 'Paused') : year;
-    main.style.setProperty('--p', on && len ? Math.min(1, t / len) : 0);
+    prog = on && len ? Math.min(1, t / len) : 0;
+    glide();
     const k = on && len ? Math.min(480, Math.floor((t / len) * 480)) : -1;
     if (k !== lastK) { lastK = k; paint(name, k); heard(k); }
     clips();
@@ -244,7 +248,7 @@
       if (img) { img.src = img.dataset.src; img.removeAttribute('data-src'); img.decode?.().then(() => cut(word), () => {}); }
     }), { rootMargin: '600px 0px' });
     if (word) near.observe(word);
-    const view = new IntersectionObserver(es => es.forEach(e => { seen[e.target === name ? 'name' : 'face'] = e.isIntersecting; }) || clips());
+    const view = new IntersectionObserver(es => es.forEach(e => { seen[e.target === name ? 'name' : 'face'] = e.isIntersecting; }) || (clips(), glide()));
     view.observe(name);
     if (face) view.observe(face);
   } else if (word) {

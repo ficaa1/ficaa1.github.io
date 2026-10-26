@@ -30,6 +30,8 @@ body.music {
 /* League Spartan for everything on the page itself; the nav and the player keep the site's Times. */
 body.music main, body.music footer { font-family: var(--display); }
 body.music main { padding: 0; }
+/* The page never shifts itself to keep something in place while it is being scrolled. */
+body.music { overflow-anchor: none; }
 body.music main > * { max-width: none; }
 
 /* ---- The front: nav and the name of the page on link blue ---- */
@@ -102,12 +104,17 @@ li.is-on .face .glass { opacity: 1; visibility: visible; translate: none; transi
   position: absolute; inset: 3px; border-radius: inherit; background: rgb(255 255 255 / .82);
   clip-path: inset(0 calc((1 - var(--p, 0)) * 100%) 0 0 round 999px); transition: clip-path 260ms linear;
 }
+/* The bead rides on a rail as wide as its travel and is moved by a transform, so the song going on never lays the page out
+   again (on an iPhone that made the page jump while it was being scrolled). */
 .face .glass .knob {
-  position: absolute; top: 50%; left: calc(13px + var(--p, 0) * (100% - 26px)); width: 26px; height: 20px; margin: -10px 0 0 -13px;
+  position: absolute; top: 50%; left: 13px; width: calc(100% - 26px); height: 20px; margin-top: -10px; pointer-events: none;
+  transform: translateX(calc(var(--p, 0) * 100%)); transition: transform 260ms linear;
+}
+.face .glass .knob::before {
+  content: ""; position: absolute; left: -13px; top: 0; width: 26px; height: 20px;
   border-radius: 999px; background: linear-gradient(rgb(255 255 255 / .75), rgb(255 255 255 / .35));
   -webkit-backdrop-filter: blur(6px) saturate(1.8); backdrop-filter: blur(6px) saturate(1.8);
   box-shadow: 0 0 0 .5px rgb(255 255 255 / .5), 0 2px 8px rgb(0 0 0 / .25), inset 0 1px 0 rgb(255 255 255 / .9), inset 0 -1px 1px rgb(0 0 0 / .1);
-  transition: left 260ms linear;
 }
 @media (prefers-reduced-motion: reduce) { .face .glass, li.is-on .face .glass { translate: none; } }
 
