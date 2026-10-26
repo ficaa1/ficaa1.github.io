@@ -271,13 +271,13 @@
   // "cover" is the square thumbnail and "coverFull" the uncropped picture shown when the player opens; both are optional.
   // Without art, the cover is drawn from the song itself, its waveform set in lines like a page of text.
   // Lines not heard yet are link blue, heard ones are visited purple, and the bar playing now is the red of a link being clicked.
-  const player = (() => {
+  (() => {
     const el = document.createElement('div');
     el.id = 'player';
     el.setAttribute('role', 'region');
     el.setAttribute('aria-label', 'Music player');
     el.innerHTML = `
-      <button class="cover" type="button" aria-expanded="false" aria-controls="player-seek" aria-label="Cover and seek bar"><canvas aria-hidden="true"></canvas><img alt="" aria-hidden="true"></button>
+      <button class="cover" type="button" aria-expanded="false" aria-controls="player-seek" aria-label="Cover and seek bar"><canvas aria-hidden="true"></canvas><img alt="" aria-hidden="true"><video muted playsinline loop preload="none" disablepictureinpicture aria-hidden="true"></video></button>
       <div class="seek" id="player-seek" hidden>
         <span class="bar" aria-hidden="true"><span class="fill"></span></span>
         <input type="range" min="0" max="0" step="1" value="0" aria-label="Seek">
@@ -297,7 +297,7 @@
     const audio = new Audio();
     audio.preload = 'none';
     const $ = s => el.querySelector(s);
-    const cover = $('.cover'), canvas = $('canvas'), pic = $('.cover img'), seek = $('.seek input'), vol = $('.vol'), level = $('.level');
+    const cover = $('.cover'), canvas = $('canvas'), pic = $('.cover img'), clip = $('.cover video'), seek = $('.seek input'), vol = $('.vol'), level = $('.level');
     const still = matchMedia('(prefers-reduced-motion: reduce)'), touch = matchMedia('(hover: none)');
     const mmss = t => (t > 0 && isFinite(t) ? `${Math.floor(t / 60)}:${String(Math.floor(t % 60)).padStart(2, '0')}` : '0:00');
     let list = [], i = 0;
@@ -312,9 +312,35 @@
       cover.style.backgroundImage = s && s.cover ? `url("${new URL(s.cover, ROOT).href}")` : '';
       cover.classList.toggle('art', !!(s && s.cover));
       if (open()) art(s);
-      document.querySelectorAll('.tracklist li').forEach((li, n) => li.classList.toggle('now', n === i && !!s));
-      wave(s, !audio.paused || open()); tick(); draw();
+      wave(s, !audio.paused || open()); tick(); draw(); motion(); emit();
     }
+    // A song whose cover is a video loop ("loopFull", the whole clip, or "loop", its square) plays it in the cover while the
+    // song plays, and holds its frame when paused. The picture stays under it until the video is running.
+    function motion() {
+      const s = list[i], src = s && !still.matches && (s.loopFull || s.loop) ? new URL(s.loopFull || s.loop, ROOT).href : '';
+      if (clip.src !== src) { clip.classList.remove('on'); if (src) clip.src = src; else clip.removeAttribute('src'); }
+      if (src && !audio.paused) clip.play().catch(() => {}); else clip.pause();
+    }
+    clip.addEventListener('playing', () => clip.classList.add('on'));
+    clip.addEventListener('emptied', () => clip.classList.remove('on'));
+    still.addEventListener('change', motion);
+
+    // Any page can drive the player: a button with data-song="<n>" plays that song, or pauses it when it is the one playing.
+    // A page can also move the song along with a "player-seek" event, detail { t } in seconds.
+    // Each change is announced as a "player" event on document, detail { i, playing, t, d }; a page that arrives later asks
+    // for the current one with a "player-ask" event.
+    const emit = () => document.dispatchEvent(new CustomEvent('player', { detail: { i, playing: !audio.paused, t: audio.currentTime || 0, d: audio.duration || list[i]?.d || list[i]?.wave?.d || 0 } }));
+    document.addEventListener('player-ask', emit);
+    document.addEventListener('player-seek', e => { if (audio.src && isFinite(e.detail?.t)) { audio.currentTime = Math.max(0, e.detail.t); tick(); draw(); emit(); save(); } });
+    document.addEventListener('click', e => {
+      const b = e.target.closest('[data-song]');
+      if (!b || el.contains(b)) return;
+      e.preventDefault();
+      const n = +b.dataset.song;
+      if (n === i && audio.src && !audio.paused) audio.pause();
+      else if (n === i && audio.src) audio.play().catch(() => {});
+      else load(n, true);
+    });
     function load(n, play) {
       if (!list.length) return;
       i = (n + list.length) % list.length;
@@ -331,7 +357,7 @@
     audio.addEventListener('ended', () => load(i + 1, true));
     ['play', 'pause'].forEach(ev => audio.addEventListener(ev, show));
     ['durationchange', 'seeked'].forEach(ev => audio.addEventListener(ev, () => { tick(); draw(); }));
-    audio.addEventListener('timeupdate', () => { tick(); draw(); if (Math.round(audio.currentTime) % 5 === 0) save(); });
+    audio.addEventListener('timeupdate', () => { tick(); draw(); emit(); if (Math.round(audio.currentTime) % 5 === 0) save(); });
     audio.addEventListener('error', () => { $('.name').textContent = `Could not load ${list[i]?.title || 'this song'}`; });
 
     // ---- The waveform: decoded once at a low sample rate, and the loudness of each bar kept in localStorage for next time.
@@ -490,11 +516,11 @@
       e.preventDefault();
       $('.play').click();
     });
-    // A click anywhere else closes it, except on the music page's tracklist, which drives the same player.
+    // A click anywhere else closes it, except on a song in the music page, which drives the same player.
     document.addEventListener('click', e => {
       if (el.contains(e.target)) return;
       vol.classList.remove('open');
-      if (open() && !e.target.closest('#tracklist')) expand(false);
+      if (open() && !e.target.closest('[data-song]')) expand(false);
     });
 
     // ---- Volume, remembered across visits. iOS keeps the volume on the hardware buttons, so there only mute is offered.
@@ -522,22 +548,35 @@
       else loud(level0.v, true);
     });
 
+    // ---- While a song plays the player follows the page down: once its own place has scrolled by, it holds on at the
+    // bottom of the window. Paused, it stays until the page has moved on half a screen, so it can be started again.
+    // Where it sits in the flow of the page (phones), a spot of its height keeps the page from jumping up.
+    const spot = document.createElement('div');
+    let docked = false, held = null, limit = 0, queued = false;
+    function follow() {
+      queued = false;
+      if (!docked) limit = el.getBoundingClientRect().bottom + scrollY;
+      const want = scrollY > limit && (!audio.paused || open() || (held !== null && Math.abs(scrollY - held) < innerHeight / 2));
+      if (want === docked) return;
+      docked = want;
+      if (want) {
+        spot.style.height = /^(static|relative)$/.test(getComputedStyle(el).position) ? `${el.offsetHeight}px` : '0';
+        el.before(spot);
+      } else spot.remove();
+      el.classList.toggle('docked', want);
+    }
+    const later = () => { if (!queued) { queued = true; requestAnimationFrame(follow); } };
+    addEventListener('scroll', later, { passive: true });
+    addEventListener('resize', () => { if (docked) { docked = false; spot.remove(); el.classList.remove('docked'); } later(); });
+    audio.addEventListener('play', () => { held = null; later(); });
+    audio.addEventListener('pause', () => { held = scrollY; later(); });
+
     document.body.prepend(el);
     json('music.json').then(songs => {
       list = Array.isArray(songs) ? songs.filter(s => s && s.src && s.title) : [];
       try { const st = JSON.parse(sessionStorage.getItem('fb-player') || 'null'); if (st && list[st.i]) { i = st.i; audio.src = new URL(list[i].src, ROOT).href; audio.currentTime = st.t; } } catch {}
-      show(); tracklist();
+      show();
     });
-
-    // The music page lists the same songs; clicking one plays it.
-    function tracklist() {
-      const ol = document.getElementById('tracklist');
-      if (!ol) return show();
-      ol.innerHTML = list.map((s, n) => `<li><button type="button" data-n="${n}">${esc(s.title)}</button>${s.artist ? ` <span class="soft">${esc(s.artist)}</span>` : ''}</li>`).join('');
-      ol.onclick = e => { const b = e.target.closest('button[data-n]'); if (b) load(+b.dataset.n, true); };
-      show(); entrances();
-    }
-    return { tracklist, el };
   })();
 
   // ---- Back to the top: a small button in the bottom right corner, there once the page has been scrolled most of a screen down.
@@ -716,7 +755,6 @@
     sheets();
     photoBar();
     nextDay();
-    player.tracklist();
   }
 
   // ---- Links load the next page in place, so the player is not interrupted. Anything unusual falls back to a normal load.
