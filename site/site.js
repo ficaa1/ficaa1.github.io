@@ -321,6 +321,7 @@
       $('.play').setAttribute('aria-label', audio.paused ? 'Play' : 'Pause');
       $('.play').disabled = $('.skip').disabled = cover.disabled = !s;
       $('.name').textContent = s ? (s.artist ? `${s.title} · ${s.artist}` : s.title) : 'No songs yet';
+      $('.name').href = new URL(s && s.slug ? `songs/${s.slug}.html` : 'music.html', ROOT).href;
       cover.style.backgroundImage = s && s.cover ? `url("${new URL(s.cover, ROOT).href}")` : '';
       cover.classList.toggle('art', !!(s && s.cover));
       if (open()) art(s);
@@ -353,6 +354,15 @@
       else if (n === i && audio.src) audio.play().catch(() => {});
       else load(n, true);
     });
+    // A song's own page asks with "player-select", detail { i }, for its song to be the one shown, without playing it.
+    // A song that is playing, or paused part of the way through, stays.
+    let wanted = null;
+    function select(n) {
+      if (!list.length) { wanted = n; return; }
+      if (!list[n] || n === i || !audio.paused || audio.currentTime > 0) return;
+      load(n, false);
+    }
+    document.addEventListener('player-select', e => select(+e.detail?.i));
     function load(n, play) {
       if (!list.length) return;
       i = (n + list.length) % list.length;
@@ -587,6 +597,10 @@
     json('music.json').then(songs => {
       list = Array.isArray(songs) ? songs.filter(s => s && s.src && s.title) : [];
       try { const st = JSON.parse(sessionStorage.getItem('fb-player') || 'null'); if (st && list[st.i]) { i = st.i; audio.src = new URL(list[i].src, ROOT).href; audio.currentTime = st.t; } } catch {}
+      // A song's page opened directly asked before this script was listening; its page says which song it is.
+      const own = document.querySelector('main [data-song-page]');
+      if (wanted === null && own) wanted = +own.dataset.songPage;
+      if (wanted !== null) { const n = wanted; wanted = null; select(n); }
       show();
     });
   })();

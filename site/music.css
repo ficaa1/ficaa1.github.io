@@ -45,18 +45,17 @@ body.music #player:not(.open) .play:hover:not(:disabled),
 body.music #player:not(.open) .skip:hover:not(:disabled),
 body.music #player:not(.open) .mute:hover { background: #2a2aff; }
 
-/* ---- The wall: one sleeve per song, a tag in the sleeve's colour hung under it ---- */
+/* ---- The wall: one sleeve per song, a tag in the sleeve's colour hung under it. The sleeve plays the song; the tag
+   is the way to the song's own page. ---- */
 ol.wall {
   list-style: none; margin: 0; padding: 40px var(--m) 120px; background: #fff;
   --cols: 4; display: grid; grid-template-columns: repeat(var(--cols), minmax(0, 1fr)); gap: 44px 18px;
 }
 /* The sleeve itself is not a size container: Safari can leave a container stuck at its old width after it changes
    columns in the grid. The face and the tag, which never do, carry the container units instead. */
-ol.wall > li { margin: 0; display: flex; min-width: 0; }
-ol.wall a {
-  display: flex; flex-direction: column; flex: 1; color: var(--k); text-decoration: none;
-  -webkit-tap-highlight-color: transparent;
-}
+ol.wall > li { margin: 0; display: flex; flex-direction: column; min-width: 0; }
+ol.wall a { color: var(--k); text-decoration: none; -webkit-tap-highlight-color: transparent; }
+ol.wall a[data-song] { display: flex; flex-direction: column; }
 ol.wall a:focus-visible { outline: 4px solid var(--sel); outline-offset: 4px; }
 .face { display: block; position: relative; aspect-ratio: 1; background: var(--c); overflow: hidden; container-type: inline-size; }
 .face img { display: block; width: 100%; height: 100%; object-fit: cover; }
@@ -71,6 +70,7 @@ ol.wall a:focus-visible { outline: 4px solid var(--sel); outline-offset: 4px; }
 /* The song that is on: two columns wide (placed by music.js), the picture and its loop whole on the sleeve's colour.
    A wide picture keeps its shape; a tall or square one gets two rows and sits in the middle of them. */
 ol.wall > li.big .face { aspect-ratio: var(--ar, 1); }
+ol.wall > li.big.tall > a[data-song] { flex: 1 0 auto; }
 ol.wall > li.big.tall .face { aspect-ratio: 1; max-height: 72svh; flex: 1 0 auto; }
 ol.wall > li.big.tall .tag { flex: none; }
 ol.wall > li.big .face img, ol.wall > li.big .face video.loop { position: absolute; inset: 0; object-fit: contain; }
@@ -101,7 +101,7 @@ li.is-on .face .glass { opacity: 1; visibility: visible; translate: none; transi
 }
 @media (prefers-reduced-motion: reduce) { .face .glass, li.is-on .face .glass { translate: none; } }
 
-.tag { display: flex; flex-direction: column; gap: 8px; flex: 1; background: var(--c); padding: 14px 14px 12px; margin-top: 6px; container-type: inline-size; }
+.tag { display: flex; flex-direction: column; gap: 8px; flex: 1; background: var(--c); color: var(--k); padding: 14px 14px 12px; margin-top: 6px; container-type: inline-size; }
 .tag .title {
   font: 700 min(var(--tmax, 34px), calc((100cqi - 2px) / var(--w))) / 0.95 var(--display); letter-spacing: -0.02em;
 }
@@ -118,11 +118,11 @@ ol.records {
   list-style: none; margin: 0; padding: 12px var(--m) 140px; background: var(--back); color: #fff;
   container-type: inline-size; --disc: clamp(84px, 11vw, 176px); --gap: clamp(16px, 2.4vw, 40px);
 }
-ol.records > li { margin: 0; }
-ol.records a {
-  display: grid; grid-template-columns: var(--disc) minmax(0, 1fr) auto; align-items: center; column-gap: var(--gap);
-  padding: 10px 0; color: #fff; text-decoration: none; -webkit-tap-highlight-color: transparent;
-}
+/* The record plays the song; its name and facts are the way to the song's own page. */
+ol.records > li { margin: 0; display: grid; grid-template-columns: var(--disc) minmax(0, 1fr); align-items: center; column-gap: var(--gap); padding: 10px 0; }
+ol.records a { color: #fff; text-decoration: none; -webkit-tap-highlight-color: transparent; }
+ol.records a[data-song] { display: block; }
+ol.records a.page { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; column-gap: var(--gap); }
 ol.records a:focus-visible { outline: 4px solid #fff; outline-offset: 4px; }
 .records .name {
   font: 700 min(7vw, calc((100cqi - var(--disc) - 2 * var(--gap) - 190px) / var(--w))) / 0.9 var(--display);
@@ -158,14 +158,14 @@ body.music:has(#player.docked) footer { padding-bottom: calc(128px + env(safe-ar
 /* ---- Feedback under the hand ---- */
 @media (hover: hover) and (pointer: fine) {
   ol.wall .face { transition: transform 200ms var(--ease-out); }
-  ol.wall a:hover .face { transform: translateY(-6px); }
-  ol.wall a:hover .title { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 0.12em; }
+  ol.wall a[data-song]:hover .face { transform: translateY(-6px); }
+  ol.wall a.tag:hover .title { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 0.12em; }
   .records .name { transition: color 160ms ease; }
-  .records a:hover .name { color: var(--hot); }
+  .records a.page:hover .name { color: var(--hot); }
   .records .disc { transition: transform 260ms var(--ease-out); }
-  .records a:hover .disc { transform: rotate(-24deg); }
+  .records a[data-song]:hover .disc { transform: rotate(-24deg); }
 }
-ol.wall a:active .face { transform: translateY(-2px); transition-duration: 100ms; }
+ol.wall a[data-song]:active .face { transform: translateY(-2px); transition-duration: 100ms; }
 
 /* A record that is on turns at 33 1/3, and stops where it is when paused. */
 @keyframes music-spin { to { transform: rotate(360deg); } }
@@ -197,9 +197,9 @@ ol.wall a:active .face { transform: translateY(-2px); transition-duration: 100ms
   .tag .after { font-size: 14px; }
   h2.backroom { padding-top: 88px; font-size: 13.5vw; }
   ol.records { --disc: 76px; --gap: 14px; padding-bottom: 96px; }
-  ol.records a { grid-template-columns: var(--disc) minmax(0, 1fr); row-gap: 2px; padding: 8px 0; }
-  .disc { grid-row: 1 / span 2; }
+  ol.records > li { padding: 8px 0; }
+  ol.records a.page { grid-template-columns: minmax(0, 1fr); row-gap: 2px; }
   .records .name { font-size: min(12vw, calc((100cqi - var(--disc) - var(--gap)) / var(--w))); }
-  .records .meta { grid-column: 2; justify-content: flex-start; font-size: 16px; gap: 16px; }
+  .records .meta { justify-content: flex-start; font-size: 16px; gap: 16px; }
   .records .time { text-align: left; min-width: 0; }
 }
