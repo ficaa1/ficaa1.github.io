@@ -89,15 +89,40 @@
   // With script, any .print or [data-view] opens large in a viewer you can step through, and the box of dumps
   // (the sleeves on photos.html, the tabs on a dump's page) arrives in order.
   let viewer;
+  // A picture's 4000 px copy, which the viewer shows in place of the 2000 px one: the JXL on an HDR screen that reads
+  // JXL, a JPEG anywhere else or when there is no JXL (a JPEG original has none). Each is fetched and decoded once, from
+  // the moment a finger touches the picture; the promise gives its address, or null when there is no such copy.
+  const large = new Map();
+  let jxl = false;
+  function enlarge(f) {
+    const img = f && f.querySelector('img'), src = img && (img.currentSrc || img.src);
+    if (!src || !/-\d+\.(jpg|jxl)$/.test(src)) return null;
+    if (/\.jxl$/.test(src)) jxl = true;
+    const base = src.replace(/-\d+\.(jpg|jxl)$/, '-4000.');
+    if (!large.has(base)) {
+      const exts = jxl && matchMedia('(dynamic-range: high)').matches ? ['jxl', 'jpg'] : ['jpg'];
+      const load = ([ext, ...rest]) => {
+        if (!ext) return Promise.resolve(null);
+        const pre = new Image();
+        pre.src = base + ext;
+        return pre.decode().then(() => pre.src, () => load(rest));
+      };
+      large.set(base, load(exts));
+    }
+    return large.get(base);
+  }
   function photos() {
     dumps();
     const figs = [...document.querySelectorAll('main .print, main [data-view]')];
     if (!figs.length) return;
     const trigger = f => f.querySelector('.open') || f;
-    figs.forEach((fig, n) => trigger(fig).addEventListener('click', e => {
-      if (e.metaKey || e.ctrlKey || e.shiftKey || e.button) return;
-      e.preventDefault(); view(figs, n);
-    }));
+    figs.forEach((fig, n) => {
+      trigger(fig).addEventListener('pointerdown', () => enlarge(fig));
+      trigger(fig).addEventListener('click', e => {
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.button) return;
+        e.preventDefault(); view(figs, n);
+      });
+    });
     const target = figs.find(f => location.hash === '#' + f.id);
     if (target) view(figs, figs.indexOf(target));
   }
@@ -154,6 +179,7 @@
       pic.querySelectorAll('source, img').forEach(x => x.sizes = '(max-width: 640px) 50vw, 30vw');
       a.href = '#' + f.id;
       a.append(pic);
+      a.addEventListener('pointerdown', () => enlarge(f));
       a.addEventListener('click', e => {
         if (e.metaKey || e.ctrlKey || e.shiftKey || e.button) return;
         e.preventDefault(); view(all, all.indexOf(f), cellFor);
@@ -247,13 +273,22 @@
     }
     viewer.figs = figs;
     viewer.back = back || null;
-    viewer.step = d => show((viewer.n + d + figs.length) % figs.length);
+    viewer.step = d => { viewer.dir = d; show((viewer.n + d + figs.length) % figs.length); };
     const show = i => {
       viewer.n = i;
       const f = viewer.figs[i], src = f.querySelector('img');
       const big = viewer.querySelector('img');
       big.src = (src.currentSrc || src.src).replace(/-\d+\.(jpg|jxl)$/, '-2000.$1');
       big.alt = src.alt;
+      // Then the 4000 px copy takes its place once it is ready, and the next three pictures the way the viewer is going
+      // load theirs, then the one behind: one at a time, stopping as soon as the viewer moves on.
+      const ready = enlarge(f);
+      if (ready) ready.then(url => {
+        if (viewer.n !== i) return;
+        if (url) big.src = url;
+        const d = viewer.dir || 1, len = viewer.figs.length;
+        [d, 2 * d, 3 * d, -d].reduce((before, k) => before.then(() => viewer.n === i && enlarge(viewer.figs[(i + k + 4 * len) % len])), Promise.resolve());
+      });
       const set = f.dataset.dump || (f.closest('.set') && f.closest('.set').querySelector('.title') || document.querySelector('main h1') || {}).textContent || '';
       const fc = f.querySelector('figcaption'), label = f.querySelector('figcaption .frame');
       const cap = f.dataset.caption || (fc ? fc.textContent.slice(label ? label.textContent.length : 0) : src.alt);
@@ -309,6 +344,7 @@
       $('.play').setAttribute('aria-label', audio.paused ? 'Play' : 'Pause');
       $('.play').disabled = $('.skip').disabled = cover.disabled = !s;
       $('.name').textContent = s ? (s.artist ? `${s.title} · ${s.artist}` : s.title) : 'No songs yet';
+      $('.name').href = new URL(s && s.slug ? `songs/${s.slug}.html` : 'music.html', ROOT).href;
       cover.style.backgroundImage = s && s.cover ? `url("${new URL(s.cover, ROOT).href}")` : '';
       cover.classList.toggle('art', !!(s && s.cover));
       if (open()) art(s);
@@ -341,6 +377,15 @@
       else if (n === i && audio.src) audio.play().catch(() => {});
       else load(n, true);
     });
+    // A song's own page asks with "player-select", detail { i }, for its song to be the one shown, without playing it.
+    // A song that is playing, or paused part of the way through, stays.
+    let wanted = null;
+    function select(n) {
+      if (!list.length) { wanted = n; return; }
+      if (!list[n] || n === i || !audio.paused || audio.currentTime > 0) return;
+      load(n, false);
+    }
+    document.addEventListener('player-select', e => select(+e.detail?.i));
     function load(n, play) {
       if (!list.length) return;
       i = (n + list.length) % list.length;
@@ -575,6 +620,10 @@
     json('music.json').then(songs => {
       list = Array.isArray(songs) ? songs.filter(s => s && s.src && s.title) : [];
       try { const st = JSON.parse(sessionStorage.getItem('fb-player') || 'null'); if (st && list[st.i]) { i = st.i; audio.src = new URL(list[i].src, ROOT).href; audio.currentTime = st.t; } } catch {}
+      // A song's page opened directly asked before this script was listening; its page says which song it is.
+      const own = document.querySelector('main [data-song-page]');
+      if (wanted === null && own) wanted = +own.dataset.songPage;
+      if (wanted !== null) { const n = wanted; wanted = null; select(n); }
       show();
     });
   })();
