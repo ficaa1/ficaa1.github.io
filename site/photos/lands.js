@@ -24,3 +24,10 @@
   document.addEventListener('visibilitychange', seen);
   play();
 })();
+
+// On a phone, where nothing is pointed at, the squares a little above the middle of the screen show their picture (.lit, lands.css).
+(() => {
+  if (matchMedia('(hover: hover) and (pointer: fine)').matches || !('IntersectionObserver' in window)) return;
+  const io = new IntersectionObserver(es => es.forEach(e => e.target.classList.toggle('lit', e.isIntersecting)), { rootMargin: '-25% 0px -55% 0px' });
+  document.querySelectorAll('.lands .land:has(.glimpse)').forEach(l => io.observe(l));
+})();
