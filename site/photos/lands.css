@@ -90,6 +90,24 @@ body:has(.lands .reel) > footer { position: relative; z-index: 1; background: tr
   .lands .land .name a:hover .nm { translate: 0 -0.04em; }
 }
 
+/* ---- A glimpse of the place: its page's first picture under the glass, faint, coming up clear while the square is pointed
+   at or focused, or on a phone while it is a little above the middle of the screen (.lit, lands.js). The arms fade back meanwhile. */
+.lands .land .glimpse {
+  position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; pointer-events: none;
+  opacity: .16; filter: blur(6px) saturate(.8); transform: scale(1.06);
+  transition: opacity 450ms ease, filter 450ms ease, transform 700ms cubic-bezier(.22, 1, .36, 1);
+}
+.lands .land::before { transition: opacity 450ms ease; }
+.lands .land.lit .glimpse, .lands .land:focus-within .glimpse { opacity: 1; filter: none; transform: none; }
+.lands .land:is(.lit, :focus-within)::before { opacity: 0 !important; }
+.lands .land.lit .name, .lands .land:focus-within .name { text-shadow: 0 1px 12px rgb(0 0 0 / .7), 0 0 2px rgb(0 0 0 / .5); }
+@media (hover: hover) and (pointer: fine) {
+  .lands .land:hover .glimpse { opacity: 1; filter: none; transform: none; }
+  .lands .land:hover::before { opacity: 0 !important; }
+  .lands .land:hover .name { text-shadow: 0 1px 12px rgb(0 0 0 / .7), 0 0 2px rgb(0 0 0 / .5); }
+}
+@media (prefers-reduced-motion: reduce) { .lands .land .glimpse, .lands .land::before { transition: none; } }
+
 /* ---- Each place in the face of its page. */
 .lands .land { color: #fff; }
 .lands [data-land="france"]::before {

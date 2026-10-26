@@ -440,6 +440,15 @@ const signOf = x => {
 const ver = f => createHash('sha1').update(readFileSync(join(site, 'photos', f))).digest('hex').slice(0, 8);
 // The credit the Paris arms on the squares ask for, at the foot of photos.html, inside the back of the print.
 const landsCredit = () => `<p class="credit">Arms of Paris after <a href="https://commons.wikimedia.org/wiki/File:Blason_paris_75.svg">Thom.lanaud</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a></p>`;
+// A glimpse of each place on its square: the first picture its page opens with, faint under the glass until the square is
+// pointed at, or on a phone until it comes near the middle of the screen (lands.js).
+// Filip's picks stand in for the page's first picture where he chose one.
+const GLIMPSE = { france: 'paris-2025/jan18-3', ljubljana: 'ljubljana-2025-08/hdr-18', italy: 'rome-2025/last-day-2' };
+const glimpse = e => {
+  const f = join(site, href(e, 0), 'index.html');
+  const m = GLIMPSE[e.id] ? [, media(0, `${GLIMPSE[e.id]}-1000.jpg`)] : existsSync(f) && readFileSync(f, 'utf8').match(/<img[^>]*src="([^"]+-1000\.jpg)"/);
+  return m ? `<img class="glimpse" src="${m[1]}" alt="" loading="lazy" decoding="async">\n` : '';
+};
 function lands() {
   return `<section class="set lands" aria-labelledby="ph-title">
 <link rel="stylesheet" href="photos/lands.css?v=${ver('lands.css')}">
@@ -450,7 +459,7 @@ function lands() {
 <h1 class="title" id="ph-title">Photos</h1>
 <ol class="squares">
 ${open.map(e => `<li class="land" data-land="${esc(e.id)}">
-<h2 class="name"><a href="${href(e, 0)}">${signOf(e)}</a></h2>
+${glimpse(e)}<h2 class="name"><a href="${href(e, 0)}">${signOf(e)}</a></h2>
 </li>`).join('\n')}
 </ol>
 <script src="photos/lands.js?v=${ver('lands.js')}" defer></script>
