@@ -101,9 +101,10 @@ nice -n 19 ionice -c3 node tools/photos.mjs montenegro-2024 --fetch
 ```
 
 This command does four things:
-1. It copies each missing original into `photos-src-local/<id>/`, which is gitignored. A JPEG is scaled to 2000 px on plex with niced ffmpeg, in a `mktemp -d` folder that is removed afterwards.
+1. It copies each missing original into `photos-src-local/<id>/`, which is gitignored. A JPEG is scaled to 2000 px on plex with niced ffmpeg, in a `mktemp -d` folder that is removed afterwards, and is also fetched whole as `site/photos/<id>/<file>-full.jpg`.
 2. It reads the camera settings from the original's first 256 KB.
 3. It writes the web copies to `site/photos/<id>/`: `<file>-1000.jpg/.jxl`, `<file>-2000.jpg/.jxl` and `<file>-400.jpg`. Their sizes are saved in `photos.json` under `"web"`. The copies are gitignored.
+   It also writes the full size that the viewer swaps in once the 2000 px copy shows: `<file>-full.jxl` and `<file>-full.jpg`. A JPEG XL original is copied untouched, and its JPEG is made with `djxl` at quality 90, tone mapped like the other copies. A JPEG original is the fetched file untouched, saved again at quality 90 when it is over 12 MB, and has no `.jxl`. An HDR JPEG keeps its gain map: `tools/gainmap.mjs` re-saves the image and the gain map and keeps their metadata. The viewer shows the JXL on an HDR screen that reads JXL and the JPEG everywhere else, or when there is no JXL.
    A JPEG XL original is decoded with libjxl's `djxl` when it is installed (`DJXL`, or `~/.local/opt/libjxl/usr/bin/djxl`). It reads every colour encoding and tone maps Lightroom's HDR exports to an ordinary screen; without it, the wasm decoder leaves those exports nearly black.
 4. It fills the markers on the page and refreshes the switcher.
 

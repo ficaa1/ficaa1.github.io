@@ -254,6 +254,18 @@
       const big = viewer.querySelector('img');
       big.src = (src.currentSrc || src.src).replace(/-\d+\.(jpg|jxl)$/, '-2000.$1');
       big.alt = src.alt;
+      // Then the original at full size takes the 2000 px copy's place once it has loaded: the JXL itself on an HDR
+      // screen that reads JXL, a JPEG anywhere else or when there is no JXL (a JPEG original has none).
+      // A frame without either keeps the 2000 px copy.
+      const exts = /\.jxl$/.test(big.src) && matchMedia('(dynamic-range: high)').matches ? ['jxl', 'jpg'] : ['jpg'];
+      const base = big.src.replace(/-2000\.(jpg|jxl)$/, '-full.');
+      const full = ([ext, ...rest]) => {
+        if (!ext || viewer.n !== i) return;
+        const url = base + ext, pre = new Image();
+        pre.src = url;
+        pre.decode().then(() => { if (viewer.n === i) big.src = url; }, () => full(rest));
+      };
+      full(exts);
       const set = f.dataset.dump || (f.closest('.set') && f.closest('.set').querySelector('.title') || document.querySelector('main h1') || {}).textContent || '';
       const fc = f.querySelector('figcaption'), label = f.querySelector('figcaption .frame');
       const cap = f.dataset.caption || (fc ? fc.textContent.slice(label ? label.textContent.length : 0) : src.alt);
