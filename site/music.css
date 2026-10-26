@@ -18,7 +18,6 @@
 
 body.music {
   --m: max(16px, 3vw);
-  --left: var(--m);
   --display: "League Spartan", "Arial Narrow", Arial, sans-serif;
   --front: #0000ee;
   --back: #050a5c;
@@ -192,9 +191,6 @@ ol.wall a[data-song]:active .face { transform: translateY(-2px); transition-dura
 /* ---- Narrower ---- */
 @media (max-width: 1100px) {
   ol.wall { --cols: 3; }
-}
-@media (max-width: 900px) {
-  body.music #player { padding-left: var(--m); }
 }
 @media (max-width: 700px) {
   .front { grid-template-columns: 1fr; padding: 9vh var(--m) 28px; row-gap: 28px; }

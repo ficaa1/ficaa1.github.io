@@ -19,7 +19,6 @@
 
 body.song {
   --m: max(16px, 3vw);
-  --left: var(--m);
   --display: "League Spartan", "Arial Narrow", Arial, sans-serif;
   --front: #0000ee;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
