@@ -199,3 +199,5 @@ body:has(.lands) footer .imprint { padding-top: 8px; font-size: 14px; }
 /* The credit for the Paris arms, small, under the imprint at the foot of the page. */
 body:has(.lands) footer .credit { margin-top: 12px; font-size: 13px; opacity: 0.7; }
 body:has(.lands) footer .credit a { color: inherit; }
+/* Low power mode (site.js) has no blur behind the glass, so the panes are darker instead. */
+html[data-lite] .lands .land { --tint: rgb(0 0 0 / .45); }

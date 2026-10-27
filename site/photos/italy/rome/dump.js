@@ -4,7 +4,7 @@
   const main = document.querySelector('main[data-dump="rome-2025"]');
   if (!main || main.hasAttribute('data-js')) return;
   main.setAttribute('data-js', '');
-  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const still = (matchMedia('(prefers-reduced-motion: reduce)').matches || document.documentElement.hasAttribute('data-lite'));
 
   // The films: no controls with script; each plays while it is on screen, and never with reduced motion.
   const loops = [...main.querySelectorAll('video.loop')];

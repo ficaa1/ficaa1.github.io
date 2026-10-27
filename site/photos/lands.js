@@ -2,7 +2,7 @@
 // without this the first frame stands still. Runs on the first load and again after the site swaps pages in place.
 (() => {
   let v = document.querySelector('.lands .reel video');
-  if (!v || v.dataset.on || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!v || v.dataset.on || (matchMedia('(prefers-reduced-motion: reduce)').matches || document.documentElement.hasAttribute('data-lite'))) return;
   v.dataset.on = '1';
   // A film that came in with a page swapped in place was made in another document, and Safari on the iPhone neither
   // shows its poster nor plays it; a copy made here does both. The sound is off in script too, or autoplay is refused.

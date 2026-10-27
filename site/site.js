@@ -4,6 +4,23 @@
   const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
   const json = name => fetch(new URL(name, ROOT)).then(r => (r.ok ? r.json() : [])).catch(() => []);
 
+  // ---- Low power mode, for TVs and old phones: the switch at the foot of every page. The page scripts treat it as reduced
+  // motion (no film, no song loops), site.css stops the animations and the glass blur, and the viewer keeps to the 2000 px
+  // pictures. It is kept in localStorage and the page reloads when it is switched.
+  let lite = false;
+  try { lite = localStorage.getItem('fb-lite') === '1'; } catch {}
+  document.documentElement.toggleAttribute('data-lite', lite);
+  function liteSwitch() {
+    const foot = document.querySelector('footer #trace') || document.querySelector('footer');
+    if (!foot || foot.querySelector('.lite')) return;
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'lite'; b.setAttribute('aria-pressed', lite);
+    b.textContent = lite ? 'Low power mode: on' : 'Low power mode: off';
+    b.addEventListener('click', () => { try { localStorage.setItem('fb-lite', lite ? '0' : '1'); } catch {} location.reload(); });
+    const p = document.createElement('p'); p.append(b);
+    foot.append(p);
+  }
+
   // ---- Focus rings are for the keyboard. A control clicked or tapped stays quiet ([data-quiet]) until it loses focus, even
   // when a key is pressed afterwards (Esc to leave full screen, an arrow in the viewer), which would otherwise ring it in
   // Chrome. Focus put back by script (closing the viewer or the day grid) is quiet too when that was opened with a pointer,
@@ -96,7 +113,7 @@
   let jxl = false;
   function enlarge(f) {
     const img = f && f.querySelector('img'), src = img && (img.currentSrc || img.src);
-    if (!src || !/-\d+\.(jpg|jxl)$/.test(src)) return null;
+    if (lite || !src || !/-\d+\.(jpg|jxl)$/.test(src)) return null;
     if (/\.jxl$/.test(src)) jxl = true;
     const base = src.replace(/-\d+\.(jpg|jxl)$/, '-4000.');
     if (!large.has(base)) {
@@ -334,6 +351,7 @@
     const $ = s => el.querySelector(s);
     const cover = $('.cover'), canvas = $('canvas'), pic = $('.cover img'), clip = $('.cover video'), seek = $('.seek input'), vol = $('.vol'), level = $('.level');
     const still = matchMedia('(prefers-reduced-motion: reduce)'), touch = matchMedia('(hover: none)');
+    const calm = () => still.matches || document.documentElement.hasAttribute('data-lite');
     const mmss = t => (t > 0 && isFinite(t) ? `${Math.floor(t / 60)}:${String(Math.floor(t % 60)).padStart(2, '0')}` : '0:00');
     let list = [], i = 0;
 
@@ -353,7 +371,7 @@
     // A song whose cover is a video loop ("loopFull", the whole clip, or "loop", its square) plays it in the cover while the
     // song plays, and holds its frame when paused. The picture stays under it until the video is running.
     function motion() {
-      const s = list[i], src = s && !still.matches && (s.loopFull || s.loop) ? new URL(s.loopFull || s.loop, ROOT).href : '';
+      const s = list[i], src = s && !calm() && (s.loopFull || s.loop) ? new URL(s.loopFull || s.loop, ROOT).href : '';
       if (clip.src !== src) { clip.classList.remove('on'); if (src) clip.src = src; else clip.removeAttribute('src'); }
       if (src && !audio.paused) clip.play().catch(() => {}); else clip.pause();
     }
@@ -528,7 +546,7 @@
       if (on) draw();
       const big = on ? cover.getBoundingClientRect() : from, small = on ? from : to, ref = el.getBoundingClientRect();
       const done = () => { moving = null; if (!on) { setOpen(false); draw(); } };
-      if (still.matches) return done();
+      if (calm()) return done();
       // A portrait or landscape picture starts as its middle square, the thumbnail's crop, and opens out to its full shape.
       const side = Math.min(big.width, big.height), dx = (big.width - side) / 2, dy = (big.height - side) / 2, k = small.width / side;
       const shut = `inset(${small.top - ref.top}px ${ref.right - small.right}px ${ref.bottom - small.bottom}px ${small.left - ref.left}px)`;
@@ -635,7 +653,7 @@
     b.id = 'top'; b.type = 'button'; b.title = 'Back to the top'; b.setAttribute('aria-label', 'Back to the top');
     b.innerHTML = '<svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M10 3 L17 11 H12.5 V17 H7.5 V11 H3 Z"/></svg>';
     b.addEventListener('click', () => {
-      scrollTo({ top: 0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+      scrollTo({ top: 0, behavior: (matchMedia('(prefers-reduced-motion: reduce)').matches || document.documentElement.hasAttribute('data-lite')) ? 'auto' : 'smooth' });
       const h1 = document.querySelector('main h1');
       if (h1) { h1.tabIndex = -1; h1.focus({ preventScroll: true }); }
     });
@@ -668,7 +686,7 @@
     b.addEventListener('click', () => {
       const n = below();
       if (!n) return;
-      scrollTo({ top: y(n.at) - n.margin, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+      scrollTo({ top: y(n.at) - n.margin, behavior: (matchMedia('(prefers-reduced-motion: reduce)').matches || document.documentElement.hasAttribute('data-lite')) ? 'auto' : 'smooth' });
       const h = n.at.querySelector('h2, h3');
       if (h) { h.tabIndex = -1; h.focus({ preventScroll: true }); }
     });
@@ -747,7 +765,7 @@
       const a = e.target.closest('.days a');
       if (!a || e.metaKey || e.ctrlKey || e.shiftKey || e.button) return;
       e.preventDefault();
-      a.day.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+      a.day.scrollIntoView({ behavior: (matchMedia('(prefers-reduced-motion: reduce)').matches || document.documentElement.hasAttribute('data-lite')) ? 'auto' : 'smooth', block: 'start' });
     });
     document.body.append(bar);
     paint(bar, parts[0] || main.querySelector('h1') || main);
@@ -804,6 +822,7 @@
     sheets();
     photoBar();
     nextDay();
+    liteSwitch();
   }
 
   // ---- Links load the next page in place, so the player is not interrupted. Anything unusual falls back to a normal load.

@@ -11,7 +11,7 @@
   const fl = main && main.querySelector('.flight');
   if (!fl || fl.hasAttribute('data-js')) return;
   fl.setAttribute('data-js', '');
-  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const still = (matchMedia('(prefers-reduced-motion: reduce)').matches || document.documentElement.hasAttribute('data-lite'));
   const io = 'IntersectionObserver' in window;
   const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
 

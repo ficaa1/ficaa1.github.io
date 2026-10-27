@@ -15,11 +15,13 @@
 
   // A sleeve's video loop runs while its song plays and holds its frame when paused; still pictures for reduced motion.
   const still = matchMedia('(prefers-reduced-motion: reduce)');
+  // Low power mode (site.js) keeps the stills too.
+  const calm = () => still.matches || document.documentElement.hasAttribute('data-lite');
   function loop(it, playing) {
     const v = it.li.querySelector('video.loop');
     if (!v) return;
     if (it.li.classList.contains('record')) knock(it.li);
-    if (!playing || still.matches) {
+    if (!playing || calm()) {
       v.pause();
       if (playing && v.dataset.still) { v.poster = v.dataset.still; v.classList.add('on'); }
       return;
@@ -85,7 +87,7 @@
   // The sleeves glide to their new places: each is measured where it shows now, moved, then animated back from there
   // (only transform, so a click in the middle of a glide starts the next one from wherever the sleeves are).
   function flow(change) {
-    const lis = [...wall.children], quiet = still.matches || !Element.prototype.animate;
+    const lis = [...wall.children], quiet = calm() || !Element.prototype.animate;
     const was = quiet ? null : lis.map(li => li.getBoundingClientRect());
     lis.forEach(li => li.getAnimations?.().forEach(a => a.cancel()));
     change();
