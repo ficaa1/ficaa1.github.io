@@ -21,6 +21,11 @@ the glass up to 24 pixels below its pane until scrolling refreshed it. Run
 `tools/glass-geometry-check.js` as a browser expression on Photos with glass enabled
 and Montenegro visible to check that a mid-entrance measurement settles correctly
 without scrolling, and that paused rendering returns to idle.
+Projection and video cropping use the reel's displayed bounds, with pane coordinates
+relative to that box. `innerWidth` includes classic scrollbar space while a fixed
+reel excludes it; using that larger width squeezed the glass toward the left.
+`tools/glass-bounds-check.js` reserves a scrollbar gutter and measures the actual
+rendered alpha edge at Ljubljana's right side to catch this scaling mismatch.
 Low power mode, disabled videos and reduced motion skip WebGL. Unsupported WebGL,
 missing video-frame callbacks or failed CORS also retain the original film and CSS
 blur. Music's small SVG seek-bar lenses are unchanged.

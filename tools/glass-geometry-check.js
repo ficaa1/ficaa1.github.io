@@ -41,6 +41,9 @@
     await new Promise(resolve => setTimeout(resolve, 200));
     const initial = read();
     entrances.forEach(a => a.finish());
+    await Promise.all(entrances.map(a => a.finished));
+    const deadline = performance.now() + 5000;
+    while (Math.abs(read().offset) > .5 && performance.now() < deadline) await wait();
     await wait();
     const settled = read();
     const beforeIdle = root.glass.info;

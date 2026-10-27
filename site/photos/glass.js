@@ -147,8 +147,11 @@
       }
       function layout() {
         const initial = width === 0;
-        const viewChanged = width !== innerWidth || height !== innerHeight;
-        width = innerWidth; height = innerHeight;
+        // Fixed elements exclude classic scrollbar space; innerWidth includes it.
+        // Use the film's displayed box for both projection and object-fit cropping.
+        const view = video.parentElement.getBoundingClientRect();
+        const viewChanged = width !== view.width || height !== view.height;
+        width = view.width; height = view.height;
         // Only the film is downsampled; all text, emblems and highlights retain the display's resolution.
         const scale = Math.min(1, (settings.resolution || resolutionLimit) / Math.max(width, height));
         const nextWidth = Math.max(2, Math.round(width * scale)), nextHeight = Math.max(2, Math.round(height * scale));
@@ -157,7 +160,7 @@
           canvas.width = nextWidth; canvas.height = nextHeight;
         }
         for (let i = 0; i < panes.length; i++) {
-          const r = panes[i].getBoundingClientRect(); rects.set([r.x, r.y, r.width, r.height], i * 4);
+          const r = panes[i].getBoundingClientRect(); rects.set([r.x - view.x, r.y - view.y, r.width, r.height], i * 4);
           radii[i] = parseFloat(getComputedStyle(panes[i]).borderTopLeftRadius);
         }
         if (resized) {
@@ -243,6 +246,7 @@
       document.addEventListener('visibilitychange', schedule, options);
       canvas.addEventListener('webglcontextlost', e => { e.preventDefault(); cleanup(); }, { signal: controller.signal });
       resizeObserver.observe(root);
+      resizeObserver.observe(video.parentElement);
       if (video.requestVideoFrameCallback) frame = video.requestVideoFrameCallback(nextFrame);
       else { cleanup(); return; }
       render();
