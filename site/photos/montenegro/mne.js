@@ -6,7 +6,7 @@
   if (!main || main.hasAttribute('data-js')) return;
   main.setAttribute('data-js', '');
   const $$ = (s, root = main) => [...root.querySelectorAll(s)];
-  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const still = (matchMedia('(prefers-reduced-motion: reduce)').matches || document.documentElement.hasAttribute('data-lite'));
   if (!('IntersectionObserver' in window)) return main.removeAttribute('data-js');
 
   // ---- The clock of each evening: the time of the row crossing the middle of the screen.

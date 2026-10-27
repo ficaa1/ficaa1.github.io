@@ -5,7 +5,7 @@
   if (!main || main.hasAttribute('data-js')) return;
   main.setAttribute('data-js', '');
   const $ = s => main.querySelector(s), $$ = s => [...main.querySelectorAll(s)];
-  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const still = (matchMedia('(prefers-reduced-motion: reduce)').matches || document.documentElement.hasAttribute('data-lite'));
 
   // ---- The ferry: one window, the frames of the crossing in turn. Choosing a time stops the turning.
   const win = $('.window'), panes = $$('.pane'), times = $$('.times button'), cap = $('.ferry .cap');

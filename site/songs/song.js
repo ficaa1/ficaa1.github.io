@@ -10,6 +10,8 @@
   if (!front) return;
   const N = +front.dataset.songPage;
   const still = matchMedia('(prefers-reduced-motion: reduce)');
+  // Low power mode (site.js) keeps the stills too.
+  const calm = () => still.matches || document.documentElement.hasAttribute('data-lite');
   const mmss = t => `${Math.floor(t / 60)}:${String(Math.floor(t % 60)).padStart(2, '0')}`; // taste-skill-ignore: minutes and seconds
   const name = front.querySelector('.songname'), word = main.querySelector('.rooms .word');
   const times = [...main.querySelectorAll('.time')], state = main.querySelector('.tag .state'), lbl = front.querySelector('.play .lbl');
@@ -133,7 +135,7 @@
   }
   function scan() {
     if (!front.isConnected) return;
-    if (still.matches) { at(name, 0.4); at(word, 0.5); return; }
+    if (calm()) { at(name, 0.4); at(word, 0.5); return; }
     const a = name.getBoundingClientRect();
     at(name, 0.4 + 0.6 * clamp(scrollY / (a.top + scrollY + a.height)));
     if (word) { const b = word.getBoundingClientRect(); at(word, clamp((innerHeight - b.top) / (innerHeight + b.height))); }
@@ -154,7 +156,7 @@
     [[name, seen.name], [face, seen.face]].forEach(([el, inView]) => {
       const v = el && el.querySelector('video.loop');
       if (!v) return;
-      if (!playing || still.matches || !inView) { v.pause(); return; }
+      if (!playing || calm() || !inView) { v.pause(); return; }
       if (!v.getAttribute('src')) { v.src = v.dataset.src; v.addEventListener('playing', () => v.classList.add('on')); }
       v.play().catch(() => {});
     });
@@ -213,7 +215,7 @@
   // ---- A strip opens into its song: its colour grows from where it is to fill the window while site.js swaps the page
   // in, then lets go. The next page is that same colour, so only the contents are seen to change; the song plays on.
   main.querySelectorAll('ol.rooms a').forEach(a => a.addEventListener('click', e => {
-    if (e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || still.matches || !Element.prototype.animate) return;
+    if (e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || calm() || !Element.prototype.animate) return;
     const li = a.closest('li'), r = li.getBoundingClientRect(), colour = getComputedStyle(li).backgroundColor;
     document.getElementById('door')?.remove();
     const door = document.createElement('div');
