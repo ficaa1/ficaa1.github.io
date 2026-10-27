@@ -4,9 +4,11 @@ The photo panes now share a WebGL renderer (`site/photos/glass.js`). It uploads 
 film once per video frame, blurs it in two passes at half the canvas resolution,
 then draws each visible pane with separate red, green and blue samples at its rim.
 Scissor rectangles limit shading to visible pane bounds. Text, emblems, photographs,
-focus, hover and highlights remain HTML/CSS. The canvas is capped at 1280 pixels on
-its long edge (640 with a recognized software renderer); display DPR does not
-multiply its resolution. This approximates the original lens rather than reproducing
+focus, hover and highlights remain HTML/CSS. The selected site settings explicitly
+cap the canvas at 1280 pixels on its long edge; display DPR does not multiply its
+resolution. Automatic resolution remains available in the playground (1280 pixels
+on hardware, 640 with a recognized software renderer), and was used for the
+historical benchmarks below. This approximates the original lens rather than reproducing
 its SVG gradient stops and blur pixel for pixel.
 
 There is no continuous animation loop while the film is paused. Scroll/resize

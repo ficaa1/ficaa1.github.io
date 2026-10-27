@@ -141,7 +141,7 @@
       script.onload = resolve; script.onerror = () => reject(new Error('Could not load the glass renderer.')); document.head.append(script);
     });
     if (!root.glass?.info.active) throw new Error('WebGL could not start. Check browser hardware acceleration, then reload.');
-    defaults = { ...root.glass.defaults, tint: .06, darkness: .38, radius: -1, glimpses: true };
+    defaults = { ...root.glass.defaults, tint: .035, darkness: .28, radius: -1, glimpses: true };
     looks = {
       site: { name: 'Current site settings', settings: defaults },
       subtle: { name: 'Subtle · gentle refraction', settings: { ...defaults, blur: .025, refraction: .09, dispersion: .012, rimWidth: .12 } },

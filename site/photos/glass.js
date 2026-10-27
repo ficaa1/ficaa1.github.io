@@ -14,8 +14,8 @@
     const rendererInfo = gl.getExtension('WEBGL_debug_renderer_info');
     const renderer = rendererInfo ? gl.getParameter(rendererInfo.UNMASKED_RENDERER_WEBGL) : '';
     const resolutionLimit = /swiftshader|llvmpipe|software/i.test(renderer) ? 640 : 1280;
-    const defaults = Object.freeze({ blur: .035, refraction: .17, dispersion: .03, bendWidth: .16,
-      rimWidth: .17, saturation: 1.05, brightness: .95, opacity: 1, resolution: 0 });
+    const defaults = Object.freeze({ blur: .018, refraction: .065, dispersion: .011, bendWidth: .13,
+      rimWidth: .255, saturation: 1, brightness: .88, opacity: 1, resolution: 1280 });
     const limits = { blur: [0, .12], refraction: [0, .5], dispersion: [0, .15], bendWidth: [.02, .45],
       rimWidth: [.01, .5], saturation: [0, 2], brightness: [.2, 1.5], opacity: [0, 1], resolution: [0, 2560] };
     const settings = { ...defaults };

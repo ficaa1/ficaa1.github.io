@@ -11,8 +11,9 @@ The preview reads the real panes from `site/photos.html` and uses the same
 `glass.settings`, `glass.update(patch)`, and `glass.info` while its context is alive.
 Updates are clamped to safe ranges. They redraw paused video without reuploading
 the film; only a new video frame, load, or seek marks the source texture dirty.
-Default uniform values preserve the public appearance. `resolution: 0` retains
-the automatic 1280-pixel hardware / 640-pixel software cap.
+Default uniform values match the public appearance, including its explicit
+1280-pixel resolution cap. Selecting `resolution: 0` uses an automatic
+1280-pixel hardware / 640-pixel software cap instead.
 
 The preview saves named presets and the last adjustment under its own localStorage
 key. It never changes the public site's low-power, motion, or glass preferences.
