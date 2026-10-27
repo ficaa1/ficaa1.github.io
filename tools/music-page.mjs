@@ -3,9 +3,11 @@
 // (wave.p) set in lines like a page of text, the way the player draws them, in a flat colour from Ableton's clip palette.
 // The cursed songs are bare records in the back room: the same bars set round the record as grooves.
 // A song's length is wave.d, or "d" on songs with art (ffprobe on plex).
-import { writeFileSync } from 'node:fs';
+import { writeFileSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { createHash } from 'node:crypto';
 import { site, load, esc, mmss, ems, heights, SL, sleevePath } from './songs.mjs';
+const version = name => createHash('sha1').update(readFileSync(join(site, name))).digest('hex').slice(0, 8);
 
 // Record: the same 480 bars as 10 grooves of 48, outside in, starting at the top and going clockwise.
 const RC = { size: 600, c: 300, r0: 272, step: 16, cols: 48, rows: 10, label: 104 };
@@ -82,7 +84,7 @@ const html = `<!DOCTYPE html>
 <body class="music">
 <nav><a href="index.html">Welcome</a> | <a href="blog.html">Blog</a> | <a href="cv.html">CV</a> | <a href="contact.html">Contact</a> | <a href="photos.html">Photos</a> | <b>Music</b></nav>
 <main>
-<link rel="stylesheet" href="music.css">
+<link rel="stylesheet" href="music.css?v=${version('music.css')}">
 <header class="front">
 <h1>Music</h1>
 <p class="lead">Some of the songs im least embarassed to share</p>
@@ -95,6 +97,7 @@ ${main.map(sleeve).join('\n')}
 ${cursed.map(record).join('\n')}
 </ol>
 <script src="music.js"></script>
+<script src="seek-glass.js?v=${version('seek-glass.js')}"></script>
 </main>
 <footer>
 <div id="trace"><p>Filip Biljić, Paris.</p></div>

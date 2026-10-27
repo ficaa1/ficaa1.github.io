@@ -5,7 +5,9 @@
 // song.css and song.js in site/songs/ are written by hand, not here.
 import { readFileSync, writeFileSync, readdirSync, unlinkSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
+import { createHash } from 'node:crypto';
 import { site, load, esc, mmss, ems, heights, SL, sleevePath } from './songs.mjs';
+const version = name => createHash('sha1').update(readFileSync(join(site, name))).digest('hex').slice(0, 8);
 
 const out = join(site, 'songs');
 const ORIGIN = 'https://www.filipbiljic.com/songs/';
@@ -107,7 +109,7 @@ ${image}<meta property="og:audio" content="${esc(s.src)}">
 <body class="song">
 <nav><a href="../index.html">Welcome</a> | <a href="../blog.html">Blog</a> | <a href="../cv.html">CV</a> | <a href="../contact.html">Contact</a> | <a href="../photos.html">Photos</a> | <a href="../music.html">Music</a></nav>
 <main>
-<link rel="stylesheet" href="song.css">
+<link rel="stylesheet" href="song.css?v=${version('songs/song.css')}">
 <style>body.song{--c:${x.colour};--k:${x.ink}}</style>
 <header class="front" data-song-page="${n}" style="${fit}">
 <h1 class="songname">${letters(x, true)}</h1>
@@ -123,7 +125,8 @@ ${image}<meta property="og:audio" content="${esc(s.src)}">
 ${face}
 </section>
 ${strips(n)}
-<script src="song.js"></script>
+<script src="song.js?v=${version('songs/song.js')}"></script>
+<script src="../seek-glass.js?v=${version('seek-glass.js')}"></script>
 </main>
 <footer>
 <div id="trace"><p>Filip Biljić, Paris.</p></div>

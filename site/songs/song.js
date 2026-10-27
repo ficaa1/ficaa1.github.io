@@ -289,7 +289,7 @@
     const again = () => { if (loaded()) { document.fonts.removeEventListener('loadingdone', again); lay(); } };
     document.fonts.addEventListener('loadingdone', again);
     addEventListener('load', again, { once: true });
-    main.querySelector('link[href$="song.css"]')?.addEventListener('load', () => document.fonts.load('700 1em "League Spartan"').then(again));
+    main.querySelector('link[href*="song.css"]')?.addEventListener('load', () => document.fonts.load('700 1em "League Spartan"').then(again));
   }
   // The player shows this page's song, unless one is already playing or part heard (site.js decides).
   document.dispatchEvent(new CustomEvent('player-select', { detail: { i: N } }));

@@ -28,7 +28,37 @@ reel excludes it; using that larger width squeezed the glass toward the left.
 rendered alpha edge at Ljubljana's right side to catch this scaling mismatch.
 Low power mode, disabled videos and reduced motion skip WebGL. Unsupported WebGL,
 missing video-frame callbacks or failed CORS also retain the original film and CSS
-blur. Music's small SVG seek-bar lenses are unchanged.
+blur.
+
+## Music seek bars
+
+The song pages and Music wall now use `site/seek-glass.mjs`. Their track and thumb
+share the same material and selected optics as Photos, exported by
+`site/glass-material.mjs`; `site/seek-glass.js` mounts it on direct and in-place
+visits. The old SVG displacement filters have been removed.
+
+One 38-pixel-high canvas covers each active visible seek bar, capped at 1280 pixels
+wide. The original cover or playing video supplies one texture; blur is cached at
+half cover resolution and capped at 640 pixels on its long edge. Drawing the track
+and thumb reuses those textures. The track's thin geometry sets its blur distance;
+the optical proportions, saturation and brightness use the shared settings. Rounded
+ends match the CSS pill geometry; progress, tint and highlights remain HTML/CSS.
+Contained artwork retains its letterboxing. Drawn waveform covers are rasterized
+only when their SVG or colour changes.
+
+Geometry comes from the actual cover, track, thumb and canvas boxes, including
+scrollbar space and entrance transforms. The canvas follows CSS progress motion
+briefly, then stops on a paused cover. Video uploads follow new decoded frames.
+Off-screen and inactive bars release their contexts, and page removal disposes
+listeners and observers. Static and reduced-motion covers still allow seeking;
+low-power mode skips WebGL. Failed CORS, unsupported WebGL and context loss leave
+ordinary CSS glass in place. Video texture requests use anonymous CORS and a
+versioned URL, with normal playback restored if CORS fails.
+
+Run `tools/seek-glass-check.js` as a browser expression on a song page or Music,
+with liquid glass enabled and audio paused. It checks progress-only redraws without
+source uploads, paused idle behavior, the rendered thumb's alpha edges, pointer
+seeking and disabled backdrop filters after a successful GPU frame.
 
 ## Reproduce the comparison
 

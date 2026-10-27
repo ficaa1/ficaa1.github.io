@@ -1,6 +1,7 @@
 // The photo panes all look at the same film. Blur it once, then sample its red, green and blue at
 // slightly different positions for each rim. No per-pane SVG backdrop filters or per-frame layout.
-(() => {
+(async () => {
+  const { glassDefaults, glassVertex, glassBlur, glassComposite } = await import(new URL('../glass-material.mjs?v=b143f734', document.currentScript.src));
   function init() {
     const root = document.querySelector('.lands');
     const video = root?.querySelector('.reel video');
@@ -14,8 +15,7 @@
     const rendererInfo = gl.getExtension('WEBGL_debug_renderer_info');
     const renderer = rendererInfo ? gl.getParameter(rendererInfo.UNMASKED_RENDERER_WEBGL) : '';
     const resolutionLimit = /swiftshader|llvmpipe|software/i.test(renderer) ? 640 : 1280;
-    const defaults = Object.freeze({ blur: .018, refraction: .065, dispersion: .011, bendWidth: .13,
-      rimWidth: .255, saturation: 1, brightness: .88, opacity: 1, resolution: 1280 });
+    const defaults = glassDefaults;
     const limits = { blur: [0, .12], refraction: [0, .5], dispersion: [0, .15], bendWidth: [.02, .45],
       rimWidth: [.01, .5], saturation: [0, 2], brightness: [.2, 1.5], opacity: [0, 1], resolution: [0, 2560] };
     const settings = { ...defaults };
@@ -28,8 +28,7 @@
     const panes = [...root.querySelectorAll('.land')];
     const rects = new Float32Array(panes.length * 4);
     const radii = new Float32Array(panes.length);
-    const vertex = `attribute vec2 position; varying vec2 uv;
-      void main() { uv = position * .5 + .5; gl_Position = vec4(position, 0., 1.); }`;
+    const vertex = glassVertex;
     function program(fragment) {
       const p = gl.createProgram(); programs.push(p);
       for (const [type, source] of [[gl.VERTEX_SHADER, vertex], [gl.FRAGMENT_SHADER, fragment]]) {
@@ -85,38 +84,8 @@
       },
     };
     try {
-      const blur = program(`precision mediump float; varying vec2 uv;
-        uniform sampler2D image; uniform vec2 stepSize; uniform vec2 crop;
-        vec3 sampleAt(vec2 p) { return texture2D(image, (p - .5) * crop + .5).rgb; }
-        void main() {
-          vec3 c = sampleAt(uv) * .227027;
-          c += (sampleAt(uv + stepSize * 1.384615) + sampleAt(uv - stepSize * 1.384615)) * .316216;
-          c += (sampleAt(uv + stepSize * 3.230769) + sampleAt(uv - stepSize * 3.230769)) * .070270;
-          gl_FragColor = vec4(c, 1.);
-        }`);
-      const composite = program(`precision highp float; varying vec2 uv;
-        uniform sampler2D film; uniform sampler2D frost; uniform vec2 crop; uniform vec2 view;
-        uniform vec4 pane; uniform float radius;
-        uniform float refraction; uniform float dispersion; uniform float bendWidth; uniform float rimWidth;
-        uniform float saturation; uniform float brightness; uniform float opacity;
-        vec3 sampleAt(vec2 p) { return texture2D(film, (p - .5) * crop + .5).rgb; }
-        void main() {
-          vec2 point = vec2(uv.x, 1. - uv.y) * view;
-          vec4 r = pane; vec2 local = point - r.xy;
-          vec2 q = abs(local - r.zw * .5) - r.zw * .5 + radius;
-          float distance = length(max(q, 0.)) + min(max(q.x, q.y), 0.) - radius;
-          vec2 p = local / r.zw;
-          vec2 bend = .5 * (1. - smoothstep(vec2(0.), vec2(bendWidth), p))
-                    - .5 * smoothstep(vec2(1. - bendWidth), vec2(1.), p);
-          bend *= r.zw / view * vec2(1., -1.);
-          vec2 edge = 1. - smoothstep(vec2(0.), vec2(rimWidth), min(p, 1. - p));
-          float rim = 1. - (1. - edge.x) * (1. - edge.y);
-          vec3 bent = vec3(sampleAt(uv + bend * (refraction + dispersion)).r,
-                           sampleAt(uv + bend * refraction).g, sampleAt(uv + bend * (refraction - dispersion)).b);
-          vec3 glass = mix(texture2D(frost, uv).rgb, bent, rim);
-          glass = mix(vec3(dot(glass, vec3(.2126, .7152, .0722))), glass, saturation) * brightness;
-          gl_FragColor = vec4(glass, clamp(-distance, 0., 1.) * opacity);
-        }`);
+      const blur = program(glassBlur);
+      const composite = program(glassComposite);
       const source = texture(), horizontal = texture(), vertical = texture();
       const fbos = [horizontal, vertical].map(t => {
         const f = gl.createFramebuffer(); targets.push(f); gl.bindFramebuffer(gl.FRAMEBUFFER, f);
