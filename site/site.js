@@ -907,7 +907,7 @@ ${[[r, '1 0 0 0 0 0 0 0 0 0 0 0 0 0 0'], [g, '0 0 0 0 0 0 1 0 0 0 0 0 0 0 0'], [
 
   // A link to skip the menu and the player, the first thing Tab reaches.
   const skip = document.createElement('a');
-  skip.className = 'skip'; skip.href = '#'; skip.textContent = 'Skip to content';
+  skip.className = 'to-main'; skip.href = '#'; skip.textContent = 'Skip to content';
   skip.addEventListener('click', e => {
     e.preventDefault();
     const main = document.querySelector('main');
