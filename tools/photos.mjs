@@ -449,40 +449,12 @@ const glimpse = e => {
   const m = GLIMPSE[e.id] ? [, media(0, `${GLIMPSE[e.id]}-1000.jpg`)] : existsSync(f) && readFileSync(f, 'utf8').match(/<img[^>]*src="([^"]+-1000\.jpg)"/);
   return m ? `<img class="glimpse" src="${m[1]}" alt="" loading="lazy" decoding="async">\n` : '';
 };
-// The bending of the glass, "Liquid glass: on" at the foot of the page, in Chromium only (lands.css). A map stretched over each pane: red is how far a point looks left or
-// right, green up or down, flat in the middle and steepest at the edges; blue is the rim, where the bending shows. The
-// film is moved by the map three times, a little less each time, for the red, the green and the blue of it, put back
-// together and kept sharp on the rim; inside the rim it is only frosted.
-const ramp = (id, c, dir) => `<linearGradient id="${id}"${dir}>${[[0, 255], [.035, 208], [.09, 156], [.16, 128], [.84, 128], [.91, 100], [.965, 48], [1, 0]]
-  .map(([o, v]) => `<stop offset="${o}" stop-color="${c(v)}"/>`).join('')}</linearGradient>`;
-const rim = (id, dir) => `<linearGradient id="${id}"${dir}>${[[0, 255], [.05, 190], [.12, 40], [.17, 0], [.83, 0], [.88, 40], [.95, 190], [1, 255]]
-  .map(([o, v]) => `<stop offset="${o}" stop-color="rgb(0,0,${v})"/>`).join('')}</linearGradient>`;
-const hex = v => v.toString(16).padStart(2, '0');
-const lensMap = 'data:image/svg+xml,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400" preserveAspectRatio="none">\
-${ramp('x', v => `#${hex(v)}0000`, '')}${ramp('y', v => `#00${hex(v)}00`, ' x2="0" y2="1"')}${rim('u', '')}${rim('v', ' x2="0" y2="1"')}\
-<rect width="400" height="400" fill="url(#x)"/><g style="mix-blend-mode:screen"><rect width="400" height="400" fill="url(#y)"/></g>\
-<g style="mix-blend-mode:screen"><rect width="400" height="400" fill="url(#u)"/></g><g style="mix-blend-mode:screen"><rect width="400" height="400" fill="url(#v)"/></g></svg>`);
-const glassLens = `<svg class="lens" aria-hidden="true" focusable="false"><filter id="ld-lens" x="0" y="0" width="1" height="1" primitiveUnits="objectBoundingBox" color-interpolation-filters="sRGB">
-<feImage href="${lensMap}" x="0" y="0" width="1" height="1" preserveAspectRatio="none" result="map"/>
-<feGaussianBlur in="SourceGraphic" stdDeviation=".035" edgeMode="duplicate" result="frost"/>
-<feDisplacementMap in="SourceGraphic" in2="map" scale=".2" xChannelSelector="R" yChannelSelector="G" result="dr"/>
-<feColorMatrix in="dr" values="1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0" result="r"/>
-<feDisplacementMap in="SourceGraphic" in2="map" scale=".17" xChannelSelector="R" yChannelSelector="G" result="dg"/>
-<feColorMatrix in="dg" values="0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0" result="g"/>
-<feDisplacementMap in="SourceGraphic" in2="map" scale=".14" xChannelSelector="R" yChannelSelector="G" result="db"/>
-<feColorMatrix in="db" values="0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 0" result="b"/>
-<feBlend in="r" in2="g" mode="screen" result="rg"/><feBlend in="rg" in2="b" mode="screen" result="bent"/>
-<feColorMatrix in="map" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0" result="rim"/>
-<feComposite in="bent" in2="rim" operator="in" result="edge"/>
-<feComposite in="edge" in2="frost" operator="over"/>
-</filter></svg>`;
 function lands() {
   return `<section class="set lands" aria-labelledby="ph-title">
 <link rel="stylesheet" href="photos/lands.css?v=${ver('lands.css')}">
-${glassLens}
 <div class="reel" aria-hidden="true"><video muted playsinline loop preload="none" width="1920" height="1080" poster="${media(0, 'broll-pixelsort-poster-960.jpg')}">
-<source src="${media(0, 'broll-pixelsort-960.mp4')}" type="video/mp4" media="(max-width: 899px)">
-<source src="${media(0, 'broll-pixelsort-1920.mp4')}" type="video/mp4">
+<source src="${media(0, 'broll-pixelsort-960.mp4')}?v=glass-1" type="video/mp4" media="(max-width: 899px)">
+<source src="${media(0, 'broll-pixelsort-1920.mp4')}?v=glass-1" type="video/mp4">
 </video></div>
 <h1 class="title" id="ph-title">Photos</h1>
 <ol class="squares">
@@ -490,6 +462,7 @@ ${open.map(e => `<li class="land" data-land="${esc(e.id)}">
 ${glimpse(e)}<h2 class="name"><a href="${href(e, 0)}">${signOf(e)}</a></h2>
 </li>`).join('\n')}
 </ol>
+<script src="photos/glass.js?v=${ver('glass.js')}" defer></script>
 <script src="photos/lands.js?v=${ver('lands.js')}" defer></script>
 </section>`;
 }

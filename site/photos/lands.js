@@ -11,6 +11,20 @@
     v.replaceWith(c); v = c;
   }
   v.muted = true;
+  // Texture uploads need CORS. If the media host has not enabled it, keep the film playing
+  // without CORS; glass.js then leaves ordinary backdrop blur in place.
+  if (document.documentElement.hasAttribute('data-glass')) {
+    v.crossOrigin = 'anonymous';
+    const fallback = e => {
+      // Chromium also reports skipped <source media> candidates as errors. They do not
+      // indicate a failed request for the selected film and must not disable WebGL.
+      if (e.target.media && !matchMedia(e.target.media).matches) return;
+      v.removeEventListener('error', fallback, true);
+      v.closest('.lands')?.glassCleanup?.();
+      v.removeAttribute('crossorigin'); v.load(); play();
+    };
+    v.addEventListener('error', fallback, { capture: true }); // <source> errors do not bubble to <video>.
+  }
   // The page asks for nothing ahead (preload none), and on the iPhone play() alone can leave the film waiting with
   // nothing fetched. Asking for it outright starts it, and it is asked again if a few seconds go by with nothing.
   v.preload = 'auto';
@@ -23,6 +37,8 @@
   };
   document.addEventListener('visibilitychange', seen);
   play();
+  // The renderer must see the final video node, after Safari's page-swap replacement above.
+  v.dispatchEvent(new Event('photos-video-ready', { bubbles: true }));
 })();
 
 // On a phone, where nothing is pointed at, the squares a little above the middle of the screen show their picture (.lit, lands.css).

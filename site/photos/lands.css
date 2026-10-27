@@ -41,6 +41,7 @@ body:has(.lands) #player.docked { position: fixed; inset: auto auto 0 0; }
 body:has(.lands .reel) { background: #111; }
 .lands .reel { position: fixed; inset: 0; z-index: 0; background: #111 url(https://photos.filipbiljic.com/broll-pixelsort-poster-960.jpg) center / cover; pointer-events: none; }
 .lands .reel video { display: block; width: 100%; height: 100%; object-fit: cover; }
+.lands .glass-film { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 .lands .reel::after { content: ""; position: absolute; inset: 0; background: linear-gradient(rgb(0 0 0 / .45), rgb(0 0 0 / 0) 180px), rgb(0 0 0 / 0.38); }
 body:has(.lands .reel) > footer { position: relative; z-index: 1; background: transparent; }
 .lands .squares {
@@ -204,11 +205,6 @@ html:is([data-lite],[data-still]) .lands .land { --tint: rgb(0 0 0 / .45); }
 /* The page's colours are see-through here, so the back-to-top arrow takes a solid one. */
 body:has(.lands) :is(#top, #next) { color: #111; border-color: #111; }
 
-/* ---- "Liquid glass: on" (site.js, Chromium only): near its edges a pane shows what is further in, pulled outwards,
-   with the red, green and blue pulled by different amounts, as a thick lens does. The bending is the filter #ld-lens
-   in photos.html, drawn again for every frame of the film, which is why it is off unless asked for. */
-.lands .lens { position: absolute; width: 0; height: 0; overflow: hidden; }
-html[data-glass] .lands .land {
-  -webkit-backdrop-filter: url(#ld-lens) var(--light);
-  backdrop-filter: url(#ld-lens) var(--light);
-}
+/* glass.js draws all the panes from one video texture. Keep CSS blur until its first frame succeeds,
+   and restore it if WebGL, CORS or the context fails. The panes' pictures, arms and highlights stay in HTML. */
+html[data-glass] .lands.glass-ready .land { -webkit-backdrop-filter: none; backdrop-filter: none; }

@@ -8,8 +8,8 @@
   // motion (no film, no song loops), site.css stops the animations and the glass blur, and the viewer keeps to the 2000 px
   // pictures. It is kept in localStorage and the page reloads when it is switched.
   // The second switch stops only the motion (films, song loops, animations) and keeps the glass and the big pictures.
-  // The third bends the film behind the glass on the photos page (lands.css), which only Chromium can draw, so it is
-  // offered only there; it is heavy, and off unless asked for.
+  // The third bends the film behind the photo panes (photos/glass.js) and the covers under the music seek bars.
+  // The seek bars use Chromium's SVG backdrop filters, so the switch is offered only in Chromium, and defaults off.
   let lite = false, still = false, glass = false;
   try { lite = localStorage.getItem('fb-lite') === '1'; still = localStorage.getItem('fb-still') === '1'; glass = localStorage.getItem('fb-glass') === '1'; } catch {}
   const bends = !!navigator.userAgentData?.brands?.some(b => b.brand === 'Chromium');
