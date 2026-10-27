@@ -915,6 +915,20 @@ ${[[r, '1 0 0 0 0 0 0 0 0 0 0 0 0 0 0'], [g, '0 0 0 0 0 0 1 0 0 0 0 0 0 0 0'], [
   });
   document.body.prepend(skip);
 
+  // ---- A click on a film pauses it, and another plays it again. A film paused this way stays paused ([data-held]) even
+  // when its page would start it again (coming back on screen, the song going on), so play() leaves it alone. Films in a
+  // link or a button (a song's picture, which plays the song) and films showing their own controls keep to those.
+  const play = HTMLMediaElement.prototype.play;
+  HTMLMediaElement.prototype.play = function () { return 'held' in this.dataset ? Promise.resolve() : play.call(this); };
+  document.addEventListener('click', e => {
+    if (e.defaultPrevented || e.button || e.target.closest('a, button, input, select, textarea, label, dialog')) return;
+    const v = e.target.closest('main video') || e.target.closest('main .songname')?.querySelector('video')
+      || document.elementsFromPoint(e.clientX, e.clientY).find(el => el.matches('main video'));
+    if (!v || v.controls || v.closest('a, button')) return;
+    if ('held' in v.dataset) { delete v.dataset.held; v.play().catch(() => {}); }
+    else if (!v.paused) { v.dataset.held = ''; v.pause(); }
+  });
+
   document.addEventListener('click', e => {
     const a = e.target.closest('a[href]');
     if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;

@@ -43,6 +43,19 @@
       el.style.fontSize = `${fs}px`;
     }
     for (let k = 0; k < 3 && widest() > avail; k++) el.style.fontSize = `${(fs *= avail / widest())}px`;
+    // The lines are set tight, so a tail below the line (the j of jam) would run into the Play row under the name: the
+    // name keeps as much room under it as its tails go below.
+    if (el === name) {
+      // Padding, not margin, which would only merge with the margin above the row.
+      el.style.paddingBottom = '';
+      const cs = getComputedStyle(el), ctx = document.createElement('canvas').getContext('2d'), last = rects().at(-1);
+      ctx.font = `${cs.fontStyle} ${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
+      const m = ctx.measureText(t.textContent), row = el.nextElementSibling;
+      // Measured from the top of the name, and the row by its place in the layout, as the row may still be rising in.
+      const ink = last.top - el.getBoundingClientRect().top + (m.fontBoundingBoxAscent || 0.8 * fs) + m.actualBoundingBoxDescent;
+      const over = ink + 16 - (row ? row.offsetTop - el.offsetTop : el.offsetHeight);
+      if (over > 0) el.style.paddingBottom = `${over}px`;
+    }
   }
 
   // ---- The cut: draw each letter where the page set it, as a mask for the layer behind the text.
