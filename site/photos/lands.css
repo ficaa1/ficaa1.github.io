@@ -200,6 +200,6 @@ body:has(.lands) footer .imprint { padding-top: 8px; font-size: 14px; }
 body:has(.lands) footer .credit { margin-top: 12px; font-size: 13px; opacity: 0.7; }
 body:has(.lands) footer .credit a { color: inherit; }
 /* Low power mode (site.js) has no blur behind the glass, so the panes are darker instead. */
-html[data-lite] .lands .land { --tint: rgb(0 0 0 / .45); }
+html:is([data-lite],[data-still]) .lands .land { --tint: rgb(0 0 0 / .45); }
 /* The page's colours are see-through here, so the back-to-top arrow takes a solid one. */
 body:has(.lands) :is(#top, #next) { color: #111; border-color: #111; }

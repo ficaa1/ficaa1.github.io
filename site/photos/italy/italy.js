@@ -4,7 +4,7 @@
   const main = document.querySelector('main[data-country="italy"]');
   if (!main || main.hasAttribute('data-js')) return;
   main.setAttribute('data-js', '');
-  if ((matchMedia('(prefers-reduced-motion: reduce)').matches || document.documentElement.hasAttribute('data-lite')) || !('IntersectionObserver' in window)) return;
+  if ((matchMedia('(prefers-reduced-motion: reduce)').matches || document.documentElement.matches('[data-lite],[data-still]')) || !('IntersectionObserver' in window)) return;
   const parts = [...main.querySelectorAll('.title .arms, .title h1, .facts, .places li, .intro .cover, .road li, .date, .leave .sign, .shot, .boot, .door, .avenue li, .plinth')];
   // Each part rises once as it arrives, a few at a time; a sign on the way out is crossed out after it lands.
   const rise = new IntersectionObserver(es => {

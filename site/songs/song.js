@@ -11,7 +11,7 @@
   const N = +front.dataset.songPage;
   const still = matchMedia('(prefers-reduced-motion: reduce)');
   // Low power mode (site.js) keeps the stills too.
-  const calm = () => still.matches || document.documentElement.hasAttribute('data-lite');
+  const calm = () => still.matches || document.documentElement.matches('[data-lite],[data-still]');
   const mmss = t => `${Math.floor(t / 60)}:${String(Math.floor(t % 60)).padStart(2, '0')}`; // taste-skill-ignore: minutes and seconds
   const name = front.querySelector('.songname'), word = main.querySelector('.rooms .word');
   const times = [...main.querySelectorAll('.time')], state = main.querySelector('.tag .state'), lbl = front.querySelector('.play .lbl');

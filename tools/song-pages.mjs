@@ -88,6 +88,7 @@ function page(it) {
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<link rel="preconnect" href="https://photos.filipbiljic.com">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(s.title)} - Filip Biljić</title>
 <meta name="description" content="${esc(by)}, ${esc(s.year || '')}">

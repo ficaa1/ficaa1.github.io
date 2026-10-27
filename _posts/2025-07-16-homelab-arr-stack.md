@@ -18,7 +18,7 @@ This is where the popular "Arr" stack comes in:
 *   **Prowlarr:** Manages indexer configurations and syncs them to Radarr/Sonarr.
 *   **Overseerr:** A user-friendly web interface for requesting media.
 
-### The Architecture: A Symphony of Services
+## The Architecture: A Symphony of Services
 
 These services work together beautifully. A request in Overseerr triggers a
 search in Radarr or Sonarr. They then query Prowlarr for indexers and, upon
@@ -94,7 +94,7 @@ networks:
     name: staticnet
 ```
 
-### Key Concepts: Tiered Storage Paths
+## Key Concepts: Tiered Storage Paths
 
 You'll notice two media-related volumes are mounted into the Sonarr and Radarr
 containers: `data` and `nvme_volume`. This is intentional and is the key to my
@@ -110,7 +110,7 @@ path. Once the download is complete, the 'Arr' app processes it and moves it to
 the final library folder, which is also on `/nvme`. But what happens when the
 fast drive fills up?
 
-### What's Next?
+## What's Next?
 
 This setup works, but it requires manual intervention to move older media from
 the fast NVMe drive to the slower HDD array to free up space. That's not very

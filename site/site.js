@@ -7,17 +7,23 @@
   // ---- Low power mode, for TVs and old phones: the switch at the foot of every page. The page scripts treat it as reduced
   // motion (no film, no song loops), site.css stops the animations and the glass blur, and the viewer keeps to the 2000 px
   // pictures. It is kept in localStorage and the page reloads when it is switched.
-  let lite = false;
-  try { lite = localStorage.getItem('fb-lite') === '1'; } catch {}
+  // The second switch stops only the motion (films, song loops, animations) and keeps the glass and the big pictures.
+  let lite = false, still = false;
+  try { lite = localStorage.getItem('fb-lite') === '1'; still = localStorage.getItem('fb-still') === '1'; } catch {}
   document.documentElement.toggleAttribute('data-lite', lite);
+  document.documentElement.toggleAttribute('data-still', still);
   function liteSwitch() {
     const foot = document.querySelector('footer #trace') || document.querySelector('footer');
     if (!foot || foot.querySelector('.lite')) return;
-    const b = document.createElement('button');
-    b.type = 'button'; b.className = 'lite'; b.setAttribute('aria-pressed', lite);
-    b.textContent = lite ? 'Low power mode: on' : 'Low power mode: off';
-    b.addEventListener('click', () => { try { localStorage.setItem('fb-lite', lite ? '0' : '1'); } catch {} location.reload(); });
-    const p = document.createElement('p'); p.append(b);
+    const p = document.createElement('p');
+    for (const [key, on, label] of [['fb-lite', lite, 'Low power mode'], ['fb-still', !still, 'Videos and animations']]) {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'lite'; b.setAttribute('aria-pressed', on);
+      b.textContent = `${label}: ${on ? 'on' : 'off'}`;
+      b.addEventListener('click', () => { try { localStorage.setItem(key, localStorage.getItem(key) === '1' ? '0' : '1'); } catch {} location.reload(); });
+      if (p.firstChild) p.append(' · ');
+      p.append(b);
+    }
     foot.append(p);
   }
 
@@ -93,11 +99,27 @@
   // ---- Contact: a letter that opens in the visitor's own mail program.
   function contact() {
     const letter = document.getElementById('letter');
-    if (letter) letter.addEventListener('submit', e => {
-      e.preventDefault();
-      const f = new FormData(letter);
-      location.href = `mailto:filip@biljicserver.space?subject=${encodeURIComponent(f.get('subject'))}&body=${encodeURIComponent(f.get('body') || '')}`;
-    });
+    if (letter) {
+      // The draft is kept for the tab, so it survives a reload or a visit to another page; Ctrl/Cmd+Enter sends it.
+      const fields = [...letter.querySelectorAll('select, textarea')];
+      let draft = {};
+      try { draft = JSON.parse(sessionStorage.getItem('fb-letter')) || {}; } catch {}
+      for (const el of fields) {
+        if (draft[el.id] != null) el.value = draft[el.id];
+        el.addEventListener('input', () => {
+          for (const f of fields) draft[f.id] = f.value;
+          try { sessionStorage.setItem('fb-letter', JSON.stringify(draft)); } catch {}
+        });
+      }
+      letter.addEventListener('keydown', e => {
+        if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) { e.preventDefault(); letter.requestSubmit(); }
+      });
+      letter.addEventListener('submit', e => {
+        e.preventDefault();
+        const f = new FormData(letter);
+        location.href = `mailto:filip@biljicserver.space?subject=${encodeURIComponent(f.get('subject'))}&body=${encodeURIComponent(f.get('body') || '')}`;
+      });
+    }
     const print = document.getElementById('print');
     if (print) { print.hidden = false; print.addEventListener('click', () => window.print()); }
   }
@@ -235,6 +257,7 @@
       viewer = document.createElement('dialog');
       viewer.className = 'viewer';
       viewer.tabIndex = -1;
+      viewer.setAttribute('aria-label', 'Photo viewer');
       viewer.innerHTML = `<figure><img alt=""><figcaption><p class="line"><span class="where"></span> <span class="cap"></span></p>
         <p class="keys"><button type="button" data-step="-1">&larr; Previous</button> <button type="button" data-step="1">Next &rarr;</button> <button type="button" data-full hidden>Full screen</button> <button type="button" data-close>Close</button></p></figcaption></figure>`;
       document.body.append(viewer);
@@ -351,7 +374,7 @@
     const $ = s => el.querySelector(s);
     const cover = $('.cover'), canvas = $('canvas'), pic = $('.cover img'), clip = $('.cover video'), seek = $('.seek input'), vol = $('.vol'), level = $('.level');
     const still = matchMedia('(prefers-reduced-motion: reduce)'), touch = matchMedia('(hover: none)');
-    const calm = () => still.matches || document.documentElement.hasAttribute('data-lite');
+    const calm = () => still.matches || document.documentElement.matches('[data-lite],[data-still]');
     const mmss = t => (t > 0 && isFinite(t) ? `${Math.floor(t / 60)}:${String(Math.floor(t % 60)).padStart(2, '0')}` : '0:00');
     let list = [], i = 0;
 
@@ -653,7 +676,7 @@
     b.id = 'top'; b.type = 'button'; b.title = 'Back to the top'; b.setAttribute('aria-label', 'Back to the top');
     b.innerHTML = '<svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M10 3 L17 11 H12.5 V17 H7.5 V11 H3 Z"/></svg>';
     b.addEventListener('click', () => {
-      scrollTo({ top: 0, behavior: (matchMedia('(prefers-reduced-motion: reduce)').matches || document.documentElement.hasAttribute('data-lite')) ? 'auto' : 'smooth' });
+      scrollTo({ top: 0, behavior: (matchMedia('(prefers-reduced-motion: reduce)').matches || document.documentElement.matches('[data-lite],[data-still]')) ? 'auto' : 'smooth' });
       const h1 = document.querySelector('main h1');
       if (h1) { h1.tabIndex = -1; h1.focus({ preventScroll: true }); }
     });
@@ -686,7 +709,7 @@
     b.addEventListener('click', () => {
       const n = below();
       if (!n) return;
-      scrollTo({ top: y(n.at) - n.margin, behavior: (matchMedia('(prefers-reduced-motion: reduce)').matches || document.documentElement.hasAttribute('data-lite')) ? 'auto' : 'smooth' });
+      scrollTo({ top: y(n.at) - n.margin, behavior: (matchMedia('(prefers-reduced-motion: reduce)').matches || document.documentElement.matches('[data-lite],[data-still]')) ? 'auto' : 'smooth' });
       const h = n.at.querySelector('h2, h3');
       if (h) { h.tabIndex = -1; h.focus({ preventScroll: true }); }
     });
@@ -765,7 +788,7 @@
       const a = e.target.closest('.days a');
       if (!a || e.metaKey || e.ctrlKey || e.shiftKey || e.button) return;
       e.preventDefault();
-      a.day.scrollIntoView({ behavior: (matchMedia('(prefers-reduced-motion: reduce)').matches || document.documentElement.hasAttribute('data-lite')) ? 'auto' : 'smooth', block: 'start' });
+      a.day.scrollIntoView({ behavior: (matchMedia('(prefers-reduced-motion: reduce)').matches || document.documentElement.matches('[data-lite],[data-still]')) ? 'auto' : 'smooth', block: 'start' });
     });
     document.body.append(bar);
     paint(bar, parts[0] || main.querySelector('h1') || main);
@@ -837,7 +860,7 @@
     const parts = ['nav', 'main', 'footer'];
     if (!parts.every(p => doc.querySelector(p))) { location.assign(url); return; }
 
-    if (push) history.pushState({}, '', url);
+    if (push) { keep(); history.pushState({}, '', url); }
     page = location.pathname + location.search;
     document.title = doc.title;
     document.body.className = doc.body.className;
@@ -851,7 +874,25 @@
     if (h1) { h1.tabIndex = -1; h1.focus({ preventScroll: true }); }
 
     init();
+    if (!push && !target) back();
   }
+
+  // Back and Forward return to where the page was left: the place is kept in the history entry as you scroll.
+  history.scrollRestoration = 'manual';
+  let keeping;
+  const keep = () => { clearTimeout(keeping); history.replaceState({ ...history.state, y: scrollY }, ''); };
+  addEventListener('scroll', () => { clearTimeout(keeping); keeping = setTimeout(keep, 200); }, { passive: true });
+  const back = () => { const y = history.state?.y; if (y) { scrollTo(0, y); requestAnimationFrame(() => scrollTo(0, y)); } };
+
+  // A link to skip the menu and the player, the first thing Tab reaches.
+  const skip = document.createElement('a');
+  skip.className = 'skip'; skip.href = '#'; skip.textContent = 'Skip to content';
+  skip.addEventListener('click', e => {
+    e.preventDefault();
+    const main = document.querySelector('main');
+    if (main) { main.tabIndex = -1; main.focus(); }
+  });
+  document.body.prepend(skip);
 
   document.addEventListener('click', e => {
     const a = e.target.closest('a[href]');
@@ -868,6 +909,6 @@
   let page = location.pathname + location.search;
   addEventListener('popstate', () => { if (location.pathname + location.search !== page) go(location.href, false); });
 
-  if (document.readyState === 'complete') init();
-  else addEventListener('load', () => setTimeout(init, 0));
+  if (document.readyState === 'complete') { init(); if (!location.hash) back(); }
+  else addEventListener('load', () => setTimeout(() => { init(); if (!location.hash) back(); }, 0));
 })();

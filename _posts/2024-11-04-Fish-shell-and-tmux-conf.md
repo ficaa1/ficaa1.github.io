@@ -46,7 +46,7 @@ set fzf_diff_highlighter delta --paging=never --width=20
 
 ```
 
-# Lunarvim config
+## Lunarvim config
 
 ```
 
@@ -93,7 +93,7 @@ end, lvim.lsp.automatic_configuration.skipped_servers)
 
 ```
 
-# Tmux config
+## Tmux config
 
 ```
 

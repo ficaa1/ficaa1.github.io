@@ -127,7 +127,7 @@ network:
 - Set up ssh through public key authentication only (for both proxmox host and ubuntu vm)
 - Mounted aforementioned pool as a NFS share (and mapped root user to root)
   
-# To do
+## To do
 
 - Migrate volumes of all my docker containers running on WSL to my Share drive
 - Deploy my various stacks as compose files, with properly mounted config volumes as nfs 

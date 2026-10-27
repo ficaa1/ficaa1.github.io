@@ -5,7 +5,7 @@
   const main = document.querySelector('main[data-country="belgrade"]');
   if (!main || main.hasAttribute('data-js')) return;
   main.setAttribute('data-js', '');
-  const still = (matchMedia('(prefers-reduced-motion: reduce)').matches || document.documentElement.hasAttribute('data-lite'));
+  const still = (matchMedia('(prefers-reduced-motion: reduce)').matches || document.documentElement.matches('[data-lite],[data-still]'));
   const MIN = s => +s.slice(0, 2) * 60 + +s.slice(3, 5);
   const fmt = m => `${String(Math.floor(m / 60)).padStart(2, '0')}:${String(Math.floor(m % 60)).padStart(2, '0')}`;
   const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));

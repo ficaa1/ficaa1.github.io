@@ -13,7 +13,7 @@
 <p class="soft">Written 2025-07-15. 535 words, about 2 minutes.</p>
 <p>Welcome to the first post in my new series on building a fully automated media ecosystem in my homelab. Before we can get to the fun stuff like media servers and request systems, we need to build a solid, secure foundation. For any services that reach out to the internet, I want to ensure that traffic is routed through a VPN.</p>
 <p>The goal is to create a "VPN gateway" container. Any other containers that need secure internet access can then simply use this container's network stack, forcing all their traffic through the VPN tunnel without any complex routing rules on the host.</p>
-<h3>The Architecture: A Dedicated WireGuard Gateway</h3>
+<h2>The Architecture: A Dedicated WireGuard Gateway</h2>
 <p>While there are many popular all-in-one VPN containers, I opted for a more specific and performant solution for my provider (Private Internet Access): <a href="https://github.com/thrnz/docker-wireguard-pia"><code>thrnz/docker-wireguard-pia</code></a>. This container is purpose-built to maintain a stable WireGuard tunnel to PIA. In my experience, this approach has proven to be more reliable and has yielded faster connection speeds than other, more generalized solutions.</p>
 <p>You'll notice in the <code>docker-compose.yml</code> below that I've named the service <code>gluetun</code>. This is just a convenient, descriptive name for the service's role as a VPN gateway, even though the underlying image is <code>thrnz/docker-wireguard-pia</code>.</p>
 <p>Here is the <code>docker-compose.yml</code> for my downloader stack:</p>
@@ -89,11 +89,11 @@ networks:
   staticnet:
     external: true
     name: staticnet</code></pre>
-<h3>Key Concepts</h3>
+<h2>Key Concepts</h2>
 <p>The most important line in this configuration is <code>network_mode: "service:gluetun"</code>. This tells Docker that the <code>qbittorrent</code> and <code>prowlarr</code> containers should not get their own network interface. Instead, they share the network stack of the <code>gluetun</code> service.</p>
 <p>This has two major benefits:</p>
 <ol><li><b>Simplicity:</b> I don't need to configure anything inside qBittorrent or Prowlarr. They operate as if they're on a normal network, but all their traffic is transparently routed through the gateway's VPN tunnel.</li><li><b>Security:</b> If the <code>gluetun</code> container fails or the VPN disconnects, the network stack for the dependent services goes down with it. This acts as a kill-switch, preventing any accidental IP leaks.</li></ol>
-<h3>What's Next?</h3>
+<h2>What's Next?</h2>
 <p>With our secure foundation in place, we can now build the services that will use it. In the next post, I'll cover the "arr" stack (Sonarr, Radarr, Overseerr) and how it integrates with our downloaders to create a fully automated media acquisition pipeline.</p>
 <p><a href="../blog.html">Back to the list of posts</a></p>
 </main>

@@ -271,7 +271,7 @@ main[data-country="belgrade"] .vidovdan .deadline .say { max-width: 34ch; font-s
 main[data-country="belgrade"] .vidovdan .film { padding: 0 var(--gut) clamp(40px, 5vw, 88px); }
 main[data-country="belgrade"] .vidovdan .film.ends { padding-top: clamp(40px, 5vw, 88px); background: #000; }
 main[data-country="belgrade"] .vidovdan .film video { --fp: clamp(8px, 1vw, 16px); box-sizing: content-box; display: block; width: calc(100% - 2 * var(--fp)); height: auto; aspect-ratio: 16 / 9; background: #000; padding: var(--fp); }
-main[data-country="belgrade"] .vidovdan .film .meta { margin-top: 10px; color: #fff; opacity: 0.8; }
+main[data-country="belgrade"] .vidovdan .film .meta { margin-top: 10px; color: #fff; }
 
 /* The hours. */
 main[data-country="belgrade"] .vidovdan .hour { position: relative; isolation: isolate; display: grid; grid-template-columns: var(--rim) minmax(0, 1fr); padding: var(--rim-r) var(--rim-r) var(--rim-r) 0; }

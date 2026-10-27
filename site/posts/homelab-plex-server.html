@@ -13,9 +13,9 @@
 <p class="soft">Written 2025-07-18. 487 words, about 2 minutes.</p>
 <p>We've built a <a href="homelab-vpn-gateway.html">secure network</a>, an <a href="homelab-arr-stack.html">automated acquisition engine</a>, and a <a href="homelab-tiered-storage.html">smart tiered storage system</a>. Now it's time for the grand finale: setting up the user-facing service that brings it all together. For this, I use Plex Media Server.</p>
 <p>My goal for Plex was to have a setup that could handle multiple streams, including 4K content, without putting a heavy load on my server's CPU. This is where hardware-accelerated transcoding comes in.</p>
-<h3>The Hardware and The "Why"</h3>
+<h2>The Hardware and The "Why"</h2>
 <p>My server is an old PC I had with a 4th gen intel cpu and a cheap GTX 1050Ti. The key component is the NVIDIA GPU. By passing this GPU through to the Plex Docker container, Plex can use the dedicated encoding/decoding chips on the GPU (NVENC/NVDEC) to transcode video streams. This is vastly more efficient than using the CPU and is essential for a smooth multi-user experience.</p>
-<h3>The Implementation: Plex in Docker</h3>
+<h2>The Implementation: Plex in Docker</h2>
 <p>Here is the <code>docker-compose.yml</code> for my Plex instance. It's surprisingly simple, but a few key lines make all the difference.</p>
 <pre><code>version: "3.9"
 services:
@@ -51,9 +51,9 @@ services:
       # The two media locations we set up in previous posts
       - /mnt/share:/media # HDD (long-term)
       - /mnt/nvme:/nvme   # NVMe (short-term)</code></pre>
-<h3>Key Concepts</h3>
+<h2>Key Concepts</h2>
 <ul><li><b><code>network_mode: host</code></b>: This gives the Plex container direct access to the host's network interfaces. It's the easiest way to ensure that Plex's automatic discovery features (like GDM) work correctly on the local network.</li><li><b><code>runtime: nvidia</code></b>: This tells Docker to use the NVIDIA container runtime, which is necessary for exposing the GPU to the container.</li><li><b><code>volumes</code></b>: We mount both our fast <code>/mnt/nvme</code> and slow <code>/mnt/share</code> storage into the container. Inside Plex, I simply add both <code>/nvme</code> and <code>/media</code> to my media library, and Plex scans them both to present a single, unified view.</li><li><b><code>PLEX_CLAIM</code></b>: This is a one-time token used on the first run to securely claim the server and attach it to your Plex account.</li></ul>
-<h3>Conclusion of the Series</h3>
+<h2>Conclusion of the Series</h2>
 <p>And there you have it! A complete, end-to-end automated media server. From a secure VPN gateway to an intelligent, self-managing storage system, and finally, a powerful Plex server to deliver the content. This project has been a good learning experience, touching on networking, scripting, API integration, and hardware management—all within the Docker ecosystem.</p>
 <p>Thanks for following along! I hope this series has been informative and perhaps inspired you to start or enhance your own homelab projects.</p>
 <p><a href="../blog.html">Back to the list of posts</a></p>

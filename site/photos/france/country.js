@@ -6,7 +6,7 @@
   const main = document.querySelector('main[data-country="france"]:not([data-place])');
   if (!main || main.hasAttribute('data-js')) return;
   main.setAttribute('data-js', '');
-  const still = (matchMedia('(prefers-reduced-motion: reduce)').matches || document.documentElement.hasAttribute('data-lite'));
+  const still = (matchMedia('(prefers-reduced-motion: reduce)').matches || document.documentElement.matches('[data-lite],[data-still]'));
   const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
   const lerp = (a, b, f) => a + (b - a) * f;
 

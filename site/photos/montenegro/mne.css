@@ -117,7 +117,7 @@ main[data-country="montenegro"] .gear { font-size: var(--s-lead); color: #b4d3d6
 main[data-country="montenegro"] .index .m { font-size: var(--s-lead); font-weight: 700; margin-bottom: clamp(16px, 2vw, 28px); }
 /* The month: every day of August in a line that wraps, the days shot here large, each with its year under it. */
 main[data-country="montenegro"] .month { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px 14px; }
-main[data-country="montenegro"] .month li { font-size: var(--s-small); color: #a8a8a8; font-variant-numeric: tabular-nums; }
+main[data-country="montenegro"] .month li { font-size: var(--s-small); color: #767676; font-variant-numeric: tabular-nums; }
 main[data-country="montenegro"] .month li.on { font-size: clamp(56px, 6.4vw, 112px); color: var(--ink); }
 main[data-country="montenegro"] .month a { display: inline-flex; flex-direction: column; color: inherit; text-decoration: none; }
 main[data-country="montenegro"] .month .on .n { font-weight: 800; line-height: 0.9; letter-spacing: -0.05em; transition: color 200ms var(--ease); }

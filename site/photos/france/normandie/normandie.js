@@ -5,7 +5,7 @@
   const main = document.querySelector('main[data-place="normandie"]');
   if (!main || main.hasAttribute('data-js')) return;
   main.setAttribute('data-js', '');
-  const still = (matchMedia('(prefers-reduced-motion: reduce)').matches || document.documentElement.hasAttribute('data-lite'));
+  const still = (matchMedia('(prefers-reduced-motion: reduce)').matches || document.documentElement.matches('[data-lite],[data-still]'));
 
   // ---- The row: the year of the canvas at the front, and a step back or on.
   main.querySelectorAll('.hang').forEach(hang => {

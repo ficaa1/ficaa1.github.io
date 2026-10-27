@@ -12,7 +12,7 @@
 <h1 class="post-title">Resizing disk in Proxmox and guest VM</h1>
 <p class="soft">Written 2023-05-16. 268 words, about 1 minutes.</p>
 <p>After resizing disk in Proxmox GUI:</p>
-<h3>Inside parted:</h3>
+<h2>Inside parted:</h2>
 <pre><code>root@plex:/mnt/media/docker-volumes/photoprism# parted
 GNU Parted 3.4
 Using /dev/sda
@@ -49,7 +49,7 @@ Number  Start   End     Size    File system  Name  Flags
 Information: You may need to update /etc/fstab.
 
 </code></pre>
-<h3>After parted</h3>
+<h2>After parted</h2>
 <p>Need to resize the Physical Volume and then the Logical Volume needs to extend to the max of the PV.</p>
 <pre><code>root@plex:/mnt/media/docker-volumes/photoprism# pvresize /dev/sda3
   Physical volume "/dev/sda3" changed

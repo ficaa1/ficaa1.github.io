@@ -15,7 +15,7 @@ My goal for Plex was to have a setup that could handle multiple streams,
 including 4K content, without putting a heavy load on my server's CPU. This is
 where hardware-accelerated transcoding comes in.
 
-### The Hardware and The "Why"
+## The Hardware and The "Why"
 
 My server is an old PC I had with a 4th gen intel cpu and a cheap GTX 1050Ti.
 The key component is the NVIDIA GPU. By passing this GPU through
@@ -24,7 +24,7 @@ on the GPU (NVENC/NVDEC) to transcode video streams. This is vastly more
 efficient than using the CPU and is essential for a smooth multi-user
 experience.
 
-### The Implementation: Plex in Docker
+## The Implementation: Plex in Docker
 
 Here is the `docker-compose.yml` for my Plex instance. It's surprisingly simple,
 but a few key lines make all the difference.
@@ -66,7 +66,7 @@ services:
       - /mnt/nvme:/nvme   # NVMe (short-term)
 ```
 
-### Key Concepts
+## Key Concepts
 
 *   **`network_mode: host`**: This gives the Plex container direct access to the
     host's network interfaces. It's the easiest way to ensure that Plex's automatic
@@ -80,7 +80,7 @@ services:
 *   **`PLEX_CLAIM`**: This is a one-time token used on the first run to securely
     claim the server and attach it to your Plex account.
 
-### Conclusion of the Series
+## Conclusion of the Series
 
 And there you have it! A complete, end-to-end automated media server. From a
 secure VPN gateway to an intelligent, self-managing storage system, and finally,

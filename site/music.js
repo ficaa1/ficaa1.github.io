@@ -16,7 +16,7 @@
   // A sleeve's video loop runs while its song plays and holds its frame when paused; still pictures for reduced motion.
   const still = matchMedia('(prefers-reduced-motion: reduce)');
   // Low power mode (site.js) keeps the stills too.
-  const calm = () => still.matches || document.documentElement.hasAttribute('data-lite');
+  const calm = () => still.matches || document.documentElement.matches('[data-lite],[data-still]');
   function loop(it, playing) {
     const v = it.li.querySelector('video.loop');
     if (!v) return;

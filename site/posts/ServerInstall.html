@@ -12,7 +12,7 @@
 <h1 class="post-title">Building and installing my server</h1>
 <p class="soft">Written 2023-05-06. 714 words, about 3 minutes.</p>
 <ul><li>Couldn't post after setting it up, turns out issue was RAM placement. Switched the places and it finally booted.</li><li>BIOS Config --&gt; Enable virtualization</li><li>Badly flashed the USB I guess, retried in Balena Etcher. Worked after disabling Secure boot :)</li></ul>
-<h3>Proxmox installation</h3>
+<h2>Proxmox installation</h2>
 <p>Installed on 128gig SSD, IP Address : 192.168.1.160 because DHCP ends at .150</p>
 <p>Seems to work splendidly, next step: disable SSH password authentication and setup public key authentication instead</p>
 <p>Installed TrueNAS and passed through the two disks.</p>
@@ -73,11 +73,11 @@ vim /usr/share/pve-manager/js/pvemanagerlib.js</code></pre>
                 return `Core 0: ${c0} c | Core 1: ${c1} c | Core 2: ${c2} c | Core 3: ${c3} c | Core 4: ${c4} c | Core 5: ${c5} c`
             }
         }</code></pre>
-<h3>Storage pool creation</h3>
+<h2>Storage pool creation</h2>
 <p>Since I haven't yet received my third drive which I will use in conjuction with another drive to do mirroring (this will be my backup pool and important documents), I will create a pool with only one disk which I'll use to store media for Plex playback.</p>
 <p>Obviously I'm getting a bunch of warnings because there is 0 replication of any data with this kind of setup. For now, I do not mind as media isn't something that's completely unrecoverable by other means ;)</p>
 <p>I end up this config by adding a dataset which will server as a Samba share.</p>
-<h3>Tried setting it up in LXC, but because of IOMMU, iGpu wasn't showing up. </h3>
+<h2>Tried setting it up in LXC, but because of IOMMU, iGpu wasn't showing up. </h2>
 <ul><li>Set up ubuntu server with IOMMU and iGPU passthrough. Configured Network through</li></ul>
 <p>18  vim /etc/netplan/00-installer-config.yaml 19  netplan apply</p>
 <pre><code>network:
@@ -98,7 +98,7 @@ vim /usr/share/pve-manager/js/pvemanagerlib.js</code></pre>
         - google.com
   version: 2</code></pre>
 <ul><li>Installed Docker, and Plex natively (for hardware encoding)</li><li>Set up ssh through public key authentication only (for both proxmox host and ubuntu vm)</li><li>Mounted aforementioned pool as a NFS share (and mapped root user to root)</li></ul>
-<h3>To do</h3>
+<h2>To do</h2>
 <ul><li>Migrate volumes of all my docker containers running on WSL to my Share drive</li><li>Deploy my various stacks as compose files, with properly mounted config volumes as nfs </li><li>Configure nginx proxy manager and port forwarding</li><li>Decommission old Plex install in favor of this new one</li><li>Nextcloud</li><li>Windows VM</li><li>Terraform provisioning</li><li>VPN server</li></ul>
 <p><a href="../blog.html">Back to the list of posts</a></p>
 </main>

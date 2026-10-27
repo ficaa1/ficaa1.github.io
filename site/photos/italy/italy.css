@@ -163,10 +163,10 @@ main[data-country="italy"] .ground {
 }
 main[data-country="italy"] .ground .gear { color: inherit; }
 main[data-country="italy"] .ground .places a { color: inherit; }
-main[data-country="italy"] .ground .places .yr { color: inherit; opacity: 0.8; }
+main[data-country="italy"] .ground .places .yr { color: inherit; }
 main[data-country="italy"] .ground .places .here a { text-decoration-color: currentColor; }
-main[data-country="italy"] .ground .places a:active .place { color: inherit; opacity: 0.7; }
-@media (hover: hover) and (pointer: fine) { main[data-country="italy"] .ground .places a:hover .place { color: inherit; opacity: 0.7; } }
+main[data-country="italy"] .ground .places a:active .place { color: inherit; text-decoration: underline; text-underline-offset: 0.14em; }
+@media (hover: hover) and (pointer: fine) { main[data-country="italy"] .ground .places a:hover .place { color: inherit; text-decoration: underline; text-underline-offset: 0.14em; } }
 main[data-country="italy"] .ground .sign, main[data-region] .date .sign { background: #fff; color: #111; }
 main[data-region] .road .dd { color: var(--f); }
 @media (hover: hover) and (pointer: fine) { main[data-region] .road a:hover .dd { color: var(--ink); } }

@@ -5,7 +5,7 @@
   const main = document.querySelector('main[data-place="paris"]');
   if (!main || main.hasAttribute('data-js')) return;
   main.setAttribute('data-js', '');
-  const still = (matchMedia('(prefers-reduced-motion: reduce)').matches || document.documentElement.hasAttribute('data-lite'));
+  const still = (matchMedia('(prefers-reduced-motion: reduce)').matches || document.documentElement.matches('[data-lite],[data-still]'));
   const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
 
   // ---- The ride. Each stop in the key has a point on line 1 (its own, or the one where the ride changed line); the

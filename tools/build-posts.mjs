@@ -35,7 +35,7 @@ function md(text) {
       continue;
     }
     let m;
-    if ((m = l.match(/^(#{1,4})\s+(.*)/))) { flush(); html.push(`<h3>${inline(m[2])}</h3>`); continue; }
+    if ((m = l.match(/^(#{1,6})\s+(.*)/))) { flush(); const level = m[1].length; html.push(`<h${level}>${inline(m[2])}</h${level}>`); continue; }
     if ((m = l.match(/^\s*([-*]|\d+\.)\s+(.*)/))) {
       if (para.length) flush();
       const tag = /\d/.test(m[1]) ? 'ol' : 'ul';

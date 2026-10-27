@@ -16,7 +16,7 @@ secure internet access can then simply use this container's network stack,
 forcing all their traffic through the VPN tunnel without any complex routing
 rules on the host.
 
-### The Architecture: A Dedicated WireGuard Gateway
+## The Architecture: A Dedicated WireGuard Gateway
 
 While there are many popular all-in-one VPN containers, I opted for a more
 specific and performant solution for my provider (Private Internet Access):
@@ -106,7 +106,7 @@ networks:
     name: staticnet
 ```
 
-### Key Concepts
+## Key Concepts
 
 The most important line in this configuration is `network_mode: "service:gluetun"`. This tells Docker that the `qbittorrent` and `prowlarr` containers should not get their own network interface. Instead, they share the network stack of the `gluetun` service.
 
@@ -115,6 +115,6 @@ This has two major benefits:
 1.  **Simplicity:** I don't need to configure anything inside qBittorrent or Prowlarr. They operate as if they're on a normal network, but all their traffic is transparently routed through the gateway's VPN tunnel.
 2.  **Security:** If the `gluetun` container fails or the VPN disconnects, the network stack for the dependent services goes down with it. This acts as a kill-switch, preventing any accidental IP leaks.
 
-### What's Next?
+## What's Next?
 
 With our secure foundation in place, we can now build the services that will use it. In the next post, I'll cover the "arr" stack (Sonarr, Radarr, Overseerr) and how it integrates with our downloaders to create a fully automated media acquisition pipeline.

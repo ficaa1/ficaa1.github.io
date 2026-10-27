@@ -13,10 +13,10 @@
 <p class="soft">Written 2025-07-17. 623 words, about 3 minutes.</p>
 <p>In the <a href="homelab-arr-stack.html">previous post</a>, we set up a media acquisition engine that downloads files to a fast NVMe drive. The problem? Fast storage is expensive and limited. This is where the real fun begins: building a system to automatically move older content to a larger, slower storage pool without breaking our media library.</p>
 <p>A simple <code>mv</code> command won't work here. Sonarr and Radarr need to know that the files have moved, otherwise they'll lose track of the media. The solution is to use their APIs to orchestrate the move.</p>
-<h3>The Goal: A Self-Managing Cache</h3>
+<h2>The Goal: A Self-Managing Cache</h2>
 <p>I wanted a script that would:</p>
 <ol><li>Check the free space on my NVMe drive.</li><li>If free space is below a certain threshold (e.g., 200GB), proceed.</li><li>Use the Radarr and Sonarr APIs to identify all media still living on the NVMe drive.</li><li>Instruct the APIs to move that media to the long-term HDD storage path.</li><li>Run this automatically on a schedule.</li></ol>
-<h3>The Implementation: A Cron Job and a Bash Script</h3>
+<h2>The Implementation: A Cron Job and a Bash Script</h2>
 <p>I created a simple bash script to handle the logic and a cron job to run it a few times a week.</p>
 <p><b>The Cron Job:</b> This runs the script at 4:00 AM every Monday, Wednesday, and Friday.</p>
 <pre><code># /etc/cron.d/media-manager
@@ -112,7 +112,7 @@ move_content "Radarr Movies" "$MOVIES_SSD_PATH" "$MOVIES_HDD_PATH" "$RADARR_URL"
 move_content "Sonarr TV Shows" "$TV_SSD_PATH" "$TV_HDD_PATH" "$SONARR_URL" "$SONARR_KEY" "series"
 
 echo "--- Storage management completed ---"</code></pre>
-<h3>What's Next?</h3>
+<h2>What's Next?</h2>
 <p>We now have a fully automated, self-managing system for acquiring and storing media. The final piece of the puzzle is making it accessible and enjoyable to watch. In the final part of this series, we'll set up Plex with NVIDIA GPU hardware transcoding to serve our library beautifully to any device.</p>
 <p><a href="../blog.html">Back to the list of posts</a></p>
 </main>

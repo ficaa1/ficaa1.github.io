@@ -15,7 +15,7 @@ A simple `mv` command won't work here. Sonarr and Radarr need to know that the
 files have moved, otherwise they'll lose track of the media. The solution is to
 use their APIs to orchestrate the move.
 
-### The Goal: A Self-Managing Cache
+## The Goal: A Self-Managing Cache
 
 I wanted a script that would:
 
@@ -26,7 +26,7 @@ I wanted a script that would:
 4.  Instruct the APIs to move that media to the long-term HDD storage path.
 5.  Run this automatically on a schedule.
 
-### The Implementation: A Cron Job and a Bash Script
+## The Implementation: A Cron Job and a Bash Script
 
 I created a simple bash script to handle the logic and a cron job to run it a
 few times a week.
@@ -136,7 +136,7 @@ move_content "Sonarr TV Shows" "$TV_SSD_PATH" "$TV_HDD_PATH" "$SONARR_URL" "$SON
 echo "--- Storage management completed ---"
 ```
 
-### What's Next?
+## What's Next?
 
 We now have a fully automated, self-managing system for acquiring and storing
 media. The final piece of the puzzle is making it accessible and enjoyable to

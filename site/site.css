@@ -623,4 +623,22 @@ html[data-lite] *, html[data-lite] *::before, html[data-lite] *::after {
   animation: none !important; transition: none !important; scroll-behavior: auto !important;
   -webkit-backdrop-filter: none !important; backdrop-filter: none !important;
 }
+/* "Videos and animations: off" stops only the motion. */
+html[data-still] *, html[data-still] *::before, html[data-still] *::after {
+  animation: none !important; transition: none !important; scroll-behavior: auto !important;
+}
 footer .lite { padding: 0; font: inherit; color: inherit; background: none; border: 0; text-decoration: underline; cursor: pointer; }
+
+/* ---- Touch and keyboard. */
+button, a, select, label, summary, input, textarea { touch-action: manipulation; }
+main :is(p, li, dd, td, figcaption) { overflow-wrap: break-word; }
+.skip { position: absolute; left: 12px; top: -100px; z-index: 1000; padding: 10px 14px; background: var(--ink); color: var(--bg); }
+.skip:focus { top: 12px; }
+/* Bigger places to tap, without moving anything: padding taken back with a negative margin, or a ::after over the link. */
+nav a { padding-block: 10px; margin-block: -10px; }
+#player .name { padding-block: 12px; margin-block: -12px; }
+.viewer .keys button { min-height: 44px; }
+.pbar .days a { position: relative; }
+.pbar .days a::after { content: ''; position: absolute; inset: -8px 0; }
+/* Post sections are h2 under the title, at the size the old h3 had. */
+body[data-page="post"] main h2 { font-size: 24px; line-height: 1.2; margin: 48px 0 8px; }

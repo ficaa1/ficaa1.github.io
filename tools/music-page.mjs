@@ -73,6 +73,7 @@ const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<link rel="preconnect" href="https://photos.filipbiljic.com">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Music - Filip Biljić</title>
 <link rel="stylesheet" href="site.css">
