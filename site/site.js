@@ -8,15 +8,19 @@
   // motion (no film, no song loops), site.css stops the animations and the glass blur, and the viewer keeps to the 2000 px
   // pictures. It is kept in localStorage and the page reloads when it is switched.
   // The second switch stops only the motion (films, song loops, animations) and keeps the glass and the big pictures.
-  let lite = false, still = false;
-  try { lite = localStorage.getItem('fb-lite') === '1'; still = localStorage.getItem('fb-still') === '1'; } catch {}
+  // The third bends the film behind the glass on the photos page (lands.css), which only Chromium can draw, so it is
+  // offered only there; it is heavy, and off unless asked for.
+  let lite = false, still = false, glass = false;
+  try { lite = localStorage.getItem('fb-lite') === '1'; still = localStorage.getItem('fb-still') === '1'; glass = localStorage.getItem('fb-glass') === '1'; } catch {}
+  const bends = !!navigator.userAgentData?.brands?.some(b => b.brand === 'Chromium');
   document.documentElement.toggleAttribute('data-lite', lite);
   document.documentElement.toggleAttribute('data-still', still);
+  document.documentElement.toggleAttribute('data-glass', glass && bends);
   function liteSwitch() {
     const foot = document.querySelector('footer #trace') || document.querySelector('footer');
     if (!foot || foot.querySelector('.lite')) return;
     const p = document.createElement('p');
-    for (const [key, on, label] of [['fb-lite', lite, 'Low power mode'], ['fb-still', !still, 'Videos and animations']]) {
+    for (const [key, on, label] of [['fb-lite', lite, 'Low power mode'], ['fb-still', !still, 'Videos and animations'], bends && ['fb-glass', glass, 'Liquid glass']].filter(Boolean)) {
       const b = document.createElement('button');
       b.type = 'button'; b.className = 'lite'; b.setAttribute('aria-pressed', on);
       b.textContent = `${label}: ${on ? 'on' : 'off'}`;

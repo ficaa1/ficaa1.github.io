@@ -203,3 +203,12 @@ body:has(.lands) footer .credit a { color: inherit; }
 html:is([data-lite],[data-still]) .lands .land { --tint: rgb(0 0 0 / .45); }
 /* The page's colours are see-through here, so the back-to-top arrow takes a solid one. */
 body:has(.lands) :is(#top, #next) { color: #111; border-color: #111; }
+
+/* ---- "Liquid glass: on" (site.js, Chromium only): near its edges a pane shows what is further in, pulled outwards,
+   with the red, green and blue pulled by different amounts, as a thick lens does. The bending is the filter #ld-lens
+   in photos.html, drawn again for every frame of the film, which is why it is off unless asked for. */
+.lands .lens { position: absolute; width: 0; height: 0; overflow: hidden; }
+html[data-glass] .lands .land {
+  -webkit-backdrop-filter: url(#ld-lens) var(--light);
+  backdrop-filter: url(#ld-lens) var(--light);
+}
