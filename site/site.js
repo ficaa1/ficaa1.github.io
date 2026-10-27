@@ -23,14 +23,14 @@
     const ramp = (id, ch, stops, vert) => `<linearGradient id="${id}"${vert ? ' x2="0" y2="1"' : ''}>${stops
       .map(([o, v]) => `<stop offset="${o}" stop-color="rgb(${ch === 'r' ? v : 0},${ch === 'g' ? v : 0},0)"/>`).join('')}</linearGradient>`;
     const map = (x, y) => 'data:image/svg+xml,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200" preserveAspectRatio="none">${ramp('x', 'r', x)}${ramp('y', 'g', y, true)}<rect width="200" height="200" fill="url(#x)"/><g style="mix-blend-mode:screen"><rect width="200" height="200" fill="url(#y)"/></g></svg>`);
-    const flat = [[0, 128], [1, 128]], inward = [[0, 255], [.2, 175], [.5, 128], [.8, 81], [1, 0]];
+    const flat = [[0, 128], [1, 128]], inward = [[0, 255], [.2, 175], [.5, 128], [.8, 81], [1, 0]], rim = [[0, 255], [.12, 205], [.5, 128], [.88, 51], [1, 0]];
     const lens = (id, href, [r, g, b]) => `<filter id="${id}" x="0" y="0" width="1" height="1" primitiveUnits="objectBoundingBox" color-interpolation-filters="sRGB">
 <feImage href="${href}" x="0" y="0" width="1" height="1" preserveAspectRatio="none" result="map"/>
 ${[[r, '1 0 0 0 0 0 0 0 0 0 0 0 0 0 0'], [g, '0 0 0 0 0 0 1 0 0 0 0 0 0 0 0'], [b, '0 0 0 0 0 0 0 0 0 0 0 0 1 0 0']].map(([k, m], i) =>
   `<feDisplacementMap in="SourceGraphic" in2="map" scale="${k}" xChannelSelector="R" yChannelSelector="G" result="d${i}"/><feColorMatrix in="d${i}" values="${m} 0 0 0 1 0" result="c${i}"/>`).join('\n')}
 <feBlend in="c0" in2="c1" mode="screen" result="c01"/><feBlend in="c01" in2="c2" mode="screen"/></filter>`;
     const svg = document.createElement('div');
-    svg.innerHTML = `<svg aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0;overflow:hidden">${lens('fb-strip', map(flat, inward), [.5, .44, .38])}${lens('fb-bead', map(inward, inward), [.42, .38, .34])}</svg>`;
+    svg.innerHTML = `<svg aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0;overflow:hidden">${lens('fb-strip', map(flat, inward), [.5, .48, .46])}${lens('fb-bead', map(rim, rim), [.62, .6, .58])}</svg>`;
     document.body.append(svg.firstChild);
   }
   function liteSwitch() {
