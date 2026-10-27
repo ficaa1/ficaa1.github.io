@@ -14,6 +14,13 @@ its SVG gradient stops and blur pixel for pixel.
 There is no continuous animation loop while the film is paused. Scroll/resize
 updates geometry on demand. Scrolling a paused film reuses its textures. Navigation
 disposes callbacks, observers and GPU resources; context loss restores CSS blur.
+The panes' entrance slides briefly refresh geometry each frame, including a final
+measurement on completion or cancellation. CSS translation changes positions
+without notifying ResizeObserver; caching a rectangle mid-slide previously left
+the glass up to 24 pixels below its pane until scrolling refreshed it. Run
+`tools/glass-geometry-check.js` as a browser expression on Photos with glass enabled
+and Montenegro visible to check that a mid-entrance measurement settles correctly
+without scrolling, and that paused rendering returns to idle.
 Low power mode, disabled videos and reduced motion skip WebGL. Unsupported WebGL,
 missing video-frame callbacks or failed CORS also retain the original film and CSS
 blur. Music's small SVG seek-bar lenses are unchanged.

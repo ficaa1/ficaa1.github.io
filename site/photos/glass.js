@@ -128,6 +128,19 @@
       const b = Object.fromEntries(['image', 'stepSize', 'crop'].map(n => [n, uniform(blur, n)]));
       const optics = ['refraction', 'dispersion', 'bendWidth', 'rimWidth', 'saturation', 'brightness', 'opacity'];
       const c = Object.fromEntries(['film', 'frost', 'crop', 'view', 'pane', 'radius', ...optics].map(n => [n, uniform(composite, n)]));
+      // CSS translate does not trigger ResizeObserver. Follow the entrance slide
+      // while it runs, then take a final measurement even if the film is paused.
+      const entrances = new Set();
+      const geometryChanged = () => { dirty = true; schedule(); };
+      function trackEntrance(pane) {
+        for (const animation of pane.getAnimations()) {
+          if (animation.animationName !== 'ld-rise' || entrances.has(animation)) continue;
+          entrances.add(animation);
+          const settled = () => { entrances.delete(animation); geometryChanged(); };
+          animation.finished.then(settled, settled);
+        }
+        geometryChanged();
+      }
       function use(p) {
         gl.useProgram(p); const a = gl.getAttribLocation(p, 'position');
         gl.enableVertexAttribArray(a); gl.vertexAttribPointer(a, 2, gl.FLOAT, false, 0, 0);
@@ -164,6 +177,8 @@
       function render() {
         if (stopped || document.hidden || !root.isConnected || video.readyState < 2) return;
         try {
+          const moving = [...entrances].some(a => a.playState === 'running');
+          if (moving) { dirty = true; schedule(); }
           if (dirty) layout();
           const aspect = width / height, filmAspect = video.videoWidth / video.videoHeight;
           const crop = aspect > filmAspect ? [1, filmAspect / aspect] : [aspect / filmAspect, 1];
@@ -217,6 +232,10 @@
         if (stopped || tick) return;
         tick = requestAnimationFrame(() => { tick = 0; render(); });
       };
+      root.addEventListener('animationstart', event => {
+        if (event.animationName === 'ld-rise' && panes.includes(event.target)) panes.forEach(trackEntrance);
+      }, options);
+      panes.forEach(trackEntrance);
       for (const event of ['loadeddata', 'seeked']) video.addEventListener(event, () => { upload = refresh = true; schedule(); }, options);
       video.addEventListener('play', schedule, options);
       addEventListener('scroll', () => { dirty = true; schedule(); }, options);
