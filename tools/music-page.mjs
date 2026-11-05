@@ -82,7 +82,7 @@ const html = `<!DOCTYPE html>
 <link rel="preload" href="league-spartan-latin.woff2" as="font" type="font/woff2" crossorigin>
 </head>
 <body class="music">
-<nav><a href="index.html">Welcome</a> | <a href="blog.html">Blog</a> | <a href="cv.html">CV</a> | <a href="contact.html">Contact</a> | <a href="photos.html">Photos</a> | <b>Music</b></nav>
+<nav><a href="index.html">Welcome</a> | <a href="blog.html">Blog</a> | <a href="cv.html">CV</a> | <a href="projects.html">Projects</a> | <a href="contact.html">Contact</a> | <a href="photos.html">Photos</a> | <b>Music</b></nav>
 <main>
 <link rel="stylesheet" href="music.css?v=${version('music.css')}">
 <header class="front">

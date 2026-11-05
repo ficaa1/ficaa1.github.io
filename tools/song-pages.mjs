@@ -107,7 +107,7 @@ ${image}<meta property="og:audio" content="${esc(s.src)}">
 <link rel="preload" href="../league-spartan-latin.woff2" as="font" type="font/woff2" crossorigin>
 </head>
 <body class="song">
-<nav><a href="../index.html">Welcome</a> | <a href="../blog.html">Blog</a> | <a href="../cv.html">CV</a> | <a href="../contact.html">Contact</a> | <a href="../photos.html">Photos</a> | <a href="../music.html">Music</a></nav>
+<nav><a href="../index.html">Welcome</a> | <a href="../blog.html">Blog</a> | <a href="../cv.html">CV</a> | <a href="../projects.html">Projects</a> | <a href="../contact.html">Contact</a> | <a href="../photos.html">Photos</a> | <a href="../music.html">Music</a></nav>
 <main>
 <link rel="stylesheet" href="song.css?v=${version('songs/song.css')}">
 <style>body.song{--c:${x.colour};--k:${x.ink}}</style>

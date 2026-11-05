@@ -74,7 +74,7 @@ const page = p => `<!DOCTYPE html>
 <link rel="stylesheet" href="../site.css">
 </head>
 <body data-page="post">
-<nav><a href="../index.html">Welcome</a> | <a href="../blog.html">Blog</a> | <a href="../cv.html">CV</a> | <a href="../contact.html">Contact</a> | <a href="../photos.html">Photos</a> | <a href="../music.html">Music</a></nav>
+<nav><a href="../index.html">Welcome</a> | <a href="../blog.html">Blog</a> | <a href="../cv.html">CV</a> | <a href="../projects.html">Projects</a> | <a href="../contact.html">Contact</a> | <a href="../photos.html">Photos</a> | <a href="../music.html">Music</a></nav>
 <main>
 <h1 class="post-title">${esc(p.title)}</h1>
 <p class="soft">Written ${p.date}. ${p.words} words, about ${Math.max(1, Math.round(p.words / 230))} minutes.</p>

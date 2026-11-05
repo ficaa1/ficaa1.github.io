@@ -96,6 +96,22 @@ button, .button {
 button:hover, .button:hover { background: #0000b8; }
 button:active, .button:active { transform: translateY(1px); }
 
+/* ---- Projects ---- */
+main > .project { max-width: 1000px; margin: 96px 0 0; }
+main > .project.wide { max-width: none; }
+.project .shot { border: 1px solid var(--field); line-height: 0; }
+.project .shot video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: #e6dcc6; }
+.project .demo iframe { display: block; width: 100%; height: min(82vh, 860px); border: 0; background: #f4f4f4; }
+.project .demo .still { display: none; }
+.project .demo .still img { display: block; width: 100%; height: auto; }
+/* On a phone the dashboard would catch every scroll, so it is a picture linking to the project page. */
+@media (max-width: 720px) {
+  .project .demo iframe { display: none; }
+  .project .demo .still { display: block; }
+}
+.project h2 { margin: 20px 0 8px; }
+.project p { max-width: var(--col); }
+
 /* ---- CV: the one page that got a stylesheet ---- */
 body.cv { background: var(--field); }
 body.cv nav, body.cv footer { color: var(--ink); }
