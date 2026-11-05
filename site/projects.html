@@ -7,30 +7,27 @@
 <link rel="stylesheet" href="site.css">
 </head>
 <body data-page="projects">
-<nav><a href="index.html">Welcome</a> | <a href="blog.html">Blog</a> | <a href="cv.html">CV</a> | <b>Projects</b> | <a href="contact.html">Contact</a> | <a href="photos.html">Photos</a> | <a href="music.html">Music</a></nav>
+<nav><a href="index.html">Welcome</a> | <a href="blog.html">Blog</a> | <a href="cv.html">CV</a> | <b>Projects</b> | <a href="photos.html">Photos</a> | <a href="music.html">Music</a></nav>
 <main>
 <h1>Projects</h1>
 
 <section class="project">
-<div class="shot"><video class="loop" muted playsinline loop controls preload="none" width="1920" height="1080" poster="https://www.filipbiljic.com/micko/media/poster.jpg" aria-label="A tour of micko">
-<source src="https://www.filipbiljic.com/micko/media/tour-av1.mp4" type='video/mp4; codecs="av01.0.08M.08"'>
-<source src="https://www.filipbiljic.com/micko/media/tour-h264.mp4" type="video/mp4">
-</video></div>
 <h2><a href="https://www.filipbiljic.com/micko/">micko</a></h2>
-<p>A keyboard-first terminal UI for Argo Workflows.<br>
+<p>A TUI for Argo Workflows inspired by sofka/k9s<br>
 <a href="https://github.com/ficaa1/micko">GitHub</a></p>
+<div class="shot demo"><iframe src="https://www.filipbiljic.com/micko/demo/" title="micko --demo, running in the browser"></iframe></div>
 </section>
 
-<section class="project wide">
+<section class="project">
+<h2><a href="https://www.filipbiljic.com/homelab-inventory/">homelab-inventory</a></h2>
+<p>A dashboard for everything running in your homelab. A small agent on each host reports containers, disks, ZFS, Proxmox, ports and packages, and it warns you before things break.<br>
+<a href="https://github.com/ficaa1/homelab-inventory">GitHub</a></p>
 <div class="shot demo"><iframe src="https://www.filipbiljic.com/homelab-inventory/demo/" loading="lazy" title="The homelab-inventory dashboard, running on an example fleet"></iframe>
 <a class="still" href="https://www.filipbiljic.com/homelab-inventory/"><img src="https://www.filipbiljic.com/homelab-inventory/img/overview-phone-light.png" width="780" height="1440" loading="lazy" alt="The homelab-inventory overview page"></a></div>
-<h2><a href="https://www.filipbiljic.com/homelab-inventory/">homelab-inventory</a></h2>
-<p>A dashboard for your homelab.<br>
-<a href="https://github.com/ficaa1/homelab-inventory">GitHub</a></p>
 </section>
 </main>
 <footer>
-<div id="trace"><p>Filip Biljić, Paris.</p></div>
+<div id="trace"><p>Filip Biljić, Paris. <a href="contact.html">Contact</a></p></div>
 </footer>
 <script src="site.js"></script>
 </body>

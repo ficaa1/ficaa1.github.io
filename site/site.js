@@ -840,26 +840,11 @@
   addEventListener('scroll', () => { if (!barTick) barTick = requestAnimationFrame(barUpdate); }, { passive: true });
   addEventListener('resize', () => { if (!barTick) barTick = requestAnimationFrame(barUpdate); });
 
-  // ---- Projects: a project's film plays while it is on screen, unless motion is off; then it keeps its controls.
-  function projects() {
-    const loops = [...document.querySelectorAll('main .project video.loop')];
-    if (!loops.length) return;
-    const quiet = lite || still || matchMedia('(prefers-reduced-motion: reduce)').matches;
-    loops.forEach(v => { v.controls = quiet; });
-    if (quiet || !('IntersectionObserver' in window)) return;
-    const io = new IntersectionObserver(es => es.forEach(e => {
-      if (e.isIntersecting) e.target.play().catch(() => { e.target.controls = true; });
-      else e.target.pause();
-    }), { rootMargin: '10% 0px' });
-    loops.forEach(v => io.observe(v));
-  }
-
   // ---- Page setup, run on the first load and after every swap.
   function init() {
     entrances();
     blog();
     contact();
-    projects();
     photos();
     sheets();
     photoBar();
