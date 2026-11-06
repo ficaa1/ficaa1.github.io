@@ -100,7 +100,8 @@ button:active, .button:active { transform: translateY(1px); }
 main > .project { --w: min(1500px, 78.4vw); width: var(--w); max-width: none; margin: 96px 0 0 calc(50vw - var(--left) - var(--w) / 2); }
 .project h2 { margin: 0 0 8px; }
 .project p { max-width: var(--col); }
-.project .shot { border: 1px solid var(--field); line-height: 0; }
+.project .shot { display: block; border: 1px solid var(--field); line-height: 0; }
+.project .shot > picture img { display: block; width: 100%; height: auto; }
 .project .demo iframe { display: block; width: 100%; height: min(82vh, 860px); border: 0; background: #f4f4f4; }
 .project .demo .still { display: none; }
 .project .demo .still img { display: block; width: 100%; height: auto; }
