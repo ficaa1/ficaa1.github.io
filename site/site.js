@@ -862,7 +862,10 @@
     } catch { location.assign(url); return; }
     const doc = new DOMParser().parseFromString(text, 'text/html');
     const parts = ['nav', 'main', 'footer'];
-    if (!parts.every(p => doc.querySelector(p))) { location.assign(url); return; }
+    // Only this site's own pages are swapped in. Other projects on the same domain (photocull/, micko/) bring their own
+    // styles in <head>, which a swap would leave behind, so they load normally.
+    const ours = [...doc.querySelectorAll('script[src]')].some(s => new URL(s.getAttribute('src'), url).href === new URL('site.js', ROOT).href);
+    if (!ours || !parts.every(p => doc.querySelector(p))) { location.assign(url); return; }
 
     if (push) { keep(); history.pushState({}, '', url); }
     page = location.pathname + location.search;
