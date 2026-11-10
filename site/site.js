@@ -54,6 +54,10 @@
 
   // ---- Entrances: each block rises in once; pictures draw top to bottom like a slow modem.
   function entrances() {
+    if (!document.body.matches('.photos, .music, .song')) {
+      document.querySelector('main').classList.add('arrive');
+      return;
+    }
     document.querySelectorAll('main figure img').forEach(img => {
       if (img.closest('.load')) return;
       const w = document.createElement('span'); w.className = 'load';
@@ -80,12 +84,16 @@
     const rows = [...document.querySelectorAll('.posts li.post')];
     const years = [...document.querySelectorAll('.posts li.year')];
     const count = document.getElementById('count');
+    const empty = document.createElement('li');
+    empty.className = 'empty'; empty.hidden = true; empty.textContent = 'No posts found';
+    document.querySelector('.posts').append(empty);
     find.addEventListener('input', () => {
       const q = find.value.trim().toLowerCase();
       let n = 0;
       rows.forEach(r => { const hit = !q || r.textContent.toLowerCase().includes(q); r.hidden = !hit; n += hit; });
       years.forEach(y => { y.hidden = !rows.some(r => r.dataset.year === y.dataset.year && !r.hidden); });
       count.textContent = q ? `${n} of ${rows.length} posts` : `${rows.length} posts`;
+      empty.hidden = n !== 0;
     });
   }
   addEventListener('keydown', e => {
@@ -262,7 +270,7 @@
       viewer.className = 'viewer';
       viewer.tabIndex = -1;
       viewer.setAttribute('aria-label', 'Photo viewer');
-      viewer.innerHTML = `<figure><img alt=""><figcaption><p class="line"><span class="where"></span> <span class="cap"></span></p>
+      viewer.innerHTML = `<figure><img alt=""><p class="photo-status" role="status"></p><figcaption><p class="line"><span class="where"></span> <span class="cap"></span></p>
         <p class="keys"><button type="button" data-step="-1">&larr; Previous</button> <button type="button" data-step="1">Next &rarr;</button> <button type="button" data-full hidden>Full screen</button> <button type="button" data-close>Close</button></p></figcaption></figure>`;
       document.body.append(viewer);
       // The picture fills the screen and the caption lies over its foot. A tap on either side of the picture steps, a tap
@@ -322,6 +330,12 @@
       viewer.n = i;
       const f = viewer.figs[i], src = f.querySelector('img');
       const big = viewer.querySelector('img');
+      const status = viewer.querySelector('.photo-status');
+      viewer.setAttribute('aria-busy', 'true');
+      status.textContent = 'Loading photo…';
+      big.hidden = false;
+      big.onload = () => { viewer.removeAttribute('aria-busy'); big.hidden = false; status.textContent = ''; };
+      big.onerror = () => { viewer.removeAttribute('aria-busy'); big.hidden = true; status.textContent = 'Could not load this photo'; };
       big.src = (src.currentSrc || src.src).replace(/-\d+\.(jpg|jxl)$/, '-2000.$1');
       big.alt = src.alt;
       // Then the 4000 px copy takes its place once it is ready, and the next three pictures the way the viewer is going
@@ -365,7 +379,8 @@
       <button class="play" type="button" aria-label="Play" aria-keyshortcuts="p Space" title="Play or pause (P)" disabled>
         <svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path class="i-play" d="M5 3 L17 10 L5 17 Z"/><g class="i-pause"><rect x="4" y="3" width="4" height="14"/><rect x="12" y="3" width="4" height="14"/></g></svg>
       </button>
-      <a class="name" href="${new URL('music.html', ROOT).href}">No songs yet</a>
+      <a class="name" href="${new URL('music.html', ROOT).href}">Loading songs…</a>
+      <span class="status" role="status" hidden></span>
       <span class="vol">
         <button class="mute" type="button" aria-label="Mute" aria-pressed="false" title="Volume">
           <svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path class="spk" d="M2 7 H6 L11 3 V17 L6 13 H2 Z"/><path class="w1" d="M13.5 7.5 Q15 10 13.5 12.5"/><path class="w2" d="M15.5 4.5 Q19 10 15.5 15.5"/><path class="x" d="M13.5 7.5 L18.5 12.5 M18.5 7.5 L13.5 12.5"/></svg></button>
@@ -388,7 +403,8 @@
       el.classList.toggle('playing', !audio.paused);
       $('.play').setAttribute('aria-label', audio.paused ? 'Play' : 'Pause');
       $('.play').disabled = $('.skip').disabled = cover.disabled = !s;
-      $('.name').textContent = s ? (s.artist ? `${s.title} · ${s.artist}` : s.title) : 'No songs yet';
+      $('.name').textContent = s ? s.title : 'No songs yet';
+      $('.name').title = s ? [s.title, s.artist].filter(Boolean).join(' · ') : '';
       $('.name').href = new URL(s && s.slug ? `songs/${s.slug}.html` : 'music.html', ROOT).href;
       cover.style.backgroundImage = s && s.cover ? `url("${new URL(s.cover, ROOT).href}")` : '';
       cover.classList.toggle('art', !!(s && s.cover));
@@ -400,11 +416,12 @@
     function motion() {
       const s = list[i], src = s && !calm() && (s.loopFull || s.loop) ? new URL(s.loopFull || s.loop, ROOT).href : '';
       if (clip.src !== src) { clip.classList.remove('on'); if (src) clip.src = src; else clip.removeAttribute('src'); }
-      if (src && !audio.paused) clip.play().catch(() => {}); else clip.pause();
+      if (src && !audio.paused && !document.hidden) clip.play().catch(() => {}); else clip.pause();
     }
     clip.addEventListener('playing', () => clip.classList.add('on'));
     clip.addEventListener('emptied', () => clip.classList.remove('on'));
     still.addEventListener('change', motion);
+    document.addEventListener('visibilitychange', motion);
 
     // Any page can drive the player: a button with data-song="<n>" plays that song, or pauses it when it is the one playing.
     // A page can also move the song along with a "player-seek" event, detail { t } in seconds.
@@ -419,12 +436,22 @@
       e.preventDefault();
       const n = +b.dataset.song;
       if (n === i && audio.src && !audio.paused) audio.pause();
-      else if (n === i && audio.src) audio.play().catch(() => {});
+      else if (n === i && audio.src && !audio.error) playSong();
       else load(n, true);
     });
     // A song's own page asks with "player-select", detail { i }, for its song to be the one shown, without playing it.
     // A song that is playing, or paused part of the way through, stays.
     let wanted = null;
+    function feedback(message = '') {
+      $('.status').textContent = message;
+      $('.status').hidden = !message;
+      $('.play').setAttribute('aria-busy', message === 'Loading…');
+    }
+    function playSong() {
+      audio.play().catch(error => {
+        if (error.name !== 'AbortError') feedback('Could not play this song. Press play to try again.');
+      });
+    }
     function select(n) {
       if (!list.length) { wanted = n; return; }
       if (!list[n] || n === i || !audio.paused || audio.currentTime > 0) return;
@@ -434,13 +461,14 @@
     function load(n, play) {
       if (!list.length) return;
       i = (n + list.length) % list.length;
+      feedback();
       audio.src = new URL(list[i].src, ROOT).href;
-      if (play) audio.play().catch(() => {});
+      if (play) playSong();
       save(); show();
     }
     $('.play').addEventListener('click', () => {
-      if (!audio.src) load(i, true);
-      else if (audio.paused) audio.play().catch(() => {});
+      if (!audio.src || audio.error) load(i, true);
+      else if (audio.paused) playSong();
       else audio.pause();
     });
     $('.skip').addEventListener('click', () => load(i + 1, !audio.paused || !audio.src));
@@ -448,7 +476,9 @@
     ['play', 'pause'].forEach(ev => audio.addEventListener(ev, show));
     ['durationchange', 'seeked'].forEach(ev => audio.addEventListener(ev, () => { tick(); draw(); }));
     audio.addEventListener('timeupdate', () => { tick(); draw(); emit(); if (Math.round(audio.currentTime) % 5 === 0) save(); });
-    audio.addEventListener('error', () => { $('.name').textContent = `Could not load ${list[i]?.title || 'this song'}`; });
+    audio.addEventListener('waiting', () => { if (!audio.paused) feedback('Loading…'); });
+    ['playing', 'canplay', 'pause'].forEach(ev => audio.addEventListener(ev, () => feedback()));
+    audio.addEventListener('error', () => feedback('Could not load this song. Press play to try again.'));
 
     // ---- The waveform: decoded once at a low sample rate, and the loudness of each bar kept in localStorage for next time.
     // It is only fetched once the visitor plays the song or opens the player; until then the cover is the title set in type.
@@ -661,7 +691,7 @@
     audio.addEventListener('play', () => { held = null; later(); });
     audio.addEventListener('pause', () => { held = scrollY; later(); });
 
-    document.body.prepend(el);
+    document.querySelector('nav').after(el);
     json('music.json').then(songs => {
       list = Array.isArray(songs) ? songs.filter(s => s && s.src && s.title) : [];
       try { const st = JSON.parse(sessionStorage.getItem('fb-player') || 'null'); if (st && list[st.i]) { i = st.i; audio.src = new URL(list[i].src, ROOT).href; audio.currentTime = st.t; } } catch {}
@@ -853,24 +883,37 @@
   }
 
   // ---- Links load the next page in place, so the player is not interrupted. Anything unusual falls back to a normal load.
+  let navigation;
   async function go(url, push) {
+    navigation?.abort();
+    const request = navigation = new AbortController();
+    document.querySelector('main').setAttribute('aria-busy', 'true');
     let res, text;
     try {
-      res = await fetch(url, { headers: { Accept: 'text/html' } });
+      res = await fetch(url, { headers: { Accept: 'text/html' }, signal: request.signal });
       if (!res.ok || !(res.headers.get('content-type') || '').includes('text/html')) throw 0;
       text = await res.text();
-    } catch { location.assign(url); return; }
+    } catch {
+      if (!request.signal.aborted) location.assign(url);
+      return;
+    }
+    if (request.signal.aborted) return;
     const doc = new DOMParser().parseFromString(text, 'text/html');
     const parts = ['nav', 'main', 'footer'];
     // Only this site's own pages are swapped in. Other projects on the same domain (photocull/, micko/) bring their own
     // styles in <head>, which a swap would leave behind, so they load normally.
-    const ours = [...doc.querySelectorAll('script[src]')].some(s => new URL(s.getAttribute('src'), url).href === new URL('site.js', ROOT).href);
+    const ours = [...doc.querySelectorAll('script[src]')].some(s => new URL(s.getAttribute('src'), url).pathname === new URL('site.js', ROOT).pathname);
     if (!ours || !parts.every(p => doc.querySelector(p))) { location.assign(url); return; }
 
     if (push) { keep(); history.pushState({}, '', url); }
     page = location.pathname + location.search;
     document.title = doc.title;
     document.body.className = doc.body.className;
+    if (doc.body.dataset.page) document.body.dataset.page = doc.body.dataset.page;
+    else delete document.body.dataset.page;
+    const metadata = 'meta[name="description"], meta[name="theme-color"], meta[property^="og:"], meta[name^="twitter:"], link[rel="canonical"]';
+    document.head.querySelectorAll(metadata).forEach(el => el.remove());
+    doc.head.querySelectorAll(metadata).forEach(el => document.head.append(document.adoptNode(el)));
     parts.forEach(p => document.querySelector(p).replaceWith(document.adoptNode(doc.querySelector(p))));
     // Scripts in the new <main> arrive parsed but not run; a page that brings its own (a dump's dump.js) gets it run here.
     document.querySelectorAll('main script[src]').forEach(old => { const s = document.createElement('script'); s.src = old.src; old.replaceWith(s); });

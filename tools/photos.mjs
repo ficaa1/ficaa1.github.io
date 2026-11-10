@@ -50,6 +50,7 @@ import { createRequire } from 'node:module';
 import { createHash } from 'node:crypto';
 import { exif, settings } from './exif.mjs';
 import { largeJpeg, largeJxl } from './large-photo.mjs';
+import { completePage } from './page-meta.mjs';
 
 const args = process.argv.slice(2);
 const FETCH = args.includes('--fetch');
@@ -537,7 +538,7 @@ if (NEW) {
     .replace(/<!-- lands:start -->[\s\S]*<!-- lands:end -->/, '')
     .replace(/\n?<!-- credit:start -->[\s\S]*<!-- credit:end -->/, '')
     .replace(/\s(href|src)="(?![a-z]+:|#|\/)([^"]*)"/gi, (m, a, u) => ` ${a}="${'../'.repeat(DEPTH)}${u}"`)
-    .replace('<b>Photos</b>', `<a href="${home(DEPTH)}">Photos</a>`)
+    .replace(/<b(?: aria-current="page")?>Photos<\/b>/, `<a href="${home(DEPTH)}">Photos</a>`)
     .replace(/<main>[\s\S]*<\/main>/, () => `<main data-dump="${dump.id}">\n<link rel="stylesheet" href="dump.css">\n${fromKit(`${kit}.html`).trim()}\n</main>`);
   mkdirSync(dir(dump.id), { recursive: true });
   writeFileSync(pagePath(dump.id), chrome);
@@ -550,13 +551,13 @@ if (NEW) {
 // pages are filled in full when one of their dumps (or the country itself) is named, or when none is.
 for (const dump of dumps.filter(hasPage)) {
   const path = pagePath(dump.id);
-  writeFileSync(path, fillPage(readFileSync(path, 'utf8'), dumpParts(dump, mine(dump)), path));
+  writeFileSync(path, completePage(fillPage(readFileSync(path, 'utf8'), dumpParts(dump, mine(dump)), path), `photos/${dump.id}/index.html`));
 }
 for (const e of places.filter(hasPage)) {
   const path = pagePath(e.id), country = e.in ? countries.find(c => c.id === e.in) : e;
   const full = !ONLY || ONLY === country.id || ONLY === e.id || (country.dumps || []).includes(ONLY);
-  writeFileSync(path, fillPage(readFileSync(path, 'utf8'), placeParts(e, full), path));
+  writeFileSync(path, completePage(fillPage(readFileSync(path, 'utf8'), placeParts(e, full), path), `photos/${e.id}/index.html`));
 }
-writeFileSync(indexPath, fill(readFileSync(indexPath, 'utf8'), name => name === 'lands' ? lands() : name === 'credit' ? landsCredit() : name === 'stamp' ? stamp(open.find(first), 0) : null, indexPath));
+writeFileSync(indexPath, completePage(fill(readFileSync(indexPath, 'utf8'), name => name === 'lands' ? lands() : name === 'credit' ? landsCredit() : name === 'stamp' ? stamp(open.find(first), 0) : null, indexPath), 'photos.html'));
 for (const dump of listed) if (printed(dump).length && !homeOf(dump)) console.log(`${dump.id}: has prints but no page; start one with node tools/photos.mjs ${dump.id} --new${countryOf(dump) ? `, or show them on ${countryOf(dump).id}'s pages` : ''}`);
 console.log(`photos.html: ${listed.length} dumps, ${open.length} pages in the switcher${places.filter(hasPage).length ? `, ${places.filter(hasPage).length} country and place pages` : ''}${ONLY ? `; filled ${ONLY}` : ''}; pictures from ${absolute ? MEDIA : `site/${MEDIA} (local preview; set PHOTOS_BASE before committing)`}`);

@@ -2,6 +2,7 @@
 // Usage: node tools/build-posts.mjs <posts-dir> <site-dir>
 import { readFileSync, writeFileSync, readdirSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
+import { completePage } from './page-meta.mjs';
 
 const [src, out] = process.argv.slice(2);
 mkdirSync(join(out, 'posts'), { recursive: true });
@@ -87,6 +88,6 @@ ${p.html}
 </html>
 `;
 
-for (const p of posts) writeFileSync(join(out, 'posts', `${p.slug}.html`), page(p));
+for (const p of posts) writeFileSync(join(out, 'posts', `${p.slug}.html`), completePage(page(p), `posts/${p.slug}.html`));
 writeFileSync(join(out, 'posts.json'), JSON.stringify(posts.map(({ html, ...p }) => p), null, 1));
 console.log(posts.map(p => `${p.date}  ${p.slug}  ${p.words}w`).join('\n'));
