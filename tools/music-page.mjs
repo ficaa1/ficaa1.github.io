@@ -6,6 +6,7 @@
 import { writeFileSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { createHash } from 'node:crypto';
+import { completePage } from './page-meta.mjs';
 import { site, load, esc, mmss, ems, heights, SL, sleevePath } from './songs.mjs';
 const version = name => createHash('sha1').update(readFileSync(join(site, name))).digest('hex').slice(0, 8);
 
@@ -39,7 +40,7 @@ function sleeve({ s, n, colour, ink, d, after, slug }, k) {
     // song is on, the sleeve opens out to the picture's whole shape (coverFull) and the whole clip (loopFull).
     const full = s.coverFull ? ` data-full="${esc(s.coverFull)}"` : '';
     const clip = s.loopFull || s.loop;
-    const loop = clip ? `<video class="loop" data-src="${esc(clip)}" muted playsinline loop preload="none" disablepictureinpicture aria-hidden="true"></video>` : '';
+    const loop = clip ? `<video class="loop" data-src="${esc(clip)}" poster="${esc(s.cover)}" muted playsinline loop preload="none" disablepictureinpicture aria-hidden="true"></video>` : '';
     // The part heard, on a strip of glass over the picture; pressing or dragging on it moves the song along.
     const glass = `<span class="glass" aria-hidden="true"><span class="fill"></span><span class="knob"></span></span>`;
     face = `<span class="face art"><img src="${esc(s.cover)}"${srcset}${full} width="1000" height="1000" alt=""${lazy} decoding="async">${loop}${glass}</span>`;
@@ -106,5 +107,5 @@ ${cursed.map(record).join('\n')}
 </body>
 </html>
 `;
-writeFileSync(join(site, 'music.html'), html);
+writeFileSync(join(site, 'music.html'), completePage(html, 'music.html'));
 console.log(`music.html: ${main.length} sleeves, ${cursed.length} records, ${(html.length / 1024).toFixed(0)} KB`);

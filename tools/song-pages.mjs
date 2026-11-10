@@ -6,6 +6,7 @@
 import { readFileSync, writeFileSync, readdirSync, unlinkSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { createHash } from 'node:crypto';
+import { completePage } from './page-meta.mjs';
 import { site, load, esc, mmss, ems, heights, SL, sleevePath } from './songs.mjs';
 const version = name => createHash('sha1').update(readFileSync(join(site, name))).digest('hex').slice(0, 8);
 
@@ -142,7 +143,7 @@ for (const it of songs) { it.c = it.colour; it.k = it.ink; }
 mkdirSync(out, { recursive: true });
 const made = new Set();
 for (const it of songs) {
-  writeFileSync(join(out, `${it.slug}.html`), page(it));
+  writeFileSync(join(out, `${it.slug}.html`), completePage(page(it), `songs/${it.slug}.html`));
   made.add(`${it.slug}.html`);
 }
 // A song taken off the list takes its page with it.
